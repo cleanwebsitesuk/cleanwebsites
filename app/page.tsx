@@ -6,15 +6,13 @@ export default function Home() {
       {/* Top bar */}
       <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
         <div className="flex items-center gap-2">
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#1D4ED8] text-white font-semibold">
-            Cw
-          </div>
-          <span className="text-sm font-semibold tracking-tight">
-            CleanWebsites
-          </span>
-          <span className="ml-2 rounded-full border border-zinc-200 px-2.5 py-1 text-xs text-zinc-600">
-            UK • 24h builds
-          </span>
+         <Image
+  src="/logo.png"
+  alt="CleanWebsites logo"
+  width={140}
+  height={40}
+  className="h-10 w-auto"
+/>
         </div>
 
         <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
