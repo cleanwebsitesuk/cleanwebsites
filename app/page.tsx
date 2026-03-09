@@ -1,522 +1,774 @@
+"use client";
+
 import Image from "next/image";
+import Link from "next/link";
+import { useEffect, useMemo, useState } from "react";
+
+const demoTabs = [
+  {
+    id: "barber",
+    label: "Barber",
+    title: "North Studio",
+    category: "Barber / Salon",
+    location: "Manchester",
+    accent: "from-[#3B82F6]/18 via-[#3B82F6]/6 to-transparent",
+    badge: "Booking-led",
+    description:
+      "Sharp service blocks, elevated gallery, reviews, team, and an enquiry flow that feels premium on mobile.",
+    stats: ["Skin fades", "Beard trims", "Book now"],
+    href: "/demo/barber",
+  },
+  {
+    id: "salon",
+    label: "Salon",
+    title: "Atelier House",
+    category: "Salon",
+    location: "Leeds",
+    accent: "from-[#3B82F6]/14 via-[#3B82F6]/5 to-transparent",
+    badge: "Brand-first",
+    description:
+      "Soft luxury styling, service pricing, stylist profiles, and clean conversion points without clutter.",
+    stats: ["Colour", "Extensions", "Consultation"],
+    href: "/demo/salon",
+  },
+  {
+    id: "restaurant",
+    label: "Restaurant",
+    title: "Coal & Vine",
+    category: "Restaurant / Takeaway",
+    location: "Birmingham",
+    accent: "from-[#3B82F6]/16 via-[#3B82F6]/5 to-transparent",
+    badge: "Menu-ready",
+    description:
+      "Atmospheric hero imagery, menu highlights, opening hours, map, and a simple reservation or order path.",
+    stats: ["Dinner", "Cocktails", "Reserve"],
+    href: "/demo/restaurant",
+  },
+  {
+    id: "trades",
+    label: "Trades",
+    title: "Apex Electrical",
+    category: "Trades / Services",
+    location: "London",
+    accent: "from-[#3B82F6]/15 via-[#3B82F6]/4 to-transparent",
+    badge: "Quote-led",
+    description:
+      "Clean trust sections, service breakdowns, location coverage, and a quote journey that is obvious and fast.",
+    stats: ["Domestic", "Commercial", "Get a quote"],
+    href: "/demo/trades",
+  },
+] as const;
+
+const featuredDemos = [
+  {
+    title: "Barber / Salon",
+    copy: "Booking-led, brand-first layout with reviews, services, and a gallery that feels considered.",
+    href: "/demo/barber",
+    kicker: "Selected demo",
+  },
+  {
+    title: "Restaurant / Takeaway",
+    copy: "Atmospheric menu-first structure with opening hours, directions, and strong mobile ordering paths.",
+    href: "/demo/restaurant",
+    kicker: "Selected demo",
+  },
+  {
+    title: "Trades / Services",
+    copy: "Service-led layout with trust cues, coverage areas, and a clean quote journey built for action.",
+    href: "/demo/trades",
+    kicker: "Selected demo",
+  },
+];
+
+const processSteps = [
+  {
+    step: "01",
+    title: "Send your content",
+    desc: "Logo, photos, business info, services, and contact details.",
+  },
+  {
+    step: "02",
+    title: "We design and build",
+    desc: "Your site is assembled, styled, and structured around your business.",
+  },
+  {
+    step: "03",
+    title: "You review",
+    desc: "One tidy revision is included to tighten everything up.",
+  },
+  {
+    step: "04",
+    title: "Go live",
+    desc: "We deploy your site and connect your domain when ready.",
+  },
+];
+
+const trustCards = [
+  {
+    title: "Designed for first impressions",
+    copy: "So your business doesn’t look dated, DIY, or thrown together.",
+  },
+  {
+    title: "Structured for action",
+    copy: "Calls, messages, directions, bookings, or quote requests are always easy to find.",
+  },
+  {
+    title: "Easy to manage",
+    copy: "You get a live link, clear setup, and support with launch.",
+  },
+];
+
+function ArrowRight() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function MenuIcon({ open }: { open: boolean }) {
+  return (
+    <div className="relative h-5 w-5">
+      <span
+        className={`absolute left-0 top-1 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
+          open ? "translate-y-1.5 rotate-45" : ""
+        }`}
+      />
+      <span
+        className={`absolute left-0 top-2.5 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
+          open ? "opacity-0" : ""
+        }`}
+      />
+      <span
+        className={`absolute left-0 top-4 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
+          open ? "-translate-y-1.5 -rotate-45" : ""
+        }`}
+      />
+    </div>
+  );
+}
 
 export default function Home() {
+  const [activeDemo, setActiveDemo] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+
+  const currentDemo = useMemo(() => demoTabs[activeDemo], [activeDemo]);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 28);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [mobileOpen]);
+
   return (
-    <div className="min-h-screen bg-white font-sans text-zinc-900">
-      {/* Top bar */}
-      <header className="mx-auto flex w-full max-w-6xl items-center justify-between px-6 py-6">
-        <div className="flex items-center gap-2">
-         <Image
-  src="/logo.png"
-  alt="CleanWebsites logo"
-  width={140}
-  height={40}
-  className="h-10 w-auto"
-/>
+    <div className="min-h-screen bg-[#0A0A0B] text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+      <div className="pointer-events-none fixed inset-0 overflow-hidden">
+        <div className="absolute left-[-12%] top-[-8%] h-[32rem] w-[32rem] rounded-full bg-[#3B82F6]/10 blur-[140px]" />
+        <div className="absolute bottom-[-14%] right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#3B82F6]/8 blur-[140px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
+        <div className="absolute inset-0 opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+      </div>
+
+      <header
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "border-b border-white/10 bg-[#0A0A0B]/72 backdrop-blur-xl"
+            : "bg-transparent"
+        }`}
+      >
+        <div className="mx-auto flex h-[78px] w-full max-w-7xl items-center justify-between px-5 sm:px-6 lg:px-8">
+          <Link href="/" className="flex items-center gap-3">
+            <Image
+              src="/logo.png"
+              alt="Clean Websites logo"
+              width={144}
+              height={40}
+              className="h-9 w-auto opacity-95"
+            />
+          </Link>
+
+          <nav className="hidden items-center gap-8 text-[15px] text-[#A9ABB3] md:flex">
+            <a className="transition hover:text-[#F5F2EA]" href="#demos">
+              Demos
+            </a>
+            <a className="transition hover:text-[#F5F2EA]" href="#process">
+              Process
+            </a>
+            <a className="transition hover:text-[#F5F2EA]" href="#pricing">
+              Pricing
+            </a>
+          </nav>
+
+          <div className="hidden items-center gap-3 md:flex">
+            <Link
+              href="/demos"
+              className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+            >
+              View demo
+            </Link>
+            <Link
+              href="/start"
+              className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+            >
+              Start your site
+            </Link>
+          </div>
+
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
+            onClick={() => setMobileOpen((value) => !value)}
+          >
+            <MenuIcon open={mobileOpen} />
+          </button>
         </div>
 
-        <nav className="hidden items-center gap-6 text-sm text-zinc-600 md:flex">
-          <a className="hover:text-zinc-900" href="#work">
-            Demos
-          </a>
-          <a className="hover:text-zinc-900" href="#pricing">
-            Pricing
-          </a>
-          <a className="hover:text-zinc-900" href="#process">
-            Process
-          </a>
-        </nav>
-
-        <div className="flex items-center gap-3">
-          <a
-            href="#work"
-            className="hidden rounded-xl px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-50 md:inline-flex"
-          >
-            View demo
-          </a>
-          <a
-            href="#contact"
-            className="inline-flex items-center justify-center rounded-xl bg-[#1D4ED8] px-4 py-2 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/30"
-          >
-            Start my 24h build
-          </a>
+        <div
+          className={`fixed inset-0 z-40 bg-[#0A0A0B]/96 px-6 transition-all duration-300 md:hidden ${
+            mobileOpen
+              ? "pointer-events-auto opacity-100"
+              : "pointer-events-none opacity-0"
+          }`}
+        >
+          <div className="flex min-h-screen flex-col justify-center gap-7 text-3xl font-light tracking-tight text-[#F5F2EA]">
+            {[
+              { href: "#demos", label: "Demos" },
+              { href: "#process", label: "Process" },
+              { href: "#pricing", label: "Pricing" },
+              { href: "/start", label: "Start your site" },
+            ].map((item, index) => (
+              <a
+                key={item.label}
+                href={item.href}
+                onClick={() => setMobileOpen(false)}
+                className={`translate-y-3 transition-all duration-500 ${
+                  mobileOpen ? "translate-y-0 opacity-100" : "opacity-0"
+                }`}
+                style={{ transitionDelay: `${index * 70}ms` }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <main className="mx-auto w-full max-w-6xl px-6 pb-20 pt-10">
-        <section className="grid gap-10 md:grid-cols-2 md:items-center">
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white px-3 py-1 text-xs text-zinc-700">
-              <span className="inline-block h-2 w-2 rounded-full bg-[#1CC3D9]" />
-              Live in 24 hours (from content received)
+      <main className="relative">
+        <section className="mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-7xl items-center gap-14 px-5 pb-20 pt-10 sm:px-6 md:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-24 lg:pt-14">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+              Built for UK local businesses
             </div>
 
-            <h1 className="mt-5 text-4xl font-semibold leading-tight tracking-tight text-zinc-900 sm:text-5xl">
-              Clean, high-performance websites for UK local businesses.
+            <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(3.5rem,8vw,6rem)] leading-[0.93] tracking-[-0.04em] text-[#F5F2EA]">
+              I make businesses look expensive.
+              <span className="mt-2 block text-[#A9ABB3]">
+                I just happen to do it fast.
+              </span>
             </h1>
 
-            <p className="mt-4 max-w-xl text-lg leading-8 text-zinc-600">
-              Look established online — fast. Minimal, mobile-first design with a
-              clear structure that turns visitors into enquiries.
+            <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
+              Modern websites for barbers, salons, restaurants, takeaways, and
+              trades. Clean design, fast launch, mobile-first structure, and a
+              simple enquiry flow that feels premium from the first click.
             </p>
 
-            <div className="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <a
-                href="#contact"
-                className="inline-flex h-12 items-center justify-center rounded-xl bg-[#1D4ED8] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/30"
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+              <Link
+                href="/start"
+                className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
               >
-                Get your website live
-              </a>
+                Start your site
+                <ArrowRight />
+              </Link>
               <a
-                href="#work"
-                className="inline-flex h-12 items-center justify-center rounded-xl border border-zinc-200 bg-white px-6 text-sm font-semibold text-zinc-800 transition hover:bg-zinc-50 focus:outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
+                href="#demos"
+                className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
               >
-                View demos
+                View live demos
+                <ArrowRight />
               </a>
             </div>
 
-            <div className="mt-7 grid max-w-xl grid-cols-2 gap-4 text-sm text-zinc-600 sm:grid-cols-4">
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4">
-                <div className="text-zinc-900 font-semibold">Mobile-first</div>
-                <div className="mt-1">Responsive UI</div>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4">
-                <div className="text-zinc-900 font-semibold">Fast</div>
-                <div className="mt-1">Optimised build</div>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4">
-                <div className="text-zinc-900 font-semibold">SEO-ready</div>
-                <div className="mt-1">Clean structure</div>
-              </div>
-              <div className="rounded-2xl border border-zinc-200 bg-white p-4">
-                <div className="text-zinc-900 font-semibold">Simple</div>
-                <div className="mt-1">No nonsense</div>
-              </div>
+            <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-3">
+              {[
+                "24h turnaround from content received",
+                "Built for mobile",
+                "UK local business focus",
+              ].map((item) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Preview card */}
           <div className="relative">
-            <div className="absolute -inset-4 rounded-[28px] bg-gradient-to-b from-[#1D4ED8]/10 to-[#1CC3D9]/10 blur-2xl" />
-            <div className="relative overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-sm">
-              <div className="flex items-center justify-between border-b border-zinc-200 px-5 py-4">
-                <div className="flex items-center gap-2">
-                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
-                  <span className="h-2.5 w-2.5 rounded-full bg-zinc-300" />
-                </div>
-                <div className="text-xs font-medium text-zinc-600">
-                  Demo preview
+            <div className="pointer-events-none absolute inset-x-12 -top-8 h-40 rounded-full bg-[#3B82F6]/10 blur-[90px]" />
+            <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
+              <div
+                className={`absolute inset-0 bg-gradient-to-br ${currentDemo.accent} transition-all duration-500`}
+              />
+              <div className="relative border-b border-white/10 px-5 py-4 sm:px-6">
+                <div className="flex items-center justify-between gap-4">
+                  <div>
+                    <div className="text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                      Featured preview
+                    </div>
+                    <div className="mt-1 text-sm text-[#F5F2EA]">
+                      {currentDemo.title} · {currentDemo.location}
+                    </div>
+                  </div>
+                  <a
+                    href={currentDemo.href}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.07]"
+                  >
+                    Open demo
+                  </a>
                 </div>
               </div>
 
-              <div className="p-6">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-3">
-                    <div className="h-10 w-10 rounded-2xl bg-[#1D4ED8]/10 ring-1 ring-[#1D4ED8]/15" />
-                    <div>
-                      <div className="text-sm font-semibold text-zinc-900">
-                        Your Business Name
+              <div className="relative p-5 sm:p-6">
+                <div className="overflow-hidden rounded-[26px] border border-white/10 bg-[#0D0E10]">
+                  <div className="relative min-h-[30rem] p-6 sm:p-7">
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_32%)]" />
+
+                    <div className="relative max-w-md">
+                      <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                        {currentDemo.category}
                       </div>
-                      <div className="text-xs text-zinc-600">
-                        Birmingham • Local services
+
+                      <h2 className="mt-5 max-w-[10ch] font-serif text-4xl leading-[0.96] tracking-[-0.04em] sm:text-5xl">
+                        {currentDemo.title}
+                      </h2>
+
+                      <p className="mt-4 max-w-sm text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
+                        {currentDemo.description}
+                      </p>
+
+                      <div className="mt-7 flex flex-wrap gap-2">
+                        {currentDemo.stats.map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs text-[#F5F2EA]"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="relative mt-10 grid gap-3">
+                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+                        <div className="flex items-center justify-between gap-3">
+                          <div>
+                            <div className="text-sm font-medium text-[#F5F2EA]">
+                              Premium first impression
+                            </div>
+                            <div className="mt-1 text-xs text-[#A9ABB3]">
+                              Designed to feel established at a glance
+                            </div>
+                          </div>
+                          <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs font-medium text-[#8BB5FF]">
+                            {currentDemo.badge}
+                          </span>
+                        </div>
+                      </div>
+
+                      <div className="grid gap-3 sm:grid-cols-3">
+                        {["Hero", "Services", "Contact"].map((block, index) => (
+                          <div
+                            key={block}
+                            className="rounded-[20px] border border-white/10 bg-white/[0.03] p-4"
+                          >
+                            <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                              0{index + 1}
+                            </div>
+                            <div className="mt-8 h-16 rounded-2xl bg-white/[0.04]" />
+                            <div className="mt-3 text-sm text-[#F5F2EA]">
+                              {block}
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
+                        <div className="text-sm text-[#F5F2EA]">
+                          Clean conversion point
+                        </div>
+                        <div className="mt-3 grid gap-2">
+                          <div className="h-11 rounded-2xl bg-white/[0.04]" />
+                          <div className="h-11 rounded-2xl bg-white/[0.04]" />
+                          <div className="mt-1 h-11 rounded-2xl bg-[#3B82F6]" />
+                        </div>
                       </div>
                     </div>
                   </div>
-                  <div className="rounded-full bg-[#1CC3D9]/10 px-3 py-1 text-xs font-semibold text-[#0E7490] ring-1 ring-[#1CC3D9]/20">
-                    Enquiries ready
-                  </div>
                 </div>
 
-                <div className="mt-6 grid gap-3">
-                  <div className="h-28 rounded-2xl bg-zinc-100" />
-                  <div className="grid grid-cols-3 gap-3">
-                    <div className="h-20 rounded-2xl bg-zinc-100" />
-                    <div className="h-20 rounded-2xl bg-zinc-100" />
-                    <div className="h-20 rounded-2xl bg-zinc-100" />
-                  </div>
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {demoTabs.map((tab, index) => (
+                    <button
+                      key={tab.id}
+                      type="button"
+                      onClick={() => setActiveDemo(index)}
+                      className={`rounded-full px-4 py-2 text-sm transition duration-300 ${
+                        activeDemo === index
+                          ? "bg-[#3B82F6] text-white"
+                          : "border border-white/10 bg-white/[0.03] text-[#A9ABB3] hover:border-white/20 hover:text-[#F5F2EA]"
+                      }`}
+                    >
+                      {tab.label}
+                    </button>
+                  ))}
                 </div>
-
-                <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-4">
-                  <div className="text-sm font-semibold text-zinc-900">
-                    Quick contact
-                  </div>
-                  <div className="mt-3 grid gap-2">
-                    <div className="h-10 rounded-xl bg-zinc-100" />
-                    <div className="h-10 rounded-xl bg-zinc-100" />
-                    <div className="mt-2 h-10 rounded-xl bg-[#1D4ED8] opacity-90" />
-                  </div>
-                </div>
-
-                <p className="mt-5 text-xs leading-5 text-zinc-500">
-                  You get a clean layout like this, fully responsive, with your
-                  branding, pages, and enquiry flow — deployed and ready.
-                </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Trust strip */}
-        <section className="mt-14 rounded-[28px] border border-zinc-200 bg-zinc-50 p-6">
-          <div className="grid gap-4 md:grid-cols-3">
-            <div className="rounded-2xl bg-white p-5">
-              <div className="text-sm font-semibold text-zinc-900">
-                Built to load fast
-              </div>
-              <p className="mt-1 text-sm leading-6 text-zinc-600">
-                Clean structure and modern hosting so your site feels instant.
-              </p>
+        <section
+          id="demos"
+          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-2xl">
+            <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              Selected demos
             </div>
-            <div className="rounded-2xl bg-white p-5">
-              <div className="text-sm font-semibold text-zinc-900">
-                Designed for trust
-              </div>
-              <p className="mt-1 text-sm leading-6 text-zinc-600">
-                Minimal, professional layouts that make your business look
-                established.
-              </p>
-            </div>
-            <div className="rounded-2xl bg-white p-5">
-              <div className="text-sm font-semibold text-zinc-900">
-                Easy handover
-              </div>
-              <p className="mt-1 text-sm leading-6 text-zinc-600">
-                You get a live site link and simple instructions for future
-                updates.
-              </p>
-            </div>
+            <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              Real structures. Adapted for different businesses.
+            </h2>
+            <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              A clean, high-end foundation shaped for different categories
+              without looking like a generic template.
+            </p>
           </div>
-        </section>
 
-        {/* Work / Demos */}
-        <section id="work" className="mt-20">
-          <div className="flex items-end justify-between gap-6">
-            <div>
-              <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
-                Demos
-              </h2>
-              <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600">
-                Same clean foundation — tailored per business. These can be
-                deployed as live demos.
-              </p>
-            </div>
-            <div className="hidden text-sm text-zinc-500 md:block">
-              Want yours to look like this?{" "}
+          <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            {featuredDemos.map((card, index) => (
               <a
-                className="font-semibold text-[#1D4ED8] hover:underline"
-                href="#contact"
-              >
-                Start now
-              </a>
-            </div>
-          </div>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-3">
-            {[
-              { title: "Barber / Salon", tag: "Gallery + booking link" },
-              { title: "Trades", tag: "Services + quote form" },
-              { title: "Food / Takeaway", tag: "Menu + directions" },
-            ].map((card) => (
-              <div
                 key={card.title}
-                className="group rounded-[28px] border border-zinc-200 bg-white p-5 shadow-sm transition hover:-translate-y-0.5 hover:shadow-md"
+                href={card.href}
+                target="_blank"
+                rel="noreferrer"
+                className="group overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] transition duration-300 hover:-translate-y-1.5 hover:border-white/20 hover:shadow-[0_30px_80px_rgba(0,0,0,0.32)]"
               >
-                <div className="h-36 rounded-2xl bg-zinc-100" />
-                <div className="mt-4 flex items-center justify-between gap-3">
-                  <div className="text-sm font-semibold text-zinc-900">
-                    {card.title}
+                <div className="relative h-[20rem] overflow-hidden border-b border-white/10 bg-[#0D0E10]">
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_35%)]" />
+                  <div className="absolute inset-0 transition duration-500 group-hover:scale-[1.03]">
+                    <div className="absolute left-6 right-6 top-6 rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
+                      <div className="flex items-center justify-between">
+                        <span className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                          {card.kicker}
+                        </span>
+                        <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs text-[#8BB5FF]">
+                          24h-ready
+                        </span>
+                      </div>
+                      <div className="mt-5 h-28 rounded-[18px] bg-white/[0.05]" />
+                      <div className="mt-4 grid grid-cols-3 gap-3">
+                        <div className="h-16 rounded-2xl bg-white/[0.04]" />
+                        <div className="h-16 rounded-2xl bg-white/[0.04]" />
+                        <div className="h-16 rounded-2xl bg-white/[0.04]" />
+                      </div>
+                    </div>
+
+                    <div className="absolute bottom-6 left-6 right-6 rounded-[22px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
+                      <div className="text-sm text-[#F5F2EA]">
+                        Premium homepage direction
+                      </div>
+                      <div className="mt-2 h-10 rounded-2xl bg-[#3B82F6]" />
+                    </div>
                   </div>
-                  <span className="rounded-full bg-[#1CC3D9]/10 px-2.5 py-1 text-xs font-semibold text-[#0E7490] ring-1 ring-[#1CC3D9]/20">
-                    Demo
-                  </span>
                 </div>
-                <div className="mt-2 text-sm text-zinc-600">{card.tag}</div>
-                <div className="mt-4 text-sm font-semibold text-[#1D4ED8]">
-                  View demo →
+
+                <div className="p-6">
+                  <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
+                  <h3 className="mt-2 text-[26px] font-medium tracking-[-0.03em] text-[#F5F2EA]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    {card.copy}
+                  </p>
+                  <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
+                    Open demo
+                    <ArrowRight />
+                  </div>
                 </div>
-              </div>
+              </a>
             ))}
           </div>
         </section>
 
-        {/* Pricing */}
-        <section id="pricing" className="mt-20">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
-            Pricing
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600">
-            Simple, clear pricing. No retainers. No fluff.
-          </p>
-
-          <div className="mt-6 grid gap-6 md:grid-cols-2">
-            <div className="rounded-[28px] border border-zinc-200 bg-white p-7 shadow-sm">
-              <div className="flex items-center justify-between">
-                <div>
-                  <div className="text-sm font-semibold text-zinc-900">
-                    Launch Package
-                  </div>
-                  <div className="mt-1 text-sm text-zinc-600">
-                    Perfect for most local businesses.
-                  </div>
+        <section
+          id="pricing"
+          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+        >
+          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214]">
+            <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
+              <div className="max-w-2xl">
+                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                  Launch package
                 </div>
-                <span className="rounded-full bg-[#1CC3D9]/10 px-3 py-1 text-xs font-semibold text-[#0E7490] ring-1 ring-[#1CC3D9]/20">
-                  Most popular
-                </span>
+                <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                  A clean launch package for local businesses.
+                </h2>
+                <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+                  One custom homepage style, core pages, contact or booking
+                  flow, mobile optimisation, and launch support.
+                </p>
               </div>
 
-              <div className="mt-5 flex items-baseline gap-2">
-                <div className="text-4xl font-semibold tracking-tight text-zinc-900">
+              <div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
+                <div className="text-sm text-[#A9ABB3]">From</div>
+                <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
                   £595
                 </div>
-                <div className="text-sm text-zinc-600">one-time</div>
-              </div>
-
-              <ul className="mt-6 space-y-3 text-sm text-zinc-700">
-                {[
-                  "3–5 pages (Home, About, Services, Gallery, Contact)",
-                  "Mobile-first design",
-                  "Contact / enquiry form",
-                  "Google Maps embed",
-                  "SEO-ready page structure",
-                  "Live in 24 hours (from content received)",
-                  "1 revision included",
-                ].map((item) => (
-                  <li key={item} className="flex gap-3">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-[#1D4ED8]" />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-
-              <a
-                href="#contact"
-                className="mt-7 inline-flex h-12 w-full items-center justify-center rounded-xl bg-[#1D4ED8] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/30"
-              >
-                Start my 24h build
-              </a>
-
-              <p className="mt-3 text-xs leading-5 text-zinc-500">
-                Tip: if you have content ready (logo, services, address, photos),
-                you’ll get the fastest turnaround.
-              </p>
-            </div>
-
-            <div className="rounded-[28px] border border-zinc-200 bg-zinc-50 p-7">
-              <div className="text-sm font-semibold text-zinc-900">
-                Optional add-ons
-              </div>
-              <p className="mt-1 text-sm leading-6 text-zinc-600">
-                Keep the base clean. Add what you actually need.
-              </p>
-
-              <div className="mt-5 space-y-3">
-                {[
-                  { name: "Extra page", price: "£100" },
-                  { name: "Booking integration", price: "£150" },
-                  { name: "SEO optimisation", price: "£250" },
-                  { name: "Copy polish (tight + professional)", price: "£150" },
-                  { name: "Ongoing edits plan", price: "£49/mo" },
-                ].map((a) => (
-                  <div
-                    key={a.name}
-                    className="flex items-center justify-between rounded-2xl border border-zinc-200 bg-white p-4"
-                  >
-                    <div className="text-sm font-medium text-zinc-900">
-                      {a.name}
-                    </div>
-                    <div className="text-sm font-semibold text-zinc-700">
-                      {a.price}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-6 rounded-2xl border border-zinc-200 bg-white p-5">
-                <div className="text-sm font-semibold text-zinc-900">
-                  Good to know
+                <div className="mt-2 text-sm text-[#A9ABB3]">
+                  Live in 24 hours from content received
                 </div>
-                <p className="mt-2 text-sm leading-6 text-zinc-600">
-                  This is about speed + credibility. If you need something
-                  complex (custom systems, heavy SEO campaigns), that’s a
-                  separate scope.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        {/* Process */}
-        <section id="process" className="mt-20">
-          <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
-            Process
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-zinc-600">
-            Simple. Fast. Minimal back-and-forth.
-          </p>
-
-          <div className="mt-6 grid gap-4 md:grid-cols-4">
-            {[
-              {
-                step: "1",
-                title: "Send your details",
-                desc: "Logo, address, services, photos, social links.",
-              },
-              {
-                step: "2",
-                title: "We build in 24 hours",
-                desc: "Clean layout, pages, and enquiry flow.",
-              },
-              {
-                step: "3",
-                title: "Quick review",
-                desc: "One revision included to tighten it up.",
-              },
-              {
-                step: "4",
-                title: "Go live",
-                desc: "Deployed and ready to share everywhere.",
-              },
-            ].map((s) => (
-              <div
-                key={s.step}
-                className="rounded-[28px] border border-zinc-200 bg-white p-6 shadow-sm"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-[#1D4ED8]/10 text-sm font-semibold text-[#1D4ED8] ring-1 ring-[#1D4ED8]/15">
-                    {s.step}
-                  </div>
-                  <div className="text-sm font-semibold text-zinc-900">
-                    {s.title}
-                  </div>
-                </div>
-                <p className="mt-3 text-sm leading-6 text-zinc-600">{s.desc}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Contact */}
-        <section
-          id="contact"
-          className="mt-20 overflow-hidden rounded-[28px] border border-zinc-200 bg-white shadow-sm"
-        >
-          <div className="grid md:grid-cols-2">
-            <div className="p-8">
-              <h2 className="text-2xl font-semibold tracking-tight text-zinc-900">
-                Get your website live in 24 hours.
-              </h2>
-              <p className="mt-2 text-sm leading-6 text-zinc-600">
-                Send your details and I’ll reply with next steps. No long calls,
-                no fluff.
-              </p>
-
-              <form className="mt-6 grid gap-3">
-                <input
-                  className="h-12 rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
-                  placeholder="Business name"
-                />
-                <input
-                  className="h-12 rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
-                  placeholder="Your name"
-                />
-                <input
-                  type="email"
-                  className="h-12 rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
-                  placeholder="Email"
-                />
-                <input
-                  className="h-12 rounded-xl border border-zinc-200 bg-white px-4 text-sm outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
-                  placeholder="City (e.g. Birmingham)"
-                />
-                <textarea
-                  className="min-h-[110px] rounded-xl border border-zinc-200 bg-white px-4 py-3 text-sm outline-none focus:ring-2 focus:ring-[#1CC3D9]/25"
-                  placeholder="What do you do, and what pages do you need? (Home / Services / Gallery / Contact etc.)"
-                />
-                <button
-                  type="button"
-                  className="mt-1 inline-flex h-12 items-center justify-center rounded-xl bg-[#1D4ED8] px-6 text-sm font-semibold text-white shadow-sm transition hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-[#1D4ED8]/30"
-                >
-                  Send enquiry
-                </button>
-                <p className="text-xs leading-5 text-zinc-500">
-                  Note: this form is currently UI-only. You can wire it to email,
-                  Supabase, or a form provider next.
-                </p>
-              </form>
-            </div>
-
-            <div className="relative bg-zinc-50 p-8">
-              <div className="absolute inset-0 bg-gradient-to-b from-[#1D4ED8]/10 to-[#1CC3D9]/10" />
-              <div className="relative rounded-[28px] border border-zinc-200 bg-white p-6">
-                <div className="text-sm font-semibold text-zinc-900">
-                  What you’ll send
-                </div>
-                <ul className="mt-4 space-y-3 text-sm text-zinc-700">
+                <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
                   {[
-                    "Logo (or business name)",
-                    "Services + prices (if you have them)",
-                    "Address + phone number",
-                    "A few photos (or I can use clean placeholders)",
-                    "Social links (Instagram, TikTok, etc.)",
-                  ].map((i) => (
-                    <li key={i} className="flex gap-3">
-                      <span className="mt-2 h-2 w-2 rounded-full bg-[#1CC3D9]" />
-                      <span>{i}</span>
-                    </li>
+                    "Home",
+                    "About",
+                    "Services / Menu",
+                    "Contact / Booking",
+                    "Mobile optimisation",
+                    "One tidy revision",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+                      <span>{item}</span>
+                    </div>
                   ))}
-                </ul>
+                </div>
 
-                <div className="mt-6 rounded-2xl border border-zinc-200 bg-zinc-50 p-5">
-                  <div className="text-sm font-semibold text-zinc-900">
-                    Delivery promise
+                <div className="mt-7 flex flex-col gap-3">
+                  <Link
+                    href="/start"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                  >
+                    Start now
+                  </Link>
+                  <Link
+                    href="/start"
+                    className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
+                  >
+                    Need something custom? Get in touch
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="process"
+          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-2xl">
+            <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              Process
+            </div>
+            <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              A simple process.
+            </h2>
+            <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
+              Minimal back-and-forth. Fast turnaround. Clear handover.
+            </p>
+          </div>
+
+          <div className="relative mt-10">
+            <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
+            <div className="grid gap-4 lg:grid-cols-4">
+              {processSteps.map((item) => (
+                <div
+                  key={item.step}
+                  className="rounded-[28px] border border-white/10 bg-[#111214] p-6"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA]">
+                    {item.step}
                   </div>
-                  <p className="mt-2 text-sm leading-6 text-zinc-600">
-                    24 hours starts once content is received. You get a live link
-                    to review, then we do one tidy revision before launch.
+                  <h3 className="mt-5 text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    {item.desc}
                   </p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
 
-                <div className="mt-6 flex items-center justify-between rounded-2xl border border-zinc-200 bg-white p-5">
-                  <div>
-                    <div className="text-sm font-semibold text-zinc-900">
-                      Support
-                    </div>
-                    <div className="mt-1 text-sm text-zinc-600">
-                      Email-based, quick replies.
-                    </div>
-                  </div>
-                  <div className="rounded-2xl bg-[#1D4ED8]/10 px-3 py-2 text-sm font-semibold text-[#1D4ED8] ring-1 ring-[#1D4ED8]/15">
-                    Clean
-                  </div>
+        <section className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+          <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+            <div className="max-w-xl">
+              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                Why it works
+              </div>
+              <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                Built to make small businesses feel established online.
+              </h2>
+              <p className="mt-5 text-[18px] leading-8 text-[#A9ABB3]">
+                Modern design, mobile-first structure, fast pages, clear
+                enquiry or booking paths, and a simple ownership handover. It is
+                a cleaner process than a bloated agency project, without looking
+                cheap or templated.
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {trustCards.map((card) => (
+                <div
+                  key={card.title}
+                  className="rounded-[26px] border border-white/10 bg-[#111214] p-6 transition duration-300 hover:border-white/15 hover:bg-[#141518]"
+                >
+                  <h3 className="text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                    {card.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    {card.copy}
+                  </p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
+          <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#111214] px-6 py-14 text-center sm:px-10">
+            <div className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-[#3B82F6]/18 blur-[110px]" />
+            <div className="relative mx-auto max-w-3xl">
+              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                Start
+              </div>
+              <h2 className="mt-4 font-serif text-[clamp(2.7rem,5vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
+                Get your business online properly.
+              </h2>
+              <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
+                Send your details and get a clean, premium site live in 24 hours
+                from content received.
+              </p>
+
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <Link
+                  href="/start"
+                  className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                >
+                  Start your site
+                  <ArrowRight />
+                </Link>
+                <Link
+                  href="/demos"
+                  className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+                >
+                  View demos
+                  <ArrowRight />
+                </Link>
               </div>
             </div>
           </div>
         </section>
 
-        <footer className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-zinc-200 py-10 text-sm text-zinc-600 md:flex-row">
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-zinc-900">CleanWebsites</span>
-            <span className="text-zinc-400">•</span>
-            <span>UK</span>
+        <footer className="mx-auto w-full max-w-7xl border-t border-white/10 px-5 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3">
+            <div>
+              <div className="text-lg font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                CLEAN WEBSITES
+              </div>
+              <p className="mt-3 max-w-sm text-sm leading-7 text-[#A9ABB3]">
+                Clean, high-end websites for UK local businesses.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 text-sm text-[#A9ABB3]">
+              <Link href="/demos" className="transition hover:text-[#F5F2EA]">
+                Demos
+              </Link>
+              <Link href="/pricing" className="transition hover:text-[#F5F2EA]">
+                Pricing
+              </Link>
+              <a href="#process" className="transition hover:text-[#F5F2EA]">
+                Process
+              </a>
+              <Link href="/start" className="transition hover:text-[#F5F2EA]">
+                Contact
+              </Link>
+            </div>
+
+            <div className="flex flex-col gap-3 text-sm text-[#A9ABB3] md:items-start">
+              <a
+                href="mailto:hello@cleanwebsites.co.uk"
+                className="transition hover:text-[#F5F2EA]"
+              >
+                hello@cleanwebsites.co.uk
+              </a>
+              <a
+                href="https://instagram.com"
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-[#F5F2EA]"
+              >
+                Instagram
+              </a>
+            </div>
           </div>
-          <div className="flex flex-wrap gap-4">
-            <a className="hover:text-zinc-900" href="#work">
-              Demos
-            </a>
-            <a className="hover:text-zinc-900" href="#pricing">
-              Pricing
-            </a>
-            <a className="hover:text-zinc-900" href="#process">
-              Process
-            </a>
-            <a className="font-semibold text-[#1D4ED8] hover:underline" href="#contact">
-              Start
-            </a>
+
+          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-[#7F828A] sm:flex-row sm:items-center sm:justify-between">
+            <div>© {new Date().getFullYear()} Clean Websites. All rights reserved.</div>
+            <div className="flex gap-5">
+              <Link href="/privacy" className="transition hover:text-[#F5F2EA]">
+                Privacy
+              </Link>
+              <Link href="/terms" className="transition hover:text-[#F5F2EA]">
+                Terms
+              </Link>
+            </div>
           </div>
         </footer>
+
+        <div
+          className={`fixed bottom-6 right-6 z-40 hidden transition-all duration-300 lg:block ${
+            scrolled
+              ? "translate-y-0 opacity-100"
+              : "pointer-events-none translate-y-4 opacity-0"
+          }`}
+        >
+          <Link
+            href="/start"
+            className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
+          >
+            Start your site
+          </Link>
+        </div>
       </main>
     </div>
   );
