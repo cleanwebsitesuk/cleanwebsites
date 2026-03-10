@@ -85,32 +85,31 @@ export default function BurgerDemoPage() {
   return (
     <main className="page">
       <header className="siteHeader">
-        <div className="container headerInner">
-          <div className="topBar">
-            <Link
-              href="/demo/burger"
-              className="logo"
-              onClick={() => setMenuOpen(false)}
-            >
-              <span className="logoMark">S&G</span>
-              <span className="logoText">
-                <span className="logoMain">Stack & Grill</span>
-                <span className="logoSub">Burgers • Chicken • Birmingham</span>
-              </span>
-            </Link>
+        <div className="container headerRow">
+          <Link
+            href="/demo/burger"
+            className="logo"
+            onClick={() => setMenuOpen(false)}
+          >
+            <span className="logoMark">S&G</span>
 
-            <div className="desktopNav">
-              <nav className="nav" aria-label="Primary">
-                <Link href="/demo/burger">Home</Link>
-                <Link href="/demo/burger/about">About</Link>
-                <Link href="/demo/burger/menu">Menu</Link>
-                <Link href="/demo/burger/contact">Contact / Booking</Link>
-              </nav>
+            <span className="logoCopy">
+              <span className="logoMain">Stack & Grill</span>
+              <span className="logoSub">Burgers • Chicken • Birmingham</span>
+            </span>
+          </Link>
 
-              <a href="#featured-menu" className="orderButton">
-                Order now
-              </a>
-            </div>
+          <nav className="desktopNav" aria-label="Primary">
+            <Link href="/demo/burger">Home</Link>
+            <Link href="/demo/burger/about">About</Link>
+            <Link href="/demo/burger/menu">Menu</Link>
+            <Link href="/demo/burger/contact">Contact / Booking</Link>
+          </nav>
+
+          <div className="headerActions">
+            <a href="#featured-menu" className="orderButton">
+              Order now
+            </a>
 
             <button
               type="button"
@@ -124,19 +123,10 @@ export default function BurgerDemoPage() {
               <span />
             </button>
           </div>
+        </div>
 
-          <div className="stickyUtilityBar">
-            <a
-              href="https://cleanwebsites.co.uk"
-              target="_blank"
-              rel="noreferrer"
-              className="cleanWebsitesButton"
-            >
-              Back to Clean Websites
-            </a>
-          </div>
-
-          <div className={`mobilePanel ${menuOpen ? "show" : ""}`}>
+        <div className={`mobilePanel ${menuOpen ? "show" : ""}`}>
+          <div className="container mobilePanelInner">
             <nav className="mobileNav" aria-label="Mobile Navigation">
               <Link href="/demo/burger" onClick={() => setMenuOpen(false)}>
                 Home
@@ -169,12 +159,27 @@ export default function BurgerDemoPage() {
         </div>
       </header>
 
+      <div className="stickyBackWrap">
+        <div className="container">
+          <a
+            href="https://cleanwebsites.co.uk"
+            target="_blank"
+            rel="noreferrer"
+            className="cleanWebsitesButton"
+          >
+            Back to Clean Websites
+          </a>
+        </div>
+      </div>
+
       <section className="hero">
         <div className="heroOverlay" />
         <div className="container heroContent">
           <div className="heroText">
             <div className="eyebrow">Birmingham, UK</div>
+
             <h1>Burgers, fried chicken, and bold flavour.</h1>
+
             <p>
               Stack & Grill serves handcrafted burgers, crispy fried chicken,
               loaded fries, and late-night takeaway favourites in the heart of
@@ -182,15 +187,16 @@ export default function BurgerDemoPage() {
             </p>
 
             <div className="heroActions">
-              <Link href="/demo/burger/menu" className="primaryBtn">
+              <Link href="/demo/burger/menu" className="heroBtn heroBtnLight">
                 View menu
               </Link>
-              <a href="#featured-menu" className="secondaryBtn">
+
+              <a href="#featured-menu" className="heroBtn heroBtnPrimary">
                 Order now
               </a>
             </div>
 
-            <div className="badges">
+            <div className="heroMeta">
               <span>📍 Birmingham</span>
               <span>⭐ 4.8 rating</span>
               <span>🔥 Freshly cooked</span>
@@ -373,9 +379,9 @@ export default function BurgerDemoPage() {
 
       <style jsx>{`
         .page {
+          min-height: 100vh;
           background: #ffffff;
           color: #1f2937;
-          min-height: 100vh;
           overflow-x: hidden;
         }
 
@@ -387,22 +393,18 @@ export default function BurgerDemoPage() {
         .siteHeader {
           position: sticky;
           top: 0;
-          z-index: 100;
+          z-index: 120;
           background: rgba(255, 255, 255, 0.96);
           backdrop-filter: blur(14px);
           border-bottom: 1px solid rgba(31, 41, 55, 0.08);
-          box-shadow: 0 8px 24px rgba(31, 41, 55, 0.05);
         }
 
-        .headerInner {
-          padding: 14px 0 12px;
-        }
-
-        .topBar {
-          display: flex;
+        .headerRow {
+          min-height: 74px;
+          display: grid;
+          grid-template-columns: auto 1fr auto;
           align-items: center;
-          justify-content: space-between;
-          gap: 20px;
+          gap: 24px;
         }
 
         .logo {
@@ -411,72 +413,72 @@ export default function BurgerDemoPage() {
           gap: 12px;
           text-decoration: none;
           min-width: 0;
+          white-space: nowrap;
         }
 
         .logoMark {
-          width: 48px;
-          height: 48px;
-          border-radius: 14px;
+          width: 40px;
+          height: 40px;
+          border-radius: 12px;
           display: inline-flex;
           align-items: center;
           justify-content: center;
           background: linear-gradient(135deg, #e63946, #f4a261);
           color: #ffffff;
           font-weight: 900;
-          font-size: 0.95rem;
-          letter-spacing: 0.04em;
-          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.22);
+          font-size: 0.82rem;
+          letter-spacing: 0.03em;
           flex-shrink: 0;
         }
 
-        .logoText {
+        .logoCopy {
           display: flex;
           flex-direction: column;
-          line-height: 1;
           min-width: 0;
         }
 
         .logoMain {
           color: #111827;
-          font-size: 1.4rem;
+          font-size: 1.05rem;
           font-weight: 900;
-          letter-spacing: -0.05em;
-          white-space: nowrap;
+          line-height: 1;
+          letter-spacing: -0.04em;
         }
 
         .logoSub {
-          margin-top: 5px;
+          margin-top: 3px;
           color: #6b7280;
-          font-size: 0.72rem;
-          font-weight: 700;
+          font-size: 0.62rem;
+          font-weight: 800;
           letter-spacing: 0.08em;
           text-transform: uppercase;
-          white-space: nowrap;
+          line-height: 1;
         }
 
         .desktopNav {
           display: flex;
           align-items: center;
-          gap: 20px;
-          flex: 1;
-          justify-content: flex-end;
+          justify-content: center;
+          gap: 28px;
+          min-width: 0;
         }
 
-        .nav {
-          display: flex;
-          align-items: center;
-          gap: 24px;
-        }
-
-        .nav a {
+        .desktopNav a {
           color: #374151;
           text-decoration: none;
+          font-size: 0.95rem;
           font-weight: 700;
-          font-size: 0.96rem;
+          white-space: nowrap;
         }
 
-        .nav a:hover {
+        .desktopNav a:hover {
           color: #e63946;
+        }
+
+        .headerActions {
+          display: flex;
+          align-items: center;
+          gap: 12px;
         }
 
         .orderButton,
@@ -484,47 +486,22 @@ export default function BurgerDemoPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
+          min-height: 46px;
+          padding: 0 1.2rem;
+          border-radius: 999px;
           background: #e63946;
           color: #ffffff;
           text-decoration: none;
-          padding: 0.9rem 1.2rem;
-          border-radius: 999px;
           font-weight: 800;
-          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.2);
-          min-height: 48px;
-        }
-
-        .stickyUtilityBar {
-          display: flex;
-          justify-content: flex-start;
-          margin-top: 12px;
-        }
-
-        .cleanWebsitesButton {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          padding: 0.75rem 1rem;
-          border-radius: 999px;
-          background: #111827;
-          color: #ffffff;
-          text-decoration: none;
-          font-weight: 800;
-          font-size: 0.9rem;
-          box-shadow: 0 10px 24px rgba(17, 24, 39, 0.12);
-          transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-
-        .cleanWebsitesButton:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 14px 28px rgba(17, 24, 39, 0.16);
+          white-space: nowrap;
+          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.18);
         }
 
         .menuToggle {
           display: none;
-          width: 48px;
-          height: 48px;
-          border-radius: 14px;
+          width: 44px;
+          height: 44px;
+          border-radius: 12px;
           border: 1px solid rgba(31, 41, 55, 0.1);
           background: #ffffff;
           padding: 0;
@@ -532,21 +509,19 @@ export default function BurgerDemoPage() {
           align-items: center;
           justify-content: center;
           flex-direction: column;
-          gap: 5px;
-          flex-shrink: 0;
+          gap: 4px;
         }
 
         .menuToggle span {
-          display: block;
-          width: 20px;
+          width: 18px;
           height: 2px;
           border-radius: 999px;
           background: #111827;
-          transition: transform 0.2s ease, opacity 0.2s ease;
+          transition: 0.2s ease;
         }
 
         .menuToggle.open span:nth-child(1) {
-          transform: translateY(7px) rotate(45deg);
+          transform: translateY(6px) rotate(45deg);
         }
 
         .menuToggle.open span:nth-child(2) {
@@ -554,11 +529,68 @@ export default function BurgerDemoPage() {
         }
 
         .menuToggle.open span:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
+          transform: translateY(-6px) rotate(-45deg);
         }
 
         .mobilePanel {
           display: none;
+          border-top: 1px solid rgba(31, 41, 55, 0.08);
+          background: rgba(255, 255, 255, 0.98);
+        }
+
+        .mobilePanel.show {
+          display: block;
+        }
+
+        .mobilePanelInner {
+          padding: 14px 0 16px;
+        }
+
+        .mobileNav {
+          display: grid;
+          gap: 10px;
+        }
+
+        .mobileNav a {
+          padding: 0.9rem 1rem;
+          border-radius: 14px;
+          text-decoration: none;
+          color: #1f2937;
+          background: #f8fafc;
+          border: 1px solid rgba(31, 41, 55, 0.06);
+          font-weight: 700;
+        }
+
+        .mobileOrderButton {
+          width: 100%;
+          margin-top: 12px;
+        }
+
+        .stickyBackWrap {
+          position: sticky;
+          top: 74px;
+          z-index: 110;
+          pointer-events: none;
+        }
+
+        .stickyBackWrap .container {
+          padding-top: 10px;
+        }
+
+        .cleanWebsitesButton {
+          pointer-events: auto;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 42px;
+          padding: 0 1rem;
+          border-radius: 999px;
+          background: #0f172a;
+          color: #ffffff;
+          text-decoration: none;
+          font-size: 0.88rem;
+          font-weight: 800;
+          box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
         }
 
         .hero {
@@ -579,14 +611,14 @@ export default function BurgerDemoPage() {
             90deg,
             rgba(15, 23, 42, 0.78) 0%,
             rgba(15, 23, 42, 0.58) 40%,
-            rgba(15, 23, 42, 0.2) 100%
+            rgba(15, 23, 42, 0.22) 100%
           );
         }
 
         .heroContent {
           position: relative;
           z-index: 1;
-          padding: 96px 0 88px;
+          padding: 110px 0 88px;
         }
 
         .heroText {
@@ -597,11 +629,12 @@ export default function BurgerDemoPage() {
         .eyebrow {
           display: inline-flex;
           align-items: center;
-          padding: 0.45rem 0.8rem;
-          background: rgba(255, 255, 255, 0.12);
-          border: 1px solid rgba(255, 255, 255, 0.15);
+          min-height: 34px;
+          padding: 0 0.85rem;
           border-radius: 999px;
-          font-size: 0.9rem;
+          background: rgba(255, 255, 255, 0.12);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          font-size: 0.88rem;
           font-weight: 700;
           margin-bottom: 1rem;
         }
@@ -609,69 +642,80 @@ export default function BurgerDemoPage() {
         .hero h1 {
           margin: 0;
           font-size: clamp(2.5rem, 6vw, 5rem);
-          line-height: 0.98;
+          line-height: 0.96;
           letter-spacing: -0.05em;
           font-weight: 900;
           max-width: 11ch;
         }
 
         .hero p {
-          margin: 1.2rem 0 0;
+          margin: 1.15rem 0 0;
           max-width: 640px;
-          font-size: 1.08rem;
-          line-height: 1.7;
+          font-size: 1.06rem;
+          line-height: 1.75;
           color: rgba(255, 255, 255, 0.92);
         }
 
         .heroActions {
           display: flex;
+          align-items: center;
           gap: 0.9rem;
           flex-wrap: wrap;
-          margin-top: 1.8rem;
+          margin-top: 1.6rem;
         }
 
-        .primaryBtn,
-        .secondaryBtn,
+        .heroBtn,
         .ctaLightBtn,
         .ctaDarkBtn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          padding: 0.95rem 1.25rem;
+          min-height: 50px;
+          padding: 0 1.25rem;
           border-radius: 999px;
-          font-weight: 800;
           text-decoration: none;
-          min-height: 48px;
+          font-weight: 800;
+          transition: transform 0.2s ease;
         }
 
-        .primaryBtn {
+        .heroBtn:hover,
+        .ctaLightBtn:hover,
+        .ctaDarkBtn:hover {
+          transform: translateY(-2px);
+        }
+
+        .heroBtnPrimary {
           background: #e63946;
           color: #ffffff;
-          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.22);
+          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.24);
         }
 
-        .secondaryBtn {
-          background: rgba(255, 255, 255, 0.14);
+        .heroBtnLight {
+          background: rgba(255, 255, 255, 0.16);
           color: #ffffff;
           border: 1px solid rgba(255, 255, 255, 0.22);
+          backdrop-filter: blur(6px);
         }
 
-        .badges {
+        .heroMeta {
           display: flex;
           flex-wrap: wrap;
-          gap: 0.85rem;
-          margin-top: 1.5rem;
+          gap: 0.75rem;
+          margin-top: 1.25rem;
         }
 
-        .badges span {
+        .heroMeta span {
           display: inline-flex;
           align-items: center;
-          padding: 0.65rem 0.9rem;
-          background: rgba(255, 255, 255, 0.12);
+          min-height: 42px;
+          padding: 0 0.95rem;
           border-radius: 999px;
-          font-size: 0.95rem;
-          font-weight: 600;
-          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.14);
+          border: 1px solid rgba(255, 255, 255, 0.16);
+          font-size: 0.96rem;
+          font-weight: 700;
+          color: #ffffff;
+          backdrop-filter: blur(6px);
         }
 
         .section {
@@ -935,7 +979,13 @@ export default function BurgerDemoPage() {
           text-decoration: none;
         }
 
-        @media (max-width: 1100px) {
+        @media (max-width: 1180px) {
+          .desktopNav {
+            gap: 20px;
+          }
+        }
+
+        @media (max-width: 1040px) {
           .cardGrid,
           .reviewGrid {
             grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -957,7 +1007,13 @@ export default function BurgerDemoPage() {
         }
 
         @media (max-width: 920px) {
-          .desktopNav {
+          .headerRow {
+            grid-template-columns: 1fr auto;
+            min-height: 68px;
+          }
+
+          .desktopNav,
+          .orderButton {
             display: none;
           }
 
@@ -965,38 +1021,8 @@ export default function BurgerDemoPage() {
             display: inline-flex;
           }
 
-          .mobilePanel {
-            display: none;
-          }
-
-          .mobilePanel.show {
-            display: block;
-            margin-top: 14px;
-            padding: 14px;
-            border: 1px solid rgba(31, 41, 55, 0.08);
-            border-radius: 22px;
-            background: #ffffff;
-            box-shadow: 0 16px 30px rgba(31, 41, 55, 0.07);
-          }
-
-          .mobileNav {
-            display: grid;
-            gap: 10px;
-          }
-
-          .mobileNav a {
-            padding: 0.95rem 1rem;
-            border-radius: 16px;
-            text-decoration: none;
-            color: #1f2937;
-            background: #f8fafc;
-            border: 1px solid rgba(31, 41, 55, 0.06);
-            font-weight: 700;
-          }
-
-          .mobileOrderButton {
-            width: 100%;
-            margin-top: 12px;
+          .stickyBackWrap {
+            top: 68px;
           }
 
           .hero {
@@ -1004,7 +1030,7 @@ export default function BurgerDemoPage() {
           }
 
           .heroContent {
-            padding: 72px 0 64px;
+            padding: 100px 0 64px;
           }
 
           .featureGrid {
@@ -1022,43 +1048,57 @@ export default function BurgerDemoPage() {
             width: min(100% - 20px, 1180px);
           }
 
-          .headerInner {
-            padding: 12px 0 10px;
-          }
-
-          .topBar {
+          .headerRow {
+            min-height: 64px;
             gap: 12px;
           }
 
+          .logo {
+            gap: 10px;
+            min-width: 0;
+          }
+
           .logoMark {
-            width: 42px;
-            height: 42px;
-            border-radius: 12px;
-            font-size: 0.82rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 11px;
+            font-size: 0.74rem;
           }
 
           .logoMain {
-            font-size: 1.1rem;
+            font-size: 0.96rem;
           }
 
           .logoSub {
-            font-size: 0.62rem;
+            font-size: 0.56rem;
             letter-spacing: 0.06em;
           }
 
+          .menuToggle {
+            width: 40px;
+            height: 40px;
+          }
+
+          .stickyBackWrap {
+            top: 64px;
+          }
+
+          .stickyBackWrap .container {
+            padding-top: 8px;
+          }
+
           .cleanWebsitesButton {
-            width: 100%;
-            text-align: center;
-            padding: 0.8rem 1rem;
-            font-size: 0.86rem;
+            min-height: 38px;
+            padding: 0 0.85rem;
+            font-size: 0.8rem;
           }
 
           .heroContent {
-            padding: 56px 0 56px;
+            padding: 92px 0 56px;
           }
 
           .hero h1 {
-            font-size: clamp(2.1rem, 10vw, 3rem);
+            font-size: clamp(2.1rem, 9vw, 3rem);
             max-width: 100%;
           }
 
@@ -1066,26 +1106,24 @@ export default function BurgerDemoPage() {
             font-size: 1rem;
           }
 
-          .heroActions,
-          .ctaActions {
-            width: 100%;
-            flex-direction: column;
+          .heroActions {
+            gap: 0.75rem;
           }
 
-          .primaryBtn,
-          .secondaryBtn,
-          .ctaLightBtn,
-          .ctaDarkBtn {
-            width: 100%;
+          .heroBtn {
+            min-height: 46px;
+            padding: 0 1rem;
+            flex: 1 1 160px;
           }
 
-          .badges {
+          .heroMeta {
             gap: 0.6rem;
           }
 
-          .badges span {
+          .heroMeta span {
+            min-height: 38px;
+            padding: 0 0.85rem;
             font-size: 0.88rem;
-            padding: 0.55rem 0.72rem;
           }
 
           .section {
@@ -1115,8 +1153,39 @@ export default function BurgerDemoPage() {
             gap: 0.35rem;
           }
 
-          .ctaSection {
-            padding: 64px 0;
+          .ctaActions {
+            width: 100%;
+            flex-direction: column;
+          }
+
+          .ctaLightBtn,
+          .ctaDarkBtn {
+            width: 100%;
+          }
+        }
+
+        @media (max-width: 420px) {
+          .logoSub {
+            display: none;
+          }
+
+          .heroActions {
+            flex-direction: column;
+            align-items: stretch;
+          }
+
+          .heroBtn {
+            width: 100%;
+            flex: initial;
+          }
+
+          .heroMeta span {
+            width: fit-content;
+            max-width: 100%;
+          }
+
+          .mobileNav a {
+            padding: 0.85rem 0.95rem;
           }
         }
       `}</style>
