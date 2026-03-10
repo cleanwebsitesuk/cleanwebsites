@@ -101,24 +101,24 @@ export default function Page() {
           ← Back to Clean Websites
         </a>
 
-        <header className="siteHeader">
-          <div className="container headerInner">
-            <a href="#home" className="brand">
-              North Studio
-            </a>
+<header className="siteHeader">
+  <div className="container headerInner">
+    <a href="/demo/barber" className="brand">
+      North Studio
+    </a>
 
-            <nav className="mainNav" aria-label="Main navigation">
-              <a href="#home">Home</a>
-              <a href="#about">About</a>
-              <a href="#services">Services</a>
-              <a href="#book">Contact / Booking</a>
-            </nav>
+    <nav className="mainNav" aria-label="Main navigation">
+      <a href="/demo/barber">Home</a>
+      <a href="/demo/barber/about">About</a>
+      <a href="/demo/barber/services">Services</a>
+      <a href="/demo/barber/contact-booking">Contact / Booking</a>
+    </nav>
 
-            <a href="#book" className="headerCta">
-              Book now
-            </a>
-          </div>
-        </header>
+    <a href="/demo/barber/contact-booking" className="headerCta">
+      Book now
+    </a>
+  </div>
+</header>
 
         <section className="hero" id="home">
           <img
