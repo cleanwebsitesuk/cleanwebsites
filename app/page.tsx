@@ -281,12 +281,12 @@ export default function Home() {
               Built for UK local businesses
             </div>
 
-            <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(3.5rem,8vw,6rem)] leading-[0.93] tracking-[-0.04em] text-[#F5F2EA]">
-              Clean websites that look professional.
-              <span className="mt-2 block text-[#A9ABB3]">
-                Designed, built, and live in 24 hours.
-              </span>
-            </h1>
+<h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
+  Clean websites that look professional.
+  <span className="mt-2 block text-[#A9ABB3]">
+    Designed, built, and live in 24 hours.
+  </span>
+</h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
               Modern websites for barbers, salons, restaurants, takeaways, and
