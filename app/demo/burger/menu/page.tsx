@@ -982,7 +982,7 @@ export default function BurgerMenuPage() {
 
         @media (max-width: 640px) {
           .container {
-            width: min(100% - 20px, 1180px);
+            width: min(1180px, calc(100% - 40px));
           }
 
           .headerRow {
