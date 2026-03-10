@@ -26,9 +26,9 @@ const menuSections = [
         price: "£9.45",
       },
       {
-        name: "BBQ Bacon Burger",
+        name: "BBQ Burger",
         description:
-          "Beef patty, smoked bacon, cheddar, crispy onions, and smoky BBQ sauce.",
+          "Beef patty, cheddar, crispy onions, and smoky BBQ sauce.",
         price: "£10.95",
       },
     ],
