@@ -282,9 +282,9 @@ export default function Home() {
             </div>
 
             <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(3.5rem,8vw,6rem)] leading-[0.93] tracking-[-0.04em] text-[#F5F2EA]">
-              I make businesses look expensive.
+              Clean websites that look professional.
               <span className="mt-2 block text-[#A9ABB3]">
-                I just happen to do it fast.
+                Designed, built, and live in 24 hours.
               </span>
             </h1>
 
