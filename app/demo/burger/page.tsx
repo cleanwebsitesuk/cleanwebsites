@@ -151,7 +151,7 @@ export default function BurgerDemoPage() {
                 href="/demo/burger/contact"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact / Booking
+                Contact
               </Link>
             </nav>
 
