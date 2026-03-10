@@ -574,15 +574,24 @@ export default function BurgerDemoPage() {
         }
 
         .mobileNav a {
-          padding: 0.9rem 1rem;
-          border-radius: 14px;
-          text-decoration: none;
-          color: #1f2937;
-          background: #f8fafc;
-          border: 1px solid rgba(31, 41, 55, 0.06);
-          font-weight: 700;
-        }
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 48px;
+  border-radius: 999px;
+  text-decoration: none;
+  color: #1f2937;
+  background: #f3f4f6;
+  border: 1px solid rgba(31, 41, 55, 0.08);
+  font-weight: 700;
+  font-size: 0.95rem;
+  transition: background 0.2s ease, transform 0.2s ease;
+}
 
+.mobileNav a:hover {
+  background: #e5e7eb;
+  transform: translateY(-1px);
+}
         .mobileOrderButton {
           width: 100%;
           margin-top: 12px;
