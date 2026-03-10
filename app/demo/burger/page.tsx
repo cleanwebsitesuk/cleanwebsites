@@ -110,7 +110,7 @@ export default function BurgerDemoPage() {
             <Link href="/demo/burger">Home</Link>
             <Link href="/demo/burger/about">About</Link>
             <Link href="/demo/burger/menu">Menu</Link>
-            <Link href="/demo/burger/contact">Contact / Booking</Link>
+            <Link href="/demo/burger/contact">Contact</Link>
           </nav>
 
           <div className="headerActions">
