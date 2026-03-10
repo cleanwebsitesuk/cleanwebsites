@@ -499,57 +499,56 @@ export default function BurgerAboutPage() {
           transform: translateY(-6px) rotate(-45deg);
         }
 
-        .mobilePanel {
-          display: none;
-          background: rgba(255, 255, 255, 0.98);
-          border-top: 1px solid rgba(31, 41, 55, 0.08);
-        }
+.mobilePanel {
+  display: none;
+  background: rgba(255, 255, 255, 0.98);
+  border-top: 1px solid rgba(31, 41, 55, 0.08);
+}
 
-        .mobilePanel.show {
-          display: block;
-        }
+.mobilePanel.show {
+  display: block;
+}
 
-        .mobilePanelInner {
-          padding: 12px 0 16px;
-        }
+.mobilePanelInner {
+  padding: 12px 0 16px;
+}
 
-        .mobileNav {
-          display: grid;
-          gap: 8px;
-        }
+.mobileNav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 10px;
+}
 
-       .mobileNav a {
+.mobileNav a {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 48px;
-  border-radius: 999px;
+  min-height: 52px;
+  padding: 0 16px;
+  border-radius: 16px;
   text-decoration: none;
-  color: #1f2937;
-  background: #f3f4f6;
-  border: 1px solid rgba(31, 41, 55, 0.08);
-  font-weight: 700;
-  font-size: 0.95rem;
-  transition: background 0.2s ease, transform 0.2s ease;
+  color: #111827;
+  background: #ffffff;
+  border: 1px solid rgba(31, 41, 55, 0.1);
+  box-shadow: 0 6px 18px rgba(31, 41, 55, 0.05);
+  font-weight: 800;
+  font-size: 0.98rem;
+  line-height: 1;
+  transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
 
 .mobileNav a:hover {
-  background: #e5e7eb;
   transform: translateY(-1px);
+  background: #f9fafb;
+  box-shadow: 0 10px 22px rgba(31, 41, 55, 0.08);
 }
-        }
 
-        .mobileNav a:hover {
-          transform: translateY(-1px);
-          background: #f3f4f6;
-        }
-
-        .mobileOrderButton {
-          width: 100%;
-          margin-top: 10px;
-          min-height: 50px;
-          border-radius: 16px;
-        }
+.mobileOrderButton {
+  width: 100%;
+  margin-top: 12px;
+  min-height: 52px;
+  border-radius: 16px;
+}
 
         .cleanWebsitesButton {
           position: fixed;
