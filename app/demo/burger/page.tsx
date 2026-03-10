@@ -413,7 +413,7 @@ export default function BurgerDemoPage() {
         .logo {
           display: inline-flex;
           align-items: center;
-          gap: 16px;
+          gap: 22px;
           text-decoration: none;
           min-width: 0;
           white-space: nowrap;
