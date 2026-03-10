@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const featuredItems = [
   {
@@ -81,6 +81,17 @@ const reviews = [
 
 export default function BurgerDemoPage() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showBackButton, setShowBackButton] = useState(true);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setShowBackButton(window.scrollY < 220);
+    };
+
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
     <main className="page">
@@ -92,11 +103,7 @@ export default function BurgerDemoPage() {
             onClick={() => setMenuOpen(false)}
           >
             <span className="logoMark">S&G</span>
-
-            <span className="logoTextWrap">
-              <span className="logoMain">Stack & Grill</span>
-              <span className="logoInlineMeta">Burgers • Chicken • Birmingham</span>
-            </span>
+            <span className="logoMain">Stack & Grill</span>
           </Link>
 
           <nav className="desktopNav" aria-label="Primary">
@@ -163,7 +170,7 @@ export default function BurgerDemoPage() {
         href="https://cleanwebsites.co.uk"
         target="_blank"
         rel="noreferrer"
-        className="cleanWebsitesButton"
+        className={`cleanWebsitesButton ${showBackButton ? "visible" : "hidden"}`}
       >
         Back to Clean Websites
       </a>
@@ -183,7 +190,7 @@ export default function BurgerDemoPage() {
             </p>
 
             <div className="heroActions">
-              <Link href="/demo/burger/menu" className="heroBtn heroBtnLight">
+              <Link href="/demo/burger/menu" className="textLink textLinkLight">
                 View menu
               </Link>
 
@@ -305,7 +312,7 @@ export default function BurgerDemoPage() {
           </div>
 
           <div className="ctaActions">
-            <Link href="/demo/burger/menu" className="ctaLightBtn">
+            <Link href="/demo/burger/menu" className="textLink textLinkWhite">
               View full menu
             </Link>
             <a href="#featured-menu" className="ctaDarkBtn">
@@ -400,13 +407,13 @@ export default function BurgerDemoPage() {
           display: grid;
           grid-template-columns: auto 1fr auto;
           align-items: center;
-          gap: 24px;
+          gap: 32px;
         }
 
         .logo {
           display: inline-flex;
           align-items: center;
-          gap: 12px;
+          gap: 16px;
           text-decoration: none;
           min-width: 0;
           white-space: nowrap;
@@ -428,13 +435,6 @@ export default function BurgerDemoPage() {
           box-shadow: 0 8px 18px rgba(230, 57, 70, 0.18);
         }
 
-        .logoTextWrap {
-          display: inline-flex;
-          align-items: baseline;
-          gap: 10px;
-          min-width: 0;
-        }
-
         .logoMain {
           color: #111827;
           font-size: 1.1rem;
@@ -443,44 +443,57 @@ export default function BurgerDemoPage() {
           letter-spacing: -0.04em;
         }
 
-        .logoInlineMeta {
-          color: #6b7280;
-          font-size: 0.68rem;
-          font-weight: 800;
-          letter-spacing: 0.08em;
-          text-transform: uppercase;
-          line-height: 1;
-          white-space: nowrap;
-        }
-
         .desktopNav {
           display: flex;
           align-items: center;
           justify-content: center;
-          gap: 28px;
+          gap: 24px;
           min-width: 0;
         }
 
         .desktopNav a {
+          position: relative;
           color: #374151;
           text-decoration: none;
           font-size: 0.95rem;
           font-weight: 700;
           white-space: nowrap;
+          transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .desktopNav a::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -8px;
+          width: 100%;
+          height: 2px;
+          background: #e63946;
+          transform: scaleX(0);
+          transform-origin: center;
+          transition: transform 0.22s ease;
         }
 
         .desktopNav a:hover {
-          color: #e63946;
+          color: #111827;
+          transform: translateY(-1px);
+        }
+
+        .desktopNav a:hover::after {
+          transform: scaleX(1);
         }
 
         .headerActions {
           display: flex;
           align-items: center;
+          justify-content: flex-end;
           gap: 12px;
         }
 
         .orderButton,
-        .mobileOrderButton {
+        .mobileOrderButton,
+        .heroBtnPrimary,
+        .ctaDarkBtn {
           display: inline-flex;
           align-items: center;
           justify-content: center;
@@ -493,6 +506,17 @@ export default function BurgerDemoPage() {
           font-weight: 800;
           white-space: nowrap;
           box-shadow: 0 12px 24px rgba(230, 57, 70, 0.18);
+          transition: transform 0.22s ease, box-shadow 0.22s ease,
+            filter 0.22s ease;
+        }
+
+        .orderButton:hover,
+        .mobileOrderButton:hover,
+        .heroBtnPrimary:hover,
+        .ctaDarkBtn:hover {
+          transform: translateY(-2px) scale(1.01);
+          box-shadow: 0 16px 28px rgba(230, 57, 70, 0.24);
+          filter: brightness(1.03);
         }
 
         .menuToggle {
@@ -581,6 +605,19 @@ export default function BurgerDemoPage() {
           font-size: 0.84rem;
           font-weight: 800;
           box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
+          transition: opacity 0.28s ease, transform 0.28s ease;
+        }
+
+        .cleanWebsitesButton.visible {
+          opacity: 1;
+          transform: translateY(0);
+          pointer-events: auto;
+        }
+
+        .cleanWebsitesButton.hidden {
+          opacity: 0;
+          transform: translateY(-10px);
+          pointer-events: none;
         }
 
         .hero {
@@ -649,42 +686,57 @@ export default function BurgerDemoPage() {
         .heroActions {
           display: flex;
           align-items: center;
-          gap: 0.9rem;
+          gap: 1rem;
           flex-wrap: wrap;
           margin-top: 1.6rem;
         }
 
-        .heroBtn,
-        .ctaLightBtn,
-        .ctaDarkBtn {
+        .textLink {
+          position: relative;
           display: inline-flex;
           align-items: center;
-          justify-content: center;
-          min-height: 50px;
-          padding: 0 1.25rem;
-          border-radius: 999px;
           text-decoration: none;
           font-weight: 800;
-          transition: transform 0.2s ease;
+          line-height: 1;
+          transition: transform 0.22s ease, opacity 0.22s ease;
         }
 
-        .heroBtn:hover,
-        .ctaLightBtn:hover,
-        .ctaDarkBtn:hover {
-          transform: translateY(-2px);
+        .textLink::after {
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: -5px;
+          width: 100%;
+          height: 2px;
+          transform: scaleX(1);
+          transform-origin: left;
+          transition: transform 0.24s ease;
         }
 
-        .heroBtnPrimary {
-          background: #e63946;
+        .textLink:hover {
+          transform: translateY(-1px);
+        }
+
+        .textLink:hover::after {
+          transform: scaleX(0.55);
+        }
+
+        .textLinkLight {
           color: #ffffff;
-          box-shadow: 0 12px 24px rgba(230, 57, 70, 0.24);
+          font-size: 1rem;
         }
 
-        .heroBtnLight {
-          background: rgba(255, 255, 255, 0.16);
+        .textLinkLight::after {
+          background: rgba(255, 255, 255, 0.95);
+        }
+
+        .textLinkWhite {
           color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.22);
-          backdrop-filter: blur(6px);
+          font-size: 1rem;
+        }
+
+        .textLinkWhite::after {
+          background: rgba(255, 255, 255, 0.95);
         }
 
         .heroMeta {
@@ -918,19 +970,15 @@ export default function BurgerDemoPage() {
 
         .ctaActions {
           display: flex;
-          gap: 0.9rem;
+          align-items: center;
+          gap: 1rem;
           flex-wrap: wrap;
         }
 
-        .ctaLightBtn {
-          background: #ffffff;
-          color: #111827;
-        }
-
         .ctaDarkBtn {
-          background: rgba(17, 24, 39, 0.22);
-          color: #ffffff;
-          border: 1px solid rgba(255, 255, 255, 0.25);
+          background: rgba(17, 24, 39, 0.18);
+          border: 1px solid rgba(255, 255, 255, 0.2);
+          box-shadow: none;
         }
 
         .footer {
@@ -967,16 +1015,6 @@ export default function BurgerDemoPage() {
         .footer a {
           color: rgba(255, 255, 255, 0.82);
           text-decoration: none;
-        }
-
-        @media (max-width: 1180px) {
-          .logoInlineMeta {
-            display: none;
-          }
-
-          .desktopNav {
-            gap: 20px;
-          }
         }
 
         @media (max-width: 1040px) {
@@ -1048,7 +1086,7 @@ export default function BurgerDemoPage() {
           }
 
           .logo {
-            gap: 10px;
+            gap: 12px;
           }
 
           .logoMark {
@@ -1059,7 +1097,7 @@ export default function BurgerDemoPage() {
           }
 
           .logoMain {
-            font-size: 0.96rem;
+            font-size: 0.98rem;
           }
 
           .menuToggle {
@@ -1089,13 +1127,7 @@ export default function BurgerDemoPage() {
           }
 
           .heroActions {
-            gap: 0.75rem;
-          }
-
-          .heroBtn {
-            min-height: 46px;
-            padding: 0 1rem;
-            flex: 1 1 160px;
+            gap: 0.9rem;
           }
 
           .heroMeta {
@@ -1138,9 +1170,9 @@ export default function BurgerDemoPage() {
           .ctaActions {
             width: 100%;
             flex-direction: column;
+            align-items: flex-start;
           }
 
-          .ctaLightBtn,
           .ctaDarkBtn {
             width: 100%;
           }
@@ -1149,12 +1181,13 @@ export default function BurgerDemoPage() {
         @media (max-width: 420px) {
           .heroActions {
             flex-direction: column;
-            align-items: stretch;
+            align-items: flex-start;
           }
 
-          .heroBtn {
+          .textLink,
+          .heroBtnPrimary {
             width: 100%;
-            flex: initial;
+            justify-content: flex-start;
           }
 
           .heroMeta span {
