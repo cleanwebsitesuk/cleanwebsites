@@ -93,9 +93,9 @@ export default function BurgerDemoPage() {
           >
             <span className="logoMark">S&G</span>
 
-            <span className="logoCopy">
+            <span className="logoTextWrap">
               <span className="logoMain">Stack & Grill</span>
-              <span className="logoSub">Burgers • Chicken • Birmingham</span>
+              <span className="logoInlineMeta">Burgers • Chicken • Birmingham</span>
             </span>
           </Link>
 
@@ -159,18 +159,14 @@ export default function BurgerDemoPage() {
         </div>
       </header>
 
-      <div className="stickyBackWrap">
-        <div className="container">
-          <a
-            href="https://cleanwebsites.co.uk"
-            target="_blank"
-            rel="noreferrer"
-            className="cleanWebsitesButton"
-          >
-            Back to Clean Websites
-          </a>
-        </div>
-      </div>
+      <a
+        href="https://cleanwebsites.co.uk"
+        target="_blank"
+        rel="noreferrer"
+        className="cleanWebsitesButton"
+      >
+        Back to Clean Websites
+      </a>
 
       <section className="hero">
         <div className="heroOverlay" />
@@ -400,7 +396,7 @@ export default function BurgerDemoPage() {
         }
 
         .headerRow {
-          min-height: 74px;
+          min-height: 72px;
           display: grid;
           grid-template-columns: auto 1fr auto;
           align-items: center;
@@ -429,30 +425,32 @@ export default function BurgerDemoPage() {
           font-size: 0.82rem;
           letter-spacing: 0.03em;
           flex-shrink: 0;
+          box-shadow: 0 8px 18px rgba(230, 57, 70, 0.18);
         }
 
-        .logoCopy {
-          display: flex;
-          flex-direction: column;
+        .logoTextWrap {
+          display: inline-flex;
+          align-items: baseline;
+          gap: 10px;
           min-width: 0;
         }
 
         .logoMain {
           color: #111827;
-          font-size: 1.05rem;
+          font-size: 1.1rem;
           font-weight: 900;
           line-height: 1;
           letter-spacing: -0.04em;
         }
 
-        .logoSub {
-          margin-top: 3px;
+        .logoInlineMeta {
           color: #6b7280;
-          font-size: 0.62rem;
+          font-size: 0.68rem;
           font-weight: 800;
           letter-spacing: 0.08em;
           text-transform: uppercase;
           line-height: 1;
+          white-space: nowrap;
         }
 
         .desktopNav {
@@ -486,7 +484,7 @@ export default function BurgerDemoPage() {
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          min-height: 46px;
+          min-height: 44px;
           padding: 0 1.2rem;
           border-radius: 999px;
           background: #e63946;
@@ -499,8 +497,8 @@ export default function BurgerDemoPage() {
 
         .menuToggle {
           display: none;
-          width: 44px;
-          height: 44px;
+          width: 42px;
+          height: 42px;
           border-radius: 12px;
           border: 1px solid rgba(31, 41, 55, 0.1);
           background: #ffffff;
@@ -566,29 +564,21 @@ export default function BurgerDemoPage() {
           margin-top: 12px;
         }
 
-        .stickyBackWrap {
-          position: sticky;
-          top: 74px;
-          z-index: 110;
-          pointer-events: none;
-        }
-
-        .stickyBackWrap .container {
-          padding-top: 10px;
-        }
-
         .cleanWebsitesButton {
-          pointer-events: auto;
+          position: fixed;
+          top: 84px;
+          left: 16px;
+          z-index: 115;
           display: inline-flex;
           align-items: center;
           justify-content: center;
-          min-height: 42px;
-          padding: 0 1rem;
+          min-height: 40px;
+          padding: 0 0.95rem;
           border-radius: 999px;
           background: #0f172a;
           color: #ffffff;
           text-decoration: none;
-          font-size: 0.88rem;
+          font-size: 0.84rem;
           font-weight: 800;
           box-shadow: 0 10px 24px rgba(15, 23, 42, 0.14);
         }
@@ -618,7 +608,7 @@ export default function BurgerDemoPage() {
         .heroContent {
           position: relative;
           z-index: 1;
-          padding: 110px 0 88px;
+          padding: 112px 0 88px;
         }
 
         .heroText {
@@ -980,6 +970,10 @@ export default function BurgerDemoPage() {
         }
 
         @media (max-width: 1180px) {
+          .logoInlineMeta {
+            display: none;
+          }
+
           .desktopNav {
             gap: 20px;
           }
@@ -1009,7 +1003,8 @@ export default function BurgerDemoPage() {
         @media (max-width: 920px) {
           .headerRow {
             grid-template-columns: 1fr auto;
-            min-height: 68px;
+            min-height: 64px;
+            gap: 12px;
           }
 
           .desktopNav,
@@ -1021,8 +1016,8 @@ export default function BurgerDemoPage() {
             display: inline-flex;
           }
 
-          .stickyBackWrap {
-            top: 68px;
+          .cleanWebsitesButton {
+            top: 74px;
           }
 
           .hero {
@@ -1030,7 +1025,7 @@ export default function BurgerDemoPage() {
           }
 
           .heroContent {
-            padding: 100px 0 64px;
+            padding: 104px 0 64px;
           }
 
           .featureGrid {
@@ -1049,29 +1044,22 @@ export default function BurgerDemoPage() {
           }
 
           .headerRow {
-            min-height: 64px;
-            gap: 12px;
+            min-height: 60px;
           }
 
           .logo {
             gap: 10px;
-            min-width: 0;
           }
 
           .logoMark {
-            width: 36px;
-            height: 36px;
-            border-radius: 11px;
-            font-size: 0.74rem;
+            width: 34px;
+            height: 34px;
+            border-radius: 10px;
+            font-size: 0.7rem;
           }
 
           .logoMain {
             font-size: 0.96rem;
-          }
-
-          .logoSub {
-            font-size: 0.56rem;
-            letter-spacing: 0.06em;
           }
 
           .menuToggle {
@@ -1079,18 +1067,12 @@ export default function BurgerDemoPage() {
             height: 40px;
           }
 
-          .stickyBackWrap {
-            top: 64px;
-          }
-
-          .stickyBackWrap .container {
-            padding-top: 8px;
-          }
-
           .cleanWebsitesButton {
-            min-height: 38px;
-            padding: 0 0.85rem;
-            font-size: 0.8rem;
+            top: 70px;
+            left: 10px;
+            min-height: 36px;
+            padding: 0 0.8rem;
+            font-size: 0.78rem;
           }
 
           .heroContent {
@@ -1165,10 +1147,6 @@ export default function BurgerDemoPage() {
         }
 
         @media (max-width: 420px) {
-          .logoSub {
-            display: none;
-          }
-
           .heroActions {
             flex-direction: column;
             align-items: stretch;
