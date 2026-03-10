@@ -1,6 +1,10 @@
 "use client";
 
+import { useState } from "react";
+
 export default function Page() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const services = [
     {
       name: "Skin Fade",
@@ -101,24 +105,66 @@ export default function Page() {
           ← Back to Clean Websites
         </a>
 
-<header className="siteHeader">
-  <div className="container headerInner">
-    <a href="/demo/barber" className="brand">
-      North Studio
-    </a>
+        <header className="siteHeader">
+          <div className="container headerShell">
+            <div className="headerInner">
+              <a href="/demo/barber" className="brand">
+                North Studio
+              </a>
 
-    <nav className="mainNav" aria-label="Main navigation">
-      <a href="/demo/barber">Home</a>
-      <a href="/demo/barber/about">About</a>
-      <a href="/demo/barber/services">Services</a>
-      <a href="/demo/barber/contact-booking">Contact / Booking</a>
-    </nav>
+              <nav className="mainNav" aria-label="Main navigation">
+                <a href="/demo/barber">Home</a>
+                <a href="/demo/barber/about">About</a>
+                <a href="/demo/barber/services">Services</a>
+                <a href="/demo/barber/contact-booking">Contact / Booking</a>
+              </nav>
 
-    <a href="/demo/barber/contact-booking" className="headerCta">
-      Book now
-    </a>
-  </div>
-</header>
+              <a href="/demo/barber/contact-booking" className="headerCta">
+                Book now
+              </a>
+
+              <button
+                type="button"
+                className={`mobileMenuButton ${mobileMenuOpen ? "open" : ""}`}
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+              >
+                <span />
+                <span />
+                <span />
+              </button>
+            </div>
+
+            {mobileMenuOpen && (
+              <div className="mobileMenu" role="dialog" aria-label="Mobile navigation">
+                <nav className="mobileNav">
+                  <a href="/demo/barber" onClick={() => setMobileMenuOpen(false)}>
+                    Home
+                  </a>
+                  <a href="/demo/barber/about" onClick={() => setMobileMenuOpen(false)}>
+                    About
+                  </a>
+                  <a href="/demo/barber/services" onClick={() => setMobileMenuOpen(false)}>
+                    Services
+                  </a>
+                  <a
+                    href="/demo/barber/contact-booking"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact / Booking
+                  </a>
+                </nav>
+              </div>
+            )}
+
+            <div className="mobileStickyCtaWrap">
+              <a href="/demo/barber/contact-booking" className="mobileStickyCta">
+                Book now
+              </a>
+            </div>
+          </div>
+        </header>
 
         <section className="hero" id="home">
           <img
@@ -457,7 +503,7 @@ export default function Page() {
           position: fixed;
           top: 16px;
           left: 16px;
-          z-index: 60;
+          z-index: 70;
           padding: 12px 16px;
           border-radius: 999px;
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -481,8 +527,21 @@ export default function Page() {
           top: 16px;
           left: 0;
           width: 100%;
-          z-index: 50;
+          z-index: 60;
           pointer-events: none;
+        }
+
+        .headerShell {
+          display: flex;
+          flex-direction: column;
+          gap: 12px;
+          pointer-events: none;
+        }
+
+        .headerInner,
+        .mobileMenu,
+        .mobileStickyCtaWrap {
+          pointer-events: auto;
         }
 
         .headerInner {
@@ -497,12 +556,11 @@ export default function Page() {
           border: 1px solid rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(14px);
           box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-          pointer-events: auto;
         }
 
         .brand {
           font-family: Georgia, "Times New Roman", serif;
-          font-size: 1.25rem;
+          font-size: 1.15rem;
           letter-spacing: -0.03em;
           color: #f5f1ea;
           white-space: nowrap;
@@ -545,13 +603,99 @@ export default function Page() {
           border-color: #d4b784;
         }
 
+        .mobileMenuButton {
+          width: 46px;
+          height: 46px;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+          color: #f5f1ea;
+          cursor: pointer;
+          padding: 0;
+          flex-shrink: 0;
+        }
+
+        .mobileMenuButton span {
+          width: 18px;
+          height: 2px;
+          border-radius: 999px;
+          background: #f5f1ea;
+          transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .mobileMenuButton.open span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobileMenuButton.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .mobileMenuButton.open span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobileMenu {
+          border-radius: 24px;
+          background: rgba(15, 15, 17, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(14px);
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+          overflow: hidden;
+        }
+
+        .mobileNav {
+          display: flex;
+          flex-direction: column;
+          padding: 10px;
+        }
+
+        .mobileNav a {
+          padding: 14px 16px;
+          border-radius: 16px;
+          color: rgba(245, 241, 234, 0.88);
+          font-size: 0.98rem;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .mobileNav a:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: #f5f1ea;
+        }
+
+        .mobileStickyCtaWrap {
+          position: sticky;
+          top: 100px;
+          display: flex;
+          justify-content: flex-end;
+        }
+
+        .mobileStickyCta {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 48px;
+          padding: 0 18px;
+          border-radius: 999px;
+          background: #c6a972;
+          color: #0b0b0c;
+          font-weight: 700;
+          border: 1px solid #c6a972;
+          box-shadow: 0 14px 30px rgba(198, 169, 114, 0.18);
+        }
+
         .hero {
           position: relative;
           min-height: 100vh;
           display: flex;
           align-items: flex-end;
           overflow: hidden;
-          padding: 140px 0 72px;
+          padding: 190px 0 72px;
         }
 
         .heroImage {
@@ -623,7 +767,7 @@ export default function Page() {
 
         h1 {
           margin: 0;
-          font-size: clamp(3.8rem, 9vw, 7rem);
+          font-size: clamp(3.2rem, 13vw, 7rem);
           line-height: 0.94;
         }
 
@@ -1106,9 +1250,39 @@ export default function Page() {
           color: #f5f1ea;
         }
 
+        @media (max-width: 699px) {
+          .backButton {
+            top: 16px;
+            left: 16px;
+            right: 16px;
+            width: calc(100% - 32px);
+            text-align: left;
+          }
+
+          .siteHeader {
+            top: 92px;
+          }
+
+          .brand {
+            font-size: 1.1rem;
+          }
+        }
+
         @media (min-width: 700px) {
           .container {
             width: min(1180px, calc(100% - 48px));
+          }
+
+          .backButton {
+            z-index: 60;
+          }
+
+          .siteHeader {
+            top: 16px;
+          }
+
+          .hero {
+            padding: 140px 0 72px;
           }
 
           .mainNav {
@@ -1117,6 +1291,16 @@ export default function Page() {
 
           .headerCta {
             display: inline-flex;
+          }
+
+          .mobileMenuButton,
+          .mobileMenu,
+          .mobileStickyCtaWrap {
+            display: none;
+          }
+
+          .brand {
+            font-size: 1.25rem;
           }
 
           .heroCard {
@@ -1167,16 +1351,6 @@ export default function Page() {
 
           .locationGrid {
             grid-template-columns: 1fr 1.1fr;
-          }
-        }
-
-        @media (max-width: 699px) {
-          .headerInner {
-            justify-content: space-between;
-          }
-
-          .brand {
-            font-size: 1.1rem;
           }
         }
       `}</style>
