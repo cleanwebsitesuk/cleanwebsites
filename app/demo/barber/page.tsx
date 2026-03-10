@@ -69,8 +69,7 @@ export default function Page() {
 
   const reviews = [
     {
-      quote:
-        "Best fade in Manchester. Clean studio and great atmosphere.",
+      quote: "Best fade in Manchester. Clean studio and great atmosphere.",
       name: "A. Malik",
     },
     {
@@ -101,6 +100,25 @@ export default function Page() {
         >
           ← Back to Clean Websites
         </a>
+
+        <header className="siteHeader">
+          <div className="container headerInner">
+            <a href="#home" className="brand">
+              North Studio
+            </a>
+
+            <nav className="mainNav" aria-label="Main navigation">
+              <a href="#home">Home</a>
+              <a href="#about">About</a>
+              <a href="#services">Services</a>
+              <a href="#book">Contact / Booking</a>
+            </nav>
+
+            <a href="#book" className="headerCta">
+              Book now
+            </a>
+          </div>
+        </header>
 
         <section className="hero" id="home">
           <img
@@ -368,9 +386,9 @@ export default function Page() {
               <h4>Links</h4>
               <nav className="footerLinks">
                 <a href="#home">Home</a>
+                <a href="#about">About</a>
                 <a href="#services">Services</a>
-                <a href="#gallery">Gallery</a>
-                <a href="#book">Book</a>
+                <a href="#book">Contact / Booking</a>
               </nav>
             </div>
 
@@ -439,7 +457,7 @@ export default function Page() {
           position: fixed;
           top: 16px;
           left: 16px;
-          z-index: 50;
+          z-index: 60;
           padding: 12px 16px;
           border-radius: 999px;
           border: 1px solid rgba(255, 255, 255, 0.1);
@@ -458,13 +476,82 @@ export default function Page() {
           background: rgba(24, 24, 27, 0.95);
         }
 
+        .siteHeader {
+          position: fixed;
+          top: 16px;
+          left: 0;
+          width: 100%;
+          z-index: 50;
+          pointer-events: none;
+        }
+
+        .headerInner {
+          min-height: 72px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          padding: 14px 18px;
+          border-radius: 24px;
+          background: rgba(15, 15, 17, 0.72);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(14px);
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+          pointer-events: auto;
+        }
+
+        .brand {
+          font-family: Georgia, "Times New Roman", serif;
+          font-size: 1.25rem;
+          letter-spacing: -0.03em;
+          color: #f5f1ea;
+          white-space: nowrap;
+        }
+
+        .mainNav {
+          display: none;
+          align-items: center;
+          gap: 28px;
+        }
+
+        .mainNav a {
+          color: rgba(245, 241, 234, 0.78);
+          font-size: 0.95rem;
+          transition: color 0.2s ease;
+        }
+
+        .mainNav a:hover {
+          color: #f5f1ea;
+        }
+
+        .headerCta {
+          display: none;
+          align-items: center;
+          justify-content: center;
+          min-height: 46px;
+          padding: 0 18px;
+          border-radius: 999px;
+          background: #c6a972;
+          color: #0b0b0c;
+          font-weight: 600;
+          border: 1px solid #c6a972;
+          transition: transform 0.2s ease, background 0.2s ease,
+            border-color 0.2s ease;
+        }
+
+        .headerCta:hover {
+          transform: translateY(-2px);
+          background: #d4b784;
+          border-color: #d4b784;
+        }
+
         .hero {
           position: relative;
           min-height: 100vh;
           display: flex;
           align-items: flex-end;
           overflow: hidden;
-          padding: 120px 0 72px;
+          padding: 140px 0 72px;
         }
 
         .heroImage {
@@ -1024,6 +1111,14 @@ export default function Page() {
             width: min(1180px, calc(100% - 48px));
           }
 
+          .mainNav {
+            display: flex;
+          }
+
+          .headerCta {
+            display: inline-flex;
+          }
+
           .heroCard {
             grid-template-columns: repeat(3, 1fr);
           }
@@ -1072,6 +1167,16 @@ export default function Page() {
 
           .locationGrid {
             grid-template-columns: 1fr 1.1fr;
+          }
+        }
+
+        @media (max-width: 699px) {
+          .headerInner {
+            justify-content: space-between;
+          }
+
+          .brand {
+            font-size: 1.1rem;
           }
         }
       `}</style>
