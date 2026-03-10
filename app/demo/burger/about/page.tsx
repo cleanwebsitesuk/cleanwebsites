@@ -90,7 +90,7 @@ export default function BurgerAboutPage() {
                 href="/demo/burger/contact"
                 onClick={() => setMenuOpen(false)}
               >
-                Contact / Booking
+                Contact
               </Link>
             </nav>
 
@@ -130,7 +130,10 @@ export default function BurgerAboutPage() {
               <Link href="/demo/burger/menu" className="textLink textLinkLight">
                 View menu
               </Link>
-              <Link href="/demo/burger/contact" className="heroBtn heroBtnPrimary">
+              <Link
+                href="/demo/burger/contact"
+                className="heroBtn heroBtnPrimary"
+              >
                 Visit / order
               </Link>
             </div>
@@ -258,7 +261,7 @@ export default function BurgerAboutPage() {
               View full menu
             </Link>
             <Link href="/demo/burger/contact" className="ctaDarkBtn">
-              Contact / booking
+              Contact
             </Link>
           </div>
         </div>
@@ -287,7 +290,7 @@ export default function BurgerAboutPage() {
                 <Link href="/demo/burger/menu">Menu</Link>
               </li>
               <li>
-                <Link href="/demo/burger/contact">Contact / Booking</Link>
+                <Link href="/demo/burger/contact">Contact</Link>
               </li>
             </ul>
           </div>
@@ -498,8 +501,8 @@ export default function BurgerAboutPage() {
 
         .mobilePanel {
           display: none;
-          border-top: 1px solid rgba(31, 41, 55, 0.08);
           background: rgba(255, 255, 255, 0.98);
+          border-top: 1px solid rgba(31, 41, 55, 0.08);
         }
 
         .mobilePanel.show {
@@ -507,27 +510,40 @@ export default function BurgerAboutPage() {
         }
 
         .mobilePanelInner {
-          padding: 14px 0 16px;
+          padding: 12px 0 16px;
         }
 
         .mobileNav {
           display: grid;
-          gap: 10px;
+          gap: 8px;
         }
 
         .mobileNav a {
-          padding: 0.9rem 1rem;
-          border-radius: 14px;
+          display: flex;
+          align-items: center;
+          min-height: 52px;
+          padding: 0 16px;
+          border-radius: 16px;
           text-decoration: none;
           color: #1f2937;
           background: #f8fafc;
           border: 1px solid rgba(31, 41, 55, 0.06);
           font-weight: 700;
+          font-size: 1rem;
+          line-height: 1;
+          transition: transform 0.18s ease, background 0.18s ease;
+        }
+
+        .mobileNav a:hover {
+          transform: translateY(-1px);
+          background: #f3f4f6;
         }
 
         .mobileOrderButton {
           width: 100%;
-          margin-top: 12px;
+          margin-top: 10px;
+          min-height: 50px;
+          border-radius: 16px;
         }
 
         .cleanWebsitesButton {
@@ -933,7 +949,7 @@ export default function BurgerAboutPage() {
 
           .desktopNav,
           .orderButton {
-            display: none;
+            display: none !important;
           }
 
           .menuToggle {
@@ -949,7 +965,7 @@ export default function BurgerAboutPage() {
           }
 
           .aboutHeroContent {
-            padding: 104px 0 64px;
+            padding: 96px 0 60px;
           }
 
           .ctaInner {
@@ -964,7 +980,13 @@ export default function BurgerAboutPage() {
           }
 
           .headerRow {
-            min-height: 60px;
+            min-height: 64px;
+            grid-template-columns: 1fr auto;
+            gap: 10px;
+          }
+
+          .logo {
+            min-width: 0;
           }
 
           .logoMark {
@@ -976,41 +998,93 @@ export default function BurgerAboutPage() {
           }
 
           .logoMain {
-            font-size: 0.98rem;
+            font-size: 0.96rem;
+            line-height: 1;
           }
 
           .menuToggle {
             width: 40px;
             height: 40px;
+            border-radius: 12px;
           }
 
           .cleanWebsitesButton {
-            top: 70px;
+            top: 72px;
             left: 10px;
             min-height: 36px;
             padding: 0 0.8rem;
             font-size: 0.78rem;
           }
 
+          .mobilePanelInner {
+            padding: 12px 0 16px;
+          }
+
+          .mobileNav {
+            gap: 8px;
+          }
+
+          .mobileNav a {
+            min-height: 50px;
+            padding: 0 14px;
+            border-radius: 14px;
+            font-size: 0.98rem;
+          }
+
+          .mobileOrderButton {
+            min-height: 48px;
+            border-radius: 14px;
+          }
+
           .aboutHeroContent {
-            padding: 92px 0 56px;
+            padding: 84px 0 52px;
+          }
+
+          .aboutHeroText {
+            max-width: 100%;
           }
 
           .aboutHero h1 {
-            font-size: clamp(2.1rem, 9vw, 3rem);
+            font-size: clamp(2rem, 8.5vw, 2.8rem);
             max-width: 100%;
           }
 
           .aboutHero p {
-            font-size: 1rem;
+            font-size: 0.98rem;
+            line-height: 1.65;
           }
 
           .heroActions {
-            gap: 0.9rem;
+            gap: 0.85rem;
           }
 
           .section {
-            padding: 64px 0;
+            padding: 56px 0;
+          }
+
+          .sectionHeading {
+            margin-bottom: 1.5rem;
+          }
+
+          .sectionHeading h2,
+          .storyCopy h2,
+          .showcaseText h2 {
+            font-size: 1.9rem;
+          }
+
+          .storyGrid,
+          .showcaseGrid {
+            gap: 1.4rem;
+          }
+
+          .storyImageCard {
+            padding: 10px;
+            border-radius: 22px;
+          }
+
+          .storyImage {
+            min-height: 300px;
+            border-radius: 18px;
           }
 
           .valuesGrid,
@@ -1019,13 +1093,23 @@ export default function BurgerAboutPage() {
             grid-template-columns: 1fr;
           }
 
-          .storyImage {
-            min-height: 340px;
+          .valueCard {
+            padding: 1.2rem;
+            border-radius: 20px;
           }
 
           .showcaseLarge,
           .showcaseSmall {
-            min-height: 220px;
+            min-height: 210px;
+            border-radius: 20px;
+          }
+
+          .ctaSection {
+            padding: 56px 0;
+          }
+
+          .ctaInner {
+            gap: 1.2rem;
           }
 
           .ctaActions {
@@ -1042,7 +1126,7 @@ export default function BurgerAboutPage() {
         @media (max-width: 420px) {
           .heroActions {
             flex-direction: column;
-            align-items: flex-start;
+            align-items: stretch;
           }
 
           .textLink,
@@ -1052,7 +1136,7 @@ export default function BurgerAboutPage() {
           }
 
           .mobileNav a {
-            padding: 0.85rem 0.95rem;
+            padding: 0 14px;
           }
         }
       `}</style>
