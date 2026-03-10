@@ -38,9 +38,9 @@ export default function BurgerContactPage() {
           </nav>
 
           <div className="headerActions">
-            <Link href="/demo/burger/menu" className="orderButton">
-              Order now
-            </Link>
+<a href="/demo/burger/menu" className="orderButton">
+  Order now
+</a>
 
             <button
               type="button"
