@@ -289,8 +289,8 @@ export default function Home() {
 </h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Modern websites for barbers, salons, restaurants, takeaways, and
-              trades. Clean design, fast launch, mobile-first structure, and a
+              Modern websites for UK businesses.
+              Clean design, fast launch, mobile-first structure, and a
               simple enquiry flow that feels premium from the first click.
             </p>
 
