@@ -274,7 +274,7 @@ export default function BurgerMenuPage() {
 
           <div className="extrasCard">
             <span className="sectionLabel">Go all in</span>
-            <h3>BBQ Bacon Burger + Shake</h3>
+            <h3>BBQ Burger + Shake</h3>
             <p>
               Smoky, rich, and ideal when you want something bigger and more
               indulgent.
