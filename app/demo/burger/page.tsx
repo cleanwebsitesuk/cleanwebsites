@@ -410,38 +410,38 @@ export default function BurgerDemoPage() {
           gap: 32px;
         }
 
-        .logo {
-          display: inline-flex;
-          align-items: center;
-          gap: 22px;
-          text-decoration: none;
-          min-width: 0;
-          white-space: nowrap;
-        }
+.logo {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  min-width: 0;
+  white-space: nowrap;
+}
 
-        .logoMark {
-          width: 40px;
-          height: 40px;
-          border-radius: 12px;
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          background: linear-gradient(135deg, #e63946, #f4a261);
-          color: #ffffff;
-          font-weight: 900;
-          font-size: 0.82rem;
-          letter-spacing: 0.03em;
-          flex-shrink: 0;
-          box-shadow: 0 8px 18px rgba(230, 57, 70, 0.18);
-        }
+.logoMark {
+  width: 40px;
+  height: 40px;
+  border-radius: 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #e63946, #f4a261);
+  color: #ffffff;
+  font-weight: 900;
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  flex-shrink: 0;
+  box-shadow: 0 8px 18px rgba(230, 57, 70, 0.18);
+  margin-right: 24px;
+}
 
-        .logoMain {
-          color: #111827;
-          font-size: 1.1rem;
-          font-weight: 900;
-          line-height: 1;
-          letter-spacing: -0.04em;
-        }
+.logoMain {
+  color: #111827;
+  font-size: 1.1rem;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
 
         .desktopNav {
           display: flex;
@@ -1089,12 +1089,13 @@ export default function BurgerDemoPage() {
             gap: 12px;
           }
 
-          .logoMark {
-            width: 34px;
-            height: 34px;
-            border-radius: 10px;
-            font-size: 0.7rem;
-          }
+           .logoMark {
+             width: 34px;
+             height: 34px;
+             border-radius: 10px;
+             font-size: 0.7rem;
+              margin-right: 14px;
+            }
 
           .logoMain {
             font-size: 0.98rem;
