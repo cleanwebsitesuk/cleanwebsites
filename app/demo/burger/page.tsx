@@ -432,7 +432,7 @@ export default function BurgerDemoPage() {
   letter-spacing: 0.03em;
   flex-shrink: 0;
   box-shadow: 0 8px 18px rgba(230, 57, 70, 0.18);
-  margin-right: 18px;
+  margin-right: 16px;
 }
 
 .logoMain {
