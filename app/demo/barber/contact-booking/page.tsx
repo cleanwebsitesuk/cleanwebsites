@@ -1,9 +1,77 @@
 "use client";
 
+import { useState } from "react";
+
 export default function Page() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
     <>
       <main className="page">
+        <header className="siteHeader">
+          <div className="container headerWrap">
+            <div className="headerBar">
+              <a href="/demo/barber" className="brand">
+                North Studio
+              </a>
+
+              <nav className="mainNav" aria-label="Main navigation">
+                <a href="/demo/barber">Home</a>
+                <a href="/demo/barber/about">About</a>
+                <a href="/demo/barber/services">Services</a>
+                <a href="/demo/barber/contact-booking" className="active">
+                  Contact / Booking
+                </a>
+              </nav>
+
+              <a href="/demo/barber/contact-booking" className="headerCta">
+                Book now
+              </a>
+
+              <button
+                type="button"
+                className={`mobileMenuButton ${mobileMenuOpen ? "open" : ""}`}
+                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+                aria-expanded={mobileMenuOpen}
+                onClick={() => setMobileMenuOpen((prev) => !prev)}
+              >
+                <span />
+                <span />
+                <span />
+              </button>
+            </div>
+
+            {mobileMenuOpen && (
+              <div className="mobileMenu" role="dialog" aria-label="Mobile navigation">
+                <nav className="mobileNav">
+                  <a href="/demo/barber" onClick={() => setMobileMenuOpen(false)}>
+                    Home
+                  </a>
+                  <a href="/demo/barber/about" onClick={() => setMobileMenuOpen(false)}>
+                    About
+                  </a>
+                  <a href="/demo/barber/services" onClick={() => setMobileMenuOpen(false)}>
+                    Services
+                  </a>
+                  <a
+                    href="/demo/barber/contact-booking"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Contact / Booking
+                  </a>
+                  <a
+                    href="/demo/barber/contact-booking"
+                    className="mobileMenuCta"
+                    onClick={() => setMobileMenuOpen(false)}
+                  >
+                    Book now
+                  </a>
+                </nav>
+              </div>
+            )}
+          </div>
+        </header>
+
         <a
           href="https://cleanwebsites.co.uk"
           target="_blank"
@@ -12,27 +80,6 @@ export default function Page() {
         >
           ← Back to Clean Websites
         </a>
-
-        <header className="siteHeader">
-          <div className="container headerInner">
-            <a href="/demo/barber" className="brand">
-              North Studio
-            </a>
-
-            <nav className="mainNav" aria-label="Main navigation">
-              <a href="/demo/barber">Home</a>
-              <a href="/demo/barber/about">About</a>
-              <a href="/demo/barber/services">Services</a>
-              <a href="/demo/barber/contact-booking" className="active">
-                Contact / Booking
-              </a>
-            </nav>
-
-            <a href="/demo/barber/contact-booking" className="headerCta">
-              Book now
-            </a>
-          </div>
-        </header>
 
         <section className="hero smallHero">
           <div className="heroOverlay" />
@@ -151,30 +198,26 @@ export default function Page() {
           margin: 0 auto;
         }
 
-        .backButton {
-          position: fixed;
-          top: 16px;
-          left: 16px;
-          z-index: 60;
-          padding: 12px 16px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(18, 18, 20, 0.78);
-          backdrop-filter: blur(12px);
-          color: #f5f1ea;
-          font-size: 0.92rem;
-        }
-
         .siteHeader {
           position: fixed;
           top: 16px;
           left: 0;
           width: 100%;
-          z-index: 50;
+          z-index: 80;
           pointer-events: none;
         }
 
-        .headerInner {
+        .headerWrap {
+          pointer-events: none;
+        }
+
+        .headerBar,
+        .mobileMenu,
+        .backButton {
+          pointer-events: auto;
+        }
+
+        .headerBar {
           min-height: 72px;
           display: flex;
           align-items: center;
@@ -185,7 +228,7 @@ export default function Page() {
           background: rgba(15, 15, 17, 0.72);
           border: 1px solid rgba(255, 255, 255, 0.08);
           backdrop-filter: blur(14px);
-          pointer-events: auto;
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
         }
 
         .brand,
@@ -196,12 +239,25 @@ export default function Page() {
           letter-spacing: -0.03em;
         }
 
-        .brand { font-size: 1.25rem; }
+        .brand { 
+          font-size: 1.15rem;
+          white-space: nowrap;
+        }
 
-        .mainNav { display: none; gap: 28px; }
-        .mainNav a { color: rgba(245, 241, 234, 0.78); }
+        .mainNav { 
+          display: none; 
+          gap: 28px; 
+          align-items: center;
+        }
+
+        .mainNav a { 
+          color: rgba(245, 241, 234, 0.78); 
+        }
+
         .mainNav a.active,
-        .mainNav a:hover { color: #f5f1ea; }
+        .mainNav a:hover { 
+          color: #f5f1ea; 
+        }
 
         .headerCta,
         .btn {
@@ -223,10 +279,103 @@ export default function Page() {
 
         .headerCta { display: none; }
 
+        .mobileMenuButton {
+          width: 46px;
+          height: 46px;
+          display: inline-flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 5px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(255, 255, 255, 0.05);
+          color: #f5f1ea;
+          cursor: pointer;
+          padding: 0;
+          flex-shrink: 0;
+        }
+
+        .mobileMenuButton span {
+          width: 18px;
+          height: 2px;
+          border-radius: 999px;
+          background: #f5f1ea;
+          transition: transform 0.2s ease, opacity 0.2s ease;
+        }
+
+        .mobileMenuButton.open span:nth-child(1) {
+          transform: translateY(7px) rotate(45deg);
+        }
+
+        .mobileMenuButton.open span:nth-child(2) {
+          opacity: 0;
+        }
+
+        .mobileMenuButton.open span:nth-child(3) {
+          transform: translateY(-7px) rotate(-45deg);
+        }
+
+        .mobileMenu {
+          margin-top: 12px;
+          padding: 10px;
+          border-radius: 24px;
+          background: rgba(15, 15, 17, 0.9);
+          border: 1px solid rgba(255, 255, 255, 0.08);
+          backdrop-filter: blur(14px);
+          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+        }
+
+        .mobileNav {
+          display: flex;
+          flex-direction: column;
+          gap: 4px;
+        }
+
+        .mobileNav a {
+          padding: 14px 16px;
+          border-radius: 16px;
+          color: rgba(245, 241, 234, 0.88);
+          font-size: 0.98rem;
+          transition: background 0.2s ease, color 0.2s ease;
+        }
+
+        .mobileNav a:hover {
+          background: rgba(255, 255, 255, 0.05);
+          color: #f5f1ea;
+        }
+
+        .mobileMenuCta {
+          margin-top: 8px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-height: 52px;
+          background: #c6a972;
+          color: #0b0b0c !important;
+          font-weight: 700;
+          border: 1px solid #c6a972;
+        }
+
+        .backButton {
+          position: fixed;
+          top: 104px;
+          left: 16px;
+          z-index: 70;
+          padding: 12px 16px;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.1);
+          background: rgba(18, 18, 20, 0.78);
+          backdrop-filter: blur(12px);
+          color: #f5f1ea;
+          font-size: 0.92rem;
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.22);
+        }
+
         .hero {
           position: relative;
           overflow: hidden;
-          padding: 160px 0 90px;
+          padding: 190px 0 90px;
         }
 
         .smallHero {
@@ -365,12 +514,51 @@ export default function Page() {
           margin-top: 20px;
         }
 
+        @media (max-width: 699px) {
+          .backButton {
+            top: 104px;
+            left: 16px;
+            right: 16px;
+            width: calc(100% - 32px);
+            text-align: left;
+          }
+
+          .hero {
+            padding: 190px 0 90px;
+          }
+
+          .brand {
+            font-size: 1.1rem;
+          }
+        }
+
         @media (min-width: 700px) {
           .container {
             width: min(1180px, calc(100% - 48px));
           }
+
+          .backButton {
+            top: 16px;
+            left: 16px;
+            z-index: 90;
+          }
+
+          .hero {
+            padding: 160px 0 90px;
+          }
+
           .mainNav { display: flex; }
           .headerCta { display: inline-flex; }
+
+          .mobileMenuButton,
+          .mobileMenu {
+            display: none;
+          }
+
+          .brand {
+            font-size: 1.25rem;
+          }
+
           .formGrid {
             grid-template-columns: repeat(2, 1fr);
           }
