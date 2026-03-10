@@ -104,67 +104,68 @@ export default function Page() {
         >
           ← Back to Clean Websites
         </a>
+<header className="siteHeader">
+  <div className="container">
+    <div className="headerShell">
+      <div className="headerInner">
+        <a href="/demo/barber" className="brand">
+          North Studio
+        </a>
 
-        <header className="siteHeader">
-          <div className="container headerShell">
-            <div className="headerInner">
-              <a href="/demo/barber" className="brand">
-                North Studio
+        <nav className="mainNav" aria-label="Main navigation">
+          <a href="/demo/barber">Home</a>
+          <a href="/demo/barber/about">About</a>
+          <a href="/demo/barber/services">Services</a>
+          <a href="/demo/barber/contact-booking">Contact / Booking</a>
+        </nav>
+
+        <a href="/demo/barber/contact-booking" className="headerCta">
+          Book now
+        </a>
+
+        <button
+          type="button"
+          className={`mobileMenuButton ${mobileMenuOpen ? "open" : ""}`}
+          aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+          aria-expanded={mobileMenuOpen}
+          onClick={() => setMobileMenuOpen((prev) => !prev)}
+        >
+          <span />
+          <span />
+          <span />
+        </button>
+      </div>
+
+      <div className="mobileHeaderBottom">
+        <a href="/demo/barber/contact-booking" className="mobileHeaderCta">
+          Book now
+        </a>
+
+        {mobileMenuOpen && (
+          <div className="mobileMenu" role="dialog" aria-label="Mobile navigation">
+            <nav className="mobileNav">
+              <a href="/demo/barber" onClick={() => setMobileMenuOpen(false)}>
+                Home
               </a>
-
-              <nav className="mainNav" aria-label="Main navigation">
-                <a href="/demo/barber">Home</a>
-                <a href="/demo/barber/about">About</a>
-                <a href="/demo/barber/services">Services</a>
-                <a href="/demo/barber/contact-booking">Contact / Booking</a>
-              </nav>
-
-              <a href="/demo/barber/contact-booking" className="headerCta">
-                Book now
+              <a href="/demo/barber/about" onClick={() => setMobileMenuOpen(false)}>
+                About
               </a>
-
-              <button
-                type="button"
-                className={`mobileMenuButton ${mobileMenuOpen ? "open" : ""}`}
-                aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
-                aria-expanded={mobileMenuOpen}
-                onClick={() => setMobileMenuOpen((prev) => !prev)}
+              <a href="/demo/barber/services" onClick={() => setMobileMenuOpen(false)}>
+                Services
+              </a>
+              <a
+                href="/demo/barber/contact-booking"
+                onClick={() => setMobileMenuOpen(false)}
               >
-                <span />
-                <span />
-                <span />
-              </button>
-            </div>
-
-            {mobileMenuOpen && (
-              <div className="mobileMenu" role="dialog" aria-label="Mobile navigation">
-                <nav className="mobileNav">
-                  <a href="/demo/barber" onClick={() => setMobileMenuOpen(false)}>
-                    Home
-                  </a>
-                  <a href="/demo/barber/about" onClick={() => setMobileMenuOpen(false)}>
-                    About
-                  </a>
-                  <a href="/demo/barber/services" onClick={() => setMobileMenuOpen(false)}>
-                    Services
-                  </a>
-                  <a
-                    href="/demo/barber/contact-booking"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contact / Booking
-                  </a>
-                </nav>
-              </div>
-            )}
-
-            <div className="mobileStickyCtaWrap">
-              <a href="/demo/barber/contact-booking" className="mobileStickyCta">
-                Book now
+                Contact / Booking
               </a>
-            </div>
+            </nav>
           </div>
-        </header>
+        )}
+      </div>
+    </div>
+  </div>
+</header>
 
         <section className="hero" id="home">
           <img
@@ -522,173 +523,163 @@ export default function Page() {
           background: rgba(24, 24, 27, 0.95);
         }
 
-        .siteHeader {
-          position: fixed;
-          top: 16px;
-          left: 0;
-          width: 100%;
-          z-index: 60;
-          pointer-events: none;
-        }
+.siteHeader {
+  position: fixed;
+  top: 16px;
+  left: 0;
+  width: 100%;
+  z-index: 60;
+  pointer-events: none;
+}
 
-        .headerShell {
-          display: flex;
-          flex-direction: column;
-          gap: 12px;
-          pointer-events: none;
-        }
+.headerShell {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 14px 18px;
+  border-radius: 24px;
+  background: rgba(15, 15, 17, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
+  pointer-events: auto;
+}
 
-        .headerInner,
-        .mobileMenu,
-        .mobileStickyCtaWrap {
-          pointer-events: auto;
-        }
+.headerInner {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+}
 
-        .headerInner {
-          min-height: 72px;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-          gap: 18px;
-          padding: 14px 18px;
-          border-radius: 24px;
-          background: rgba(15, 15, 17, 0.72);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(14px);
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-        }
+.brand {
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.15rem;
+  letter-spacing: -0.03em;
+  color: #f5f1ea;
+  white-space: nowrap;
+}
 
-        .brand {
-          font-family: Georgia, "Times New Roman", serif;
-          font-size: 1.15rem;
-          letter-spacing: -0.03em;
-          color: #f5f1ea;
-          white-space: nowrap;
-        }
+.mainNav {
+  display: none;
+  align-items: center;
+  gap: 28px;
+}
 
-        .mainNav {
-          display: none;
-          align-items: center;
-          gap: 28px;
-        }
+.mainNav a {
+  color: rgba(245, 241, 234, 0.78);
+  font-size: 0.95rem;
+  transition: color 0.2s ease;
+}
 
-        .mainNav a {
-          color: rgba(245, 241, 234, 0.78);
-          font-size: 0.95rem;
-          transition: color 0.2s ease;
-        }
+.mainNav a:hover {
+  color: #f5f1ea;
+}
 
-        .mainNav a:hover {
-          color: #f5f1ea;
-        }
+.headerCta {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #c6a972;
+  color: #0b0b0c;
+  font-weight: 600;
+  border: 1px solid #c6a972;
+  transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+}
 
-        .headerCta {
-          display: none;
-          align-items: center;
-          justify-content: center;
-          min-height: 46px;
-          padding: 0 18px;
-          border-radius: 999px;
-          background: #c6a972;
-          color: #0b0b0c;
-          font-weight: 600;
-          border: 1px solid #c6a972;
-          transition: transform 0.2s ease, background 0.2s ease,
-            border-color 0.2s ease;
-        }
+.headerCta:hover {
+  transform: translateY(-2px);
+  background: #d4b784;
+  border-color: #d4b784;
+}
 
-        .headerCta:hover {
-          transform: translateY(-2px);
-          background: #d4b784;
-          border-color: #d4b784;
-        }
+.mobileMenuButton {
+  width: 46px;
+  height: 46px;
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f1ea;
+  cursor: pointer;
+  padding: 0;
+  flex-shrink: 0;
+}
 
-        .mobileMenuButton {
-          width: 46px;
-          height: 46px;
-          display: inline-flex;
-          flex-direction: column;
-          align-items: center;
-          justify-content: center;
-          gap: 5px;
-          border-radius: 999px;
-          border: 1px solid rgba(255, 255, 255, 0.1);
-          background: rgba(255, 255, 255, 0.05);
-          color: #f5f1ea;
-          cursor: pointer;
-          padding: 0;
-          flex-shrink: 0;
-        }
+.mobileMenuButton span {
+  width: 18px;
+  height: 2px;
+  border-radius: 999px;
+  background: #f5f1ea;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+}
 
-        .mobileMenuButton span {
-          width: 18px;
-          height: 2px;
-          border-radius: 999px;
-          background: #f5f1ea;
-          transition: transform 0.2s ease, opacity 0.2s ease;
-        }
+.mobileMenuButton.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
 
-        .mobileMenuButton.open span:nth-child(1) {
-          transform: translateY(7px) rotate(45deg);
-        }
+.mobileMenuButton.open span:nth-child(2) {
+  opacity: 0;
+}
 
-        .mobileMenuButton.open span:nth-child(2) {
-          opacity: 0;
-        }
+.mobileMenuButton.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 
-        .mobileMenuButton.open span:nth-child(3) {
-          transform: translateY(-7px) rotate(-45deg);
-        }
+.mobileHeaderBottom {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
 
-        .mobileMenu {
-          border-radius: 24px;
-          background: rgba(15, 15, 17, 0.9);
-          border: 1px solid rgba(255, 255, 255, 0.08);
-          backdrop-filter: blur(14px);
-          box-shadow: 0 18px 40px rgba(0, 0, 0, 0.18);
-          overflow: hidden;
-        }
+.mobileHeaderCta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 52px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: #c6a972;
+  color: #0b0b0c;
+  font-weight: 700;
+  border: 1px solid #c6a972;
+  box-shadow: 0 14px 30px rgba(198, 169, 114, 0.18);
+}
 
-        .mobileNav {
-          display: flex;
-          flex-direction: column;
-          padding: 10px;
-        }
+.mobileMenu {
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
 
-        .mobileNav a {
-          padding: 14px 16px;
-          border-radius: 16px;
-          color: rgba(245, 241, 234, 0.88);
-          font-size: 0.98rem;
-          transition: background 0.2s ease, color 0.2s ease;
-        }
+.mobileNav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+}
 
-        .mobileNav a:hover {
-          background: rgba(255, 255, 255, 0.05);
-          color: #f5f1ea;
-        }
+.mobileNav a {
+  padding: 14px 16px;
+  border-radius: 16px;
+  color: rgba(245, 241, 234, 0.88);
+  font-size: 0.98rem;
+  transition: background 0.2s ease, color 0.2s ease;
+}
 
-        .mobileStickyCtaWrap {
-          position: sticky;
-          top: 100px;
-          display: flex;
-          justify-content: flex-end;
-        }
-
-        .mobileStickyCta {
-          display: inline-flex;
-          align-items: center;
-          justify-content: center;
-          min-height: 48px;
-          padding: 0 18px;
-          border-radius: 999px;
-          background: #c6a972;
-          color: #0b0b0c;
-          font-weight: 700;
-          border: 1px solid #c6a972;
-          box-shadow: 0 14px 30px rgba(198, 169, 114, 0.18);
-        }
-
+.mobileNav a:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #f5f1ea;
+}
         .hero {
           position: relative;
           min-height: 100vh;
@@ -1250,83 +1241,99 @@ export default function Page() {
           color: #f5f1ea;
         }
 
-        @media (max-width: 699px) {
-          .backButton {
-            top: 16px;
-            left: 16px;
-            right: 16px;
-            width: calc(100% - 32px);
-            text-align: left;
-          }
+@media (max-width: 699px) {
+  .backButton {
+    top: 16px;
+    left: 16px;
+    right: 16px;
+    width: calc(100% - 32px);
+    text-align: left;
+  }
 
-          .siteHeader {
-            top: 92px;
-          }
+  .siteHeader {
+    top: 112px;
+  }
 
-          .brand {
-            font-size: 1.1rem;
-          }
-        }
+  .brand {
+    font-size: 1.1rem;
+  }
 
-        @media (min-width: 700px) {
-          .container {
-            width: min(1180px, calc(100% - 48px));
-          }
+  .hero {
+    padding: 250px 0 72px;
+  }
+}
 
-          .backButton {
-            z-index: 60;
-          }
+@media (min-width: 700px) {
+  .container {
+    width: min(1180px, calc(100% - 48px));
+  }
 
-          .siteHeader {
-            top: 16px;
-          }
+  .siteHeader {
+    top: 16px;
+  }
 
-          .hero {
-            padding: 140px 0 72px;
-          }
+  .hero {
+    padding: 140px 0 72px;
+  }
 
-          .mainNav {
-            display: flex;
-          }
+  .headerShell {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
 
-          .headerCta {
-            display: inline-flex;
-          }
+  .headerInner {
+    min-height: 0;
+    flex: 1;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
 
-          .mobileMenuButton,
-          .mobileMenu,
-          .mobileStickyCtaWrap {
-            display: none;
-          }
+  .mainNav {
+    display: flex;
+  }
 
-          .brand {
-            font-size: 1.25rem;
-          }
+  .headerCta {
+    display: inline-flex;
+  }
 
-          .heroCard {
-            grid-template-columns: repeat(3, 1fr);
-          }
+  .mobileMenuButton,
+  .mobileHeaderBottom {
+    display: none;
+  }
 
-          .servicesGrid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+  .brand {
+    font-size: 1.25rem;
+  }
 
-          .reviewsGrid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+  .heroCard {
+    grid-template-columns: repeat(3, 1fr);
+  }
 
-          .formGrid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+  .servicesGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-          .locationMeta {
-            grid-template-columns: repeat(2, 1fr);
-          }
+  .reviewsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
 
-          .footerGrid {
-            grid-template-columns: 1.3fr 0.8fr 0.8fr 1fr;
-          }
-        }
+  .formGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .locationMeta {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .footerGrid {
+    grid-template-columns: 1.3fr 0.8fr 0.8fr 1fr;
+  }
+}
 
         @media (min-width: 980px) {
           .heroGrid {
