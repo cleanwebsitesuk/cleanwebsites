@@ -515,7 +515,7 @@ export default function BurgerAboutPage() {
 
 .mobileNav {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 10px;
 }
 
@@ -523,16 +523,16 @@ export default function BurgerAboutPage() {
   display: flex;
   align-items: center;
   justify-content: center;
-  min-height: 52px;
-  padding: 0 16px;
-  border-radius: 16px;
+  min-height: 46px;
+  padding: 0 14px;
+  border-radius: 999px;
   text-decoration: none;
   color: #111827;
   background: #ffffff;
   border: 1px solid rgba(31, 41, 55, 0.1);
   box-shadow: 0 6px 18px rgba(31, 41, 55, 0.05);
   font-weight: 800;
-  font-size: 0.98rem;
+  font-size: 0.94rem;
   line-height: 1;
   transition: transform 0.18s ease, background 0.18s ease, box-shadow 0.18s ease;
 }
@@ -1029,10 +1029,10 @@ export default function BurgerAboutPage() {
           }
 
           .mobileNav a {
-            min-height: 50px;
-            padding: 0 14px;
-            border-radius: 14px;
-            font-size: 0.98rem;
+            min-height: 44px;
+            padding: 0 12px;
+            border-radius: 999px;
+            font-size: 0.9rem;
           }
 
           .mobileOrderButton {
