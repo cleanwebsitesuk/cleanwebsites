@@ -286,7 +286,7 @@ export default function BurgerDemoPage() {
 
           <div className="reviewGrid">
             {reviews.map((review) => (
-              <article className="reviewCard" key={review.name}>
+              <article className="reviewCard" key={review.quote}>
                 <div className="stars">★★★★★</div>
                 <p>“{review.quote}”</p>
               </article>
