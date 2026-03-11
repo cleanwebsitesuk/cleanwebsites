@@ -289,7 +289,6 @@ export default function BurgerDemoPage() {
               <article className="reviewCard" key={review.name}>
                 <div className="stars">★★★★★</div>
                 <p>“{review.quote}”</p>
-                <strong>{review.name}</strong>
               </article>
             ))}
           </div>
