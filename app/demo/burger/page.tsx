@@ -63,19 +63,15 @@ const gallery = [
 const reviews = [
   {
     quote: "Best burgers in Birmingham. Always fresh and packed with flavour.",
-    name: "Amira K.",
   },
   {
     quote: "Crispy chicken is unreal. Perfect takeaway spot.",
-    name: "Jordan M.",
   },
   {
     quote: "Loaded fries are ridiculous in the best way. Proper comfort food.",
-    name: "Tariq S.",
   },
   {
     quote: "Clean branding, great service, and the food actually lives up to the hype.",
-    name: "Nathan R.",
   },
 ];
 
