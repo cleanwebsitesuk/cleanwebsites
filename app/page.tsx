@@ -601,7 +601,8 @@ export default function Home() {
       Need something larger? Get in touch
     </Link>
   </div>
-</div>            
+</div>           
+</div>
 </section>
             
         <section
