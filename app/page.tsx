@@ -386,6 +386,7 @@ export default function Home() {
                       </div>
                     </div>
 
+                    <div className="relative mt-10 grid gap-3">
                       <div className="grid gap-3 sm:grid-cols-3">
                         {["Hero", "Services", "Contact"].map((block, index) => (
                           <div
