@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const featuredDemos = [
   {
@@ -99,6 +99,71 @@ function MenuIcon({ open }: { open: boolean }) {
           open ? "-translate-y-1.5 -rotate-45" : ""
         }`}
       />
+    </div>
+  );
+}
+
+function InfoTooltip({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open]);
+
+  return (
+    <div ref={wrapperRef} className="relative ml-2 inline-flex shrink-0">
+      <button
+        type="button"
+        aria-label="More information"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#A9ABB3] transition hover:border-white/25 hover:text-[#F5F2EA]"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          className="h-3.5 w-3.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 10v5" />
+          <path d="M12 7.5h.01" />
+        </svg>
+      </button>
+
+      {open && (
+        <div className="absolute right-0 top-7 z-30 w-64 rounded-2xl border border-white/10 bg-[#111214] p-3 text-left text-xs leading-6 text-[#A9ABB3] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:w-72">
+          {text}
+        </div>
+      )}
     </div>
   );
 }
@@ -322,19 +387,44 @@ export default function Home() {
 
                 <div className="border-t border-white/10 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
                   <div className="text-sm text-[#A9ABB3]">
-                    Managed hosting & support
+                    After launch - Managed hosting & support
                   </div>
 
-                  <div className="mt-2 text-3xl font-medium tracking-[-0.03em] text-[#F5F2EA]">
-                    £40 / month
+                  <div className="mt-2 flex items-end gap-2">
+                    <span className="font-serif text-4xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                      £40
+                    </span>
+                    <span className="mb-1 text-sm text-[#A9ABB3]">
+                      per month
+                    </span>
                   </div>
 
                   <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
-                    <p>Secure hosting</p>
-                    <p>Free SSL certificate</p>
-                    <p>Domain connection setup</p>
-                    <p>Deployment and launch support</p>
-                    <p>Technical management</p>
+                    <div className="flex items-start justify-between gap-3">
+                      <span>Secure hosting</span>
+                      <InfoTooltip text="Your website is hosted on secure managed infrastructure with technical upkeep handled for you." />
+                    </div>
+
+                    <div className="flex items-start justify-between gap-3">
+                      <span>Free SSL certificate</span>
+                      <InfoTooltip text="SSL encrypts your website connection and shows the secure padlock in the browser." />
+                    </div>
+
+                    <div className="flex items-start justify-between gap-3">
+                      <span>Domain connection setup</span>
+                      <InfoTooltip text="Your domain is connected correctly to your website so visitors reach the live site properly." />
+                    </div>
+
+                    <div className="flex items-start justify-between gap-3">
+                      <span>Deployment and launch support</span>
+                      <InfoTooltip text="The site is put live for you and checked during launch so everything is working as expected." />
+                    </div>
+
+                    <div className="flex items-start justify-between gap-3">
+                      <span>Technical management</span>
+                      <InfoTooltip text="Ongoing technical oversight helps keep the website stable, updated, and running properly." />
+                    </div>
+
                     <p>Your domain is purchased separately in your name.</p>
                   </div>
 
