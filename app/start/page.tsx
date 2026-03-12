@@ -332,14 +332,6 @@ export default function StartPage() {
                 />
               </div>
 
-              <div className="rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4">
-                <p className="text-sm leading-6 text-[#A9ABB3]">
-                  Need to share photos, branding, or screenshots? Send them by
-                  email or WhatsApp after your enquiry and we’ll review them
-                  with the rest of your project details.
-                </p>
-              </div>
-
               <button
                 type="submit"
                 disabled={isSubmitting}
