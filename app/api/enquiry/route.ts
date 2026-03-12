@@ -37,7 +37,7 @@ export async function POST(req: Request) {
     }
 
     const { error } = await resend.emails.send({
-      from: "Clean Websites <onboarding@resend.dev>",
+      from: "Clean Websites <hello@cleanwebsites.co.uk>",
       to: process.env.ENQUIRY_TO_EMAIL,
       replyTo: email,
       subject: `New website enquiry from ${name}`,
