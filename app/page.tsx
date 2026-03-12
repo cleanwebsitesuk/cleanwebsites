@@ -276,58 +276,60 @@ export default function Home() {
           id="pricing"
           className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
         >
-          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214]">
-            <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
-              <div className="max-w-2xl">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  Simple launch package
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
-                  Simple launch package
-                </h2>
-                <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-                  A straightforward website build for businesses that need a
-                  professional online presence without a long agency process.
-                </p>
+          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214] px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+            <div className="max-w-2xl">
+              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                Simple launch package
               </div>
+              <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                Simple launch package
+              </h2>
+              <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+                A straightforward website build for businesses that need a
+                professional online presence without a long agency process.
+              </p>
+            </div>
 
-              <div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
-                <div className="text-sm text-[#A9ABB3]">Website build</div>
+            <div className="mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-[#17181B]">
+              <div className="grid lg:grid-cols-2">
+                <div className="p-6 sm:p-8 lg:p-9">
+                  <div className="text-sm text-[#A9ABB3]">Website build</div>
 
-                <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
-                  From £595
+                  <div className="mt-2 text-4xl font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
+                    From £595
+                  </div>
+
+                  <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+
+                  <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
+                    {[
+                      "Home page",
+                      "About page",
+                      "Services or menu page",
+                      "Contact or booking page",
+                      "Contact or booking form",
+                      "Mobile optimisation",
+                      "One revision included",
+                      "Launch support",
+                    ].map((item) => (
+                      <div key={item} className="flex items-start gap-3">
+                        <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                        <span>{item}</span>
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
-
-                <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
-                  {[
-                    "Home page",
-                    "About page",
-                    "Services or menu page",
-                    "Contact or booking page",
-                    "Contact or booking form",
-                    "Mobile optimisation",
-                    "One revision included",
-                    "Launch support",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 border-t border-white/10 pt-5">
+                <div className="border-t border-white/10 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
                   <div className="text-sm text-[#A9ABB3]">
                     Managed hosting & support
                   </div>
 
-                  <div className="mt-1 text-xl font-medium text-[#F5F2EA]">
+                  <div className="mt-2 text-3xl font-medium tracking-[-0.03em] text-[#F5F2EA]">
                     £40 / month
                   </div>
 
-                  <div className="mt-3 space-y-2 text-xs text-[#A9ABB3]">
+                  <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
                     <p>Secure hosting</p>
                     <p>Free SSL certificate</p>
                     <p>Domain connection setup</p>
@@ -335,22 +337,22 @@ export default function Home() {
                     <p>Technical management</p>
                     <p>Your domain is purchased separately in your name.</p>
                   </div>
-                </div>
 
-                <div className="mt-7 flex flex-col gap-3">
-                  <Link
-                    href="/start"
-                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-                  >
-                    Get my website quote
-                  </Link>
+                  <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                    <Link
+                      href="/start"
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
+                    >
+                      Get my website quote
+                    </Link>
 
-                  <Link
-                    href="/start"
-                    className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
-                  >
-                    Send an enquiry
-                  </Link>
+                    <Link
+                      href="/start"
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
+                    >
+                      Send an enquiry
+                    </Link>
+                  </div>
                 </div>
               </div>
             </div>
