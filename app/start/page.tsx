@@ -212,36 +212,22 @@ export default function StartPage() {
                 </div>
               </div>
 
-              <div>
-                <label
-                  htmlFor="businessType"
-                  className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                >
-                  Type of business
-                </label>
-                <select
-                  id="businessType"
-                  name="businessType"
-                  defaultValue=""
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
-                >
-                  <option value="" disabled className="bg-[#111214] text-[#7F828A]">
-                    Select an option
-                  </option>
-                  <option value="barber-salon" className="bg-[#111214]">
-                    Barber / Salon
-                  </option>
-                  <option value="restaurant-takeaway" className="bg-[#111214]">
-                    Restaurant / Takeaway
-                  </option>
-                  <option value="trades-services" className="bg-[#111214]">
-                    Trades / Services
-                  </option>
-                  <option value="other" className="bg-[#111214]">
-                    Other
-                  </option>
-                </select>
-              </div>
+<div>
+  <label
+    htmlFor="businessType"
+    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
+  >
+    Type of business
+  </label>
+  <input
+    id="businessType"
+    name="businessType"
+    type="text"
+    required
+    placeholder="e.g. Barber shop, plumbing company, restaurant"
+    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+  />
+</div>
 
               <fieldset>
                 <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
