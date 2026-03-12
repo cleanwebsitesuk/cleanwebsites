@@ -105,8 +105,7 @@ export default function StartPage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Tell us about your business and we’ll get back to you within a
-              few hours.
+              Tell us about your business - we aim to get back to you in a few hours or less.
             </p>
 
             <p className="mt-4 text-sm uppercase tracking-[0.18em] text-[#8BB5FF]">
