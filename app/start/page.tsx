@@ -273,6 +273,28 @@ export default function StartPage() {
                 />
               </div>
 
+              <div>
+  <label
+    htmlFor="images"
+    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
+  >
+    Upload images <span className="text-[#7F828A]">(optional)</span>
+  </label>
+
+  <input
+    id="images"
+    name="images"
+    type="file"
+    accept="image/*"
+    multiple
+    className="block w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#F5F2EA] file:mr-4 file:rounded-full file:border-0 file:bg-[#3B82F6] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
+  />
+
+  <p className="mt-2 text-sm leading-6 text-[#7F828A]">
+    Upload branding, screenshots, photos of your business or anything you consider helpful.
+  </p>
+</div>
+
               <button
                 type="submit"
                 className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
