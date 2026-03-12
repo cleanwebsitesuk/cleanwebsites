@@ -390,14 +390,9 @@ export default function Home() {
                     After launch - Managed hosting & support
                   </div>
 
-                  <div className="mt-2 flex items-end gap-2">
-                    <span className="font-serif text-4xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
-                      £40
-                    </span>
-                    <span className="mb-1 text-sm text-[#A9ABB3]">
-                      per month
-                    </span>
-                  </div>
+<div className="mt-2 text-3xl font-semibold tracking-[-0.02em] text-[#F5F2EA]">
+  £40 / month
+</div>
 
                   <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
                     <div className="flex items-start justify-between gap-3">
