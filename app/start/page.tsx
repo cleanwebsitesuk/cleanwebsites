@@ -279,7 +279,7 @@ export default function StartPage() {
                   name="businessType"
                   type="text"
                   required
-                  placeholder="e.g. Barber shop, plumbing company, restaurant"
+                  placeholder="Describe your business"
                   className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
                 />
               </div>
