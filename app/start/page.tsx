@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 const servicePoints = [
   "Modern website design",
@@ -32,7 +33,53 @@ const demoLinks = [
   },
 ];
 
+type UploadImage = {
+  id: string;
+  file: File;
+  previewUrl: string;
+};
+
 export default function StartPage() {
+  const [images, setImages] = useState<UploadImage[]>([]);
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
+    const selectedFiles = Array.from(e.target.files || []);
+
+    if (!selectedFiles.length) return;
+
+    const newImages = selectedFiles
+      .filter((file) => file.type.startsWith("image/"))
+      .map((file) => ({
+        id: `${file.name}-${file.size}-${file.lastModified}-${Math.random()
+          .toString(36)
+          .slice(2)}`,
+        file,
+        previewUrl: URL.createObjectURL(file),
+      }));
+
+    setImages((prev) => [...prev, ...newImages]);
+    e.target.value = "";
+  }
+
+  function removeImage(id: string) {
+    setImages((prev) => {
+      const imageToRemove = prev.find((image) => image.id === id);
+
+      if (imageToRemove) {
+        URL.revokeObjectURL(imageToRemove.previewUrl);
+      }
+
+      return prev.filter((image) => image.id !== id);
+    });
+  }
+
+  useEffect(() => {
+    return () => {
+      images.forEach((image) => URL.revokeObjectURL(image.previewUrl));
+    };
+  }, [images]);
+
   return (
     <div className="min-h-screen bg-[#0A0A0B] text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
@@ -212,22 +259,22 @@ export default function StartPage() {
                 </div>
               </div>
 
-<div>
-  <label
-    htmlFor="businessType"
-    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-  >
-    Type of business
-  </label>
-  <input
-    id="businessType"
-    name="businessType"
-    type="text"
-    required
-    placeholder="e.g. Barber shop, plumbing company, restaurant"
-    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
-  />
-</div>
+              <div>
+                <label
+                  htmlFor="businessType"
+                  className="mb-2 block text-sm font-medium text-[#F5F2EA]"
+                >
+                  Type of business
+                </label>
+                <input
+                  id="businessType"
+                  name="businessType"
+                  type="text"
+                  required
+                  placeholder="e.g. Barber shop, plumbing company, restaurant"
+                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                />
+              </div>
 
               <fieldset>
                 <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
@@ -274,26 +321,87 @@ export default function StartPage() {
               </div>
 
               <div>
-  <label
-    htmlFor="images"
-    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-  >
-    Upload images <span className="text-[#7F828A]">(optional)</span>
-  </label>
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <label className="block text-sm font-medium text-[#F5F2EA]">
+                    Upload images <span className="text-[#7F828A]">(optional)</span>
+                  </label>
 
-  <input
-    id="images"
-    name="images"
-    type="file"
-    accept="image/*"
-    multiple
-    className="block w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#F5F2EA] file:mr-4 file:rounded-full file:border-0 file:bg-[#3B82F6] file:px-4 file:py-2 file:text-sm file:font-semibold file:text-white"
-  />
+                  {images.length > 0 && (
+                    <span className="text-xs text-[#7F828A]">
+                      {images.length} image{images.length === 1 ? "" : "s"} selected
+                    </span>
+                  )}
+                </div>
 
-  <p className="mt-2 text-sm leading-6 text-[#7F828A]">
-    Upload branding, screenshots, photos of your business or anything you consider helpful.
-  </p>
-</div>
+                <input
+                  ref={fileInputRef}
+                  id="images"
+                  name="images"
+                  type="file"
+                  accept="image/*"
+                  multiple
+                  onChange={handleImageChange}
+                  className="hidden"
+                />
+
+                <button
+                  type="button"
+                  onClick={() => fileInputRef.current?.click()}
+                  className="flex w-full items-center justify-center rounded-[22px] border border-dashed border-white/15 bg-white/[0.03] px-4 py-8 text-center transition duration-300 hover:border-white/25 hover:bg-white/[0.05]"
+                >
+                  <div>
+                    <div className="text-sm font-medium text-[#F5F2EA]">
+                      Click to upload images
+                    </div>
+                    <p className="mt-2 text-sm leading-6 text-[#7F828A]">
+                      Add branding, screenshots, photos of your business,
+                      inspiration, or anything else that helps.
+                    </p>
+                  </div>
+                </button>
+
+                {images.length > 0 && (
+                  <div className="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                    {images.map((image) => (
+                      <div
+                        key={image.id}
+                        className="overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03]"
+                      >
+                        <div className="relative aspect-[4/3] bg-black/20">
+                          <img
+                            src={image.previewUrl}
+                            alt={image.file.name}
+                            className="h-full w-full object-cover"
+                          />
+                        </div>
+
+                        <div className="space-y-3 p-4">
+                          <div>
+                            <p className="truncate text-sm font-medium text-[#F5F2EA]">
+                              {image.file.name}
+                            </p>
+                            <p className="mt-1 text-xs text-[#7F828A]">
+                              {(image.file.size / 1024 / 1024).toFixed(2)} MB
+                            </p>
+                          </div>
+
+                          <button
+                            type="button"
+                            onClick={() => removeImage(image.id)}
+                            className="inline-flex h-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                <p className="mt-3 text-sm leading-6 text-[#7F828A]">
+                  You can upload multiple images and remove any before submitting.
+                </p>
+              </div>
 
               <button
                 type="submit"
