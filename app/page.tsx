@@ -386,23 +386,6 @@ export default function Home() {
                       </div>
                     </div>
 
-                    <div className="relative mt-10 grid gap-3">
-                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
-                        <div className="flex items-center justify-between gap-3">
-                          <div>
-                            <div className="text-sm font-medium text-[#F5F2EA]">
-                              Example website direction
-                            </div>
-                            <div className="mt-1 text-xs text-[#A9ABB3]">
-                              Shows layout and style
-                            </div>
-                          </div>
-                          <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs font-medium text-[#8BB5FF]">
-                            {currentDemo.badge}
-                          </span>
-                        </div>
-                      </div>
-
                       <div className="grid gap-3 sm:grid-cols-3">
                         {["Hero", "Services", "Contact"].map((block, index) => (
                           <div
