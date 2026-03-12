@@ -40,7 +40,7 @@ const { error } = await resend.emails.send({
   from: "Clean Websites <hello@cleanwebsites.co.uk>",
   to: process.env.ENQUIRY_TO_EMAIL,
   replyTo: email,
-  subject: `🚀 New Website Enquiry — ${businessName}`,
+  subject: `🚀 NEW WEBSITE ENQUIRY — ${businessName}`,
   html: `
   <div style="font-family: Arial, sans-serif; background:#f7f7f7; padding:40px;">
     <div style="max-width:600px; margin:auto; background:white; border-radius:12px; overflow:hidden; border:1px solid #eee;">
