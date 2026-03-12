@@ -217,27 +217,27 @@ export default function Home() {
 
       <main className="relative">
         <section className="mx-auto flex min-h-[calc(100vh-78px)] w-full max-w-7xl items-center justify-center px-5 pb-20 pt-10 text-center sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
-          <div className="max-w-3xl">
+          <div className="mx-auto max-w-5xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
               Professional websites for UK businesses
             </div>
 
-            <h1 className="mt-6 max-w-[13ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
+            <h1 className="mx-auto mt-6 max-w-[14ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
               Professional websites for UK businesses.
             </h1>
 
-            <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
+            <p className="mx-auto mt-6 max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
               Clean, fast, mobile-first websites that help your business look
               credible online and make it easy for customers to get in touch.
             </p>
 
-            <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
+            <p className="mx-auto mt-4 max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
               Custom-built with a simple process and ready to launch in as
               little as 24 hours once content is received.
             </p>
 
-            <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
               <Link
                 href="/start"
                 className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
@@ -254,7 +254,7 @@ export default function Home() {
               </a>
             </div>
 
-            <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-2">
+            <div className="mx-auto mt-8 grid max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:grid-cols-2">
               {[
                 "Custom-built for your business",
                 "Mobile-first and fast loading",
