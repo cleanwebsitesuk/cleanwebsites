@@ -4,18 +4,18 @@ import Link from "next/link";
 import { FormEvent, useState } from "react";
 
 const servicePoints = [
-  "Modern website design",
-  "Mobile-friendly layout",
-  "Contact forms for enquiries",
-  "Clean professional design",
-  "Launch in 24 hours or less",
+  "Custom-coded website built for your business",
+  "Fast loading and mobile-first layout",
+  "Home, About, Services/Menu, and Contact/Booking pages",
+  "Contact or booking form included",
+  "Live in 24 hours from content received",
 ];
 
 const nextSteps = [
-  "We review your enquiry",
-  "We reply within a few hours",
-  "We confirm the project and timeline",
-  "We start building your website",
+  "We review your enquiry and project scope",
+  "We reply as soon as possible",
+  "We confirm what is needed and the timeline",
+  "Once content is ready, we build and prepare launch",
 ];
 
 const demoLinks = [
@@ -25,7 +25,7 @@ const demoLinks = [
   },
   {
     label: "Restaurant demo",
-    href: "https://cleanwebsites.co.uk/demo/burger",
+    href: "https://cleanwebsites.co.uk/demo/restaurant",
   },
   {
     label: "Salon demo",
@@ -68,7 +68,7 @@ export default function StartPage() {
 
       setSubmitMessage({
         type: "success",
-        text: "Thanks — your enquiry has been sent.",
+        text: "Thanks — your enquiry has been sent. We’ll review it and reply as soon as possible.",
       });
     } catch (error) {
       setSubmitMessage({
@@ -105,7 +105,9 @@ export default function StartPage() {
             </h1>
 
             <p className="mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Tell us about your business - we aim to respond within a few hours.
+              Tell us about your business and what you need. We build
+              custom-coded websites that are fast, mobile-first, and ready to
+              launch in 24 hours from content received.
             </p>
 
             <p className="mt-4 text-sm uppercase tracking-[0.18em] text-[#8BB5FF]">
@@ -122,7 +124,7 @@ export default function StartPage() {
               </div>
 
               <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,2.9rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
-                A clean, professional website for your business.
+                A clean, professional website built for your business.
               </h2>
 
               <div className="mt-6 space-y-3">
@@ -157,6 +159,32 @@ export default function StartPage() {
                     <p className="pt-2 text-sm leading-6 text-[#A9ABB3]">
                       {step}
                     </p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
+              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                Practical details
+              </div>
+
+              <div className="mt-5 space-y-3">
+                {[
+                  "Projects start from £595, with final pricing depending on scope.",
+                  "Hosting is £40/month after launch.",
+                  "Your domain is purchased separately by you.",
+                  "Written content, business details, and images need to be supplied before build begins.",
+                  "One revision is included. Additional revisions can be arranged depending on scope.",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                  >
+                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+                    <span className="text-sm leading-6 text-[#F5F2EA]">
+                      {item}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -211,8 +239,10 @@ export default function StartPage() {
                     name="name"
                     type="text"
                     required
+                    disabled={isSubmitting}
+                    autoComplete="name"
                     placeholder="Your name"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                   />
                 </div>
 
@@ -228,8 +258,10 @@ export default function StartPage() {
                     name="email"
                     type="email"
                     required
+                    disabled={isSubmitting}
+                    autoComplete="email"
                     placeholder="you@business.com"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                   />
                 </div>
 
@@ -244,8 +276,10 @@ export default function StartPage() {
                     id="phone"
                     name="phone"
                     type="tel"
+                    disabled={isSubmitting}
+                    autoComplete="tel"
                     placeholder="Phone number"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                   />
                 </div>
 
@@ -261,8 +295,10 @@ export default function StartPage() {
                     name="businessName"
                     type="text"
                     required
+                    disabled={isSubmitting}
+                    autoComplete="organization"
                     placeholder="Business name"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                   />
                 </div>
               </div>
@@ -279,12 +315,13 @@ export default function StartPage() {
                   name="businessType"
                   type="text"
                   required
+                  disabled={isSubmitting}
                   placeholder="Describe your business"
-                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                  className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                 />
               </div>
 
-              <fieldset>
+              <fieldset disabled={isSubmitting}>
                 <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
                   Do you already have a website?
                 </legend>
@@ -314,6 +351,66 @@ export default function StartPage() {
                 </div>
               </fieldset>
 
+              <fieldset disabled={isSubmitting}>
+                <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
+                  Do you already have your content ready?
+                </legend>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <input
+                      type="radio"
+                      name="hasContentReady"
+                      value="yes"
+                      required
+                      className="h-4 w-4 accent-[#3B82F6]"
+                    />
+                    <span>Yes</span>
+                  </label>
+
+                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <input
+                      type="radio"
+                      name="hasContentReady"
+                      value="no"
+                      required
+                      className="h-4 w-4 accent-[#3B82F6]"
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+              </fieldset>
+
+              <fieldset disabled={isSubmitting}>
+                <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
+                  Do you already own a domain?
+                </legend>
+
+                <div className="grid gap-3 sm:grid-cols-2">
+                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <input
+                      type="radio"
+                      name="hasDomain"
+                      value="yes"
+                      required
+                      className="h-4 w-4 accent-[#3B82F6]"
+                    />
+                    <span>Yes</span>
+                  </label>
+
+                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <input
+                      type="radio"
+                      name="hasDomain"
+                      value="no"
+                      required
+                      className="h-4 w-4 accent-[#3B82F6]"
+                    />
+                    <span>No</span>
+                  </label>
+                </div>
+              </fieldset>
+
               <div>
                 <label
                   htmlFor="about"
@@ -326,8 +423,9 @@ export default function StartPage() {
                   name="about"
                   rows={6}
                   required
-                  placeholder="What do you do, what pages do you need, and anything else we should know?"
-                  className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
+                  disabled={isSubmitting}
+                  placeholder="Tell us what your business does, which pages you need, whether your content is ready, and anything else we should know."
+                  className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
                 />
               </div>
 
@@ -341,6 +439,7 @@ export default function StartPage() {
 
               {submitMessage.type && (
                 <p
+                  aria-live="polite"
                   className={`text-sm leading-6 ${
                     submitMessage.type === "success"
                       ? "text-green-400"
@@ -351,10 +450,16 @@ export default function StartPage() {
                 </p>
               )}
 
-              <p className="text-sm leading-6 text-[#7F828A]">
-                By sending this form, you’re asking us to get in touch about
-                your website project.
-              </p>
+              <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
+                <p>
+                  Projects start from £595. Hosting is £40/month after launch.
+                  Domain is purchased separately by the client.
+                </p>
+                <p>
+                  By sending this form, you’re asking us to get in touch about
+                  your website project.
+                </p>
+              </div>
             </form>
           </div>
         </section>
@@ -368,7 +473,8 @@ export default function StartPage() {
               View our demo websites
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-8 text-[#A9ABB3]">
-              Explore example designs and see the style before you enquire.
+              Explore example designs and get a feel for the style before you
+              enquire.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
