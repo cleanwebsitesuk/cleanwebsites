@@ -1,4 +1,7 @@
 import { NextResponse } from "next/server";
+import { Resend } from "resend";
+
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export async function POST(req: Request) {
   try {
@@ -19,23 +22,58 @@ export async function POST(req: Request) {
       );
     }
 
-    console.log("New enquiry received:");
-    console.log({
-      name,
-      email,
-      phone,
-      businessName,
-      businessType,
-      hasWebsite,
-      about,
+    if (!process.env.RESEND_API_KEY) {
+      return NextResponse.json(
+        { error: "Missing RESEND_API_KEY." },
+        { status: 500 }
+      );
+    }
+
+    if (!process.env.ENQUIRY_TO_EMAIL) {
+      return NextResponse.json(
+        { error: "Missing ENQUIRY_TO_EMAIL." },
+        { status: 500 }
+      );
+    }
+
+    const { error } = await resend.emails.send({
+      from: "Clean Websites <onboarding@resend.dev>",
+      to: process.env.ENQUIRY_TO_EMAIL,
+      replyTo: email,
+      subject: `New website enquiry from ${name}`,
+      text: `
+New website enquiry
+
+Name: ${name}
+Email: ${email}
+Phone: ${phone || "Not provided"}
+Business name: ${businessName}
+Type of business: ${businessType}
+Already has website: ${hasWebsite}
+
+About:
+${about}
+      `.trim(),
     });
+
+    if (error) {
+      console.error("Resend error:", error);
+
+      return NextResponse.json(
+        { error: error.message || "Failed to send email." },
+        { status: 500 }
+      );
+    }
 
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Enquiry API error:", error);
 
     return NextResponse.json(
-      { error: "Failed to process enquiry." },
+      {
+        error:
+          error instanceof Error ? error.message : "Failed to process enquiry.",
+      },
       { status: 500 }
     );
   }
