@@ -36,25 +36,48 @@ export async function POST(req: Request) {
       );
     }
 
-    const { error } = await resend.emails.send({
-      from: "Clean Websites <hello@cleanwebsites.co.uk>",
-      to: process.env.ENQUIRY_TO_EMAIL,
-      replyTo: email,
-      subject: `New website enquiry from ${name}`,
-      text: `
-New website enquiry
+const { error } = await resend.emails.send({
+  from: "Clean Websites <hello@cleanwebsites.co.uk>",
+  to: process.env.ENQUIRY_TO_EMAIL,
+  replyTo: email,
+  subject: `🚀 New Website Enquiry — ${businessName}`,
+  html: `
+  <div style="font-family: Arial, sans-serif; background:#f7f7f7; padding:40px;">
+    <div style="max-width:600px; margin:auto; background:white; border-radius:12px; overflow:hidden; border:1px solid #eee;">
+      
+      <div style="background:#0A0A0B; padding:20px 28px;">
+        <h2 style="color:#ffffff; margin:0;">New Website Enquiry</h2>
+      </div>
 
-Name: ${name}
-Email: ${email}
-Phone: ${phone || "Not provided"}
-Business name: ${businessName}
-Type of business: ${businessType}
-Already has website: ${hasWebsite}
+      <div style="padding:28px;">
+        
+        <h3 style="margin-top:0;">Contact</h3>
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Phone:</strong> ${phone || "Not provided"}</p>
 
-About:
-${about}
-      `.trim(),
-    });
+        <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
+
+        <h3>Business</h3>
+        <p><strong>Business name:</strong> ${businessName}</p>
+        <p><strong>Type of business:</strong> ${businessType}</p>
+        <p><strong>Already has website:</strong> ${hasWebsite}</p>
+
+        <hr style="border:none;border-top:1px solid #eee;margin:24px 0;" />
+
+        <h3>Project details</h3>
+        <p style="line-height:1.6;">${about.replace(/\n/g, "<br>")}</p>
+
+      </div>
+
+      <div style="background:#fafafa;padding:16px 28px;font-size:12px;color:#666;">
+        Sent from cleanwebsites.co.uk enquiry form
+      </div>
+
+    </div>
+  </div>
+  `
+});
 
     if (error) {
       console.error("Resend error:", error);
