@@ -281,17 +281,17 @@ export default function Home() {
               Built for UK local businesses
             </div>
 
-<h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
-  Clean websites that look professional.
-  <span className="mt-2 block text-[#A9ABB3]">
-    Designed, built, and live in 24 hours.
-  </span>
-</h1>
+            <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
+              Clean websites that look professional.
+              <span className="mt-2 block text-[#A9ABB3]">
+                Designed, built, and live in 24 hours.
+              </span>
+            </h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-  Custom-coded websites for businesses that want a professional
-  online presence without a long agency process. Fast loading,
-  mobile-first, and live in 24 hours from content received.
+              Custom-coded websites for businesses that want a professional
+              online presence without a long agency process. Fast loading,
+              mobile-first, and live in 24 hours from content received.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -313,9 +313,9 @@ export default function Home() {
 
             <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-3">
               {[
-  "Live in 24 hours from content received",
-  "Custom-coded and fast loading",
-  "Built primarily for UK local businesses",
+                "Live in 24 hours from content received",
+                "Custom-coded and fast loading",
+                "Built primarily for UK local businesses",
               ].map((item) => (
                 <div
                   key={item}
@@ -454,6 +454,125 @@ export default function Home() {
         </section>
 
         <section
+          id="pricing"
+          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+        >
+          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214]">
+            <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
+              <div className="max-w-2xl">
+                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                  Launch package
+                </div>
+                <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                  A clean launch package for local businesses.
+                </h2>
+                <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+                  A custom-coded website including core pages, a contact or
+                  booking form, mobile optimisation, and launch support. Live in
+                  24 hours from content received.
+                </p>
+              </div>
+
+              <div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
+                <div className="text-sm text-[#A9ABB3]">Launch package</div>
+
+                <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                  From £595
+                </div>
+
+                <div className="mt-2 text-sm text-[#A9ABB3]">
+                  Live in 24 hours from content received
+                </div>
+
+                <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
+                  {[
+                    "Home",
+                    "About",
+                    "Services / Menu",
+                    "Contact / Booking",
+                    "Contact or booking form",
+                    "Mobile optimisation",
+                    "One revision included",
+                  ].map((item) => (
+                    <div key={item} className="flex items-center gap-3">
+                      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+                      <span>{item}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-6 border-t border-white/10 pt-5">
+                  <div className="text-sm text-[#A9ABB3]">Hosting</div>
+
+                  <div className="mt-1 text-xl font-medium text-[#F5F2EA]">
+                    £40 / month
+                  </div>
+
+                  <div className="mt-1 text-xs text-[#A9ABB3]">
+                    Hosting begins after launch. Domain purchased separately.
+                  </div>
+                </div>
+
+                <div className="mt-7 flex flex-col gap-3">
+                  <Link
+                    href="/start"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                  >
+                    Start now
+                  </Link>
+
+                  <Link
+                    href="/start"
+                    className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
+                  >
+                    Need something larger? Get in touch
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="process"
+          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+        >
+          <div className="max-w-2xl">
+            <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              Process
+            </div>
+            <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              A simple process.
+            </h2>
+            <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
+              Minimal back-and-forth. Fast turnaround. Clear handover.
+            </p>
+          </div>
+
+          <div className="relative mt-10">
+            <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
+            <div className="grid gap-4 lg:grid-cols-4">
+              {processSteps.map((item) => (
+                <div
+                  key={item.step}
+                  className="rounded-[28px] border border-white/10 bg-[#111214] p-6"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA]">
+                    {item.step}
+                  </div>
+                  <h3 className="mt-5 text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                    {item.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section
           id="demos"
           className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
         >
@@ -526,125 +645,6 @@ export default function Home() {
           </div>
         </section>
 
-        <section
-          id="pricing"
-          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
-        >
-          <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214]">
-            <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
-              <div className="max-w-2xl">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  Launch package
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
-                  A clean launch package for local businesses.
-                </h2>
-                <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
- A custom-coded website including core pages, a contact or
- booking form, mobile optimisation, and launch support.
- Live in 24 hours from content received.
-                </p>
-              </div>
-
-<div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
-  <div className="text-sm text-[#A9ABB3]">Launch package</div>
-
-  <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
-    From £595
-  </div>
-
-  <div className="mt-2 text-sm text-[#A9ABB3]">
-    Live in 24 hours from content received
-  </div>
-
-  <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
-    {[
-      "Home",
-      "About",
-      "Services / Menu",
-      "Contact / Booking",
-      "Contact or booking form",
-      "Mobile optimisation",
-      "One revision included",
-    ].map((item) => (
-      <div key={item} className="flex items-center gap-3">
-        <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-        <span>{item}</span>
-      </div>
-    ))}
-  </div>
-
-  <div className="mt-6 border-t border-white/10 pt-5">
-    <div className="text-sm text-[#A9ABB3]">Hosting</div>
-
-    <div className="mt-1 text-xl font-medium text-[#F5F2EA]">
-      £40 / month
-    </div>
-
-    <div className="mt-1 text-xs text-[#A9ABB3]">
-      Hosting begins after launch. Domain purchased separately.
-    </div>
-  </div>
-
-  <div className="mt-7 flex flex-col gap-3">
-    <Link
-      href="/start"
-      className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-    >
-      Start now
-    </Link>
-
-    <Link
-      href="/start"
-      className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
-    >
-      Need something larger? Get in touch
-    </Link>
-  </div>
-</div>           
-</div>
-</div>
-</section>
-            
-        <section
-          id="process"
-          className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
-        >
-          <div className="max-w-2xl">
-            <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-              Process
-            </div>
-            <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-              A simple process.
-            </h2>
-            <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
-              Minimal back-and-forth. Fast turnaround. Clear handover.
-            </p>
-          </div>
-
-          <div className="relative mt-10">
-            <div className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block" />
-            <div className="grid gap-4 lg:grid-cols-4">
-              {processSteps.map((item) => (
-                <div
-                  key={item.step}
-                  className="rounded-[28px] border border-white/10 bg-[#111214] p-6"
-                >
-                  <div className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA]">
-                    {item.step}
-                  </div>
-                  <h3 className="mt-5 text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
-                    {item.desc}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         <section className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
             <div className="max-w-xl">
@@ -691,8 +691,8 @@ export default function Home() {
                 Get your business online properly.
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
-                Send your details and get a clean, custom-built site live in 24 hours
-                from content received.
+                Send your details and get a clean, custom-built site live in 24
+                hours from content received.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
