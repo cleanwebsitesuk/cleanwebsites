@@ -397,10 +397,6 @@ export default function StartPage() {
                     ))}
                   </div>
                 )}
-
-                <p className="mt-3 text-sm leading-6 text-[#7F828A]">
-                  You can upload multiple images and remove any before submitting.
-                </p>
               </div>
 
               <button
