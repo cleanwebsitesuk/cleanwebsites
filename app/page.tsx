@@ -2,62 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useMemo, useState } from "react";
-
-const demoTabs = [
-  {
-    id: "barber",
-    label: "Barber",
-    title: "North Studio",
-    category: "Barber / Salon demo",
-    location: "Manchester",
-    accent: "from-[#3B82F6]/18 via-[#3B82F6]/6 to-transparent",
-    badge: "Booking-led",
-    description:
-      "An example layout showing services, gallery sections, team details, and clear booking or enquiry points.",
-    stats: ["Services", "Gallery", "Book now"],
-    href: "/demo/barber",
-  },
-  {
-    id: "salon",
-    label: "Salon",
-    title: "Luna Studio",
-    category: "Salon demo",
-    location: "Leeds",
-    accent: "from-[#3B82F6]/14 via-[#3B82F6]/5 to-transparent",
-    badge: "Brand-first",
-    description:
-      "A preview build with clean styling, service pricing, profile sections, and simple conversion points.",
-    stats: ["Treatments", "Pricing", "Consultation"],
-    href: "/demo/salon",
-  },
-  {
-    id: "burger",
-    label: "Restaurant / Takeaway",
-    title: "Stack & Grill",
-    category: "Restaurant / Takeaway demo",
-    location: "Birmingham",
-    accent: "from-[#3B82F6]/16 via-[#3B82F6]/5 to-transparent",
-    badge: "Menu-ready",
-    description:
-      "An example structure for hospitality businesses with menu sections, opening hours, and easy booking or enquiry points.",
-    stats: ["Menu", "Hours", "Reserve"],
-    href: "/demo/burger",
-  },
-  {
-    id: "trades",
-    label: "Trades",
-    title: "Apex Electrical",
-    category: "Trades / Services demo",
-    location: "London",
-    accent: "from-[#3B82F6]/15 via-[#3B82F6]/4 to-transparent",
-    badge: "Quote-led",
-    description:
-      "A preview layout for local and service-based businesses with service breakdowns and a clear quote journey.",
-    stats: ["Domestic", "Commercial", "Get a quote"],
-    href: "/demo/trades",
-  },
-] as const;
+import { useEffect, useState } from "react";
 
 const featuredDemos = [
   {
@@ -159,11 +104,8 @@ function MenuIcon({ open }: { open: boolean }) {
 }
 
 export default function Home() {
-  const [activeDemo, setActiveDemo] = useState(0);
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-
-  const currentDemo = useMemo(() => demoTabs[activeDemo], [activeDemo]);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
@@ -274,8 +216,8 @@ export default function Home() {
       </header>
 
       <main className="relative">
-        <section className="mx-auto grid min-h-[calc(100vh-78px)] w-full max-w-7xl items-center gap-14 px-5 pb-20 pt-10 sm:px-6 md:grid-cols-[1.05fr_0.95fr] lg:px-8 lg:pb-24 lg:pt-14">
-          <div className="max-w-2xl">
+        <section className="mx-auto flex min-h-[calc(100vh-78px)] w-full max-w-7xl items-center justify-center px-5 pb-20 pt-10 text-center sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
+          <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
               Professional websites for UK businesses
@@ -326,115 +268,6 @@ export default function Home() {
                   {item}
                 </div>
               ))}
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="pointer-events-none absolute inset-x-12 -top-8 h-40 rounded-full bg-[#3B82F6]/10 blur-[90px]" />
-            <div className="relative overflow-hidden rounded-[30px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${currentDemo.accent} transition-all duration-500`}
-              />
-              <div className="relative border-b border-white/10 px-5 py-4 sm:px-6">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <div className="text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                      Featured preview build
-                    </div>
-                    <div className="mt-1 text-sm text-[#F5F2EA]">
-                      {currentDemo.title} · {currentDemo.location}
-                    </div>
-                  </div>
-                  <a
-                    href={currentDemo.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-xs font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.07]"
-                  >
-                    Open demo
-                  </a>
-                </div>
-              </div>
-
-              <div className="relative p-5 sm:p-6">
-                <div className="overflow-hidden rounded-[26px] border border-white/10 bg-[#0D0E10]">
-                  <div className="relative min-h-[30rem] p-6 sm:p-7">
-                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_32%)]" />
-
-                    <div className="relative max-w-md">
-                      <div className="inline-flex rounded-full border border-white/10 bg-white/[0.04] px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-                        {currentDemo.category}
-                      </div>
-
-                      <h2 className="mt-5 max-w-[10ch] font-serif text-4xl leading-[0.96] tracking-[-0.04em] sm:text-5xl">
-                        {currentDemo.title}
-                      </h2>
-
-                      <p className="mt-4 max-w-sm text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
-                        {currentDemo.description}
-                      </p>
-
-                      <div className="mt-7 flex flex-wrap gap-2">
-                        {currentDemo.stats.map((item) => (
-                          <span
-                            key={item}
-                            className="rounded-full border border-white/10 bg-white/[0.05] px-3 py-1.5 text-xs text-[#F5F2EA]"
-                          >
-                            {item}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    <div className="relative mt-10 grid gap-3">
-                      <div className="grid gap-3 sm:grid-cols-3">
-                        {["Hero", "Services", "Contact"].map((block, index) => (
-                          <div
-                            key={block}
-                            className="rounded-[20px] border border-white/10 bg-white/[0.03] p-4"
-                          >
-                            <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-                              0{index + 1}
-                            </div>
-                            <div className="mt-8 h-16 rounded-2xl bg-white/[0.04]" />
-                            <div className="mt-3 text-sm text-[#F5F2EA]">
-                              {block}
-                            </div>
-                          </div>
-                        ))}
-                      </div>
-
-                      <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
-                        <div className="text-sm text-[#F5F2EA]">
-                          Clear enquiry point
-                        </div>
-                        <div className="mt-3 grid gap-2">
-                          <div className="h-11 rounded-2xl bg-white/[0.04]" />
-                          <div className="h-11 rounded-2xl bg-white/[0.04]" />
-                          <div className="mt-1 h-11 rounded-2xl bg-[#3B82F6]" />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-5 flex flex-wrap gap-2">
-                  {demoTabs.map((tab, index) => (
-                    <button
-                      key={tab.id}
-                      type="button"
-                      onClick={() => setActiveDemo(index)}
-                      className={`rounded-full px-4 py-2 text-sm transition duration-300 ${
-                        activeDemo === index
-                          ? "bg-[#3B82F6] text-white"
-                          : "border border-white/10 bg-white/[0.03] text-[#A9ABB3] hover:border-white/20 hover:text-[#F5F2EA]"
-                      }`}
-                    >
-                      {tab.label}
-                    </button>
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
