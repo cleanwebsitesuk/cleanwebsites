@@ -9,51 +9,51 @@ const demoTabs = [
     id: "barber",
     label: "Barber",
     title: "North Studio",
-    category: "Barber / Salon",
+    category: "Barber / Salon demo",
     location: "Manchester",
     accent: "from-[#3B82F6]/18 via-[#3B82F6]/6 to-transparent",
     badge: "Booking-led",
     description:
-      "Sharp service blocks, elevated gallery, reviews, team, and an enquiry flow that feels premium on mobile.",
-    stats: ["Skin fades", "Beard trims", "Book now"],
+      "An example layout showing how a service-led website can present services, team details, gallery sections, and clear booking or enquiry points on mobile.",
+    stats: ["Services", "Gallery", "Book now"],
     href: "/demo/barber",
   },
   {
     id: "salon",
     label: "Salon",
     title: "Luna Studio",
-    category: "Salon",
+    category: "Salon demo",
     location: "Leeds",
     accent: "from-[#3B82F6]/14 via-[#3B82F6]/5 to-transparent",
     badge: "Brand-first",
     description:
-      "Soft luxury styling, service pricing, stylist profiles, and clean conversion points without clutter.",
-    stats: ["Colour", "Extensions", "Consultation"],
+      "A preview build with clean styling, service pricing, profile sections, and simple conversion points designed to suit beauty and studio-based businesses.",
+    stats: ["Treatments", "Pricing", "Consultation"],
     href: "/demo/salon",
   },
   {
     id: "burger",
     label: "Restaurant / Takeaway",
     title: "Stack & Grill",
-    category: "Restaurant / Takeaway",
+    category: "Restaurant / Takeaway demo",
     location: "Birmingham",
     accent: "from-[#3B82F6]/16 via-[#3B82F6]/5 to-transparent",
     badge: "Menu-ready",
     description:
-      "Atmospheric hero imagery, menu highlights, opening hours, map, and a simple reservation or order path.",
-    stats: ["Dinner", "Cocktails", "Reserve"],
+      "An example structure for hospitality businesses with menu sections, opening hours, contact details, and an easy route to bookings or enquiries.",
+    stats: ["Menu", "Hours", "Reserve"],
     href: "/demo/burger",
   },
   {
     id: "trades",
     label: "Trades",
     title: "Apex Electrical",
-    category: "Trades / Services",
+    category: "Trades / Services demo",
     location: "London",
     accent: "from-[#3B82F6]/15 via-[#3B82F6]/4 to-transparent",
     badge: "Quote-led",
     description:
-      "Clean trust sections, service breakdowns, location coverage, and a quote journey that is obvious and fast.",
+      "A preview layout for local and service-based businesses with service breakdowns, coverage areas, and a quote journey that is easy to follow.",
     stats: ["Domestic", "Commercial", "Get a quote"],
     href: "/demo/trades",
   },
@@ -62,59 +62,59 @@ const demoTabs = [
 const featuredDemos = [
   {
     title: "Barber / Salon",
-    copy: "Booking-led, brand-first layout with reviews, services, and a gallery that feels considered.",
+    copy: "Preview a booking-led, brand-first example layout with services, gallery sections, and clear contact points.",
     href: "/demo/barber",
-    kicker: "Selected demo",
+    kicker: "Demo website",
   },
   {
     title: "Restaurant / Takeaway",
-    copy: "Atmospheric menu-first structure with opening hours, directions, and strong mobile ordering paths.",
+    copy: "An example build with a menu-first structure, opening hours, directions, and strong mobile action points.",
     href: "/demo/burger",
-    kicker: "Selected demo",
+    kicker: "Demo website",
   },
   {
     title: "Trades / Services",
-    copy: "Service-led layout with trust cues, coverage areas, and a clean quote journey built for action.",
+    copy: "A service-led example layout with trust sections, coverage areas, and a clean quote request journey.",
     href: "/demo/trades",
-    kicker: "Selected demo",
+    kicker: "Demo website",
   },
 ];
 
 const processSteps = [
   {
     step: "01",
-    title: "Send your content",
-    desc: "Logo, photos, written text, services or menu, and your contact details.",
+    title: "Send your details",
+    desc: "Tell us about your business and provide your logo, services, and contact details.",
   },
   {
     step: "02",
-    title: "We design and build",
-    desc: "Your site is assembled, styled, and structured around your business.",
+    title: "We build your site",
+    desc: "Your website is structured and styled around your business.",
   },
   {
     step: "03",
     title: "You review",
-    desc: "One revision is included to refine layout or content. Additional revisions can be arranged depending on scope.",
+    desc: "One revision is included to refine layout or content.",
   },
   {
     step: "04",
-    title: "Go live",
-    desc: "We deploy your site, host it, and connect your domain ready for launch.",
+    title: "We launch",
+    desc: "Your website goes live with hosting, domain connection, and SSL ready.",
   },
 ];
 
 const trustCards = [
   {
-    title: "Designed for first impressions",
-    copy: "So your business doesn’t look dated, DIY, or thrown together.",
+    title: "Clear structure",
+    copy: "Built so visitors can quickly understand what your business does and how to get in touch.",
   },
   {
-    title: "Structured for action",
-    copy: "Calls, messages, directions, bookings, or quote requests are always easy to find.",
+    title: "Mobile-first layouts",
+    copy: "Designed to feel clean, modern, and easy to use on phones as well as desktop.",
   },
   {
-    title: "Easy to manage",
-    copy: "You get a live link, clear setup, and support with launch.",
+    title: "Fast loading pages",
+    copy: "Focused on speed, clarity, and obvious enquiry or booking points throughout the site.",
   },
 ];
 
@@ -223,13 +223,13 @@ export default function Home() {
               href="/demos"
               className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
             >
-              View demo
+              View demo websites
             </Link>
             <Link
               href="/start"
               className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
             >
-              Start your site
+              Get my website quote
             </Link>
           </div>
 
@@ -255,7 +255,7 @@ export default function Home() {
               { href: "#demos", label: "Demos" },
               { href: "#process", label: "Process" },
               { href: "#pricing", label: "Pricing" },
-              { href: "/start", label: "Start your site" },
+              { href: "/start", label: "Get my website quote" },
             ].map((item, index) => (
               <a
                 key={item.label}
@@ -278,20 +278,22 @@ export default function Home() {
           <div className="max-w-2xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-              Built for UK local businesses
+              Professional websites for UK businesses
             </div>
 
             <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
-              Clean websites that look professional.
-              <span className="mt-2 block text-[#A9ABB3]">
-                Designed, built, and live in 24 hours.
-              </span>
+              Professional websites for UK businesses.
             </h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Custom-coded websites for businesses that want a professional
-              online presence without a long agency process. Fast loading,
-              mobile-first, and live in 24 hours from content received.
+              Clean, fast, mobile-first websites designed to make your business
+              look credible online and make it easy for customers to get in
+              touch.
+            </p>
+
+            <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
+              Custom-built with a simple process and ready to launch in as
+              little as 24 hours once content is received.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -299,23 +301,24 @@ export default function Home() {
                 href="/start"
                 className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
               >
-                Start your site
+                Get my website quote
                 <ArrowRight />
               </Link>
               <a
                 href="#demos"
                 className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
               >
-                View live demos
+                View demo websites
                 <ArrowRight />
               </a>
             </div>
 
-            <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-3">
+            <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-2">
               {[
-                "Live in 24 hours from content received",
-                "Custom-coded and fast loading",
-                "Built primarily for UK local businesses",
+                "Custom-built for your business",
+                "Mobile-first and fast loading",
+                "Managed hosting with free SSL",
+                "Simple launch process",
               ].map((item) => (
                 <div
                   key={item}
@@ -337,7 +340,7 @@ export default function Home() {
                 <div className="flex items-center justify-between gap-4">
                   <div>
                     <div className="text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                      Featured preview
+                      Featured preview build
                     </div>
                     <div className="mt-1 text-sm text-[#F5F2EA]">
                       {currentDemo.title} · {currentDemo.location}
@@ -389,10 +392,10 @@ export default function Home() {
                         <div className="flex items-center justify-between gap-3">
                           <div>
                             <div className="text-sm font-medium text-[#F5F2EA]">
-                              Premium first impression
+                              Example website direction
                             </div>
                             <div className="mt-1 text-xs text-[#A9ABB3]">
-                              Designed to feel established at a glance
+                              Designed to show layout structure and style
                             </div>
                           </div>
                           <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs font-medium text-[#8BB5FF]">
@@ -420,7 +423,7 @@ export default function Home() {
 
                       <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5">
                         <div className="text-sm text-[#F5F2EA]">
-                          Clean conversion point
+                          Clear enquiry point
                         </div>
                         <div className="mt-3 grid gap-2">
                           <div className="h-11 rounded-2xl bg-white/[0.04]" />
@@ -461,38 +464,39 @@ export default function Home() {
             <div className="grid gap-8 px-6 py-8 sm:px-8 sm:py-10 lg:grid-cols-[1.2fr_0.8fr] lg:px-10">
               <div className="max-w-2xl">
                 <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  Launch package
+                  Simple launch package
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
-                  A clean launch package for local businesses.
+                  Simple launch package
                 </h2>
                 <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-                  A custom-coded website including core pages, a contact or
-                  booking form, mobile optimisation, and launch support. Live in
-                  24 hours from content received.
+                  A straightforward website build designed for businesses that
+                  need a professional online presence without a long agency
+                  process.
                 </p>
               </div>
 
               <div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
-                <div className="text-sm text-[#A9ABB3]">Launch package</div>
+                <div className="text-sm text-[#A9ABB3]">Website build</div>
 
                 <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
                   From £595
                 </div>
 
                 <div className="mt-2 text-sm text-[#A9ABB3]">
-                  Live in 24 hours from content received
+                  One-time
                 </div>
 
                 <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
                   {[
-                    "Home",
-                    "About",
-                    "Services / Menu",
-                    "Contact / Booking",
+                    "Home page",
+                    "About page",
+                    "Services or menu page",
+                    "Contact or booking page",
                     "Contact or booking form",
                     "Mobile optimisation",
                     "One revision included",
+                    "Launch support",
                   ].map((item) => (
                     <div key={item} className="flex items-center gap-3">
                       <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
@@ -502,14 +506,21 @@ export default function Home() {
                 </div>
 
                 <div className="mt-6 border-t border-white/10 pt-5">
-                  <div className="text-sm text-[#A9ABB3]">Hosting</div>
+                  <div className="text-sm text-[#A9ABB3]">
+                    Managed hosting & support
+                  </div>
 
                   <div className="mt-1 text-xl font-medium text-[#F5F2EA]">
                     £40 / month
                   </div>
 
-                  <div className="mt-1 text-xs text-[#A9ABB3]">
-                    Hosting begins after launch. Domain purchased separately.
+                  <div className="mt-3 space-y-2 text-xs text-[#A9ABB3]">
+                    <p>Secure website hosting</p>
+                    <p>Free SSL certificate</p>
+                    <p>Domain connection setup</p>
+                    <p>Deployment and launch support</p>
+                    <p>Technical management</p>
+                    <p>Your domain is purchased separately in your name.</p>
                   </div>
                 </div>
 
@@ -518,14 +529,14 @@ export default function Home() {
                     href="/start"
                     className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
                   >
-                    Start now
+                    Get my website quote
                   </Link>
 
                   <Link
                     href="/start"
                     className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
                   >
-                    Need something larger? Get in touch
+                    Send an enquiry
                   </Link>
                 </div>
               </div>
@@ -542,10 +553,11 @@ export default function Home() {
               Process
             </div>
             <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-              A simple process.
+              A simple process
             </h2>
             <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
-              Minimal back-and-forth. Fast turnaround. Clear handover.
+              No bloated agency timelines. Just a clear path from enquiry to
+              launch.
             </p>
           </div>
 
@@ -578,19 +590,45 @@ export default function Home() {
         >
           <div className="max-w-2xl">
             <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-              Selected demos
+              Demo websites
             </div>
             <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-              Real structures. Adapted for different businesses.
+              Demo websites
             </h2>
             <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-              A clean, high-end foundation shaped for different categories
-              without looking like a generic template.
+              Preview example website styles and layouts that can be adapted to
+              different types of businesses.
+            </p>
+            <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              These are demo builds designed to show layout structure, design
+              direction, and how your website could be organised.
+            </p>
+            <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              Whether your business needs enquiries, bookings, or quote
+              requests, the structure is designed to make it easy for customers
+              to take action.
             </p>
           </div>
 
+          <div className="mt-8 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
+            {[
+              "Service businesses",
+              "Studios and beauty businesses",
+              "Restaurants and hospitality",
+              "Local service companies",
+              "Other small and local businesses",
+            ].map((item) => (
+              <div
+                key={item}
+                className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
+              >
+                {item}
+              </div>
+            ))}
+          </div>
+
           <div className="mt-10 grid gap-5 lg:grid-cols-3">
-            {featuredDemos.map((card, index) => (
+            {featuredDemos.map((card) => (
               <a
                 key={card.title}
                 href={card.href}
@@ -607,7 +645,7 @@ export default function Home() {
                           {card.kicker}
                         </span>
                         <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs text-[#8BB5FF]">
-                          24h-ready
+                          Preview build
                         </span>
                       </div>
                       <div className="mt-5 h-28 rounded-[18px] bg-white/[0.05]" />
@@ -620,7 +658,7 @@ export default function Home() {
 
                     <div className="absolute bottom-6 left-6 right-6 rounded-[22px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur">
                       <div className="text-sm text-[#F5F2EA]">
-                        Premium homepage direction
+                        Example homepage direction
                       </div>
                       <div className="mt-2 h-10 rounded-2xl bg-[#3B82F6]" />
                     </div>
@@ -652,13 +690,15 @@ export default function Home() {
                 Why it works
               </div>
               <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                Built to make small businesses feel established online.
+                Designed to make your business look established online
               </h2>
               <p className="mt-5 text-[18px] leading-8 text-[#A9ABB3]">
-                Modern design, mobile-first structure, fast pages, clear
-                enquiry or booking paths, and a simple ownership handover. It is
-                a cleaner process than a bloated agency project, without looking
-                cheap or templated.
+                A good website should make it easy for customers to trust your
+                business and get in touch.
+              </p>
+              <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
+                The result is a website that feels modern, professional, and
+                easy for customers to use.
               </p>
             </div>
 
@@ -676,6 +716,15 @@ export default function Home() {
                   </p>
                 </div>
               ))}
+              <div className="rounded-[26px] border border-white/10 bg-[#111214] p-6 transition duration-300 hover:border-white/15 hover:bg-[#141518]">
+                <h3 className="text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                  Obvious enquiry or booking points
+                </h3>
+                <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                  Structured so customers always have a clear next step, whether
+                  that is calling, messaging, booking, or requesting a quote.
+                </p>
+              </div>
             </div>
           </div>
         </section>
@@ -688,11 +737,15 @@ export default function Home() {
                 Start
               </div>
               <h2 className="mt-4 font-serif text-[clamp(2.7rem,5vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
-                Get your business online properly.
+                Get your business online properly
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
-                Send your details and get a clean, custom-built site live in 24
-                hours from content received.
+                Send your details and we’ll review your project and the next
+                steps.
+              </p>
+              <p className="mx-auto mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
+                Websites start from £595 with managed hosting from £40/month
+                after launch.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -700,14 +753,14 @@ export default function Home() {
                   href="/start"
                   className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
                 >
-                  Start your site
+                  Get my website quote
                   <ArrowRight />
                 </Link>
                 <Link
                   href="/demos"
                   className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
                 >
-                  View demos
+                  View demo websites
                   <ArrowRight />
                 </Link>
               </div>
@@ -722,7 +775,7 @@ export default function Home() {
                 CLEAN WEBSITES
               </div>
               <p className="mt-3 max-w-sm text-sm leading-7 text-[#A9ABB3]">
-                Clean, high-end websites for UK local businesses.
+                Professional websites for UK businesses.
               </p>
             </div>
 
@@ -783,7 +836,7 @@ export default function Home() {
             href="/start"
             className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
           >
-            Start your site
+            Get my website quote
           </Link>
         </div>
       </main>
