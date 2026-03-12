@@ -44,7 +44,7 @@ function WhatsAppIcon() {
       className="h-4 w-4"
       fill="currentColor"
     >
-      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.9 11.9 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.86 9.86 0 0 1-1.52-5.23c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.9a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.91 9.92Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.96-.27-.1-.46-.15-.66.15-.2.3-.76.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.43-1.5-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.08-.8.38-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.08 3.18 5.03 4.46.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.41.25-.7.25-1.29.17-1.42-.08-.13-.28-.2-.58-.35Z" />
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.9 11.9 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.86 9.86 0 0 1-1.52-5.23c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.9a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45-9.92-9.91 9.92Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.96-.27-.1-.46-.15-.66.15-.2.3-.76.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.43-1.5-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.08-.8.38-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.08 3.18 5.03 4.46.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.41.25-.7.25-1.29.17-1.42-.08-.13-.28-.2-.58-.35Z" />
     </svg>
   );
 }
@@ -127,8 +127,8 @@ export default function StartPage() {
             </p>
 
             <p className="mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Website builds start from £595, with managed hosting and support
-              from £40/month after launch.
+              Website builds start from £595. Managed hosting is £40/month after
+              launch.
             </p>
           </div>
         </section>
@@ -145,8 +145,7 @@ export default function StartPage() {
               </h2>
 
               <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
-                Every website includes the core pages most businesses need to
-                establish a strong online presence.
+                Every website includes the core pages most businesses need.
               </p>
 
               <div className="mt-6 space-y-3">
@@ -232,8 +231,7 @@ export default function StartPage() {
               </h2>
 
               <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
-                You can explore demo websites to see example layouts and styles
-                before sending an enquiry.
+                Explore demo websites before sending an enquiry.
               </p>
 
               <div className="mt-5 space-y-3">
@@ -473,8 +471,7 @@ export default function StartPage() {
                   Prefer messaging?
                 </p>
                 <p className="text-sm leading-6 text-[#7F828A]">
-                  You can also contact us directly on WhatsApp if you’d rather
-                  discuss your project that way.
+                  You can also contact us directly on WhatsApp.
                 </p>
               </div>
 
@@ -494,8 +491,8 @@ export default function StartPage() {
               <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
                 <p>
                   Website builds start from £595 depending on scope. Managed
-                  hosting and support is £40/month after launch. Your domain is
-                  purchased separately in your name.
+                  hosting is £40/month after launch. Your domain is purchased
+                  separately in your name.
                 </p>
                 <p>
                   By sending this form, you’re asking us to review your project
