@@ -14,7 +14,7 @@ const demoTabs = [
     accent: "from-[#3B82F6]/18 via-[#3B82F6]/6 to-transparent",
     badge: "Booking-led",
     description:
-      "An example layout showing how a service-led website can present services, team details, gallery sections, and clear booking or enquiry points on mobile.",
+      "An example layout showing services, gallery sections, team details, and clear booking or enquiry points.",
     stats: ["Services", "Gallery", "Book now"],
     href: "/demo/barber",
   },
@@ -27,7 +27,7 @@ const demoTabs = [
     accent: "from-[#3B82F6]/14 via-[#3B82F6]/5 to-transparent",
     badge: "Brand-first",
     description:
-      "A preview build with clean styling, service pricing, profile sections, and simple conversion points designed to suit beauty and studio-based businesses.",
+      "A preview build with clean styling, service pricing, profile sections, and simple conversion points.",
     stats: ["Treatments", "Pricing", "Consultation"],
     href: "/demo/salon",
   },
@@ -40,7 +40,7 @@ const demoTabs = [
     accent: "from-[#3B82F6]/16 via-[#3B82F6]/5 to-transparent",
     badge: "Menu-ready",
     description:
-      "An example structure for hospitality businesses with menu sections, opening hours, contact details, and an easy route to bookings or enquiries.",
+      "An example structure for hospitality businesses with menu sections, opening hours, and easy booking or enquiry points.",
     stats: ["Menu", "Hours", "Reserve"],
     href: "/demo/burger",
   },
@@ -53,7 +53,7 @@ const demoTabs = [
     accent: "from-[#3B82F6]/15 via-[#3B82F6]/4 to-transparent",
     badge: "Quote-led",
     description:
-      "A preview layout for local and service-based businesses with service breakdowns, coverage areas, and a quote journey that is easy to follow.",
+      "A preview layout for local and service-based businesses with service breakdowns and a clear quote journey.",
     stats: ["Domestic", "Commercial", "Get a quote"],
     href: "/demo/trades",
   },
@@ -62,19 +62,19 @@ const demoTabs = [
 const featuredDemos = [
   {
     title: "Barber / Salon",
-    copy: "Preview a booking-led, brand-first example layout with services, gallery sections, and clear contact points.",
+    copy: "A booking-led example layout with services, gallery sections, and clear contact points.",
     href: "/demo/barber",
     kicker: "Demo website",
   },
   {
     title: "Restaurant / Takeaway",
-    copy: "An example build with a menu-first structure, opening hours, directions, and strong mobile action points.",
+    copy: "A menu-first example build with opening hours, directions, and strong mobile action points.",
     href: "/demo/burger",
     kicker: "Demo website",
   },
   {
     title: "Trades / Services",
-    copy: "A service-led example layout with trust sections, coverage areas, and a clean quote request journey.",
+    copy: "A service-led example layout with trust sections, coverage areas, and a clear quote request flow.",
     href: "/demo/trades",
     kicker: "Demo website",
   },
@@ -84,7 +84,7 @@ const processSteps = [
   {
     step: "01",
     title: "Send your details",
-    desc: "Tell us about your business and provide your logo, services, and contact details.",
+    desc: "Tell us about your business and share your logo, services, and contact details.",
   },
   {
     step: "02",
@@ -99,22 +99,22 @@ const processSteps = [
   {
     step: "04",
     title: "We launch",
-    desc: "Your website goes live with hosting, domain connection, and SSL ready.",
+    desc: "We connect your domain, set up SSL, and launch the site.",
   },
 ];
 
 const trustCards = [
   {
     title: "Clear structure",
-    copy: "Built so visitors can quickly understand what your business does and how to get in touch.",
+    copy: "Visitors can quickly understand what you do and how to contact you.",
   },
   {
-    title: "Mobile-first layouts",
-    copy: "Designed to feel clean, modern, and easy to use on phones as well as desktop.",
+    title: "Mobile-first layout",
+    copy: "Built to look clean and work properly on phones as well as desktop.",
   },
   {
     title: "Fast loading pages",
-    copy: "Focused on speed, clarity, and obvious enquiry or booking points throughout the site.",
+    copy: "Focused on speed, clarity, and easy enquiry or booking points.",
   },
 ];
 
@@ -281,14 +281,13 @@ export default function Home() {
               Professional websites for UK businesses
             </div>
 
-            <h1 className="mt-6 max-w-[12ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
+            <h1 className="mt-6 max-w-[13ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]">
               Professional websites for UK businesses.
             </h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Clean, fast, mobile-first websites designed to make your business
-              look credible online and make it easy for customers to get in
-              touch.
+              Clean, fast, mobile-first websites that help your business look
+              credible online and make it easy for customers to get in touch.
             </p>
 
             <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
@@ -395,7 +394,7 @@ export default function Home() {
                               Example website direction
                             </div>
                             <div className="mt-1 text-xs text-[#A9ABB3]">
-                              Designed to show layout structure and style
+                              Shows layout and style
                             </div>
                           </div>
                           <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs font-medium text-[#8BB5FF]">
@@ -470,9 +469,8 @@ export default function Home() {
                   Simple launch package
                 </h2>
                 <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-                  A straightforward website build designed for businesses that
-                  need a professional online presence without a long agency
-                  process.
+                  A straightforward website build for businesses that need a
+                  professional online presence without a long agency process.
                 </p>
               </div>
 
@@ -483,9 +481,7 @@ export default function Home() {
                   From £595
                 </div>
 
-                <div className="mt-2 text-sm text-[#A9ABB3]">
-                  One-time
-                </div>
+                <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
                 <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
                   {[
@@ -515,7 +511,7 @@ export default function Home() {
                   </div>
 
                   <div className="mt-3 space-y-2 text-xs text-[#A9ABB3]">
-                    <p>Secure website hosting</p>
+                    <p>Secure hosting</p>
                     <p>Free SSL certificate</p>
                     <p>Domain connection setup</p>
                     <p>Deployment and launch support</p>
@@ -604,19 +600,17 @@ export default function Home() {
               direction, and how your website could be organised.
             </p>
             <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-              Whether your business needs enquiries, bookings, or quote
-              requests, the structure is designed to make it easy for customers
-              to take action.
+              Built to support enquiries, bookings, or quote requests.
             </p>
           </div>
 
           <div className="mt-8 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
             {[
               "Service businesses",
-              "Studios and beauty businesses",
+              "Studios and beauty",
               "Restaurants and hospitality",
               "Local service companies",
-              "Other small and local businesses",
+              "Other small businesses",
             ].map((item) => (
               <div
                 key={item}
@@ -693,12 +687,12 @@ export default function Home() {
                 Designed to make your business look established online
               </h2>
               <p className="mt-5 text-[18px] leading-8 text-[#A9ABB3]">
-                A good website should make it easy for customers to trust your
-                business and get in touch.
+                A good website should help customers trust your business and get
+                in touch easily.
               </p>
               <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
                 The result is a website that feels modern, professional, and
-                easy for customers to use.
+                easy to use.
               </p>
             </div>
 
@@ -718,11 +712,11 @@ export default function Home() {
               ))}
               <div className="rounded-[26px] border border-white/10 bg-[#111214] p-6 transition duration-300 hover:border-white/15 hover:bg-[#141518]">
                 <h3 className="text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
-                  Obvious enquiry or booking points
+                  Clear enquiry points
                 </h3>
                 <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
-                  Structured so customers always have a clear next step, whether
-                  that is calling, messaging, booking, or requesting a quote.
+                  Customers always have a clear next step to call, message,
+                  book, or request a quote.
                 </p>
               </div>
             </div>
@@ -744,8 +738,8 @@ export default function Home() {
                 steps.
               </p>
               <p className="mx-auto mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
-                Websites start from £595 with managed hosting from £40/month
-                after launch.
+                Websites start from £595. Managed hosting is £40/month after
+                launch.
               </p>
 
               <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
