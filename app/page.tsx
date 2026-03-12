@@ -21,7 +21,7 @@ const demoTabs = [
   {
     id: "salon",
     label: "Salon",
-    title: "Atelier House",
+    title: "Luna Studio",
     category: "Salon",
     location: "Leeds",
     accent: "from-[#3B82F6]/14 via-[#3B82F6]/5 to-transparent",
@@ -32,9 +32,9 @@ const demoTabs = [
     href: "/demo/salon",
   },
   {
-    id: "restaurant",
-    label: "Restaurant",
-    title: "Coal & Vine",
+    id: "burger",
+    label: "Restaurant / Takeaway",
+    title: "Stack & Grill",
     category: "Restaurant / Takeaway",
     location: "Birmingham",
     accent: "from-[#3B82F6]/16 via-[#3B82F6]/5 to-transparent",
@@ -42,7 +42,7 @@ const demoTabs = [
     description:
       "Atmospheric hero imagery, menu highlights, opening hours, map, and a simple reservation or order path.",
     stats: ["Dinner", "Cocktails", "Reserve"],
-    href: "/demo/restaurant",
+    href: "/demo/burger",
   },
   {
     id: "trades",
@@ -69,7 +69,7 @@ const featuredDemos = [
   {
     title: "Restaurant / Takeaway",
     copy: "Atmospheric menu-first structure with opening hours, directions, and strong mobile ordering paths.",
-    href: "/demo/restaurant",
+    href: "/demo/burger",
     kicker: "Selected demo",
   },
   {
