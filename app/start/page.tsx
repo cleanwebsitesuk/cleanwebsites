@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
 
 const servicePoints = [
   "Modern website design",
@@ -41,6 +41,15 @@ type UploadImage = {
 
 export default function StartPage() {
   const [images, setImages] = useState<UploadImage[]>([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitMessage, setSubmitMessage] = useState<{
+    type: "success" | "error" | null;
+    text: string;
+  }>({
+    type: null,
+    text: "",
+  });
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
 
   function handleImageChange(e: ChangeEvent<HTMLInputElement>) {
@@ -72,6 +81,54 @@ export default function StartPage() {
 
       return prev.filter((image) => image.id !== id);
     });
+  }
+
+  async function handleSubmit(e: FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    setIsSubmitting(true);
+    setSubmitMessage({ type: null, text: "" });
+
+    formData.delete("images");
+
+    images.forEach((image) => {
+      formData.append("images", image.file);
+    });
+
+    try {
+      const res = await fetch("/api/enquiry", {
+        method: "POST",
+        body: formData,
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
+
+      images.forEach((image) => URL.revokeObjectURL(image.previewUrl));
+      setImages([]);
+      form.reset();
+
+      setSubmitMessage({
+        type: "success",
+        text: "Thanks — your enquiry has been sent.",
+      });
+    } catch (error) {
+      setSubmitMessage({
+        type: "error",
+        text:
+          error instanceof Error
+            ? error.message
+            : "Failed to send your enquiry.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   useEffect(() => {
@@ -192,7 +249,10 @@ export default function StartPage() {
               </h2>
             </div>
 
-            <form className="space-y-6 px-6 py-6 sm:px-8 sm:py-8">
+            <form
+              onSubmit={handleSubmit}
+              className="space-y-6 px-6 py-6 sm:px-8 sm:py-8"
+            >
               <div className="grid gap-5 sm:grid-cols-2">
                 <div className="sm:col-span-1">
                   <label
@@ -205,6 +265,7 @@ export default function StartPage() {
                     id="name"
                     name="name"
                     type="text"
+                    required
                     placeholder="Your name"
                     className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
                   />
@@ -221,6 +282,7 @@ export default function StartPage() {
                     id="email"
                     name="email"
                     type="email"
+                    required
                     placeholder="you@business.com"
                     className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
                   />
@@ -253,6 +315,7 @@ export default function StartPage() {
                     id="businessName"
                     name="businessName"
                     type="text"
+                    required
                     placeholder="Business name"
                     className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
                   />
@@ -287,6 +350,7 @@ export default function StartPage() {
                       type="radio"
                       name="hasWebsite"
                       value="yes"
+                      required
                       className="h-4 w-4 accent-[#3B82F6]"
                     />
                     <span>Yes</span>
@@ -297,6 +361,7 @@ export default function StartPage() {
                       type="radio"
                       name="hasWebsite"
                       value="no"
+                      required
                       className="h-4 w-4 accent-[#3B82F6]"
                     />
                     <span>No</span>
@@ -315,6 +380,7 @@ export default function StartPage() {
                   id="about"
                   name="about"
                   rows={6}
+                  required
                   placeholder="What do you do, what pages do you need, and anything else we should know?"
                   className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05]"
                 />
@@ -401,10 +467,23 @@ export default function StartPage() {
 
               <button
                 type="submit"
-                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+                disabled={isSubmitting}
+                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
               >
-                Start my website
+                {isSubmitting ? "Sending..." : "Start my website"}
               </button>
+
+              {submitMessage.type && (
+                <p
+                  className={`text-sm leading-6 ${
+                    submitMessage.type === "success"
+                      ? "text-green-400"
+                      : "text-red-400"
+                  }`}
+                >
+                  {submitMessage.text}
+                </p>
+              )}
 
               <p className="text-sm leading-6 text-[#7F828A]">
                 By sending this form, you’re asking us to get in touch about
