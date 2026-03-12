@@ -6,18 +6,19 @@ import { FormEvent, useState } from "react";
 const WHATSAPP_LINK = "https://wa.me/message/CIUXDPB67KAAJ1";
 
 const servicePoints = [
-  "Custom-coded website built for your business",
+  "Custom-built website",
   "Fast loading and mobile-first layout",
-  "Home, About, Services/Menu, and Contact/Booking pages",
-  "Contact or booking form included",
-  "Live in 24 hours from content received",
+  "Home, About, Services/Menu, and Contact pages",
+  "Contact or booking form",
+  "Launch support included",
+  "Ready to go live once content is provided",
 ];
 
 const nextSteps = [
-  "We review your enquiry and project scope",
-  "We reply as soon as possible",
-  "We confirm what is needed and the timeline",
-  "Once content is ready, we build and prepare launch",
+  "We review the details of your project and business.",
+  "We respond once we have reviewed the information.",
+  "We confirm the structure of your website and what content is needed.",
+  "Once content is ready, we build the website and prepare it for launch.",
 ];
 
 const demoLinks = [
@@ -83,7 +84,7 @@ export default function StartPage() {
 
       setSubmitMessage({
         type: "success",
-        text: "Thanks — your enquiry has been sent. We’ll review it and reply as soon as possible.",
+        text: "Thanks — your enquiry has been sent. We’ll review your project and reply with the next steps.",
       });
     } catch (error) {
       setSubmitMessage({
@@ -112,21 +113,22 @@ export default function StartPage() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-              Start your website
+              Tell us about your project
             </div>
 
             <h1 className="mt-6 font-serif text-[clamp(2.8rem,6vw,5rem)] leading-[0.95] tracking-[-0.04em] text-[#F5F2EA]">
-              Start your website
+              Tell us about your business and get your website project started.
             </h1>
 
             <p className="mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Tell us about your business and what you need. We build
-              custom-coded websites that are fast, mobile-first, and ready to
-              launch in 24 hours from content received.
+              We build clean, professional websites for UK businesses that want
+              to look credible online and make it easy for customers to get in
+              touch.
             </p>
 
-            <p className="mt-4 text-sm uppercase tracking-[0.18em] text-[#8BB5FF]">
-              Projects start from £595
+            <p className="mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
+              Website builds start from £595, with managed hosting and support
+              from £40/month after launch.
             </p>
           </div>
         </section>
@@ -139,8 +141,13 @@ export default function StartPage() {
               </div>
 
               <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,2.9rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
-                A clean, professional website built for your business.
+                A professional website built for your business
               </h2>
+
+              <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
+                Every website includes the core pages most businesses need to
+                establish a strong online presence.
+              </p>
 
               <div className="mt-6 space-y-3">
                 {servicePoints.map((item) => (
@@ -163,17 +170,27 @@ export default function StartPage() {
               </div>
 
               <div className="mt-5 space-y-4">
-                {nextSteps.map((step, index) => (
+                {[
+                  "We review your enquiry",
+                  "We reply with next steps",
+                  "We confirm scope and timeline",
+                  "We build and prepare launch",
+                ].map((title, index) => (
                   <div
-                    key={step}
+                    key={title}
                     className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
                   >
                     <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm text-[#F5F2EA]">
                       0{index + 1}
                     </div>
-                    <p className="pt-2 text-sm leading-6 text-[#A9ABB3]">
-                      {step}
-                    </p>
+                    <div>
+                      <p className="pt-1 text-sm font-medium leading-6 text-[#F5F2EA]">
+                        {title}
+                      </p>
+                      <p className="pt-1 text-sm leading-6 text-[#A9ABB3]">
+                        {nextSteps[index]}
+                      </p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -186,11 +203,11 @@ export default function StartPage() {
 
               <div className="mt-5 space-y-3">
                 {[
-                  "Projects start from £595, with final pricing depending on scope.",
-                  "Hosting is £40/month after launch.",
-                  "Your domain is purchased separately by you.",
-                  "Written content, business details, and images need to be supplied before build begins.",
-                  "One revision is included. Additional revisions can be arranged depending on scope.",
+                  "Website builds start from £595 depending on scope",
+                  "Managed hosting and support is £40/month after launch",
+                  "Your domain is purchased separately in your name",
+                  "Content and images must be supplied before build begins",
+                  "One revision is included",
                 ].map((item) => (
                   <div
                     key={item}
@@ -207,8 +224,17 @@ export default function StartPage() {
 
             <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
               <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                Example websites
+                Want to see examples first?
               </div>
+
+              <h2 className="mt-4 font-serif text-[clamp(1.8rem,4vw,2.6rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
+                Want to see examples first?
+              </h2>
+
+              <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
+                You can explore demo websites to see example layouts and styles
+                before sending an enquiry.
+              </p>
 
               <div className="mt-5 space-y-3">
                 {demoLinks.map((demo) => (
@@ -230,11 +256,15 @@ export default function StartPage() {
           <div className="rounded-[30px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
             <div className="border-b border-white/10 px-6 py-5 sm:px-8">
               <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                Enquiry form
+                Tell us about your project
               </div>
               <h2 className="mt-3 text-2xl tracking-[-0.03em] text-[#F5F2EA]">
                 Tell us about your project
               </h2>
+              <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
+                Fill out the form below and we’ll review your enquiry and reply
+                with the next steps.
+              </p>
             </div>
 
             <form
@@ -420,7 +450,7 @@ export default function StartPage() {
                   disabled={isSubmitting}
                   className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                 >
-                  {isSubmitting ? "Sending..." : "Start my website"}
+                  {isSubmitting ? "Sending..." : "Send my enquiry"}
                 </button>
 
                 <a
@@ -434,9 +464,19 @@ export default function StartPage() {
                 </a>
               </div>
 
-              <p className="text-sm leading-6 text-[#7F828A]">
-                Prefer messaging? You can also contact us directly on WhatsApp.
-              </p>
+              <div className="space-y-2">
+                <p className="text-sm leading-6 text-[#7F828A]">
+                  No obligation. Just send your details and we’ll review your
+                  project.
+                </p>
+                <p className="text-sm leading-6 text-[#7F828A]">
+                  Prefer messaging?
+                </p>
+                <p className="text-sm leading-6 text-[#7F828A]">
+                  You can also contact us directly on WhatsApp if you’d rather
+                  discuss your project that way.
+                </p>
+              </div>
 
               {submitMessage.type && (
                 <p
@@ -453,12 +493,13 @@ export default function StartPage() {
 
               <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
                 <p>
-                  Projects start from £595. Hosting is £40/month after launch.
-                  Domain is purchased separately by the client.
+                  Website builds start from £595 depending on scope. Managed
+                  hosting and support is £40/month after launch. Your domain is
+                  purchased separately in your name.
                 </p>
                 <p>
-                  By sending this form, you’re asking us to get in touch about
-                  your website project.
+                  By sending this form, you’re asking us to review your project
+                  and reply with the next steps.
                 </p>
               </div>
             </form>
@@ -468,14 +509,14 @@ export default function StartPage() {
         <section className="mx-auto w-full max-w-7xl px-5 pb-20 sm:px-6 lg:px-8">
           <div className="rounded-[32px] border border-white/10 bg-[#111214] px-6 py-10 text-center sm:px-10">
             <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-              Need to see more first?
+              Want to see examples first?
             </div>
             <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,3.4rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
-              View our demo websites
+              Want to see examples first?
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-[17px] leading-8 text-[#A9ABB3]">
-              Explore example designs and get a feel for the style before you
-              enquire.
+              You can explore demo websites to see example layouts and styles
+              before sending an enquiry.
             </p>
 
             <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -483,7 +524,7 @@ export default function StartPage() {
                 href="/demos"
                 className="inline-flex h-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
               >
-                View demos
+                View demo websites
               </Link>
               <Link
                 href="/"
@@ -500,7 +541,7 @@ export default function StartPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Message us on WhatsApp"
-         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#20D466] px-4 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:px-5"
+          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#20D466] px-4 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:px-5"
         >
           <WhatsAppIcon />
           WhatsApp
