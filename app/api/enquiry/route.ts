@@ -12,38 +12,11 @@ export async function POST(req: Request) {
     const hasWebsite = formData.get("hasWebsite")?.toString().trim() || "";
     const about = formData.get("about")?.toString().trim() || "";
 
-    const imageFiles = formData
-      .getAll("images")
-      .filter((file): file is File => file instanceof File && file.size > 0);
-
-    if (!name || !email || !businessName || !businessType || !about) {
+    if (!name || !email || !businessName || !businessType || !about || !hasWebsite) {
       return NextResponse.json(
         { error: "Please fill in all required fields." },
         { status: 400 }
       );
-    }
-
-    if (imageFiles.length > 10) {
-      return NextResponse.json(
-        { error: "You can upload up to 10 images." },
-        { status: 400 }
-      );
-    }
-
-    for (const file of imageFiles) {
-      if (!file.type.startsWith("image/")) {
-        return NextResponse.json(
-          { error: "Only image files are allowed." },
-          { status: 400 }
-        );
-      }
-
-      if (file.size > 5 * 1024 * 1024) {
-        return NextResponse.json(
-          { error: "Each image must be under 5MB." },
-          { status: 400 }
-        );
-      }
     }
 
     console.log("New enquiry received:");
@@ -55,8 +28,6 @@ export async function POST(req: Request) {
       businessType,
       hasWebsite,
       about,
-      imageCount: imageFiles.length,
-      imageNames: imageFiles.map((file) => file.name),
     });
 
     return NextResponse.json({ success: true });
