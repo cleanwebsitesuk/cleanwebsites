@@ -601,8 +601,9 @@ export default function Home() {
       Need something larger? Get in touch
     </Link>
   </div>
-</div>
-
+</div>            
+</section>
+            
         <section
           id="process"
           className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
