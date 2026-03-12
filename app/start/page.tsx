@@ -8,7 +8,7 @@ const servicePoints = [
   "Mobile-friendly layout",
   "Contact forms for enquiries",
   "Clean professional design",
-  "Launch in around 5 days",
+  "Launch in 24 hours or less",
 ];
 
 const nextSteps = [
