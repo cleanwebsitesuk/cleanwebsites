@@ -427,7 +427,7 @@ export default function StartPage() {
                   href={WHATSAPP_LINK}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
+                  className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
                 >
                   <WhatsAppIcon />
                   Message us on WhatsApp
@@ -509,7 +509,7 @@ export default function StartPage() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Message us on WhatsApp"
-          className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full border border-white/10 bg-[#111214]/92 px-4 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-[#15171A] sm:px-5"
+         className="fixed bottom-6 right-6 z-50 inline-flex items-center gap-2 rounded-full bg-[#20D466] px-4 py-3 text-sm font-semibold text-white shadow-[0_20px_40px_rgba(0,0,0,0.35)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:px-5"
         >
           <WhatsAppIcon />
           WhatsApp
