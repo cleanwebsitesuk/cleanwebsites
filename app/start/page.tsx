@@ -353,36 +353,6 @@ export default function StartPage() {
 
               <fieldset disabled={isSubmitting}>
                 <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
-                  Do you already have your content ready?
-                </legend>
-
-                <div className="grid gap-3 sm:grid-cols-2">
-                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
-                    <input
-                      type="radio"
-                      name="hasContentReady"
-                      value="yes"
-                      required
-                      className="h-4 w-4 accent-[#3B82F6]"
-                    />
-                    <span>Yes</span>
-                  </label>
-
-                  <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
-                    <input
-                      type="radio"
-                      name="hasContentReady"
-                      value="no"
-                      required
-                      className="h-4 w-4 accent-[#3B82F6]"
-                    />
-                    <span>No</span>
-                  </label>
-                </div>
-              </fieldset>
-
-              <fieldset disabled={isSubmitting}>
-                <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
                   Do you already own a domain?
                 </legend>
 
