@@ -6,14 +6,15 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 export async function POST(req: Request) {
   try {
     const formData = await req.formData();
-
-    const name = formData.get("name")?.toString().trim() || "";
-    const email = formData.get("email")?.toString().trim() || "";
-    const phone = formData.get("phone")?.toString().trim() || "";
-    const businessName = formData.get("businessName")?.toString().trim() || "";
-    const businessType = formData.get("businessType")?.toString().trim() || "";
-    const hasWebsite = formData.get("hasWebsite")?.toString().trim() || "";
-    const about = formData.get("about")?.toString().trim() || "";
+    
+const name = formData.get("name")?.toString().trim() || "";
+const email = formData.get("email")?.toString().trim() || "";
+const phone = formData.get("phone")?.toString().trim() || "";
+const businessName = formData.get("businessName")?.toString().trim() || "";
+const businessType = formData.get("businessType")?.toString().trim() || "";
+const hasWebsite = formData.get("hasWebsite")?.toString().trim() || "";
+const hasDomain = formData.get("hasDomain")?.toString().trim() || "";
+const about = formData.get("about")?.toString().trim() || "";
 
     if (!name || !email || !businessName || !businessType || !about || !hasWebsite) {
       return NextResponse.json(
