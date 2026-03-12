@@ -84,7 +84,7 @@ const processSteps = [
   {
     step: "01",
     title: "Send your content",
-    desc: "Logo, photos, business info, services, and contact details.",
+    desc: "Logo, photos, written text, services or menu, and your contact details.",
   },
   {
     step: "02",
@@ -94,12 +94,12 @@ const processSteps = [
   {
     step: "03",
     title: "You review",
-    desc: "One tidy revision is included to tighten everything up.",
+    desc: "One revision is included to refine layout or content. Additional revisions can be arranged depending on scope.",
   },
   {
     step: "04",
     title: "Go live",
-    desc: "We deploy your site and connect your domain when ready.",
+    desc: "We deploy your site, host it, and connect your domain ready for launch.",
   },
 ];
 
@@ -289,9 +289,9 @@ export default function Home() {
 </h1>
 
             <p className="mt-6 max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]">
-              Modern websites for UK businesses.
-              Clean design, fast launch, mobile-first structure, and a
-              simple enquiry flow that feels premium from the first click.
+  Custom-coded websites for businesses that want a professional
+  online presence without a long agency process. Fast loading,
+  mobile-first, and live in 24 hours from content received.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row">
@@ -313,9 +313,9 @@ export default function Home() {
 
             <div className="mt-8 grid gap-3 text-sm text-[#A9ABB3] sm:grid-cols-3">
               {[
-                "24h turnaround from content received",
-                "Built for mobile",
-                "UK local business focus",
+  "Live in 24 hours from content received",
+  "Custom-coded and fast loading",
+  "Built primarily for UK local businesses",
               ].map((item) => (
                 <div
                   key={item}
@@ -540,54 +540,68 @@ export default function Home() {
                   A clean launch package for local businesses.
                 </h2>
                 <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
-                  One custom homepage style, core pages, contact or booking
-                  flow, mobile optimisation, and launch support.
+ A custom-coded website including core pages, a contact or
+ booking form, mobile optimisation, and launch support.
+ Live in 24 hours from content received.
                 </p>
               </div>
 
-              <div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
-                <div className="text-sm text-[#A9ABB3]">From</div>
-                <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
-                  £595
-                </div>
-                <div className="mt-2 text-sm text-[#A9ABB3]">
-                  Live in 24 hours from content received
-                </div>
+<div className="rounded-[28px] border border-white/10 bg-[#17181B] p-6">
+  <div className="text-sm text-[#A9ABB3]">Launch package</div>
 
-                <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
-                  {[
-                    "Home",
-                    "About",
-                    "Services / Menu",
-                    "Contact / Booking",
-                    "Mobile optimisation",
-                    "One tidy revision",
-                  ].map((item) => (
-                    <div key={item} className="flex items-center gap-3">
-                      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                      <span>{item}</span>
-                    </div>
-                  ))}
-                </div>
+  <div className="mt-2 text-5xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+    From £595
+  </div>
 
-                <div className="mt-7 flex flex-col gap-3">
-                  <Link
-                    href="/start"
-                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-                  >
-                    Start now
-                  </Link>
-                  <Link
-                    href="/start"
-                    className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
-                  >
-                    Need something custom? Get in touch
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
+  <div className="mt-2 text-sm text-[#A9ABB3]">
+    Live in 24 hours from content received
+  </div>
+
+  <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
+    {[
+      "Home",
+      "About",
+      "Services / Menu",
+      "Contact / Booking",
+      "Contact or booking form",
+      "Mobile optimisation",
+      "One revision included",
+    ].map((item) => (
+      <div key={item} className="flex items-center gap-3">
+        <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+        <span>{item}</span>
+      </div>
+    ))}
+  </div>
+
+  <div className="mt-6 border-t border-white/10 pt-5">
+    <div className="text-sm text-[#A9ABB3]">Hosting</div>
+
+    <div className="mt-1 text-xl font-medium text-[#F5F2EA]">
+      £40 / month
+    </div>
+
+    <div className="mt-1 text-xs text-[#A9ABB3]">
+      Hosting begins after launch. Domain purchased separately.
+    </div>
+  </div>
+
+  <div className="mt-7 flex flex-col gap-3">
+    <Link
+      href="/start"
+      className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+    >
+      Start now
+    </Link>
+
+    <Link
+      href="/start"
+      className="inline-flex items-center justify-center text-sm text-[#A9ABB3] transition hover:text-[#F5F2EA]"
+    >
+      Need something larger? Get in touch
+    </Link>
+  </div>
+</div>
 
         <section
           id="process"
@@ -674,7 +688,7 @@ export default function Home() {
                 Get your business online properly.
               </h2>
               <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
-                Send your details and get a clean, premium site live in 24 hours
+                Send your details and get a clean, custom-built site live in 24 hours
                 from content received.
               </p>
 
