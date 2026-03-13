@@ -397,30 +397,30 @@ export default function Home() {
                   <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
                     <div className="flex items-start justify-between gap-3">
                       <span>Secure hosting</span>
-                      <InfoTooltip text="Your website is hosted on secure managed infrastructure with technical upkeep handled for you." />
+                      <InfoTooltip text="Your website runs on fast, secure hosting so it loads quickly and stays online reliably." />
                     </div>
 
                     <div className="flex items-start justify-between gap-3">
                       <span>Free SSL certificate</span>
-                      <InfoTooltip text="SSL encrypts your website connection and shows the secure padlock in the browser." />
+                      <InfoTooltip text="Your site includes HTTPS security so visitors see the secure padlock in their browser." />
                     </div>
 
                     <div className="flex items-start justify-between gap-3">
                       <span>Domain connection setup</span>
-                      <InfoTooltip text="Your domain is connected correctly to your website so visitors reach the live site properly." />
+                      <InfoTooltip text="We connect your domain so when people type your website address they reach your live site correctly." />
                     </div>
 
                     <div className="flex items-start justify-between gap-3">
                       <span>Deployment and launch support</span>
-                      <InfoTooltip text="The site is put live for you and checked during launch so everything is working as expected." />
+                      <InfoTooltip text="We handle the technical launch and check everything after the site goes live to make sure it works properly." />
                     </div>
 
                     <div className="flex items-start justify-between gap-3">
                       <span>Technical management</span>
-                      <InfoTooltip text="Ongoing technical oversight helps keep the website stable, updated, and running properly." />
+                      <InfoTooltip text="We handle the technical side so you don't have to worry about updates, uptime, or setup issues." />
                     </div>
 
-                    <p>Your domain is purchased separately in your name.</p>
+                    <p>Your domain is purchased separately in your name so you always keep full ownership.</p>
                   </div>
 
                   <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
