@@ -74,11 +74,10 @@ const trustCards = [
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 26, filter: "blur(8px)" },
+  hidden: { opacity: 0, y: 26 },
   show: {
     opacity: 1,
     y: 0,
-    filter: "blur(0px)",
     transition: { duration: 0.75, ease: easeOut },
   },
 };
@@ -153,8 +152,8 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, y: 28 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
       transition={{ duration: 0.8, delay, ease: easeOut }}
     >
@@ -832,16 +831,9 @@ export default function Home() {
                 {processSteps.map((item, index) => (
                   <motion.div
                     key={item.step}
-                    initial={
-                      reduceMotion
-                        ? false
-                        : { opacity: 0, y: 28, filter: "blur(8px)" }
-                    }
-                    whileInView={
-                      reduceMotion
-                        ? {}
-                        : { opacity: 1, y: 0, filter: "blur(0px)" }
-                    }
+                   initial={reduceMotion ? false : { opacity: 0, y: 28 }}
+                   whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{
                       duration: 0.7,
@@ -959,16 +951,9 @@ export default function Home() {
                 {trustCards.map((card, index) => (
                   <motion.div
                     key={card.title}
-                    initial={
-                      reduceMotion
-                        ? false
-                        : { opacity: 0, y: 24, filter: "blur(8px)" }
-                    }
-                    whileInView={
-                      reduceMotion
-                        ? {}
-                        : { opacity: 1, y: 0, filter: "blur(0px)" }
-                    }
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    
                     viewport={{ once: true, amount: 0.35 }}
                     transition={{
                       duration: 0.65,
@@ -996,16 +981,9 @@ export default function Home() {
                 ))}
 
                 <motion.div
-                  initial={
-                    reduceMotion
-                      ? false
-                      : { opacity: 0, y: 24, filter: "blur(8px)" }
-                  }
-                  whileInView={
-                    reduceMotion
-                      ? {}
-                      : { opacity: 1, y: 0, filter: "blur(0px)" }
-                  }
+                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ duration: 0.65, delay: 0.18, ease: easeOut }}
                   whileHover={
