@@ -654,110 +654,108 @@ export default function Home() {
       </motion.header>
 
       <main className="relative">
-        <section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-14 pt-6 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
-          <motion.div
-            variants={heroContainer}
-            initial="hidden"
-            animate="show"
-            className="mx-auto max-w-5xl"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
-            >
-              <motion.span
-                animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
-                transition={{
-                  duration: 2.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
-              />
-              Professional websites for UK businesses
-            </motion.div>
+        <section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-10 pt-4 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+  <motion.div
+    variants={heroContainer}
+    initial="hidden"
+    animate="show"
+    className="mx-auto max-w-5xl"
+  >
+    <motion.div
+      variants={fadeUp}
+      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-[0.14em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
+    >
+      <motion.span
+        animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
+        transition={{
+          duration: 2.2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+        className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
+      />
+      Professional websites for UK businesses
+    </motion.div>
 
-            <motion.h1
-              variants={fadeUp}
-              className="mx-auto mt-6 max-w-[14ch] font-serif text-[clamp(2.45rem,10vw,4.8rem)] leading-[0.94] tracking-[-0.04em] text-[#F5F2EA]"
-            >
-              Professional websites for UK businesses.
-            </motion.h1>
+    <motion.h1
+      variants={fadeUp}
+      className="mx-auto mt-5 max-w-[11ch] font-serif text-[clamp(2.1rem,12vw,4.8rem)] leading-[0.92] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:leading-[0.94]"
+    >
+      Professional websites for UK businesses.
+    </motion.h1>
 
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
-            >
-              Clean, fast, mobile-first websites that help your business look
-              credible online and make it easy for customers to get in touch.
-            </motion.p>
+    <motion.p
+      variants={fadeUp}
+      className="mx-auto mt-4 max-w-[22rem] text-[15px] leading-6 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
+    >
+      Clean, fast, mobile-first websites that help your business look
+      credible online and make it easy for customers to get in touch.
+    </motion.p>
 
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-4 hidden max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:block sm:text-[20px]"
-            >
-              Custom-built with a simple process and ready to launch in as
-              little as 24 hours once content is received.
-            </motion.p>
+    <motion.p
+      variants={fadeUp}
+      className="mx-auto mt-4 hidden max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:block sm:text-[20px]"
+    >
+      Custom-built with a simple process and ready to launch in as
+      little as 24 hours once content is received.
+    </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-4 text-sm text-[#A9ABB3] sm:mt-5"
-            >
-              Websites from £595 • Hosting £40/month
-            </motion.div>
+    <motion.div
+      variants={fadeUp}
+      className="mt-5 text-sm text-[#A9ABB3] sm:mt-5"
+    >
+      Websites from £595 • Hosting £40/month
+    </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-7 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row"
-            >
-              <MagneticLink
-                href="/start"
-                disabled={isMobile}
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
-              >
-                Get my website quote
-                <ArrowRight />
-              </MagneticLink>
+    <motion.div
+      variants={fadeUp}
+      className="mt-6 grid grid-cols-2 gap-3 sm:mt-8 sm:flex sm:flex-row sm:items-center sm:justify-center"
+    >
+      <MagneticLink
+        href="/start"
+        disabled={isMobile}
+        className="group inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-4 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:w-auto sm:px-6"
+      >
+        Get my website quote
+        <ArrowRight />
+      </MagneticLink>
 
-              <a
-                href="#demos"
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
-              >
-                View demo websites
-                <ArrowRight />
-              </a>
-            </motion.div>
+      <a
+        href="#demos"
+        className="group inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:w-auto sm:px-6"
+      >
+        View demo websites
+        <ArrowRight />
+      </a>
+    </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="mx-auto mt-7 grid max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid-cols-2"
-            >
-              {[
-                "Custom-built for your business",
-                "Mobile-first and fast loading",
-                "Managed hosting with free SSL",
-                "Simple launch process",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.42 + index * 0.06,
-                    ease: easeOut,
-                  }}
-                  className={`rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
-                    index > 1 ? "hidden sm:block" : ""
-                  }`}
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
-        </section>
+    <motion.div
+      variants={fadeUp}
+      className="mx-auto mt-6 grid max-w-[34rem] grid-cols-2 gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:max-w-3xl sm:grid-cols-2"
+    >
+      {[
+        "Custom-built for your business",
+        "Mobile-first and fast loading",
+        "Managed hosting with free SSL",
+        "Simple launch process",
+      ].map((item, index) => (
+        <motion.div
+          key={item}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.42 + index * 0.06,
+            ease: easeOut,
+          }}
+          className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-3 text-[13px] leading-5 sm:px-4 sm:py-4 sm:text-sm"
+        >
+          {item}
+        </motion.div>
+      ))}
+    </motion.div>
+  </motion.div>
+</section>
 
         <Reveal>
           <section
