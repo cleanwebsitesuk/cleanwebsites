@@ -654,7 +654,7 @@ export default function Home() {
       </motion.header>
 
       <main className="relative">
-<section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-8 pt-4 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+<section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-10 pt-6 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
   <motion.div
     variants={heroContainer}
     initial="hidden"
@@ -663,7 +663,7 @@ export default function Home() {
   >
     <motion.div
       variants={fadeUp}
-      className="inline-flex max-w-[92vw] items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[10px] uppercase tracking-[0.13em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
+      className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
     >
       <motion.span
         animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
@@ -674,12 +674,12 @@ export default function Home() {
         }}
         className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
       />
-      <span className="truncate">Professional websites for UK businesses</span>
+      Professional websites for UK businesses
     </motion.div>
 
     <motion.h1
       variants={fadeUp}
-      className="mx-auto mt-5 max-w-[10ch] font-serif text-[clamp(1.9rem,11vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
+      className="mx-auto mt-4 max-w-[10ch] font-serif text-[clamp(2.15rem,11.2vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
     >
       Professional websites for UK businesses.
     </motion.h1>
@@ -709,29 +709,29 @@ export default function Home() {
 
     <motion.div
       variants={fadeUp}
-      className="mx-auto mt-6 flex max-w-md flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row"
+      className="mx-auto mt-7 grid max-w-[26rem] grid-cols-2 gap-3 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
     >
       <MagneticLink
         href="/start"
         disabled={isMobile}
-        className="group inline-flex h-11 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:w-auto sm:px-6"
+        className="group inline-flex h-12 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#3B82F6] px-3 text-[13px] font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6 sm:text-sm"
       >
-        Get my website quote
+        <span className="truncate">Get my website quote</span>
         <ArrowRight />
       </MagneticLink>
 
       <a
         href="#demos"
-        className="group inline-flex h-11 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:w-auto sm:px-6"
+        className="group inline-flex h-12 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-3 text-[13px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto sm:px-6 sm:text-sm"
       >
-        View demo websites
+        <span className="truncate">View demo websites</span>
         <ArrowRight />
       </a>
     </motion.div>
 
     <motion.div
       variants={fadeUp}
-      className="mx-auto mt-6 grid max-w-[34rem] grid-cols-2 gap-2.5 text-sm text-[#A9ABB3] sm:mt-8 sm:gap-3 sm:grid-cols-2"
+      className="mx-auto mt-7 hidden max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid sm:grid-cols-2"
     >
       {[
         "Custom-built for your business",
@@ -748,7 +748,7 @@ export default function Home() {
             delay: 0.42 + index * 0.06,
             ease: easeOut,
           }}
-          className="rounded-2xl border border-white/10 bg-white/[0.03] px-3 py-2.5 text-[13px] leading-5 sm:px-4 sm:py-4 sm:text-sm"
+          className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4"
         >
           {item}
         </motion.div>
