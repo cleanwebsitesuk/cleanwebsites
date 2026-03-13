@@ -4,11 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   AnimatePresence,
-  MotionValue,
   motion,
   useReducedMotion,
-  useSpring,
-  useTransform,
 } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 
@@ -71,14 +68,37 @@ const trustCards = [
   },
 ];
 
+const supportItems = [
+  {
+    title: "Secure hosting",
+    text: "Your website runs on fast, secure hosting so it loads quickly and stays online reliably.",
+  },
+  {
+    title: "Free SSL certificate",
+    text: "Your site includes HTTPS security so visitors see the secure padlock in their browser.",
+  },
+  {
+    title: "Domain connection setup",
+    text: "We connect your domain so when people type your website address they reach your live site correctly.",
+  },
+  {
+    title: "Deployment and launch support",
+    text: "We handle the technical launch and check everything after the site goes live to make sure it works properly.",
+  },
+  {
+    title: "Technical management",
+    text: "We handle the technical side so you don't have to worry about updates, uptime, or setup issues.",
+  },
+];
+
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 26 },
+  hidden: { opacity: 0, y: 22 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.75, ease: easeOut },
+    transition: { duration: 0.72, ease: easeOut },
   },
 };
 
@@ -86,8 +106,8 @@ const heroContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.08,
+      staggerChildren: 0.08,
+      delayChildren: 0.06,
     },
   },
 };
@@ -152,10 +172,10 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 28 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ duration: 0.8, delay, ease: easeOut }}
+      transition={{ duration: 0.72, delay, ease: easeOut }}
     >
       {children}
     </motion.div>
@@ -166,16 +186,18 @@ function MagneticLink({
   children,
   className,
   href,
+  disabled = false,
 }: {
   children: React.ReactNode;
   className: string;
   href: string;
+  disabled?: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const [style, setStyle] = useState({ x: 0, y: 0 });
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion) return;
+    if (reduceMotion || disabled) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.08;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.08;
@@ -186,7 +208,7 @@ function MagneticLink({
 
   return (
     <motion.div
-      animate={{ x: style.x, y: style.y }}
+      animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }}
       transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}
     >
       <Link
@@ -272,19 +294,41 @@ function InfoTooltip({ text }: { text: string }) {
   );
 }
 
+function SupportItem({
+  title,
+  text,
+}: {
+  title: string;
+  text: string;
+}) {
+  return (
+    <div>
+      <div className="flex items-start justify-between gap-3">
+        <span className="text-sm text-[#F5F2EA]">{title}</span>
+        <div className="hidden sm:block">
+          <InfoTooltip text={text} />
+        </div>
+      </div>
+      <p className="mt-1 text-sm leading-6 text-[#7F828A] sm:hidden">{text}</p>
+    </div>
+  );
+}
+
 function DemoCard({
   card,
   index,
+  interactionEnabled,
 }: {
   card: (typeof featuredDemos)[number];
   index: number;
+  interactionEnabled: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion) return;
+    if (reduceMotion || !interactionEnabled) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
@@ -307,19 +351,29 @@ function DemoCard({
         rel="noreferrer"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        whileHover={reduceMotion ? {} : { y: -8 }}
+        whileHover={
+          reduceMotion || !interactionEnabled ? {} : { y: -8 }
+        }
         transition={{ duration: 0.35, ease: easeOut }}
-        style={{
-          transformStyle: "preserve-3d",
-          rotateX,
-          rotateY,
-        }}
-        className="group block overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] transition duration-300 hover:border-white/20 hover:shadow-[0_30px_80px_rgba(0,0,0,0.32)]"
+        style={
+          interactionEnabled
+            ? {
+                transformStyle: "preserve-3d",
+                rotateX,
+                rotateY,
+              }
+            : undefined
+        }
+        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_80px_rgba(0,0,0,0.32)] sm:rounded-[28px]"
       >
-        <div className="relative h-[20rem] overflow-hidden border-b border-white/10 bg-[#0D0E10]">
+        <div className="relative h-64 overflow-hidden border-b border-white/10 bg-[#0D0E10] sm:h-72 lg:h-[20rem]">
           <motion.div
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_35%)]"
-            animate={reduceMotion ? {} : { scale: [1, 1.04, 1] }}
+            animate={
+              reduceMotion || !interactionEnabled
+                ? {}
+                : { scale: [1, 1.04, 1] }
+            }
             transition={{
               duration: 10,
               repeat: Infinity,
@@ -329,51 +383,57 @@ function DemoCard({
           <motion.div
             className="absolute inset-0"
             transition={{ duration: 0.55, ease: easeOut }}
-            whileHover={reduceMotion ? {} : { scale: 1.035, y: -4 }}
+            whileHover={
+              reduceMotion || !interactionEnabled
+                ? {}
+                : { scale: 1.035, y: -4 }
+            }
           >
             <motion.div
-              style={{ transform: "translateZ(28px)" }}
-              className="absolute left-6 right-6 top-6 rounded-[22px] border border-white/10 bg-white/[0.03] p-5"
+              style={interactionEnabled ? { transform: "translateZ(28px)" } : undefined}
+              className="absolute left-4 right-4 top-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 sm:left-6 sm:right-6 sm:top-6 sm:rounded-[22px] sm:p-5"
             >
-              <div className="flex items-center justify-between">
-                <span className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+              <div className="flex items-center justify-between gap-3">
+                <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
                   {card.kicker}
                 </span>
-                <span className="rounded-full bg-[#3B82F6]/15 px-3 py-1 text-xs text-[#8BB5FF]">
+                <span className="rounded-full bg-[#3B82F6]/15 px-2.5 py-1 text-[11px] text-[#8BB5FF] sm:px-3 sm:text-xs">
                   Preview build
                 </span>
               </div>
-              <div className="mt-5 h-28 rounded-[18px] bg-white/[0.05]" />
-              <div className="mt-4 grid grid-cols-3 gap-3">
-                <div className="h-16 rounded-2xl bg-white/[0.04]" />
-                <div className="h-16 rounded-2xl bg-white/[0.04]" />
-                <div className="h-16 rounded-2xl bg-white/[0.04]" />
+              <div className="mt-4 h-24 rounded-[16px] bg-white/[0.05] sm:mt-5 sm:h-28 sm:rounded-[18px]" />
+              <div className="mt-3 grid grid-cols-3 gap-2 sm:mt-4 sm:gap-3">
+                <div className="h-14 rounded-2xl bg-white/[0.04] sm:h-16" />
+                <div className="h-14 rounded-2xl bg-white/[0.04] sm:h-16" />
+                <div className="h-14 rounded-2xl bg-white/[0.04] sm:h-16" />
               </div>
             </motion.div>
 
             <motion.div
-              style={{ transform: "translateZ(14px)" }}
-              className="absolute bottom-6 left-6 right-6 rounded-[22px] border border-white/10 bg-white/[0.03] p-5 backdrop-blur"
+              style={interactionEnabled ? { transform: "translateZ(14px)" } : undefined}
+              className="absolute bottom-4 left-4 right-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 backdrop-blur sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-[22px] sm:p-5"
             >
               <div className="text-sm text-[#F5F2EA]">
                 Example homepage direction
               </div>
               <motion.div
-                className="mt-2 h-10 rounded-2xl bg-[#3B82F6]"
-                whileHover={reduceMotion ? {} : { scaleX: 1.02 }}
+                className="mt-2 h-9 rounded-2xl bg-[#3B82F6] sm:h-10"
+                whileHover={
+                  reduceMotion || !interactionEnabled ? {} : { scaleX: 1.02 }
+                }
                 transition={{ duration: 0.3 }}
               />
             </motion.div>
           </motion.div>
         </div>
 
-        <div className="relative overflow-hidden p-6">
-          <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" />
+        <div className="relative overflow-hidden p-5 sm:p-6">
+          <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
           <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
-          <h3 className="mt-2 text-[26px] font-medium tracking-[-0.03em] text-[#F5F2EA]">
+          <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[26px]">
             {card.title}
           </h3>
-          <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+          <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
             {card.copy}
           </p>
           <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
@@ -411,13 +471,23 @@ function PriceHighlight({
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const reduceMotion = useReducedMotion();
+  const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
@@ -428,44 +498,44 @@ export default function Home() {
   }, [mobileOpen]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+    <div className="min-h-screen bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           animate={
-            reduceMotion
-              ? {}
-              : {
+            motionEnabled
+              ? {
                   x: [0, 20, -10, 0],
                   y: [0, -14, 10, 0],
                   scale: [1, 1.04, 0.98, 1],
                 }
+              : {}
           }
           transition={{
             duration: 18,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-12%] top-[-8%] h-[32rem] w-[32rem] rounded-full bg-[#3B82F6]/10 blur-[140px]"
+          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[32rem] sm:w-[32rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
         />
         <motion.div
           animate={
-            reduceMotion
-              ? {}
-              : {
+            motionEnabled
+              ? {
                   x: [0, -24, 12, 0],
                   y: [0, 16, -8, 0],
                   scale: [1, 0.98, 1.03, 1],
                 }
+              : {}
           }
           transition={{
             duration: 22,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-14%] right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#3B82F6]/8 blur-[140px]"
+          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/8 sm:blur-[140px]"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
       </div>
 
       <motion.header
@@ -480,7 +550,7 @@ export default function Home() {
       >
         <div
           className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 lg:px-8 ${
-            scrolled ? "h-[70px]" : "h-[78px]"
+            scrolled ? "h-[68px]" : "h-[74px] sm:h-[78px]"
           }`}
         >
           <Link href="/" className="flex items-center gap-3">
@@ -493,7 +563,7 @@ export default function Home() {
                 alt="Clean Websites logo"
                 width={144}
                 height={40}
-                className="h-9 w-auto opacity-95"
+                className="h-8 w-auto opacity-95 sm:h-9"
               />
             </motion.div>
           </Link>
@@ -520,6 +590,7 @@ export default function Home() {
 
             <MagneticLink
               href="/start"
+              disabled={isMobile}
               className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
             >
               Get my website quote
@@ -539,49 +610,51 @@ export default function Home() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              animate={{ opacity: 1, backdropFilter: "blur(10px)" }}
-              exit={{ opacity: 0, backdropFilter: "blur(0px)" }}
-              transition={{ duration: 0.28 }}
-              className="fixed inset-0 z-40 bg-[#0A0A0B]/96 px-6 md:hidden"
+              initial={{ opacity: 0, y: -10 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.24, ease: easeOut }}
+              className="border-t border-white/10 bg-[#0A0A0B]/96 px-5 pb-5 pt-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur md:hidden"
             >
-              <motion.div
-                initial={{ y: 18, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                exit={{ y: 14, opacity: 0 }}
-                transition={{ duration: 0.32, ease: easeOut }}
-                className="flex min-h-screen flex-col justify-center gap-7 text-3xl font-light tracking-tight text-[#F5F2EA]"
-              >
+              <div className="mx-auto flex max-w-7xl flex-col gap-2">
                 {[
                   { href: "#demos", label: "Demos" },
                   { href: "#process", label: "Process" },
                   { href: "#pricing", label: "Pricing" },
-                  { href: "/start", label: "Get my website quote" },
-                ].map((item, index) => (
-                  <motion.a
+                ].map((item) => (
+                  <a
                     key={item.label}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
-                    initial={{ opacity: 0, y: 18 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: 10 }}
-                    transition={{
-                      duration: 0.35,
-                      delay: 0.06 + index * 0.06,
-                      ease: easeOut,
-                    }}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3 text-base text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]"
                   >
                     {item.label}
-                  </motion.a>
+                  </a>
                 ))}
-              </motion.div>
+
+                <Link
+                  href="/demos"
+                  onClick={() => setMobileOpen(false)}
+                  className="mt-2 inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA]"
+                >
+                  View demo websites
+                </Link>
+
+                <Link
+                  href="/start"
+                  onClick={() => setMobileOpen(false)}
+                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-4 text-sm font-semibold text-white"
+                >
+                  Get my website quote
+                </Link>
+              </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.header>
 
       <main className="relative">
-        <section className="mx-auto flex min-h-[calc(100vh-78px)] w-full max-w-7xl items-center justify-center px-5 pb-20 pt-10 text-center sm:px-6 lg:px-8 lg:pb-24 lg:pt-14">
+        <section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-14 pt-6 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
           <motion.div
             variants={heroContainer}
             initial="hidden"
@@ -590,10 +663,10 @@ export default function Home() {
           >
             <motion.div
               variants={fadeUp}
-              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
             >
               <motion.span
-                animate={reduceMotion ? {} : { scale: [1, 1.22, 1] }}
+                animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
                 transition={{
                   duration: 2.2,
                   repeat: Infinity,
@@ -606,14 +679,14 @@ export default function Home() {
 
             <motion.h1
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-[14ch] font-serif text-[clamp(2.8rem,5vw,4.8rem)] leading-[0.95] tracking-[-0.03em] text-[#F5F2EA]"
+              className="mx-auto mt-6 max-w-[14ch] font-serif text-[clamp(2.45rem,10vw,4.8rem)] leading-[0.94] tracking-[-0.04em] text-[#F5F2EA]"
             >
               Professional websites for UK businesses.
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]"
+              className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
             >
               Clean, fast, mobile-first websites that help your business look
               credible online and make it easy for customers to get in touch.
@@ -621,7 +694,7 @@ export default function Home() {
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-4 max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]"
+              className="mx-auto mt-4 hidden max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:block sm:text-[20px]"
             >
               Custom-built with a simple process and ready to launch in as
               little as 24 hours once content is received.
@@ -629,11 +702,19 @@ export default function Home() {
 
             <motion.div
               variants={fadeUp}
-              className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row"
+              className="mt-4 text-sm text-[#A9ABB3] sm:mt-5"
+            >
+              Websites from £595 • Hosting £40/month
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-7 flex flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row"
             >
               <MagneticLink
                 href="/start"
-                className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
+                disabled={isMobile}
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
               >
                 Get my website quote
                 <ArrowRight />
@@ -641,7 +722,7 @@ export default function Home() {
 
               <a
                 href="#demos"
-                className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
               >
                 View demo websites
                 <ArrowRight />
@@ -650,7 +731,7 @@ export default function Home() {
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-8 grid max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:grid-cols-2"
+              className="mx-auto mt-7 grid max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid-cols-2"
             >
               {[
                 "Custom-built for your business",
@@ -660,14 +741,16 @@ export default function Home() {
               ].map((item, index) => (
                 <motion.div
                   key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                   animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                   transition={{
-                    duration: 0.55,
-                    delay: 0.5 + index * 0.06,
+                    duration: 0.5,
+                    delay: 0.42 + index * 0.06,
                     ease: easeOut,
                   }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                  className={`rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
+                    index > 1 ? "hidden sm:block" : ""
+                  }`}
                 >
                   {item}
                 </motion.div>
@@ -679,28 +762,28 @@ export default function Home() {
         <Reveal>
           <section
             id="pricing"
-            className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
-            <div className="overflow-hidden rounded-[32px] border border-white/10 bg-[#111214] px-6 py-8 sm:px-8 sm:py-10 lg:px-10">
+            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-7 sm:rounded-[32px] sm:px-8 sm:py-10 lg:px-10">
               <div className="max-w-2xl">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                   Simple launch package
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.3rem,4vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2.1rem,8vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
                   Simple launch package
                 </h2>
-                <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+                <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                   A straightforward website build for businesses that need a
                   professional online presence without a long agency process.
                 </p>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-[28px] border border-white/10 bg-[#17181B]">
+              <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#17181B] sm:rounded-[28px]">
                 <div className="grid lg:grid-cols-2">
-                  <div className="p-6 sm:p-8 lg:p-9">
+                  <div className="p-5 sm:p-8 lg:p-9">
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
 
-                    <PriceHighlight className="mt-2 text-4xl font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
+                    <PriceHighlight className="mt-2 text-[2.2rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
                       From £595
                     </PriceHighlight>
 
@@ -736,40 +819,23 @@ export default function Home() {
                     </div>
                   </div>
 
-                  <div className="border-t border-white/10 p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
+                  <div className="border-t border-white/10 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
                     <div className="text-sm text-[#A9ABB3]">
                       After launch - Managed hosting & support
                     </div>
 
-                    <PriceHighlight className="mt-2 text-3xl font-semibold tracking-[-0.02em] text-[#F5F2EA]">
+                    <PriceHighlight className="mt-2 text-[1.9rem] font-semibold tracking-[-0.02em] text-[#F5F2EA] sm:text-3xl">
                       £40 / month
                     </PriceHighlight>
 
-                    <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
-                      <div className="flex items-start justify-between gap-3">
-                        <span>Secure hosting</span>
-                        <InfoTooltip text="Your website runs on fast, secure hosting so it loads quickly and stays online reliably." />
-                      </div>
-
-                      <div className="flex items-start justify-between gap-3">
-                        <span>Free SSL certificate</span>
-                        <InfoTooltip text="Your site includes HTTPS security so visitors see the secure padlock in their browser." />
-                      </div>
-
-                      <div className="flex items-start justify-between gap-3">
-                        <span>Domain connection setup</span>
-                        <InfoTooltip text="We connect your domain so when people type your website address they reach your live site correctly." />
-                      </div>
-
-                      <div className="flex items-start justify-between gap-3">
-                        <span>Deployment and launch support</span>
-                        <InfoTooltip text="We handle the technical launch and check everything after the site goes live to make sure it works properly." />
-                      </div>
-
-                      <div className="flex items-start justify-between gap-3">
-                        <span>Technical management</span>
-                        <InfoTooltip text="We handle the technical side so you don't have to worry about updates, uptime, or setup issues." />
-                      </div>
+                    <div className="mt-5 space-y-4 text-sm leading-7 text-[#A9ABB3]">
+                      {supportItems.map((item) => (
+                        <SupportItem
+                          key={item.title}
+                          title={item.title}
+                          text={item.text}
+                        />
+                      ))}
 
                       <p>
                         Your domain is purchased separately in your name so you
@@ -780,6 +846,7 @@ export default function Home() {
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                       <MagneticLink
                         href="/start"
+                        disabled={isMobile}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
                       >
                         Get my website quote
@@ -802,22 +869,22 @@ export default function Home() {
         <Reveal>
           <section
             id="process"
-            className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
             <div className="max-w-2xl">
-              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                 Process
               </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
                 A simple process
               </h2>
-              <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
+              <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                 No bloated agency timelines. Just a clear path from enquiry to
                 launch.
               </p>
             </div>
 
-            <div className="relative mt-10">
+            <div className="relative mt-8 sm:mt-10">
               <motion.div
                 initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
                 whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
@@ -831,16 +898,15 @@ export default function Home() {
                 {processSteps.map((item, index) => (
                   <motion.div
                     key={item.step}
-                   initial={reduceMotion ? false : { opacity: 0, y: 28 }}
-                   whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                     viewport={{ once: true, amount: 0.4 }}
                     transition={{
                       duration: 0.7,
                       delay: index * 0.08,
                       ease: easeOut,
                     }}
-                    className="rounded-[28px] border border-white/10 bg-[#111214] p-6"
+                    className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[28px] sm:p-6"
                   >
                     <motion.div
                       initial={reduceMotion ? false : { scale: 0.85, opacity: 0 }}
@@ -851,15 +917,15 @@ export default function Home() {
                         delay: 0.12 + index * 0.08,
                         ease: easeOut,
                       }}
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA]"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA] sm:h-12 sm:w-12"
                     >
                       {item.step}
                     </motion.div>
 
-                    <h3 className="mt-5 text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                    <h3 className="mt-5 text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
                       {item.desc}
                     </p>
                   </motion.div>
@@ -872,29 +938,29 @@ export default function Home() {
         <Reveal>
           <section
             id="demos"
-            className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
             <div className="max-w-2xl">
-              <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                 Demo websites
               </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
                 Demo websites
               </h2>
-              <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                 Preview example website styles and layouts that can be adapted
                 to different types of businesses.
               </p>
-              <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
                 These are demo builds designed to show layout structure, design
                 direction, and how your website could be organised.
               </p>
-              <p className="mt-4 max-w-xl text-[18px] leading-8 text-[#A9ABB3]">
+              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
                 Built to support enquiries, bookings, or quote requests.
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
+            <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
               {[
                 "Service businesses",
                 "Studios and beauty",
@@ -912,36 +978,43 @@ export default function Home() {
                     delay: index * 0.04,
                     ease: easeOut,
                   }}
-                  className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
+                  className={`rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 ${
+                    index > 2 ? "hidden sm:block" : ""
+                  }`}
                 >
                   {item}
                 </motion.div>
               ))}
             </div>
 
-            <div className="mt-10 grid gap-5 lg:grid-cols-3">
+            <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-3">
               {featuredDemos.map((card, index) => (
-                <DemoCard key={card.title} card={card} index={index} />
+                <DemoCard
+                  key={card.title}
+                  card={card}
+                  index={index}
+                  interactionEnabled={!isMobile}
+                />
               ))}
             </div>
           </section>
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-16 sm:px-6 lg:px-8">
+          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="max-w-xl">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                   Why it works
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.5rem,5vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
                   Designed to make your business look established online
                 </h2>
-                <p className="mt-5 text-[18px] leading-8 text-[#A9ABB3]">
+                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                   A good website should help customers trust your business and
                   get in touch easily.
                 </p>
-                <p className="mt-4 text-[18px] leading-8 text-[#A9ABB3]">
+                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                   The result is a website that feels modern, professional, and
                   easy to use.
                 </p>
@@ -953,7 +1026,6 @@ export default function Home() {
                     key={card.title}
                     initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    
                     viewport={{ once: true, amount: 0.35 }}
                     transition={{
                       duration: 0.65,
@@ -961,20 +1033,20 @@ export default function Home() {
                       ease: easeOut,
                     }}
                     whileHover={
-                      reduceMotion
-                        ? {}
-                        : {
+                      motionEnabled
+                        ? {
                             y: -4,
                             transition: { duration: 0.25, ease: easeOut },
                           }
+                        : {}
                     }
-                    className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-[#111214] p-6 transition duration-300 hover:border-white/15 hover:bg-[#141518]"
+                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
                   >
-                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" />
-                    <h3 className="relative text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+                    <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
                       {card.title}
                     </h3>
-                    <p className="relative mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                    <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
                       {card.copy}
                     </p>
                   </motion.div>
@@ -983,24 +1055,23 @@ export default function Home() {
                 <motion.div
                   initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                   whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  
                   viewport={{ once: true, amount: 0.35 }}
                   transition={{ duration: 0.65, delay: 0.18, ease: easeOut }}
                   whileHover={
-                    reduceMotion
-                      ? {}
-                      : {
+                    motionEnabled
+                      ? {
                           y: -4,
                           transition: { duration: 0.25, ease: easeOut },
                         }
+                      : {}
                   }
-                  className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-[#111214] p-6 transition duration-300 hover:border-white/15 hover:bg-[#141518]"
+                  className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
                 >
-                  <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 group-hover:translate-x-full group-hover:opacity-100" />
-                  <h3 className="relative text-[22px] tracking-[-0.03em] text-[#F5F2EA]">
+                  <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+                  <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
                     Clear enquiry points
                   </h3>
-                  <p className="relative mt-3 text-[15px] leading-7 text-[#A9ABB3]">
+                  <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
                     Customers always have a clear next step to call, message,
                     book, or request a quote.
                   </p>
@@ -1011,38 +1082,38 @@ export default function Home() {
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-20 sm:px-6 lg:px-8">
-            <div className="relative overflow-hidden rounded-[34px] border border-white/10 bg-[#111214] px-6 py-14 text-center sm:px-10">
+          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-20 lg:px-8">
+            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-12 text-center sm:rounded-[34px] sm:px-10 sm:py-14">
               <motion.div
                 animate={
-                  reduceMotion
-                    ? {}
-                    : {
+                  motionEnabled
+                    ? {
                         x: [0, 14, -8, 0],
                         y: [0, -10, 8, 0],
                         scale: [1, 1.05, 0.98, 1],
                       }
+                    : {}
                 }
                 transition={{
                   duration: 12,
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="pointer-events-none absolute left-1/2 top-0 h-64 w-64 -translate-x-1/2 rounded-full bg-[#3B82F6]/18 blur-[110px]"
+                className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[#3B82F6]/14 blur-[100px] sm:h-64 sm:w-64 sm:bg-[#3B82F6]/18 sm:blur-[110px]"
               />
 
               <div className="relative mx-auto max-w-3xl">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                   Start
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.7rem,5vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2.3rem,8vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
                   Get your business online properly
                 </h2>
-                <p className="mx-auto mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
+                <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                   Send your details and we’ll review your project and the next
                   steps.
                 </p>
-                <p className="mx-auto mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3]">
+                <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
                   Websites start from £595. Managed hosting is £40/month after
                   launch.
                 </p>
@@ -1050,7 +1121,8 @@ export default function Home() {
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <MagneticLink
                     href="/start"
-                    className="group inline-flex h-13 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
+                    disabled={isMobile}
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
                   >
                     Get my website quote
                     <ArrowRight />
@@ -1058,7 +1130,7 @@ export default function Home() {
 
                   <Link
                     href="/demos"
-                    className="group inline-flex h-13 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
                   >
                     View demo websites
                     <ArrowRight />
@@ -1081,6 +1153,9 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-3 text-sm text-[#A9ABB3]">
+              <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
+                Navigate
+              </div>
               <Link href="/demos" className="transition hover:text-[#F5F2EA]">
                 Demos
               </Link>
@@ -1096,6 +1171,9 @@ export default function Home() {
             </div>
 
             <div className="flex flex-col gap-3 text-sm text-[#A9ABB3] md:items-start">
+              <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
+                Contact
+              </div>
               <a
                 href="mailto:hello@cleanwebsites.co.uk"
                 className="transition hover:text-[#F5F2EA]"
@@ -1136,7 +1214,7 @@ export default function Home() {
               className="fixed bottom-6 right-6 z-40 hidden lg:block"
             >
               <motion.div
-                animate={reduceMotion ? {} : { scale: [1, 1.03, 1] }}
+                animate={motionEnabled ? { scale: [1, 1.03, 1] } : {}}
                 transition={{
                   duration: 1.8,
                   delay: 0.3,
@@ -1154,6 +1232,15 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
+
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
+          <Link
+            href="/start"
+            className="flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white"
+          >
+            Get my website quote
+          </Link>
+        </div>
       </main>
     </div>
   );
