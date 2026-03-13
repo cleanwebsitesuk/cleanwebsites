@@ -654,7 +654,7 @@ export default function Home() {
       </motion.header>
 
       <main className="relative">
-<section className="mx-auto flex min-h-[calc(100svh-74px)] w-full max-w-7xl items-center justify-center px-5 pb-10 pt-6 text-center sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+<section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-start justify-center px-5 pb-10 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
   <motion.div
     variants={heroContainer}
     initial="hidden"
@@ -679,7 +679,7 @@ export default function Home() {
 
     <motion.h1
       variants={fadeUp}
-      className="mx-auto mt-4 max-w-[10ch] font-serif text-[clamp(2.15rem,11.2vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
+      className="mx-auto mt-4 max-w-[10ch] font-serif text-[clamp(1.95rem,10.2vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
     >
       Professional websites for UK businesses.
     </motion.h1>
