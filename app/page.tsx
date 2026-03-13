@@ -582,7 +582,7 @@ export default function Home() {
 
           <div className="hidden items-center gap-3 md:flex">
             <Link
-              href="/demos"
+              href="#demos"
               className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
             >
               View demo websites
@@ -633,7 +633,7 @@ export default function Home() {
                 ))}
 
                 <Link
-                  href="/demos"
+                  href="#demos"
                   onClick={() => setMobileOpen(false)}
                   className="mt-2 inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA]"
                 >
@@ -1128,7 +1128,7 @@ export default function Home() {
                   </MagneticLink>
 
                   <Link
-                    href="/demos"
+                    href="#demos"
                     className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
                   >
                     View demo websites
@@ -1155,10 +1155,10 @@ export default function Home() {
               <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
                 Navigate
               </div>
-              <Link href="/demos" className="transition hover:text-[#F5F2EA]">
+              <Link href="#demos" className="transition hover:text-[#F5F2EA]">
                 Demos
               </Link>
-              <Link href="/pricing" className="transition hover:text-[#F5F2EA]">
+              <Link href="#pricing" className="transition hover:text-[#F5F2EA]">
                 Pricing
               </Link>
               <a href="#process" className="transition hover:text-[#F5F2EA]">
