@@ -37,14 +37,22 @@ const demoLinks = [
   },
 ];
 
+const practicalDetails = [
+  "Website builds start from £595 depending on scope",
+  "Managed hosting and support is £40/month after launch",
+  "Your domain is purchased separately in your name",
+  "Content and images must be supplied before build begins",
+  "One revision is included",
+];
+
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 const heroContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.08,
+      staggerChildren: 0.08,
+      delayChildren: 0.06,
     },
   },
 };
@@ -54,7 +62,7 @@ const fadeUp = {
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: easeOut },
+    transition: { duration: 0.68, ease: easeOut },
   },
 };
 
@@ -78,10 +86,10 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24, scale: 0.985 }}
+      initial={{ opacity: 0, y: 22, scale: 0.99 }}
       whileInView={{ opacity: 1, y: 0, scale: 1 }}
       viewport={{ once: true, amount }}
-      transition={{ duration: 0.7, delay, ease: easeOut }}
+      transition={{ duration: 0.68, delay, ease: easeOut }}
     >
       {children}
     </motion.div>
@@ -92,16 +100,18 @@ function MagneticLink({
   children,
   className,
   href,
+  disabled = false,
 }: {
   children: React.ReactNode;
   className: string;
   href: string;
+  disabled?: boolean;
 }) {
   const reduceMotion = useReducedMotion();
   const [style, setStyle] = useState({ x: 0, y: 0 });
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion) return;
+    if (reduceMotion || disabled) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = (e.clientX - rect.left - rect.width / 2) * 0.08;
     const y = (e.clientY - rect.top - rect.height / 2) * 0.08;
@@ -112,7 +122,7 @@ function MagneticLink({
 
   return (
     <motion.div
-      animate={{ x: style.x, y: style.y }}
+      animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }}
       transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}
     >
       <Link
@@ -140,8 +150,43 @@ function WhatsAppIcon() {
   );
 }
 
+function SectionCard({
+  eyebrow,
+  title,
+  copy,
+  children,
+}: {
+  eyebrow: string;
+  title?: string;
+  copy?: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[28px] sm:p-7">
+      <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
+        {eyebrow}
+      </div>
+
+      {title && (
+        <h2 className="mt-4 font-serif text-[clamp(1.8rem,6vw,2.9rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
+          {title}
+        </h2>
+      )}
+
+      {copy && (
+        <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px]">
+          {copy}
+        </p>
+      )}
+
+      <div className="mt-5 sm:mt-6">{children}</div>
+    </div>
+  );
+}
+
 export default function StartPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{
     type: "success" | "error" | null;
     text: string;
@@ -151,6 +196,7 @@ export default function StartPage() {
   });
 
   const reduceMotion = useReducedMotion();
+  const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
     if (!submitMessage.type) return;
@@ -161,6 +207,14 @@ export default function StartPage() {
 
     return () => clearTimeout(timeout);
   }, [submitMessage]);
+
+  useEffect(() => {
+    const media = window.matchMedia("(max-width: 767px)");
+    const update = () => setIsMobile(media.matches);
+    update();
+    media.addEventListener("change", update);
+    return () => media.removeEventListener("change", update);
+  }, []);
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -203,48 +257,48 @@ export default function StartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white">
+    <div className="min-h-screen bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           animate={
-            reduceMotion
-              ? {}
-              : {
+            motionEnabled
+              ? {
                   x: [0, 20, -10, 0],
                   y: [0, -14, 10, 0],
                   scale: [1, 1.04, 0.98, 1],
                 }
+              : {}
           }
           transition={{
             duration: 18,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-12%] top-[-8%] h-[32rem] w-[32rem] rounded-full bg-[#3B82F6]/10 blur-[140px]"
+          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[32rem] sm:w-[32rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
         />
         <motion.div
           animate={
-            reduceMotion
-              ? {}
-              : {
+            motionEnabled
+              ? {
                   x: [0, -24, 12, 0],
                   y: [0, 16, -8, 0],
                   scale: [1, 0.98, 1.03, 1],
                 }
+              : {}
           }
           transition={{
             duration: 22,
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-14%] right-[-10%] h-[28rem] w-[28rem] rounded-full bg-[#3B82F6]/8 blur-[140px]"
+          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/8 sm:blur-[140px]"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
       </div>
 
       <main className="relative">
-        <section className="mx-auto w-full max-w-7xl px-5 pb-12 pt-12 sm:px-6 lg:px-8 lg:pb-16 lg:pt-16">
+        <section className="mx-auto w-full max-w-7xl px-5 pb-10 pt-8 sm:px-6 sm:pb-12 sm:pt-12 lg:px-8 lg:pb-16 lg:pt-16">
           <motion.div
             variants={heroContainer}
             initial="hidden"
@@ -254,7 +308,8 @@ export default function StartPage() {
             <motion.div variants={fadeUp}>
               <MagneticLink
                 href="/"
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[12px] uppercase tracking-[0.18em] text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+                disabled={isMobile}
+                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:text-[12px] sm:tracking-[0.18em]"
               >
                 Back to homepage
               </MagneticLink>
@@ -262,14 +317,14 @@ export default function StartPage() {
 
             <motion.h1
               variants={fadeUp}
-              className="mt-6 font-serif text-[clamp(2.8rem,6vw,5rem)] leading-[0.95] tracking-[-0.04em] text-[#F5F2EA]"
+              className="mt-6 max-w-[14ch] font-serif text-[clamp(2.35rem,10vw,5rem)] leading-[0.94] tracking-[-0.04em] text-[#F5F2EA]"
             >
               Tell us about your business and get your website project started.
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="mt-5 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]"
+              className="mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
             >
               We build clean, professional websites for UK businesses that want
               to look credible online and make it easy for customers to get in
@@ -278,31 +333,22 @@ export default function StartPage() {
 
             <motion.p
               variants={fadeUp}
-              className="mt-4 max-w-2xl text-[18px] leading-8 text-[#A9ABB3] sm:text-[20px]"
+              className="mt-4 text-sm text-[#A9ABB3] sm:text-base"
             >
-              Website builds start from £595. Managed hosting is £40/month after
-              launch.
+              Website builds start from £595 • Hosting £40/month after launch
             </motion.p>
           </motion.div>
         </section>
 
-        <section className="mx-auto grid w-full max-w-7xl gap-6 px-5 pb-20 sm:px-6 lg:grid-cols-[0.8fr_1.2fr] lg:px-8">
-          <div className="space-y-6">
+        <section className="mx-auto grid w-full max-w-7xl gap-5 px-5 pb-20 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6 lg:px-8">
+          <div className="space-y-5 sm:space-y-6">
             <Reveal>
-              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  What you’ll get
-                </div>
-
-                <h2 className="mt-4 font-serif text-[clamp(2rem,4vw,2.9rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
-                  A professional website built for your business
-                </h2>
-
-                <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
-                  Every website includes the core pages most businesses need.
-                </p>
-
-                <div className="mt-6 space-y-3">
+              <SectionCard
+                eyebrow="What you’ll get"
+                title="A professional website built for your business"
+                copy="Every website includes the core pages most businesses need."
+              >
+                <div className="space-y-3">
                   {servicePoints.map((item, index) => (
                     <motion.div
                       key={item}
@@ -314,7 +360,9 @@ export default function StartPage() {
                         delay: index * 0.04,
                         ease: easeOut,
                       }}
-                      className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                      className={`flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
+                        index > 3 ? "hidden sm:flex" : ""
+                      }`}
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
                       <span className="text-sm leading-6 text-[#F5F2EA]">
@@ -323,16 +371,12 @@ export default function StartPage() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </SectionCard>
             </Reveal>
 
             <Reveal delay={0.05}>
-              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  What happens next
-                </div>
-
-                <div className="mt-5 space-y-4">
+              <SectionCard eyebrow="What happens next">
+                <div className="space-y-3 sm:space-y-4">
                   {[
                     "We review your enquiry",
                     "We reply with next steps",
@@ -341,7 +385,7 @@ export default function StartPage() {
                   ].map((title, index) => (
                     <motion.div
                       key={title}
-                      initial={reduceMotion ? false : { opacity: 0, y: 20 }}
+                      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
                       whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.45 }}
                       transition={{
@@ -349,11 +393,15 @@ export default function StartPage() {
                         delay: index * 0.06,
                         ease: easeOut,
                       }}
-                      className="flex gap-4 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
+                      className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
                     >
                       <motion.div
-                        initial={reduceMotion ? false : { scale: 0.9, opacity: 0 }}
-                        whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
+                        initial={
+                          reduceMotion ? false : { scale: 0.9, opacity: 0 }
+                        }
+                        whileInView={
+                          reduceMotion ? {} : { scale: 1, opacity: 1 }
+                        }
                         viewport={{ once: true, amount: 0.8 }}
                         transition={{
                           duration: 0.4,
@@ -365,7 +413,7 @@ export default function StartPage() {
                         0{index + 1}
                       </motion.div>
                       <div>
-                        <p className="pt-1 text-sm font-medium leading-6 text-[#F5F2EA]">
+                        <p className="pt-0.5 text-sm font-medium leading-6 text-[#F5F2EA]">
                           {title}
                         </p>
                         <p className="pt-1 text-sm leading-6 text-[#A9ABB3]">
@@ -375,23 +423,13 @@ export default function StartPage() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </SectionCard>
             </Reveal>
 
             <Reveal delay={0.1}>
-              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  Practical details
-                </div>
-
-                <div className="mt-5 space-y-3">
-                  {[
-                    "Website builds start from £595 depending on scope",
-                    "Managed hosting and support is £40/month after launch",
-                    "Your domain is purchased separately in your name",
-                    "Content and images must be supplied before build begins",
-                    "One revision is included",
-                  ].map((item, index) => (
+              <SectionCard eyebrow="Practical details">
+                <div className="space-y-3">
+                  {practicalDetails.map((item, index) => (
                     <motion.div
                       key={item}
                       initial={reduceMotion ? false : { opacity: 0, x: -14 }}
@@ -402,7 +440,9 @@ export default function StartPage() {
                         delay: index * 0.04,
                         ease: easeOut,
                       }}
-                      className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4"
+                      className={`flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
+                        index > 2 ? "hidden sm:flex" : ""
+                      }`}
                     >
                       <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
                       <span className="text-sm leading-6 text-[#F5F2EA]">
@@ -411,31 +451,23 @@ export default function StartPage() {
                     </motion.div>
                   ))}
                 </div>
-              </div>
+              </SectionCard>
             </Reveal>
 
             <Reveal delay={0.15}>
-              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-7">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                  Demo websites
-                </div>
-
-                <h2 className="mt-4 font-serif text-[clamp(1.8rem,4vw,2.6rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
-                  Explore example website styles
-                </h2>
-
-                <p className="mt-4 text-[16px] leading-7 text-[#A9ABB3]">
-                  You can explore demo websites before sending an enquiry.
-                </p>
-
-                <div className="mt-5 space-y-3">
+              <SectionCard
+                eyebrow="Demo websites"
+                title="Explore example website styles"
+                copy="You can explore demo websites before sending an enquiry."
+              >
+                <div className="space-y-3">
                   {demoLinks.map((demo, index) => (
                     <motion.a
                       key={demo.label}
                       href={demo.href}
                       target="_blank"
                       rel="noreferrer"
-                      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                       whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                       viewport={{ once: true, amount: 0.8 }}
                       transition={{
@@ -443,25 +475,25 @@ export default function StartPage() {
                         delay: index * 0.05,
                         ease: easeOut,
                       }}
-                      whileHover={reduceMotion ? {} : { y: -3 }}
-                      className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+                      whileHover={motionEnabled ? { y: -3 } : {}}
+                      className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:py-4"
                     >
                       <span>{demo.label}</span>
                       <span className="text-[#8BB5FF]">Open</span>
                     </motion.a>
                   ))}
                 </div>
-              </div>
+              </SectionCard>
             </Reveal>
           </div>
 
           <Reveal className="h-fit">
-            <div className="rounded-[30px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)]">
-              <div className="border-b border-white/10 px-6 py-5 sm:px-8">
-                <div className="text-[12px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+            <div className="rounded-[26px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)] sm:rounded-[30px]">
+              <div className="border-b border-white/10 px-5 py-5 sm:px-8">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                   Tell us about your project
                 </div>
-                <h2 className="mt-3 text-2xl tracking-[-0.03em] text-[#F5F2EA]">
+                <h2 className="mt-3 text-[1.65rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-2xl">
                   Tell us about your project
                 </h2>
                 <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
@@ -472,9 +504,9 @@ export default function StartPage() {
 
               <form
                 onSubmit={handleSubmit}
-                className="space-y-6 px-6 py-6 sm:px-8 sm:py-8"
+                className="space-y-5 px-5 py-5 sm:space-y-6 sm:px-8 sm:py-8"
               >
-                <div className="grid gap-5 sm:grid-cols-2">
+                <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
                   <div className="sm:col-span-1">
                     <label
                       htmlFor="name"
@@ -575,7 +607,7 @@ export default function StartPage() {
                   </legend>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
                       <input
                         type="radio"
                         name="hasWebsite"
@@ -586,7 +618,7 @@ export default function StartPage() {
                       <span>Yes</span>
                     </label>
 
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
                       <input
                         type="radio"
                         name="hasWebsite"
@@ -605,7 +637,7 @@ export default function StartPage() {
                   </legend>
 
                   <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
                       <input
                         type="radio"
                         name="hasDomain"
@@ -616,7 +648,7 @@ export default function StartPage() {
                       <span>Yes</span>
                     </label>
 
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]">
+                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
                       <input
                         type="radio"
                         name="hasDomain"
@@ -672,11 +704,9 @@ export default function StartPage() {
                     No obligation. Just send your details and we’ll review your
                     project.
                   </p>
-                  <p className="text-sm leading-6 text-[#7F828A]">
-                    Prefer messaging?
-                  </p>
-                  <p className="text-sm leading-6 text-[#7F828A]">
-                    You can also contact us directly on WhatsApp.
+                  <p className="hidden text-sm leading-6 text-[#7F828A] sm:block">
+                    Prefer messaging? You can also contact us directly on
+                    WhatsApp.
                   </p>
                 </div>
 
@@ -706,7 +736,7 @@ export default function StartPage() {
                     hosting is £40/month after launch. Your domain is purchased
                     separately in your name.
                   </p>
-                  <p>
+                  <p className="hidden sm:block">
                     By sending this form, you’re asking us to review your
                     project and reply with the next steps.
                   </p>
@@ -715,6 +745,18 @@ export default function StartPage() {
             </div>
           </Reveal>
         </section>
+
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
+          <a
+            href={WHATSAPP_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] text-sm font-semibold text-white"
+          >
+            <WhatsAppIcon />
+            Message us on WhatsApp
+          </a>
+        </div>
       </main>
     </div>
   );
