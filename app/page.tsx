@@ -879,8 +879,7 @@ export default function Home() {
                 A simple process
               </h2>
               <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                No bloated agency timelines. Just a clear path from enquiry to
-                launch.
+                A clear path so your business lives and grows online.
               </p>
             </div>
 
