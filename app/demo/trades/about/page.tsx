@@ -256,7 +256,7 @@ export default function TradesAboutPage() {
                   className="h-[320px] bg-cover bg-center sm:h-[420px]"
                   style={{
                     backgroundImage:
-                      "url('https://images.unsplash.com/photo-1581093458791-9f3c3900df4b?auto=format&fit=crop&w=1400&q=80')",
+                      "url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1400&q=80')",
                   }}
                 />
               </div>
@@ -363,7 +363,7 @@ export default function TradesAboutPage() {
                 className="h-[320px] bg-cover bg-center sm:h-[460px]"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1400&q=80')",
+                    "url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1400&q=80')",
                 }}
               />
             </div>
