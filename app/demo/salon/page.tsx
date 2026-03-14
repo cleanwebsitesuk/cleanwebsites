@@ -21,7 +21,8 @@ const featuredServices = [
   {
     title: "Blow Dry",
     price: "£25",
-    description: "Smooth, glossy styling perfect for everyday confidence or events.",
+    description:
+      "Smooth, glossy styling perfect for everyday confidence or special events.",
     image:
       "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=900&q=80",
   },
@@ -55,22 +56,18 @@ const galleryImages = [
 
 const reviews = [
   {
-    name: "Amina R.",
     quote:
       "Absolutely love my colour. The team at Luna Studio are amazing.",
   },
   {
-    name: "Chloe M.",
     quote:
       "Best salon experience I’ve had in Leeds. Beautiful space and lovely stylists.",
   },
   {
-    name: "Sara H.",
     quote:
       "Everything felt calm, premium, and professional from the moment I walked in.",
   },
   {
-    name: "Emily T.",
     quote:
       "My cut and blow dry were perfect. I left feeling confident and refreshed.",
   },
@@ -134,7 +131,7 @@ export default function SalonLandingPage() {
         @keyframes shimmerGlow {
           0%,
           100% {
-            box-shadow: 0 0 0 rgba(196, 92, 171, 0.18);
+            box-shadow: 0 0 0 rgba(196, 92, 171, 0.16);
           }
           50% {
             box-shadow: 0 10px 30px rgba(196, 92, 171, 0.22);
@@ -171,18 +168,24 @@ export default function SalonLandingPage() {
       `}</style>
 
       <main className="min-h-screen bg-[radial-gradient(circle_at_top,#fff0fa_0%,#fdf4fb_35%,#f8ecf8_100%)] text-[#332633]">
-        <div className="fixed inset-x-0 top-0 z-[70] border-b border-[#efcfe8] bg-[linear-gradient(90deg,#a4377f_0%,#7e3fb2_100%)] px-4 py-3 text-center text-sm font-medium text-white shadow-[0_10px_30px_rgba(126,63,178,0.22)]">
-          This is a demo website created by Clean Websites
+        <div className="fixed inset-x-0 top-0 z-[80] border-b border-[#efcfe8] bg-[linear-gradient(90deg,#a4377f_0%,#7e3fb2_100%)] px-4 py-3 text-center text-sm font-medium text-white shadow-[0_10px_30px_rgba(126,63,178,0.22)]">
+          This is a demo website created by{" "}
+          <Link
+            href="/"
+            className="font-semibold underline decoration-white/80 underline-offset-4 transition hover:text-white"
+          >
+            Clean Websites
+          </Link>
         </div>
 
         <Link
           href="/"
-          className="animate-glow-soft fixed left-4 top-[3.9rem] z-[80] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white"
+          className="animate-glow-soft fixed left-4 top-[4.1rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white"
         >
           ← Back to Clean Websites
         </Link>
 
-        <header className="sticky top-[3rem] z-50 border-b border-[#edd7ea] bg-[rgba(255,245,252,0.84)] backdrop-blur-xl">
+        <header className="fixed inset-x-0 top-[46px] z-[70] border-b border-[#edd7ea] bg-[rgba(255,245,252,0.9)] backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
             <Link
               href="/demo/salon"
@@ -220,7 +223,7 @@ export default function SalonLandingPage() {
                 href="/demo/salon/contact"
                 className="rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3 text-sm font-medium text-white shadow-[0_12px_30px_rgba(161,70,160,0.28)] transition hover:scale-[1.02] hover:shadow-[0_16px_34px_rgba(161,70,160,0.35)]"
               >
-                Book Appointment
+                Book Now
               </Link>
             </nav>
 
@@ -287,14 +290,14 @@ export default function SalonLandingPage() {
                   onClick={() => setMenuOpen(false)}
                   className="mt-3 rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3 text-center text-sm font-medium text-white"
                 >
-                  Book Appointment
+                  Book Now
                 </Link>
               </div>
             </div>
           )}
         </header>
 
-        <section className="relative isolate overflow-hidden pt-[3.25rem]">
+        <section className="relative isolate overflow-hidden pt-[130px]">
           <div
             className="absolute inset-0 animate-fade-in bg-cover bg-center"
             style={{
@@ -306,19 +309,20 @@ export default function SalonLandingPage() {
           <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#f0a7df]/30 blur-3xl" />
           <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-[#b695ff]/20 blur-3xl" />
 
-          <div className="relative mx-auto grid min-h-[80vh] max-w-7xl items-center px-5 py-20 md:px-8 lg:grid-cols-2 lg:py-28">
+          <div className="relative mx-auto grid min-h-[82vh] max-w-7xl items-center px-5 py-20 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
             <div className="max-w-2xl">
               <span className="animate-fade-up inline-flex rounded-full border border-[#efcfe8] bg-white/75 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#98508d] shadow-sm backdrop-blur-sm">
                 Modern Hair & Beauty Salon
               </span>
 
               <h1 className="animate-fade-up-delay-1 mt-6 max-w-xl text-4xl font-semibold leading-tight text-[#3e1f3b] sm:text-5xl lg:text-6xl">
-                Beautiful hair, crafted with care.
+                Feel polished, confident, and beautifully looked after.
               </h1>
 
               <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-8 text-[#684f66] sm:text-lg">
                 Luna Studio offers modern cuts, colour treatments, and beauty
-                services in the heart of Leeds.
+                services in the heart of Leeds, with a premium boutique feel and
+                a booking experience designed to convert.
               </p>
 
               <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row">
@@ -349,6 +353,26 @@ export default function SalonLandingPage() {
                   <p className="text-2xl font-semibold text-[#3e1f3b]">Leeds</p>
                   <p className="mt-1 text-sm text-[#7b6878]">City centre salon</p>
                 </div>
+              </div>
+            </div>
+
+            <div className="mt-12 hidden lg:block">
+              <div className="animate-fade-up-delay-3 ml-auto max-w-md rounded-[32px] border border-white/70 bg-white/75 p-6 shadow-[0_20px_60px_rgba(126,63,178,0.14)] backdrop-blur-xl">
+                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a33d89]">
+                  Why this demo converts
+                </p>
+                <ul className="mt-5 space-y-4 text-sm leading-7 text-[#644f62]">
+                  <li>• Clear call to action above the fold</li>
+                  <li>• Strong visual trust signals and reviews</li>
+                  <li>• Premium design that feels established</li>
+                  <li>• Mobile-friendly layout with sticky navigation</li>
+                </ul>
+                <Link
+                  href="/"
+                  className="mt-6 inline-flex items-center text-sm font-semibold text-[#a33d89] underline underline-offset-4"
+                >
+                  Want a site like this? Visit Clean Websites
+                </Link>
               </div>
             </div>
           </div>
@@ -478,9 +502,9 @@ export default function SalonLandingPage() {
             </div>
 
             <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-              {reviews.map((review) => (
+              {reviews.map((review, index) => (
                 <article
-                  key={review.name}
+                  key={index}
                   className="rounded-[28px] border border-[#efd9ea] bg-[linear-gradient(180deg,#fff8fd_0%,#fff2fb_100%)] p-6 shadow-[0_12px_30px_rgba(140,63,124,0.07)] transition duration-300 hover:-translate-y-1"
                 >
                   <p className="text-lg tracking-wide text-[#c046a0]">
@@ -488,9 +512,6 @@ export default function SalonLandingPage() {
                   </p>
                   <p className="mt-4 text-sm leading-7 text-[#5f4d5d]">
                     “{review.quote}”
-                  </p>
-                  <p className="mt-5 text-sm font-semibold text-[#3e1f3b]">
-                    {review.name}
                   </p>
                 </article>
               ))}
