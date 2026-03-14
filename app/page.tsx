@@ -709,12 +709,12 @@ export default function Home() {
 
     <motion.div
       variants={fadeUp}
-      className="mx-auto mt-8 flex w-full max-w-[21.5rem] items-center gap-3 sm:mt-8 sm:max-w-none sm:justify-center"
+      className="mx-auto mt-8 flex w-full max-w-[22rem] items-center gap-3 sm:mt-8 sm:max-w-none sm:justify-center"
     >
       <MagneticLink
         href="/start"
         disabled={isMobile}
-        className="group inline-flex h-14 flex-1 min-w-0 items-center justify-center gap-1.5 rounded-full bg-[#3B82F6] px-3 text-[12px] font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+        className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-3 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
       >
         <span className="whitespace-nowrap">Get my website quote</span>
         <ArrowRight />
@@ -722,7 +722,7 @@ export default function Home() {
 
       <a
         href="#demos"
-        className="group inline-flex h-14 flex-1 min-w-0 items-center justify-center gap-1.5 rounded-full border border-white/10 bg-white/[0.03] px-3 text-[12px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+        className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
       >
         <span className="whitespace-nowrap">View demo websites</span>
         <ArrowRight />
