@@ -180,8 +180,7 @@ export default function SalonLandingPage() {
 
 <Link
   href="/"
-  className="animate-glow-soft fixed left-4 top-[7.25rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem]"
->
+  className="animate-glow-soft fixed left-3 top-[7.6rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.4rem]">
   ← Back to Clean Websites
 </Link>
 
