@@ -679,14 +679,14 @@ export default function Home() {
 
     <motion.h1
       variants={fadeUp}
-      className="mx-auto mt-4 max-w-[10ch] font-serif text-[clamp(1.95rem,10.2vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
+      className="mx-auto mt-4 max-w-[10ch] font-serif text-[clamp(2.15rem,10.9vw,4.8rem)] leading-[0.9] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
     >
       Professional websites for UK businesses.
     </motion.h1>
 
     <motion.p
       variants={fadeUp}
-      className="mx-auto mt-5 max-w-[21rem] text-[15px] leading-7 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
+      className="mx-auto mt-6 max-w-[23rem] text-[16px] leading-8 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
     >
       Clean, fast, mobile-first websites that help your business look
       credible online and make it easy for customers to get in touch.
@@ -702,19 +702,19 @@ export default function Home() {
 
     <motion.div
       variants={fadeUp}
-      className="mt-5 text-sm text-[#A9ABB3] sm:mt-5"
+      className="mt-6 text-[16px] font-medium text-[#A9ABB3] sm:mt-5 sm:text-sm"
     >
       Websites from £595 • Hosting £40/month
     </motion.div>
 
     <motion.div
       variants={fadeUp}
-      className="mx-auto mt-7 grid max-w-[26rem] grid-cols-2 gap-3 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
+      className="mx-auto mt-8 grid max-w-[28rem] grid-cols-2 gap-3 sm:mt-8 sm:flex sm:max-w-none sm:flex-row sm:items-center sm:justify-center"
     >
       <MagneticLink
         href="/start"
         disabled={isMobile}
-        className="group inline-flex h-12 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#3B82F6] px-3 text-[13px] font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6 sm:text-sm"
+        className="group inline-flex h-14 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full bg-[#3B82F6] px-4 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:w-auto sm:px-6 sm:text-sm"
       >
         <span className="truncate">Get my website quote</span>
         <ArrowRight />
@@ -722,7 +722,7 @@ export default function Home() {
 
       <a
         href="#demos"
-        className="group inline-flex h-12 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-3 text-[13px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto sm:px-6 sm:text-sm"
+        className="group inline-flex h-14 w-full min-w-0 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/10 bg-white/[0.03] px-4 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:w-auto sm:px-6 sm:text-sm"
       >
         <span className="truncate">View demo websites</span>
         <ArrowRight />
