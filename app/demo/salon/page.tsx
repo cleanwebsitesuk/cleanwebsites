@@ -355,6 +355,8 @@ export default function SalonLandingPage() {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-7xl px-5 py-20 md:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
@@ -373,8 +375,8 @@ export default function SalonLandingPage() {
               Explore all services →
             </Link>
           </div>
-        </div>
-        </section>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {featuredServices.map((service) => (
