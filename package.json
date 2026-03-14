@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "refresh:demos": "node scripts/generate-demo-previews.mjs"
   },
   "dependencies": {
     "framer-motion": "^12.36.0",
