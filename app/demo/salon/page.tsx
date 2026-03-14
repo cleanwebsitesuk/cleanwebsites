@@ -356,28 +356,6 @@ export default function SalonLandingPage() {
               </div>
             </div>
 
-            <div className="mt-12 hidden lg:block">
-              <div className="animate-fade-up-delay-3 ml-auto max-w-md rounded-[32px] border border-white/70 bg-white/75 p-6 shadow-[0_20px_60px_rgba(126,63,178,0.14)] backdrop-blur-xl">
-                <p className="text-sm font-semibold uppercase tracking-[0.18em] text-[#a33d89]">
-                  Why this demo converts
-                </p>
-                <ul className="mt-5 space-y-4 text-sm leading-7 text-[#644f62]">
-                  <li>• Clear call to action above the fold</li>
-                  <li>• Strong visual trust signals and reviews</li>
-                  <li>• Premium design that feels established</li>
-                  <li>• Mobile-friendly layout with sticky navigation</li>
-                </ul>
-                <Link
-                  href="/"
-                  className="mt-6 inline-flex items-center text-sm font-semibold text-[#a33d89] underline underline-offset-4"
-                >
-                  Want a site like this? Visit Clean Websites
-                </Link>
-              </div>
-            </div>
-          </div>
-        </section>
-
         <section className="mx-auto max-w-7xl px-5 py-20 md:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
