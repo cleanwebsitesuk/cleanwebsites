@@ -56,8 +56,7 @@ const galleryImages = [
 
 const reviews = [
   {
-    quote:
-      "Absolutely love my colour. The team at Luna Studio are amazing.",
+    quote: "Absolutely love my colour. The team at Luna Studio are amazing.",
   },
   {
     quote:
@@ -131,10 +130,10 @@ export default function SalonLandingPage() {
         @keyframes shimmerGlow {
           0%,
           100% {
-            box-shadow: 0 0 0 rgba(196, 92, 171, 0.16);
+            box-shadow: 0 0 0 rgba(196, 92, 171, 0.14);
           }
           50% {
-            box-shadow: 0 10px 30px rgba(196, 92, 171, 0.22);
+            box-shadow: 0 10px 30px rgba(196, 92, 171, 0.2);
           }
         }
 
@@ -167,8 +166,8 @@ export default function SalonLandingPage() {
         }
       `}</style>
 
-      <main className="min-h-screen bg-[radial-gradient(circle_at_top,#fff0fa_0%,#fdf4fb_35%,#f8ecf8_100%)] text-[#332633]">
-        <div className="fixed inset-x-0 top-0 z-[80] border-b border-[#efcfe8] bg-[linear-gradient(90deg,#a4377f_0%,#7e3fb2_100%)] px-4 py-3 text-center text-sm font-medium text-white shadow-[0_10px_30px_rgba(126,63,178,0.22)]">
+      <main className="min-h-screen bg-[radial-gradient(circle_at_top,#fff2fb_0%,#fdf6fc_35%,#f8eff8_100%)] text-[#332633]">
+        <div className="fixed inset-x-0 top-0 z-[90] border-b border-[#efcfe8] bg-[linear-gradient(90deg,#a4377f_0%,#7e3fb2_100%)] px-4 py-3 text-center text-sm font-medium text-white shadow-[0_10px_30px_rgba(126,63,178,0.22)]">
           This is a demo website created by{" "}
           <Link
             href="/"
@@ -178,14 +177,7 @@ export default function SalonLandingPage() {
           </Link>
         </div>
 
-<Link
-  href="/"
-  className="animate-glow-soft fixed left-4 top-[8rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem]"
->
-  ← Back to Clean Websites
-</Link>
-
-        <header className="fixed inset-x-0 top-[46px] z-[70] border-b border-[#edd7ea] bg-[rgba(255,245,252,0.9)] backdrop-blur-xl">
+        <header className="fixed inset-x-0 top-[46px] z-[80] border-b border-[#ead9e6] bg-[rgba(255,248,252,0.96)] backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
             <Link
               href="/demo/salon"
@@ -232,7 +224,7 @@ export default function SalonLandingPage() {
               aria-label="Toggle menu"
               aria-expanded={menuOpen}
               onClick={() => setMenuOpen((prev) => !prev)}
-              className="inline-flex items-center justify-center rounded-full border border-[#e8cce1] bg-white/80 p-3 text-[#4a2344] md:hidden"
+              className="inline-flex items-center justify-center rounded-full border border-[#e8d7e4] bg-white/90 p-3 text-[#4a2344] shadow-sm transition hover:bg-white md:hidden"
             >
               <span className="relative block h-4 w-5">
                 <span
@@ -253,49 +245,64 @@ export default function SalonLandingPage() {
               </span>
             </button>
           </div>
+        </header>
 
-          {menuOpen && (
-            <div className="border-t border-[#edd7ea] bg-[#fff7fc]/95 md:hidden">
-              <div className="mx-auto flex max-w-7xl flex-col px-5 py-4">
+        <Link
+          href="/"
+          className="animate-glow-soft fixed left-4 top-[7.25rem] z-[70] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem] md:z-[90]"
+        >
+          ← Back to Clean Websites
+        </Link>
+
+        {menuOpen && (
+          <>
+            <button
+              type="button"
+              aria-label="Close menu overlay"
+              onClick={() => setMenuOpen(false)}
+              className="fixed inset-x-0 bottom-0 top-[7.15rem] z-[60] bg-[rgba(44,18,45,0.58)] backdrop-blur-[2px] md:hidden"
+            />
+            <div className="fixed inset-x-4 top-[8.65rem] z-[70] rounded-[28px] border border-white/20 bg-[linear-gradient(180deg,rgba(83,31,74,0.96)_0%,rgba(53,24,59,0.96)_100%)] p-4 shadow-[0_22px_60px_rgba(39,16,44,0.42)] md:hidden">
+              <div className="flex flex-col gap-2">
                 <Link
                   href="/demo/salon"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-[#5a3957] transition hover:bg-[#fae8f6]"
+                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
                 >
                   Home
                 </Link>
                 <Link
                   href="/demo/salon/about"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-[#5a3957] transition hover:bg-[#fae8f6]"
+                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
                 >
                   About
                 </Link>
                 <Link
                   href="/demo/salon/services"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-[#5a3957] transition hover:bg-[#fae8f6]"
+                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
                 >
                   Services
                 </Link>
                 <Link
                   href="/demo/salon/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="rounded-lg px-3 py-3 text-sm font-medium text-[#5a3957] transition hover:bg-[#fae8f6]"
+                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
                 >
                   Contact
                 </Link>
                 <Link
                   href="/demo/salon/contact"
                   onClick={() => setMenuOpen(false)}
-                  className="mt-3 rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3 text-center text-sm font-medium text-white"
+                  className="mt-3 inline-flex items-center justify-center rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3.5 text-center text-sm font-semibold text-white shadow-[0_12px_30px_rgba(161,70,160,0.26)]"
                 >
                   Book Now
                 </Link>
               </div>
             </div>
-          )}
-        </header>
+          </>
+        )}
 
         <section className="relative isolate overflow-hidden pt-[180px] md:pt-[130px]">
           <div
@@ -305,21 +312,22 @@ export default function SalonLandingPage() {
                 "url('https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=1800&q=80')",
             }}
           />
-          <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,245,252,0.94)_0%,rgba(255,240,250,0.84)_42%,rgba(143,72,215,0.18)_100%)]" />
-          <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#f0a7df]/30 blur-3xl" />
-          <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-[#b695ff]/20 blur-3xl" />
+          <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(255,248,253,0.92)_0%,rgba(255,246,252,0.82)_35%,rgba(250,242,250,0.74)_100%)] md:bg-[linear-gradient(90deg,rgba(255,248,253,0.88)_0%,rgba(255,245,252,0.72)_40%,rgba(143,72,215,0.10)_100%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,213,241,0.42),transparent_38%)]" />
+          <div className="absolute -left-24 top-24 h-72 w-72 rounded-full bg-[#f0a7df]/20 blur-3xl" />
+          <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-[#b695ff]/12 blur-3xl" />
 
           <div className="relative mx-auto grid min-h-[82vh] max-w-7xl items-center px-5 py-20 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:py-28">
             <div className="max-w-2xl">
-              <span className="animate-fade-up inline-flex rounded-full border border-[#efcfe8] bg-white/75 px-4 py-2 text-xs font-medium uppercase tracking-[0.24em] text-[#98508d] shadow-sm backdrop-blur-sm">
+              <span className="animate-fade-up inline-flex rounded-full border border-[#ead6e5] bg-white/92 px-4 py-2 text-xs font-semibold uppercase tracking-[0.24em] text-[#95518c] shadow-[0_8px_20px_rgba(121,60,112,0.08)] backdrop-blur-sm">
                 Modern Hair & Beauty Salon
               </span>
 
-              <h1 className="animate-fade-up-delay-1 mt-6 max-w-xl text-4xl font-semibold leading-tight text-[#3e1f3b] sm:text-5xl lg:text-6xl">
+              <h1 className="animate-fade-up-delay-1 mt-6 max-w-xl text-4xl font-semibold leading-tight text-[#34162f] sm:text-5xl lg:text-6xl">
                 Feel polished, confident, and beautifully looked after.
               </h1>
 
-              <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-8 text-[#684f66] sm:text-lg">
+              <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-base leading-8 text-[#5e495d] sm:text-lg">
                 Luna Studio offers modern cuts, colour treatments, and beauty
                 services in the heart of Leeds, with a premium boutique feel and
                 a booking experience designed to convert.
@@ -334,24 +342,24 @@ export default function SalonLandingPage() {
                 </Link>
                 <Link
                   href="/demo/salon/services"
-                  className="inline-flex items-center justify-center rounded-full border border-[#e5cbe0] bg-white/85 px-6 py-3.5 text-sm font-medium text-[#44253f] transition hover:bg-white hover:shadow-md"
+                  className="inline-flex items-center justify-center rounded-full border border-[#e4d6e1] bg-white/95 px-6 py-3.5 text-sm font-medium text-[#432640] shadow-[0_8px_24px_rgba(86,47,88,0.05)] transition hover:bg-white hover:shadow-md"
                 >
                   View Services
                 </Link>
               </div>
 
-              <div className="animate-fade-up-delay-3 mt-10 grid max-w-lg grid-cols-3 gap-4 rounded-[30px] border border-white/70 bg-white/70 p-5 shadow-[0_18px_50px_rgba(126,63,178,0.12)] backdrop-blur-md">
+              <div className="animate-fade-up-delay-3 mt-10 grid max-w-lg grid-cols-3 gap-4 rounded-[30px] border border-white/80 bg-white/88 p-5 shadow-[0_20px_50px_rgba(96,51,97,0.12)] backdrop-blur-md">
                 <div>
-                  <p className="text-2xl font-semibold text-[#3e1f3b]">10+</p>
-                  <p className="mt-1 text-sm text-[#7b6878]">Years experience</p>
+                  <p className="text-2xl font-semibold text-[#34162f]">10+</p>
+                  <p className="mt-1 text-sm text-[#746674]">Years experience</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-semibold text-[#3e1f3b]">4.9/5</p>
-                  <p className="mt-1 text-sm text-[#7b6878]">Client rating</p>
+                  <p className="text-2xl font-semibold text-[#34162f]">4.9/5</p>
+                  <p className="mt-1 text-sm text-[#746674]">Client rating</p>
                 </div>
                 <div>
-                  <p className="text-2xl font-semibold text-[#3e1f3b]">Leeds</p>
-                  <p className="mt-1 text-sm text-[#7b6878]">City centre salon</p>
+                  <p className="text-2xl font-semibold text-[#34162f]">Leeds</p>
+                  <p className="mt-1 text-sm text-[#746674]">City centre salon</p>
                 </div>
               </div>
             </div>
@@ -558,10 +566,16 @@ export default function SalonLandingPage() {
                 Quick Links
               </h4>
               <div className="mt-4 flex flex-col gap-3 text-sm text-[#665365]">
-                <Link href="/demo/salon" className="transition hover:text-[#b23592]">
+                <Link
+                  href="/demo/salon"
+                  className="transition hover:text-[#b23592]"
+                >
                   Home
                 </Link>
-                <Link href="/demo/salon/about" className="transition hover:text-[#b23592]">
+                <Link
+                  href="/demo/salon/about"
+                  className="transition hover:text-[#b23592]"
+                >
                   About
                 </Link>
                 <Link
@@ -587,7 +601,10 @@ export default function SalonLandingPage() {
                 <p>97 Example Street</p>
                 <p>Leeds</p>
                 <p>LS1 0XX</p>
-                <a href="#" className="inline-block pt-2 transition hover:text-[#b23592]">
+                <a
+                  href="#"
+                  className="inline-block pt-2 transition hover:text-[#b23592]"
+                >
                   Instagram
                 </a>
               </div>
