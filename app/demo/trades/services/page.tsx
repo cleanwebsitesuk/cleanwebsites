@@ -9,11 +9,11 @@ const services = [
     number: "01",
     title: "Emergency Plumbing",
     description:
-      "Fast response for urgent plumbing problems including burst pipes, major leaks, overflowing fixtures, and sudden breakdowns.",
+      "Fast response for urgent plumbing problems including burst pipes, major leaks, overflowing fixtures, and unexpected breakdowns.",
     points: [
-      "Rapid callouts across Bristol",
+      "Rapid response across Bristol",
       "Urgent fault diagnosis",
-      "Practical repairs to limit damage",
+      "Practical repairs to reduce disruption",
     ],
   },
   {
@@ -37,7 +37,7 @@ const services = [
     points: [
       "Heating and hot water faults",
       "Diagnosis of common boiler issues",
-      "Honest advice before work starts",
+      "Clear advice before work starts",
     ],
   },
   {
@@ -57,7 +57,7 @@ const services = [
     number: "05",
     title: "Pipe Repairs",
     description:
-      "Repair or replacement of damaged, ageing, or leaking pipework to restore reliability and improve system performance.",
+      "Repair or replacement of damaged, ageing, or leaking pipework to restore reliability and improve overall performance.",
     points: [
       "Damaged pipe replacement",
       "Leaking joint repairs",
@@ -80,14 +80,17 @@ const services = [
 
 const process = [
   {
+    number: "01",
     title: "Get in touch",
     text: "Call or send a quote request with a brief outline of the issue or work needed.",
   },
   {
+    number: "02",
     title: "Clear assessment",
-    text: "The problem is reviewed properly and the recommended next step is explained clearly.",
+    text: "The job is reviewed properly and the recommended next step is explained in a straightforward way.",
   },
   {
+    number: "03",
     title: "Work completed properly",
     text: "Repairs or installation work are carried out neatly, professionally, and with minimal fuss.",
   },
@@ -273,116 +276,133 @@ export default function TradesServicesPage() {
       <div className="pt-[122px]">
         {/* Hero */}
         <section className="bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-[1fr_1fr] md:px-8 md:py-20 lg:gap-16">
-            <div className="flex flex-col justify-center animate-[fadeUp_.7s_ease-out]">
-              <div className="inline-flex w-fit rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-[#2563EB]">
-                Our Services
+          <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
+            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
+              <div className="animate-[fadeUp_.7s_ease-out]">
+                <div className="inline-flex w-fit rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-[#2563EB]">
+                  Our Services
+                </div>
+
+                <h1 className="mt-5 max-w-2xl text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl">
+                  Plumbing services designed around reliability, clarity, and practical results
+                </h1>
+
+                <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
+                  Bestflow Plumbing provides a focused range of services for homes,
+                  landlords, and small commercial properties across Bristol, from
+                  urgent repairs to planned plumbing work.
+                </p>
+
+                <div className="mt-8 flex flex-col gap-4 sm:flex-row">
+                  <Link
+                    href="/demo/trades/contact"
+                    className="inline-flex items-center justify-center rounded-full bg-[#2563EB] px-6 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
+                  >
+                    Get a Quote
+                  </Link>
+                  <a
+                    href="tel:01170000000"
+                    className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-4 text-base font-semibold text-[#0F172A] transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:text-[#2563EB]"
+                  >
+                    Call 0117 000 0000
+                  </a>
+                </div>
               </div>
 
-              <h1 className="mt-5 max-w-xl text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl">
-                Professional plumbing services for homes and businesses across Bristol
-              </h1>
+              <div className="animate-[fadeUp_.85s_ease-out]">
+                <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
+                  <div
+                    className="h-[260px] bg-cover bg-center sm:h-[320px]"
+                    style={{
+                      backgroundImage:
+                        "url('https://images.pexels.com/photos/6474475/pexels-photo-6474475.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+                    }}
+                  />
+                  <div className="p-7">
+                    <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
+                      Core Services
+                    </p>
 
-              <p className="mt-6 max-w-xl text-base leading-8 text-slate-600 sm:text-lg">
-                From urgent repairs to planned plumbing work, Bestflow Plumbing
-                offers practical, dependable services with clear communication
-                and a straightforward approach.
-              </p>
-
-              <div className="mt-8 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/demo/trades/contact"
-                  className="inline-flex items-center justify-center rounded-full bg-[#2563EB] px-6 py-4 text-base font-semibold text-white shadow-[0_12px_30px_rgba(37,99,235,0.24)] transition duration-200 hover:-translate-y-0.5 hover:bg-blue-700"
-                >
-                  Get a Quote
-                </Link>
-                <a
-                  href="tel:01170000000"
-                  className="inline-flex items-center justify-center rounded-full border border-slate-300 bg-white px-6 py-4 text-base font-semibold text-[#0F172A] transition duration-200 hover:-translate-y-0.5 hover:border-blue-200 hover:text-[#2563EB]"
-                >
-                  Call 0117 000 0000
-                </a>
-              </div>
-            </div>
-
-            <div className="animate-[fadeUp_.85s_ease-out]">
-              <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
-                <div
-                  className="h-[320px] bg-cover bg-center sm:h-[420px]"
-                  style={{
-                    backgroundImage:
-                      "url('https://images.pexels.com/photos/2760243/pexels-photo-2760243.jpeg?auto=compress&cs=tinysrgb&w=1600')",
-                  }}
-                />
+                    <div className="mt-5 grid gap-3">
+                      {services.map((service) => (
+                        <a
+                          key={service.id}
+                          href={`#${service.id}`}
+                          className="flex items-center justify-between border-b border-slate-200 pb-3 text-sm font-medium text-slate-700 transition hover:text-[#2563EB] last:border-b-0 last:pb-0"
+                        >
+                          <span>{service.title}</span>
+                          <span aria-hidden="true">→</span>
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Intro strip */}
+        {/* Quick jump nav */}
         <section className="border-y border-slate-200 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-6 px-5 py-10 md:grid-cols-3 md:px-8">
-            {[
-              "Emergency callouts available",
-              "Domestic and small commercial work",
-              "Clear quotes and dependable workmanship",
-            ].map((item, index) => (
-              <div
-                key={item}
-                className="rounded-2xl bg-[#F8FAFC] px-5 py-5 text-sm font-medium text-slate-700"
-                style={{
-                  animation: `fadeUp .55s ease-out ${index * 0.08}s both`,
-                }}
-              >
-                {item}
-              </div>
-            ))}
+          <div className="mx-auto max-w-7xl px-5 py-5 md:px-8">
+            <div className="flex flex-wrap gap-3">
+              {services.map((service) => (
+                <a
+                  key={service.id}
+                  href={`#${service.id}`}
+                  className="rounded-full border border-slate-200 bg-[#F8FAFC] px-4 py-2 text-sm font-medium text-slate-700 transition hover:border-blue-200 hover:text-[#2563EB]"
+                >
+                  {service.title}
+                </a>
+              ))}
+            </div>
           </div>
         </section>
 
-        {/* Services list */}
+        {/* Services index */}
         <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
-          <div className="grid gap-8">
+          <div className="mb-12 max-w-2xl animate-[fadeUp_.6s_ease-out]">
+            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
+              Service Overview
+            </p>
+            <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
+              A focused range of services for everyday plumbing needs
+            </h2>
+          </div>
+
+          <div className="grid gap-2">
             {services.map((service, index) => (
               <section
                 key={service.id}
                 id={service.id}
-                className="group border-b border-slate-200 pb-8 last:border-b-0 last:pb-0"
+                className="border-b border-slate-200 py-8 last:border-b-0"
                 style={{
                   animation: `fadeUp .55s ease-out ${index * 0.06}s both`,
                 }}
               >
-                <div className="grid gap-6 lg:grid-cols-[140px_1fr_320px] lg:gap-10">
-                  <div>
-                    <span className="text-sm font-semibold tracking-[0.18em] text-[#2563EB]">
-                      {service.number}
-                    </span>
+                <div className="grid gap-6 lg:grid-cols-[110px_1fr_300px] lg:gap-10">
+                  <div className="text-sm font-semibold tracking-[0.18em] text-[#2563EB]">
+                    {service.number}
                   </div>
 
                   <div className="max-w-2xl">
-                    <h2 className="text-2xl font-semibold text-[#0F172A] sm:text-3xl">
+                    <h3 className="text-2xl font-semibold text-[#0F172A] sm:text-3xl">
                       {service.title}
-                    </h2>
+                    </h3>
                     <p className="mt-4 text-base leading-8 text-slate-600">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="rounded-[24px] border border-slate-200 bg-white p-6 shadow-[0_12px_30px_rgba(15,23,42,0.04)] transition duration-300 group-hover:border-blue-200 group-hover:shadow-[0_18px_40px_rgba(37,99,235,0.08)]">
-                    <p className="text-sm font-semibold uppercase tracking-[0.12em] text-slate-900">
-                      Included
-                    </p>
-                    <ul className="mt-4 space-y-3">
-                      {service.points.map((point) => (
-                        <li
-                          key={point}
-                          className="flex items-start gap-3 text-sm leading-7 text-slate-600"
-                        >
-                          <span className="mt-2 inline-flex h-2 w-2 rounded-full bg-[#2563EB]" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
+                  <div className="space-y-3">
+                    {service.points.map((point) => (
+                      <div key={point} className="flex items-start gap-3">
+                        <span className="mt-2 inline-flex h-2 w-2 rounded-full bg-[#2563EB]" />
+                        <span className="text-sm leading-7 text-slate-600">
+                          {point}
+                        </span>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </section>
@@ -391,15 +411,15 @@ export default function TradesServicesPage() {
         </section>
 
         {/* Process */}
-        <section className="bg-white">
+        <section className="border-y border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
-            <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr]">
+            <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
               <div className="animate-[fadeUp_.65s_ease-out]">
                 <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
                   How We Work
                 </p>
                 <h2 className="mt-3 max-w-md text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
-                  A clear and professional process from first enquiry to completed work
+                  A simple process that keeps communication clear at every stage
                 </h2>
               </div>
 
@@ -413,7 +433,7 @@ export default function TradesServicesPage() {
                     }}
                   >
                     <div className="text-sm font-semibold tracking-[0.16em] text-[#2563EB]">
-                      0{index + 1}
+                      {step.number}
                     </div>
                     <div>
                       <h3 className="text-xl font-semibold text-[#0F172A]">
@@ -430,19 +450,17 @@ export default function TradesServicesPage() {
           </div>
         </section>
 
-        {/* Service area / image */}
+        {/* Image + area */}
         <section className="mx-auto max-w-7xl px-5 py-14 md:px-8 md:py-20">
-          <div className="grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
-            <div className="animate-[fadeUp_.7s_ease-out]">
-              <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
-                <div
-                  className="h-[320px] bg-cover bg-center sm:h-[420px]"
-                  style={{
-                    backgroundImage:
-                      "url('https://images.pexels.com/photos/5691623/pexels-photo-5691623.jpeg?auto=compress&cs=tinysrgb&w=1600')",
-                  }}
-                />
-              </div>
+          <div className="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="animate-[fadeUp_.7s_ease-out] overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_24px_60px_rgba(15,23,42,0.08)]">
+              <div
+                className="h-[320px] bg-cover bg-center sm:h-[440px]"
+                style={{
+                  backgroundImage:
+                    "url('https://images.pexels.com/photos/7534435/pexels-photo-7534435.jpeg?auto=compress&cs=tinysrgb&w=1600')",
+                }}
+              />
             </div>
 
             <div className="animate-[fadeUp_.85s_ease-out]">
@@ -450,13 +468,13 @@ export default function TradesServicesPage() {
                 Bristol Service Area
               </p>
               <h2 className="mt-3 max-w-lg text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
-                Reliable plumbing support across Bristol and nearby areas
+                Reliable plumbing support for domestic and small commercial properties
               </h2>
               <p className="mt-5 max-w-xl text-base leading-8 text-slate-600">
-                Bestflow Plumbing provides services for domestic properties,
-                landlords, and small commercial premises across Bristol. The
-                focus is always on dependable work, clear communication, and a
-                service that feels straightforward from the start.
+                Bestflow Plumbing provides services across Bristol and nearby
+                areas, with an emphasis on prompt response, tidy workmanship,
+                and a service experience that feels clear and dependable from
+                the start.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-3">
@@ -464,10 +482,10 @@ export default function TradesServicesPage() {
                   Domestic plumbing
                 </span>
                 <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
-                  Commercial support
+                  Landlords
                 </span>
                 <span className="rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
-                  Emergency repairs
+                  Small commercial work
                 </span>
               </div>
             </div>
