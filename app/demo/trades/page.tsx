@@ -113,6 +113,7 @@ export default function TradesHomePage() {
   const [showBackButton, setShowBackButton] = useState(true);
   const [activeReview, setActiveReview] = useState(0);
   const testimonialTrackRef = useRef<HTMLDivElement | null>(null);
+  const autoRotateRef = useRef<NodeJS.Timeout | null>(null);
 
   const totalTestimonials = testimonials.length;
 
@@ -138,11 +139,19 @@ export default function TradesHomePage() {
   }, [menuOpen]);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveReview((prev) => (prev + 1) % totalTestimonials);
-    }, 5000);
+    const startAutoRotate = () => {
+      if (autoRotateRef.current) clearInterval(autoRotateRef.current);
 
-    return () => clearInterval(interval);
+      autoRotateRef.current = setInterval(() => {
+        setActiveReview((prev) => (prev + 1) % totalTestimonials);
+      }, 5000);
+    };
+
+    startAutoRotate();
+
+    return () => {
+      if (autoRotateRef.current) clearInterval(autoRotateRef.current);
+    };
   }, [totalTestimonials]);
 
   useEffect(() => {
@@ -161,19 +170,69 @@ export default function TradesHomePage() {
     });
   }, [activeReview]);
 
+  useEffect(() => {
+    const container = testimonialTrackRef.current;
+    if (!container) return;
+
+    const handleScroll = () => {
+      const children = Array.from(container.children) as HTMLElement[];
+      if (!children.length) return;
+
+      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+
+      let closestIndex = 0;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      children.forEach((child, index) => {
+        const childCenter = child.offsetLeft + child.clientWidth / 2;
+        const distance = Math.abs(containerCenter - childCenter);
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      setActiveReview((prev) => (prev !== closestIndex ? closestIndex : prev));
+    };
+
+    container.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+
+    return () => {
+      container.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
+  const restartAutoRotate = () => {
+    if (autoRotateRef.current) {
+      clearInterval(autoRotateRef.current);
+    }
+
+    autoRotateRef.current = setInterval(() => {
+      setActiveReview((prev) => (prev + 1) % totalTestimonials);
+    }, 5000);
+  };
+
   const nextTestimonial = () => {
     setActiveReview((prev) => (prev + 1) % totalTestimonials);
+    restartAutoRotate();
   };
 
   const prevTestimonial = () => {
     setActiveReview((prev) => (prev - 1 + totalTestimonials) % totalTestimonials);
+    restartAutoRotate();
+  };
+
+  const goToTestimonial = (index: number) => {
+    setActiveReview(index);
+    restartAutoRotate();
   };
 
   const testimonialDots = useMemo(() => testimonials.map((_, i) => i), []);
 
   return (
     <main className="min-h-screen bg-[#F8FAFC] text-[#0F172A] selection:bg-blue-100 selection:text-[#0F172A]">
-      {/* Demo Banner */}
       <div className="fixed inset-x-0 top-0 z-[90] border-b border-blue-300/40 bg-[linear-gradient(90deg,#2563EB_0%,#1D4ED8_100%)] px-4 py-3 text-center text-sm font-medium text-white shadow-[0_8px_30px_rgba(37,99,235,0.22)]">
         This is a demo website created by{" "}
         <Link
@@ -184,7 +243,6 @@ export default function TradesHomePage() {
         </Link>
       </div>
 
-      {/* Header */}
       <header className="fixed inset-x-0 top-[46px] z-[80] border-b border-slate-200/80 bg-white/90 backdrop-blur-md">
         <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
           <Link
@@ -258,7 +316,6 @@ export default function TradesHomePage() {
         </div>
       </header>
 
-      {/* Back Button */}
       <Link
         href="/"
         className={`fixed left-4 top-[8rem] z-[90] inline-flex items-center rounded-full border border-slate-200 bg-white/95 px-4 py-2 text-sm font-semibold text-[#2563EB] shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem]
@@ -271,7 +328,6 @@ export default function TradesHomePage() {
         ← Back to Clean Websites
       </Link>
 
-      {/* Mobile Menu */}
       {menuOpen && (
         <>
           <button
@@ -324,17 +380,15 @@ export default function TradesHomePage() {
       )}
 
       <div className="pt-[122px]">
-        {/* Hero */}
         <section className="relative overflow-hidden">
           <div
             className="absolute inset-0 scale-[1.02] bg-cover bg-center"
             style={{
               backgroundImage:
-                "url('https://images.unsplash.com/photo-1621905252507-b35492cc74b4?auto=format&fit=crop&w=1800&q=80')",
+                "url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1800&q=80')",
             }}
           />
           <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.84)_0%,rgba(15,23,42,0.66)_42%,rgba(15,23,42,0.45)_100%)]" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-[linear-gradient(to_top,rgba(248,250,252,1),rgba(248,250,252,0))]" />
 
           <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-20 md:grid-cols-[1.15fr_0.85fr] md:px-8 md:py-28">
             <div className="max-w-2xl animate-[fadeUp_.7s_ease-out]">
@@ -424,7 +478,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* Services Overview */}
         <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
           <div className="max-w-2xl animate-[fadeUp_.65s_ease-out]">
             <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
@@ -468,7 +521,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* Trust Strip */}
         <section className="border-y border-slate-200 bg-white">
           <div className="mx-auto grid max-w-7xl gap-6 px-5 py-8 text-center md:grid-cols-3 md:px-8 md:text-left">
             {[
@@ -489,7 +541,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* Why Choose Us */}
         <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
           <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-center">
             <div className="animate-[fadeUp_.7s_ease-out]">
@@ -542,7 +593,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* Testimonials */}
         <section className="overflow-hidden border-y border-slate-200 bg-white">
           <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
             <div className="flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
@@ -621,7 +671,7 @@ export default function TradesHomePage() {
                   key={index}
                   type="button"
                   aria-label={`Go to testimonial ${index + 1}`}
-                  onClick={() => setActiveReview(index)}
+                  onClick={() => goToTestimonial(index)}
                   className={`h-3 w-3 rounded-full transition duration-200 ${
                     activeReview === index ? "scale-110 bg-[#2563EB]" : "bg-slate-300 hover:bg-slate-400"
                   }`}
@@ -631,7 +681,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* CTA */}
         <section className="bg-[#0F172A]">
           <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
             <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.18)_0%,rgba(255,255,255,0.04)_100%)] p-8 shadow-[0_24px_80px_rgba(2,6,23,0.28)] md:p-10">
@@ -671,7 +720,6 @@ export default function TradesHomePage() {
           </div>
         </section>
 
-        {/* Footer */}
         <footer className="border-t border-slate-200 bg-white">
           <div className="mx-auto grid max-w-7xl gap-10 px-5 py-14 md:grid-cols-4 md:px-8">
             <div>
