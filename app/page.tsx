@@ -408,25 +408,7 @@ function DemoCard({
                 <div className="h-14 rounded-2xl bg-white/[0.04] sm:h-16" />
               </div>
             </motion.div>
-
-            <motion.div
-              style={interactionEnabled ? { transform: "translateZ(14px)" } : undefined}
-              className="absolute bottom-4 left-4 right-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 backdrop-blur sm:bottom-6 sm:left-6 sm:right-6 sm:rounded-[22px] sm:p-5"
-            >
-              <div className="text-sm text-[#F5F2EA]">
-                Example homepage direction
-              </div>
-              <motion.div
-                className="mt-2 h-9 rounded-2xl bg-[#3B82F6] sm:h-10"
-                whileHover={
-                  reduceMotion || !interactionEnabled ? {} : { scaleX: 1.02 }
-                }
-                transition={{ duration: 0.3 }}
-              />
-            </motion.div>
-          </motion.div>
-        </div>
-
+            
         <div className="relative overflow-hidden p-5 sm:p-6">
           <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
           <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
