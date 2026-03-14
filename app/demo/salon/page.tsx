@@ -178,12 +178,12 @@ export default function SalonLandingPage() {
           </Link>
         </div>
 
-        <Link
-          href="/"
-          className="animate-glow-soft fixed left-4 top-[4.1rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white"
-        >
-          ← Back to Clean Websites
-        </Link>
+<Link
+  href="/"
+  className="animate-glow-soft fixed left-4 top-[7.25rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem]"
+>
+  ← Back to Clean Websites
+</Link>
 
         <header className="fixed inset-x-0 top-[46px] z-[70] border-b border-[#edd7ea] bg-[rgba(255,245,252,0.9)] backdrop-blur-xl">
           <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-4 md:px-8">
@@ -297,7 +297,7 @@ export default function SalonLandingPage() {
           )}
         </header>
 
-        <section className="relative isolate overflow-hidden pt-[130px]">
+        <section className="relative isolate overflow-hidden pt-[180px] md:pt-[130px]">
           <div
             className="absolute inset-0 animate-fade-in bg-cover bg-center"
             style={{
