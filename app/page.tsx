@@ -408,6 +408,8 @@ function DemoCard({
                 <div className="h-14 rounded-2xl bg-white/[0.04] sm:h-16" />
               </div>
             </motion.div>
+          </motion.div>
+        </div>
             
         <div className="relative overflow-hidden p-5 sm:p-6">
           <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
