@@ -117,6 +117,17 @@ export default function SalonLandingPage() {
           }
         }
 
+        @keyframes menuIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.985);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
         @keyframes floatSoft {
           0%,
           100% {
@@ -247,62 +258,66 @@ export default function SalonLandingPage() {
           </div>
         </header>
 
+<Link
+  href="/"
+  className={`animate-glow-soft fixed left-4 top-[8rem] z-[90] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition-all duration-200 hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem] ${
+    menuOpen
+      ? "pointer-events-none opacity-0 -translate-y-2 md:pointer-events-auto md:opacity-100 md:translate-y-0"
+      : "opacity-100 translate-y-0"
+  }`}
+>
+  ← Back to Clean Websites
+</Link>
+        
+{menuOpen && (
+  <>
+    <button
+      type="button"
+      aria-label="Close menu overlay"
+      onClick={() => setMenuOpen(false)}
+      className="fixed inset-x-0 bottom-0 top-[7.15rem] z-[60] bg-[rgba(44,18,45,0.5)] transition-opacity duration-200 md:hidden"
+    />
+    <div className="fixed inset-x-4 top-[8.65rem] z-[70] origin-top rounded-[28px] border border-white/20 bg-[linear-gradient(180deg,rgba(83,31,74,0.96)_0%,rgba(53,24,59,0.96)_100%)] p-4 shadow-[0_22px_60px_rgba(39,16,44,0.42)] transition-all duration-200 ease-out animate-[menuIn_0.2s_ease-out] md:hidden">
+      <div className="flex flex-col gap-2">
         <Link
-          href="/"
-          className="animate-glow-soft fixed left-4 top-[7.25rem] z-[70] inline-flex items-center rounded-full border border-[#efc7e4] bg-white/95 px-4 py-2 text-sm font-semibold text-[#8d2d78] shadow-[0_10px_24px_rgba(141,45,120,0.18)] backdrop-blur-md transition hover:-translate-y-0.5 hover:bg-white md:top-[4.1rem] md:z-[90]"
+          href="/demo/salon"
+          onClick={() => setMenuOpen(false)}
+          className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
         >
-          ← Back to Clean Websites
+          Home
         </Link>
-
-        {menuOpen && (
-          <>
-            <button
-              type="button"
-              aria-label="Close menu overlay"
-              onClick={() => setMenuOpen(false)}
-              className="fixed inset-x-0 bottom-0 top-[7.15rem] z-[60] bg-[rgba(44,18,45,0.58)] backdrop-blur-[2px] md:hidden"
-            />
-            <div className="fixed inset-x-4 top-[8.65rem] z-[70] rounded-[28px] border border-white/20 bg-[linear-gradient(180deg,rgba(83,31,74,0.96)_0%,rgba(53,24,59,0.96)_100%)] p-4 shadow-[0_22px_60px_rgba(39,16,44,0.42)] md:hidden">
-              <div className="flex flex-col gap-2">
-                <Link
-                  href="/demo/salon"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
-                >
-                  Home
-                </Link>
-                <Link
-                  href="/demo/salon/about"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
-                >
-                  About
-                </Link>
-                <Link
-                  href="/demo/salon/services"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
-                >
-                  Services
-                </Link>
-                <Link
-                  href="/demo/salon/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
-                >
-                  Contact
-                </Link>
-                <Link
-                  href="/demo/salon/contact"
-                  onClick={() => setMenuOpen(false)}
-                  className="mt-3 inline-flex items-center justify-center rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3.5 text-center text-sm font-semibold text-white shadow-[0_12px_30px_rgba(161,70,160,0.26)]"
-                >
-                  Book Now
-                </Link>
-              </div>
-            </div>
-          </>
-        )}
+        <Link
+          href="/demo/salon/about"
+          onClick={() => setMenuOpen(false)}
+          className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
+        >
+          About
+        </Link>
+        <Link
+          href="/demo/salon/services"
+          onClick={() => setMenuOpen(false)}
+          className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
+        >
+          Services
+        </Link>
+        <Link
+          href="/demo/salon/contact"
+          onClick={() => setMenuOpen(false)}
+          className="rounded-2xl px-4 py-3 text-base font-medium text-white/95 transition hover:bg-white/10"
+        >
+          Contact
+        </Link>
+        <Link
+          href="/demo/salon/contact"
+          onClick={() => setMenuOpen(false)}
+          className="mt-3 inline-flex items-center justify-center rounded-full bg-[linear-gradient(90deg,#d14ca5_0%,#8d48d7_100%)] px-5 py-3.5 text-center text-sm font-semibold text-white shadow-[0_12px_30px_rgba(161,70,160,0.26)] transition hover:scale-[1.01]"
+        >
+          Book Now
+        </Link>
+      </div>
+    </div>
+  </>
+)}
 
         <section className="relative isolate overflow-hidden pt-[180px] md:pt-[130px]">
           <div
