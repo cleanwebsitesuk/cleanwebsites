@@ -15,21 +15,21 @@ const featuredDemos = [
     copy: "A booking-led example layout with services, gallery sections, and clear contact points.",
     href: "/demo/barber",
     kicker: "Demo website",
-    image: "/demo-previews/barber.jpg,
+    image: "/demo-previews/barber.jpg
   },
   {
     title: "Restaurant / Takeaway",
     copy: "A menu-first example build with opening hours, directions, and strong mobile action points.",
     href: "/demo/burger",
     kicker: "Demo website",
-    image: "/demo-previews/burger.jpg,
+    image: "/demo-previews/burger.jpg
   },
   {
     title: "Trades / Services",
     copy: "A service-led example layout with trust sections, coverage areas, and a clear quote request flow.",
     href: "/demo/trades",
     kicker: "Demo website",
-    image: "/demo-previews/trades.jpg,
+    image: "/demo-previews/trades.jpg
   },
 ];
 
