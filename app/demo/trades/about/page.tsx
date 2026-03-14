@@ -3,36 +3,6 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 
-const values = [
-  {
-    title: "Experienced service",
-    description:
-      "Bestflow Plumbing provides dependable plumbing support for homes and businesses across Bristol, with practical solutions tailored to each job.",
-  },
-  {
-    title: "Reliable workmanship",
-    description:
-      "From urgent repairs to planned installation work, every job is approached with care, clear communication, and attention to detail.",
-  },
-  {
-    title: "Qualified tradespeople",
-    description:
-      "Work is carried out by skilled professionals who understand the importance of safety, neatness, and getting the job done properly.",
-  },
-  {
-    title: "Customer-focused approach",
-    description:
-      "Customers want clear advice, fair pricing, and a service they can trust. That is exactly what Bestflow Plumbing is built around.",
-  },
-];
-
-const stats = [
-  { value: "10+", label: "Years of combined experience" },
-  { value: "Bristol", label: "Local service area" },
-  { value: "Fast", label: "Response to urgent issues" },
-  { value: "Trusted", label: "By local homeowners and businesses" },
-];
-
 export default function TradesAboutPage() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [showBackButton, setShowBackButton] = useState(true);
@@ -212,26 +182,30 @@ export default function TradesAboutPage() {
 
       <div className="pt-[122px]">
         {/* Hero */}
-        <section className="relative overflow-hidden border-b border-slate-200 bg-white">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(37,99,235,0.10),transparent_32%),radial-gradient(circle_at_left,rgba(37,99,235,0.06),transparent_28%)]" />
-
-          <div className="relative mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:py-24">
+        <section className="border-b border-slate-200 bg-white">
+          <div className="mx-auto grid max-w-7xl gap-12 px-5 py-16 md:grid-cols-[1.05fr_0.95fr] md:px-8 md:py-24">
             <div className="animate-[fadeUp_.7s_ease-out]">
               <div className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-[#2563EB]">
                 About Bestflow Plumbing
               </div>
 
               <h1 className="mt-5 max-w-2xl text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl">
-                A local Bristol plumbing company built around reliability
+                Local plumbing work done properly, with clear communication from
+                start to finish
               </h1>
 
               <p className="mt-6 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-                Bestflow Plumbing is a local plumbing company serving Bristol
-                with a straightforward approach: respond quickly, communicate
-                clearly, and carry out work properly. The business is designed
-                around what customers actually want from a trades company:
-                dependable service, qualified professionals, and practical
-                advice they can trust.
+                Bestflow Plumbing is a Bristol plumbing company focused on the
+                things customers care about most: turning up when expected,
+                explaining the work clearly, and getting the job done to a good
+                standard without unnecessary fuss.
+              </p>
+
+              <p className="mt-5 max-w-2xl text-base leading-8 text-slate-600">
+                From emergency plumbing issues to planned repairs and bathroom
+                work, the service is built to feel straightforward, reliable,
+                and professional for homeowners, landlords, and small
+                businesses.
               </p>
 
               <div className="mt-8 flex flex-col gap-4 sm:flex-row">
@@ -253,10 +227,10 @@ export default function TradesAboutPage() {
             <div className="animate-[fadeUp_.9s_ease-out]">
               <div className="overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
                 <div
-                  className="h-[320px] bg-cover bg-center sm:h-[420px]"
+                  className="h-[320px] bg-cover bg-center sm:h-[460px]"
                   style={{
                     backgroundImage:
-                      "url('https://images.unsplash.com/photo-1585704032915-c3400ca199e7?auto=format&fit=crop&w=1400&q=80')",
+                      "url('/demo/trades/about-hero.jpg')",
                   }}
                 />
               </div>
@@ -264,144 +238,184 @@ export default function TradesAboutPage() {
           </div>
         </section>
 
-        {/* Intro */}
+        {/* Main About Copy */}
         <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="animate-[fadeUp_.65s_ease-out]">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
                 Who We Are
               </p>
-              <h2 className="mt-3 text-3xl font-bold text-[#0F172A] sm:text-4xl">
-                A practical, customer-first plumbing service
+              <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
+                A practical local service for homes, landlords, and small
+                commercial jobs
               </h2>
             </div>
 
-            <div className="grid gap-6 text-slate-600">
+            <div className="space-y-6 text-slate-600">
               <p className="animate-[fadeUp_.75s_ease-out] text-base leading-8">
-                Bestflow Plumbing is presented as the kind of business local
-                homeowners, landlords, and commercial customers feel confident
-                calling when they need a job handled properly. Whether the work
-                is urgent or planned, the emphasis stays the same: reliable
-                workmanship, honest communication, and clear expectations.
+                Bestflow Plumbing is designed to feel like the kind of local
+                trades business people are comfortable calling when they need
+                help quickly or want a job handled properly the first time. The
+                approach is simple: be easy to deal with, be clear about the
+                work, and keep standards high across every job.
               </p>
               <p className="animate-[fadeUp_.85s_ease-out] text-base leading-8">
-                The business focuses on the everyday plumbing services that
-                matter most, from emergency repairs and leak detection to boiler
-                issues, bathroom plumbing, and ongoing maintenance. Every part
-                of the service is designed to feel professional without being
-                complicated or overdone.
+                That means giving customers honest advice, practical solutions,
+                and a clear idea of what to expect before work begins. Whether
+                it is a leaking pipe, an urgent repair, or a larger installation
+                project, the goal is always the same — dependable workmanship
+                and a service that feels organised and professional throughout.
+              </p>
+              <p className="animate-[fadeUp_.95s_ease-out] text-base leading-8">
+                For a local plumbing business, trust is built in the details:
+                prompt responses, tidy work, clear pricing, and the confidence
+                that the person doing the job knows what they are doing. That is
+                the standard Bestflow Plumbing is built around.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Stats */}
+        {/* Expectations Section */}
         <section className="border-y border-slate-200 bg-white">
-          <div className="mx-auto grid max-w-7xl gap-6 px-5 py-10 md:grid-cols-4 md:px-8">
-            {stats.map((stat, index) => (
-              <div
-                key={stat.label}
-                className="rounded-[24px] border border-slate-200 bg-[#F8FAFC] p-6 text-center shadow-[0_10px_30px_rgba(15,23,42,0.04)] transition duration-300 hover:-translate-y-0.5"
-                style={{
-                  animation: `fadeUp .55s ease-out ${index * 0.08}s both`,
-                }}
-              >
-                <div className="text-3xl font-bold text-[#2563EB]">
-                  {stat.value}
-                </div>
-                <p className="mt-2 text-sm font-medium text-slate-600">
-                  {stat.label}
+          <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-20">
+            <div className="grid gap-10 lg:grid-cols-[1fr_1fr] lg:items-start">
+              <div className="animate-[fadeUp_.65s_ease-out]">
+                <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
+                  What Customers Can Expect
                 </p>
+                <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
+                  Clear service, qualified tradespeople, and work completed with
+                  care
+                </h2>
               </div>
-            ))}
+
+              <div className="grid gap-6">
+                {[
+                  {
+                    title: "Straightforward communication",
+                    text: "Customers should not have to chase for updates or guess what is happening. The service is built around being clear, responsive, and easy to deal with.",
+                  },
+                  {
+                    title: "Reliable workmanship",
+                    text: "Every job should feel properly handled, whether it is a quick repair or more involved plumbing work. The focus stays on quality, neatness, and practical results.",
+                  },
+                  {
+                    title: "Qualified professionals",
+                    text: "Experience matters, but so does professionalism. The work is presented in a way that gives customers confidence from the first enquiry onwards.",
+                  },
+                ].map((item, index) => (
+                  <div
+                    key={item.title}
+                    className="border-b border-slate-200 pb-6 last:border-b-0 last:pb-0"
+                    style={{
+                      animation: `fadeUp .55s ease-out ${index * 0.08}s both`,
+                    }}
+                  >
+                    <h3 className="text-xl font-semibold text-[#0F172A]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 max-w-2xl text-sm leading-7 text-slate-600">
+                      {item.text}
+                    </p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </section>
 
-        {/* Values */}
+        {/* Image + Local Focus */}
         <section className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
-          <div className="max-w-2xl animate-[fadeUp_.65s_ease-out]">
-            <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
-              What Matters
-            </p>
-            <h2 className="mt-3 text-3xl font-bold text-[#0F172A] sm:text-4xl">
-              Built around the qualities customers look for in a trades business
-            </h2>
-            <p className="mt-4 text-slate-600">
-              Bestflow Plumbing is designed to reflect the priorities that make
-              a local service feel trustworthy and professional.
-            </p>
-          </div>
-
-          <div className="mt-10 grid gap-6 sm:grid-cols-2">
-            {values.map((value, index) => (
+          <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
+            <div className="animate-[fadeUp_.7s_ease-out] overflow-hidden rounded-[32px] border border-slate-200 bg-white shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
               <div
-                key={value.title}
-                className="rounded-[28px] border border-slate-200 bg-white p-6 shadow-[0_10px_30px_rgba(15,23,42,0.05)] transition duration-300 hover:-translate-y-1 hover:border-blue-200 hover:shadow-[0_16px_40px_rgba(37,99,235,0.10)]"
-                style={{
-                  animation: `fadeUp .55s ease-out ${index * 0.08}s both`,
-                }}
-              >
-                <span className="inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-blue-50 text-xl text-[#2563EB]">
-                  ✓
-                </span>
-                <h3 className="mt-5 text-xl font-semibold text-[#0F172A]">
-                  {value.title}
-                </h3>
-                <p className="mt-3 text-sm leading-7 text-slate-600">
-                  {value.description}
-                </p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Image + Copy */}
-        <section className="bg-white">
-          <div className="mx-auto grid max-w-7xl gap-10 px-5 py-16 md:grid-cols-[0.9fr_1.1fr] md:px-8 md:py-24">
-            <div className="animate-[fadeUp_.7s_ease-out] overflow-hidden rounded-[32px] border border-slate-200 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
-              <div
-                className="h-[320px] bg-cover bg-center sm:h-[460px]"
+                className="h-[320px] bg-cover bg-center sm:h-[480px]"
                 style={{
                   backgroundImage:
-                    "url('https://images.unsplash.com/photo-1600566752355-35792bedcfea?auto=format&fit=crop&w=1400&q=80')",
+                    "url('/demo/trades/about-secondary.jpg')",
                 }}
               />
             </div>
 
             <div className="animate-[fadeUp_.85s_ease-out]">
               <p className="text-sm font-semibold uppercase tracking-[0.14em] text-[#2563EB]">
-                Local Service
+                Bristol Service Area
               </p>
-              <h2 className="mt-3 text-3xl font-bold text-[#0F172A] sm:text-4xl">
-                Serving Bristol with clear communication and dependable support
+              <h2 className="mt-3 text-3xl font-bold leading-tight text-[#0F172A] sm:text-4xl">
+                A local business that feels dependable before the job even begins
               </h2>
-              <div className="mt-6 grid gap-5 text-slate-600">
+
+              <div className="mt-6 space-y-5 text-slate-600">
                 <p className="text-base leading-8">
-                  For many customers, hiring a plumber is about more than just
-                  technical skill. It is about whether the service feels
-                  dependable, whether the pricing is explained clearly, and
-                  whether the work is completed to a good standard without
-                  unnecessary hassle.
+                  For many customers, choosing a plumber comes down to trust.
+                  They want to know the business is local, the work will be
+                  handled properly, and the process will feel clear from the
+                  first phone call onwards.
                 </p>
                 <p className="text-base leading-8">
-                  Bestflow Plumbing is shaped around that expectation. The tone
-                  is straightforward, the service offering is practical, and the
-                  experience is designed to feel efficient and trustworthy from
-                  the first enquiry through to the completed job.
+                  Bestflow Plumbing is presented with exactly that in mind. The
+                  tone is straightforward, the service offering is practical,
+                  and the experience is designed to feel realistic for the kind
+                  of local plumbing company people genuinely use and recommend.
                 </p>
                 <p className="text-base leading-8">
-                  This makes it a strong example of the type of website a real
-                  local trades business could confidently use to attract new
-                  enquiries and reassure customers before they get in touch.
+                  That makes this a stronger, more believable example of a
+                  trades website: clean and modern, but still grounded in what
+                  matters to real customers.
                 </p>
               </div>
+
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <p className="text-sm font-semibold text-[#0F172A]">
+                    Domestic plumbing
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    Repairs, maintenance, and installation work for homes across
+                    Bristol.
+                  </p>
+                </div>
+                <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                  <p className="text-sm font-semibold text-[#0F172A]">
+                    Small commercial work
+                  </p>
+                  <p className="mt-2 text-sm leading-7 text-slate-600">
+                    Practical plumbing support for local premises, landlords,
+                    and managed properties.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Trust Strip */}
+        <section className="bg-[#0F172A]">
+          <div className="mx-auto max-w-7xl px-5 py-10 md:px-8">
+            <div className="grid gap-6 text-center md:grid-cols-3 md:text-left">
+              {[
+                "Fast response across Bristol",
+                "Qualified, professional plumbing support",
+                "Clear quotes and dependable workmanship",
+              ].map((item, index) => (
+                <div
+                  key={item}
+                  className="rounded-2xl border border-white/10 bg-white/5 px-5 py-5 text-sm font-medium text-slate-200"
+                  style={{
+                    animation: `fadeUp .55s ease-out ${index * 0.08}s both`,
+                  }}
+                >
+                  {item}
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA */}
         <section className="bg-[#0F172A]">
-          <div className="mx-auto max-w-7xl px-5 py-16 md:px-8 md:py-24">
+          <div className="mx-auto max-w-7xl px-5 pb-16 md:px-8 md:pb-24">
             <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[linear-gradient(135deg,rgba(37,99,235,0.18)_0%,rgba(255,255,255,0.04)_100%)] p-8 shadow-[0_24px_80px_rgba(2,6,23,0.28)] md:p-10">
               <div className="absolute -right-16 -top-16 h-48 w-48 rounded-full bg-blue-500/10 blur-3xl" />
               <div className="absolute -bottom-20 left-10 h-48 w-48 rounded-full bg-white/5 blur-3xl" />
