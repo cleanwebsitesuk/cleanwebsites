@@ -373,6 +373,7 @@ export default function SalonLandingPage() {
               Explore all services →
             </Link>
           </div>
+        </div>
         </section>
 
           <div className="mt-12 grid gap-6 md:grid-cols-2 xl:grid-cols-4">
