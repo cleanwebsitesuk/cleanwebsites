@@ -154,39 +154,36 @@ export default function TradesHomePage() {
     };
   }, [totalTestimonials]);
 
-  useEffect(() => {
-    if (!testimonialTrackRef.current) return;
+  const scrollToTestimonial = (index: number) => {
     const container = testimonialTrackRef.current;
-    const card = container.children[activeReview] as HTMLElement | undefined;
+    if (!container) return;
 
+    const card = container.children[index] as HTMLElement | undefined;
     if (!card) return;
 
-    const left =
-      card.offsetLeft - (container.clientWidth - card.clientWidth) / 2;
-
     container.scrollTo({
-      left,
+      left: card.offsetLeft,
       behavior: "smooth",
     });
-  }, [activeReview]);
+  };
 
   useEffect(() => {
     const container = testimonialTrackRef.current;
     if (!container) return;
 
-    const handleScroll = () => {
+    let ticking = false;
+
+    const updateActiveFromScroll = () => {
       const children = Array.from(container.children) as HTMLElement[];
       if (!children.length) return;
 
-      const containerCenter = container.scrollLeft + container.clientWidth / 2;
+      const scrollLeft = container.scrollLeft;
 
       let closestIndex = 0;
-      let closestDistance = Number.POSITIVE_INFINITY;
+      let closestDistance = Infinity;
 
       children.forEach((child, index) => {
-        const childCenter = child.offsetLeft + child.clientWidth / 2;
-        const distance = Math.abs(containerCenter - childCenter);
-
+        const distance = Math.abs(child.offsetLeft - scrollLeft);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -194,10 +191,18 @@ export default function TradesHomePage() {
       });
 
       setActiveReview((prev) => (prev !== closestIndex ? closestIndex : prev));
+      ticking = false;
+    };
+
+    const handleScroll = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(updateActiveFromScroll);
+        ticking = true;
+      }
     };
 
     container.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
+    updateActiveFromScroll();
 
     return () => {
       container.removeEventListener("scroll", handleScroll);
@@ -205,9 +210,7 @@ export default function TradesHomePage() {
   }, []);
 
   const restartAutoRotate = () => {
-    if (autoRotateRef.current) {
-      clearInterval(autoRotateRef.current);
-    }
+    if (autoRotateRef.current) clearInterval(autoRotateRef.current);
 
     autoRotateRef.current = setInterval(() => {
       setActiveReview((prev) => (prev + 1) % totalTestimonials);
@@ -215,17 +218,22 @@ export default function TradesHomePage() {
   };
 
   const nextTestimonial = () => {
-    setActiveReview((prev) => (prev + 1) % totalTestimonials);
+    const nextIndex = (activeReview + 1) % totalTestimonials;
+    setActiveReview(nextIndex);
+    scrollToTestimonial(nextIndex);
     restartAutoRotate();
   };
 
   const prevTestimonial = () => {
-    setActiveReview((prev) => (prev - 1 + totalTestimonials) % totalTestimonials);
+    const prevIndex = (activeReview - 1 + totalTestimonials) % totalTestimonials;
+    setActiveReview(prevIndex);
+    scrollToTestimonial(prevIndex);
     restartAutoRotate();
   };
 
   const goToTestimonial = (index: number) => {
     setActiveReview(index);
+    scrollToTestimonial(index);
     restartAutoRotate();
   };
 
@@ -632,12 +640,12 @@ export default function TradesHomePage() {
             <div className="relative mt-10">
               <div
                 ref={testimonialTrackRef}
-                className="flex snap-x snap-mandatory gap-5 overflow-x-auto scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+                className="flex gap-5 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
               >
                 {testimonials.map((testimonial, index) => (
                   <article
                     key={index}
-                    className={`min-w-[88%] snap-center rounded-[28px] border p-7 shadow-[0_14px_40px_rgba(15,23,42,0.06)] transition duration-300 sm:min-w-[70%] lg:min-w-[48%] xl:min-w-[38%] ${
+                    className={`w-[88%] shrink-0 snap-start rounded-[28px] border p-7 shadow-[0_14px_40px_rgba(15,23,42,0.06)] transition duration-300 sm:w-[70%] lg:w-[48%] xl:w-[38%] ${
                       activeReview === index
                         ? "border-blue-200 bg-blue-50/50"
                         : "border-slate-200 bg-white"
@@ -673,7 +681,9 @@ export default function TradesHomePage() {
                   aria-label={`Go to testimonial ${index + 1}`}
                   onClick={() => goToTestimonial(index)}
                   className={`h-3 w-3 rounded-full transition duration-200 ${
-                    activeReview === index ? "scale-110 bg-[#2563EB]" : "bg-slate-300 hover:bg-slate-400"
+                    activeReview === index
+                      ? "scale-110 bg-[#2563EB]"
+                      : "bg-slate-300 hover:bg-slate-400"
                   }`}
                 />
               ))}
