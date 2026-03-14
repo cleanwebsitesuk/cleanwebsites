@@ -15,18 +15,21 @@ const featuredDemos = [
     copy: "A booking-led example layout with services, gallery sections, and clear contact points.",
     href: "/demo/barber",
     kicker: "Demo website",
+    image: "/demo-previews/barber.jpg,
   },
   {
     title: "Restaurant / Takeaway",
     copy: "A menu-first example build with opening hours, directions, and strong mobile action points.",
     href: "/demo/burger",
     kicker: "Demo website",
+    image: "/demo-previews/burger.jpg,
   },
   {
     title: "Trades / Services",
     copy: "A service-led example layout with trust sections, coverage areas, and a clear quote request flow.",
     href: "/demo/trades",
     kicker: "Demo website",
+    image: "/demo-previews/trades.jpg,
   },
 ];
 
@@ -401,7 +404,13 @@ function DemoCard({
                   Preview build
                 </span>
               </div>
-              <div className="mt-4 h-36 rounded-[16px] bg-white/[0.05] sm:mt-5 sm:h-44 sm:rounded-[18px]" />
+              <div className="mt-4 overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] sm:mt-5 sm:rounded-[18px]">
+  <img
+    src={card.image}
+    alt={`${card.title} preview`}
+    className="h-36 w-full object-cover object-top sm:h-44"
+  />
+</div>
             </motion.div>
           </motion.div>
         </div>
