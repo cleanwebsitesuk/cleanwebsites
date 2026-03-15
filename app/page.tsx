@@ -2,34 +2,85 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import {
-  AnimatePresence,
-  motion,
-  useReducedMotion,
-} from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
+import { useEffect, useMemo, useState } from "react";
 
-const featuredDemos = [
+const exampleSites = [
   {
     title: "Barber / Salon",
-    copy: "A booking-led example layout with services, gallery sections, and clear contact points.",
+    desc: "A booking-focused layout with services, pricing, gallery space, and clear contact points.",
     href: "/demo/barber",
-    kicker: "Demo website",
     image: "/demo-previews/barber.jpg",
+    tag: "Example website",
   },
   {
     title: "Restaurant / Takeaway",
-    copy: "A menu-first example build with opening hours, directions, and strong mobile action points.",
+    desc: "A menu-first layout with opening hours, directions, featured items, and strong mobile actions.",
     href: "/demo/burger",
-    kicker: "Demo website",
     image: "/demo-previews/burger.jpg",
+    tag: "Example website",
   },
   {
     title: "Trades / Services",
-    copy: "A service-led example layout with trust sections, coverage areas, and a clear quote request flow.",
+    desc: "A service-led layout with trust sections, coverage areas, quote flow, and enquiry points.",
     href: "/demo/trades",
-    kicker: "Demo website",
     image: "/demo-previews/trades.jpg",
+    tag: "Example website",
+  },
+];
+
+const whoItsFor = [
+  {
+    title: "Local service businesses",
+    text: "Ideal for trades, salons, barbers, restaurants, studios, and other businesses that need a proper website.",
+  },
+  {
+    title: "Owners who need something done properly",
+    text: "You do not need to figure out hosting, SSL, layout, structure, or launch setup yourself.",
+  },
+  {
+    title: "Businesses that need to look credible fast",
+    text: "Built for businesses that want a clear, modern online presence without a long agency process.",
+  },
+];
+
+const includedItems = [
+  "Home page",
+  "About page",
+  "Services or menu page",
+  "Contact or booking page",
+  "Contact or booking form",
+  "Mobile-first layout",
+  "One revision before launch",
+  "Domain connection support",
+  "SSL setup",
+  "Launch support",
+];
+
+const notIncludedItems = [
+  "Ecommerce stores",
+  "Advanced custom systems",
+  "Large-scale copywriting projects",
+  "Branding or logo design",
+  "Unlimited revisions",
+];
+
+const supportItems = [
+  {
+    title: "Managed hosting",
+    text: "Your website runs on secure hosting that is set up and managed for you after launch.",
+  },
+  {
+    title: "Free SSL certificate",
+    text: "Your site includes HTTPS security so visitors see a secure connection in their browser.",
+  },
+  {
+    title: "Technical setup handled",
+    text: "Domain connection, deployment, and launch setup are handled for you.",
+  },
+  {
+    title: "Ongoing technical management",
+    text: "The technical side stays managed so you are not left figuring out setup problems yourself.",
   },
 ];
 
@@ -37,83 +88,72 @@ const processSteps = [
   {
     step: "01",
     title: "Send your details",
-    desc: "Tell us about your business and share your logo, services, and contact details.",
+    desc: "Tell us about your business and send your services, logo, and contact details.",
   },
   {
     step: "02",
-    title: "We build your site",
-    desc: "Your website is structured and styled around your business.",
+    title: "We build the first draft",
+    desc: "Your website is structured around your business with a clear, mobile-friendly layout.",
   },
   {
     step: "03",
-    title: "You review",
-    desc: "One revision is included to refine layout or content.",
+    title: "You review it",
+    desc: "You review the draft and request your included revision before anything goes live.",
   },
   {
     step: "04",
-    title: "We launch",
-    desc: "We connect your domain, set up SSL, and launch the site.",
+    title: "We launch it",
+    desc: "We connect the domain, set up SSL, and launch the site properly.",
   },
 ];
 
-const trustCards = [
+const reasons = [
   {
-    title: "Clear structure",
-    copy: "Visitors can quickly understand what you do and how to contact you.",
+    title: "Clear fixed starting price",
+    copy: "You can see the starting price on the homepage instead of being forced into a call just to find out basic costs.",
   },
   {
-    title: "Mobile-first layout",
-    copy: "Built to look clean and work properly on phones as well as desktop.",
+    title: "Simple process",
+    copy: "No bloated agency workflow. Just a clear path from business details to review to launch.",
   },
   {
-    title: "Fast loading pages",
-    copy: "Focused on speed, clarity, and easy enquiry or booking points.",
+    title: "Built for enquiries",
+    copy: "The structure is designed to make it obvious what you do and how customers should contact you.",
+  },
+  {
+    title: "You keep ownership",
+    copy: "Your domain is registered in your name, so you are not locked out of your own website identity.",
   },
 ];
 
-const supportItems = [
+const faqs = [
   {
-    title: "Secure hosting",
-    text: "Your website runs on fast, secure hosting so it loads quickly and stays online reliably.",
+    q: "How long does it take?",
+    a: "Once your content and business details are received, the first draft can often be prepared within a few days. More complex projects take longer, but the process is kept straightforward.",
   },
   {
-    title: "Free SSL certificate",
-    text: "Your site includes HTTPS security so visitors see the secure padlock in their browser.",
+    q: "Are the example websites templates?",
+    a: "They are example layouts showing style and structure. Your website is adapted around your business details, services, and contact flow.",
   },
   {
-    title: "Domain connection setup",
-    text: "We connect your domain so when people type your website address they reach your live site correctly.",
+    q: "Do I own the domain?",
+    a: "Yes. Your domain is purchased in your name, so you keep ownership of it.",
   },
   {
-    title: "Deployment and launch support",
-    text: "We handle the technical launch and check everything after the site goes live to make sure it works properly.",
+    q: "What happens after I click start?",
+    a: "You send the business details needed for the project, then the next steps are reviewed and your build can begin.",
   },
   {
-    title: "Technical management",
-    text: "We handle the technical side so you don't have to worry about updates, uptime, or setup issues.",
+    q: "Can I request changes?",
+    a: "Yes. One revision is included before launch so layout or content can be refined.",
+  },
+  {
+    q: "What is not included?",
+    a: "This offer is built for straightforward brochure-style business websites. Advanced functionality, ecommerce, or large custom systems are outside the standard launch package.",
   },
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 22 },
-  show: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.72, ease: easeOut },
-  },
-};
-
-const heroContainer = {
-  hidden: {},
-  show: {
-    transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.06,
-    },
-  },
-};
 
 function ArrowRight() {
   return (
@@ -129,6 +169,41 @@ function ArrowRight() {
     >
       <path d="M5 12h14" />
       <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="mt-0.5 h-5 w-5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function XIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="mt-0.5 h-5 w-5 shrink-0"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.9"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m18 6-12 12" />
+      <path d="m6 6 12 12" />
     </svg>
   );
 }
@@ -157,14 +232,14 @@ function MenuIcon({ open }: { open: boolean }) {
 
 function Reveal({
   children,
-  delay = 0,
-  amount = 0.2,
   className,
+  delay = 0,
+  amount = 0.25,
 }: {
   children: React.ReactNode;
+  className?: string;
   delay?: number;
   amount?: number;
-  className?: string;
 }) {
   const reduceMotion = useReducedMotion();
 
@@ -175,7 +250,7 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
       transition={{ duration: 0.72, delay, ease: easeOut }}
@@ -185,111 +260,167 @@ function Reveal({
   );
 }
 
-function MagneticLink({
-  children,
-  className,
-  href,
-  disabled = false,
-}: {
-  children: React.ReactNode;
-  className: string;
-  href: string;
-  disabled?: boolean;
-}) {
-  const reduceMotion = useReducedMotion();
-  const [style, setStyle] = useState({ x: 0, y: 0 });
-
-  const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion || disabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.08;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.08;
-    setStyle({ x, y });
-  };
-
-  const handleLeave = () => setStyle({ x: 0, y: 0 });
-
+function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <motion.div
-      animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }}
-      transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}
-    >
-      <Link
-        href={href}
-        className={className}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-      >
-        {children}
-      </Link>
-    </motion.div>
+    <div className="inline-flex rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3]">
+      {children}
+    </div>
   );
 }
 
-function InfoTooltip({ text }: { text: string }) {
-  const [open, setOpen] = useState(false);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+function PrimaryButton({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
 
-  useEffect(() => {
-    if (!open) return;
+function SecondaryButton({
+  href,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
 
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        wrapperRef.current &&
-        !wrapperRef.current.contains(event.target as Node)
-      ) {
-        setOpen(false);
-      }
-    };
-
-    const handleEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    document.addEventListener("keydown", handleEscape);
-
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-      document.removeEventListener("keydown", handleEscape);
-    };
-  }, [open]);
+function ExampleCard({
+  title,
+  desc,
+  href,
+  image,
+  tag,
+}: {
+  title: string;
+  desc: string;
+  href: string;
+  image: string;
+  tag: string;
+}) {
+  const reduceMotion = useReducedMotion();
 
   return (
-    <div ref={wrapperRef} className="relative ml-2 inline-flex shrink-0">
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      whileHover={reduceMotion ? {} : { y: -6 }}
+      transition={{ duration: 0.28, ease: easeOut }}
+      className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] transition duration-300 hover:border-white/20 hover:shadow-[0_24px_60px_rgba(0,0,0,0.28)]"
+    >
+      <div className="relative h-60 overflow-hidden border-b border-white/10 bg-[#0D0E10] sm:h-72">
+        <Image
+          src={image}
+          alt={`${title} example website preview`}
+          fill
+          className="object-cover object-top transition duration-700 group-hover:scale-[1.03]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0B]/70 via-transparent to-transparent" />
+        <div className="absolute left-4 top-4 rounded-full border border-white/10 bg-[#0A0A0B]/70 px-3 py-1 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] backdrop-blur">
+          {tag}
+        </div>
+      </div>
+
+      <div className="p-5 sm:p-6">
+        <h3 className="text-2xl font-medium tracking-[-0.03em] text-[#F5F2EA]">
+          {title}
+        </h3>
+        <p className="mt-3 text-sm leading-7 text-[#A9ABB3]">{desc}</p>
+        <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
+          Open example
+          <ArrowRight />
+        </div>
+      </div>
+    </motion.a>
+  );
+}
+
+function BulletListCard({
+  title,
+  items,
+  negative = false,
+}: {
+  title: string;
+  items: string[];
+  negative?: boolean;
+}) {
+  return (
+    <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:p-6">
+      <h3 className="text-xl font-medium tracking-[-0.03em] text-[#F5F2EA]">
+        {title}
+      </h3>
+      <div className="mt-5 space-y-3">
+        {items.map((item) => (
+          <div key={item} className="flex items-start gap-3">
+            <div className={negative ? "text-[#A9ABB3]" : "text-[#8BB5FF]"}>
+              {negative ? <XIcon /> : <CheckIcon />}
+            </div>
+            <span className="text-sm leading-7 text-[#A9ABB3]">{item}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+function FAQItem({
+  q,
+  a,
+  open,
+  onClick,
+}: {
+  q: string;
+  a: string;
+  open: boolean;
+  onClick: () => void;
+}) {
+  return (
+    <div className="rounded-[22px] border border-white/10 bg-[#111214]">
       <button
         type="button"
-        aria-label="More information"
+        onClick={onClick}
+        className="flex w-full items-center justify-between gap-4 px-5 py-5 text-left sm:px-6"
         aria-expanded={open}
-        onClick={() => setOpen((value) => !value)}
-        className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#A9ABB3] transition hover:border-white/25 hover:text-[#F5F2EA]"
       >
-        <svg
-          aria-hidden="true"
-          viewBox="0 0 24 24"
-          className="h-3.5 w-3.5"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="1.9"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <circle cx="12" cy="12" r="9" />
-          <path d="M12 10v5" />
-          <path d="M12 7.5h.01" />
-        </svg>
+        <span className="text-[15px] font-medium text-[#F5F2EA] sm:text-[16px]">
+          {q}
+        </span>
+        <span className="shrink-0 text-[#A9ABB3]">{open ? "−" : "+"}</span>
       </button>
-
-      <AnimatePresence>
+      <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            initial={{ opacity: 0, y: 8, scale: 0.96 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 6, scale: 0.98 }}
-            transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute right-0 top-7 z-30 w-64 rounded-2xl border border-white/10 bg-[#111214] p-3 text-left text-xs leading-6 text-[#A9ABB3] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:w-72"
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.24, ease: easeOut }}
+            className="overflow-hidden"
           >
-            {text}
+            <div className="px-5 pb-5 pt-0 text-sm leading-7 text-[#A9ABB3] sm:px-6 sm:pb-6">
+              {a}
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -297,185 +428,17 @@ function InfoTooltip({ text }: { text: string }) {
   );
 }
 
-function SupportItem({
-  title,
-  text,
-}: {
-  title: string;
-  text: string;
-}) {
-  return (
-    <div>
-      <div className="flex items-start justify-between gap-3">
-        <span className="text-sm text-[#F5F2EA]">{title}</span>
-        <div className="hidden sm:block">
-          <InfoTooltip text={text} />
-        </div>
-      </div>
-      <p className="mt-1 text-sm leading-6 text-[#7F828A] sm:hidden">{text}</p>
-    </div>
-  );
-}
-
-function DemoCard({
-  card,
-  index,
-  interactionEnabled,
-}: {
-  card: (typeof featuredDemos)[number];
-  index: number;
-  interactionEnabled: boolean;
-}) {
-  const reduceMotion = useReducedMotion();
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
-  const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion || !interactionEnabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-    const ry = (px - 0.5) * 6;
-    const rx = (0.5 - py) * 5;
-    setRotateX(rx);
-    setRotateY(ry);
-  };
-
-  const handleLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
-
-  return (
-    <Reveal delay={index * 0.08}>
-      <motion.a
-        href={card.href}
-        target="_blank"
-        rel="noreferrer"
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        whileHover={
-          reduceMotion || !interactionEnabled ? {} : { y: -8 }
-        }
-        transition={{ duration: 0.35, ease: easeOut }}
-        style={
-          interactionEnabled
-            ? {
-                transformStyle: "preserve-3d",
-                rotateX,
-                rotateY,
-              }
-            : undefined
-        }
-        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_80px_rgba(0,0,0,0.32)] sm:rounded-[28px]"
-      >
-        <div className="relative h-64 overflow-hidden border-b border-white/10 bg-[#0D0E10] sm:h-72 lg:h-[20rem]">
-          <motion.div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_35%)]"
-            animate={
-              reduceMotion || !interactionEnabled
-                ? {}
-                : { scale: [1, 1.04, 1] }
-            }
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute inset-0"
-            transition={{ duration: 0.55, ease: easeOut }}
-            whileHover={
-              reduceMotion || !interactionEnabled
-                ? {}
-                : { scale: 1.035, y: -4 }
-            }
-          >
-            <motion.div
-              style={interactionEnabled ? { transform: "translateZ(28px)" } : undefined}
-              className="absolute left-4 right-4 top-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 sm:left-6 sm:right-6 sm:top-6 sm:rounded-[22px] sm:p-5"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
-                  {card.kicker}
-                </span>
-                <span className="rounded-full bg-[#3B82F6]/15 px-2.5 py-1 text-[11px] text-[#8BB5FF] sm:px-3 sm:text-xs">
-                  Preview build
-                </span>
-              </div>
-              <div className="mt-4 overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] sm:mt-5 sm:rounded-[18px]">
-  <img
-    src={card.image}
-    alt={`${card.title} preview`}
-    className="h-36 w-full object-cover object-top sm:h-44"
-  />
-</div>
-            </motion.div>
-          </motion.div>
-        </div>
-
-        <div className="relative overflow-hidden p-5 sm:p-6">
-          <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-          <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
-          <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[26px]">
-            {card.title}
-          </h3>
-          <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-            {card.copy}
-          </p>
-          <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
-            Open demo
-            <ArrowRight />
-          </div>
-        </div>
-      </motion.a>
-    </Reveal>
-  );
-}
-
-function PriceHighlight({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const reduceMotion = useReducedMotion();
-
-  return (
-    <motion.div
-      initial={reduceMotion ? false : { opacity: 0, scale: 0.96, y: 10 }}
-      whileInView={reduceMotion ? {} : { opacity: 1, scale: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.6 }}
-      transition={{ duration: 0.55, ease: easeOut }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
   const reduceMotion = useReducedMotion();
-  const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 28);
+    const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
   }, []);
 
   useEffect(() => {
@@ -485,51 +448,19 @@ export default function Home() {
     };
   }, [mobileOpen]);
 
+  const year = useMemo(() => new Date().getFullYear(), []);
+
   return (
-    <div className="min-h-screen bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
+    <div className="min-h-screen bg-[#0A0A0B] text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <motion.div
-          animate={
-            motionEnabled
-              ? {
-                  x: [0, 20, -10, 0],
-                  y: [0, -14, 10, 0],
-                  scale: [1, 1.04, 0.98, 1],
-                }
-              : {}
-          }
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[32rem] sm:w-[32rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
-        />
-        <motion.div
-          animate={
-            motionEnabled
-              ? {
-                  x: [0, -24, 12, 0],
-                  y: [0, 16, -8, 0],
-                  scale: [1, 0.98, 1.03, 1],
-                }
-              : {}
-          }
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/8 sm:blur-[140px]"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute left-[-12%] top-[-8%] h-[26rem] w-[26rem] rounded-full bg-[#3B82F6]/10 blur-[130px]" />
+        <div className="absolute bottom-[-14%] right-[-10%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
+        <div className="absolute inset-0 opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
       </div>
 
       <motion.header
-        animate={{
-          backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
-        }}
+        animate={{ backdropFilter: scrolled ? "blur(20px)" : "blur(0px)" }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
             ? "border-b border-white/10 bg-[#0A0A0B]/72"
@@ -542,47 +473,37 @@ export default function Home() {
           }`}
         >
           <Link href="/" className="flex items-center gap-3">
-            <motion.div
-              animate={{ scale: scrolled ? 0.96 : 1 }}
-              transition={{ duration: 0.25 }}
-            >
-              <Image
-                src="/logo.png"
-                alt="Clean Websites logo"
-                width={144}
-                height={40}
-                className="h-8 w-auto opacity-95 sm:h-9"
-              />
-            </motion.div>
+            <Image
+              src="/logo.png"
+              alt="Clean Websites logo"
+              width={144}
+              height={40}
+              className="h-8 w-auto opacity-95 sm:h-9"
+            />
           </Link>
 
           <nav className="hidden items-center gap-8 text-[15px] text-[#A9ABB3] md:flex">
-            <a className="transition hover:text-[#F5F2EA]" href="#demos">
-              Demos
+            <a href="#who" className="transition hover:text-[#F5F2EA]">
+              Who it&apos;s for
             </a>
-            <a className="transition hover:text-[#F5F2EA]" href="#process">
-              Process
-            </a>
-            <a className="transition hover:text-[#F5F2EA]" href="#pricing">
+            <a href="#pricing" className="transition hover:text-[#F5F2EA]">
               Pricing
+            </a>
+            <a href="#examples" className="transition hover:text-[#F5F2EA]">
+              Examples
+            </a>
+            <a href="#faq" className="transition hover:text-[#F5F2EA]">
+              FAQ
             </a>
           </nav>
 
           <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href="#demos"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
-            >
-              View demo websites
-            </Link>
-
-            <MagneticLink
-              href="/start"
-              disabled={isMobile}
-              className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
-            >
-              Get my website quote
-            </MagneticLink>
+            <SecondaryButton href="#examples" className="h-11 px-4">
+              View example websites
+            </SecondaryButton>
+            <PrimaryButton href="/start" className="h-11 px-5">
+              Start my website
+            </PrimaryButton>
           </div>
 
           <button
@@ -598,17 +519,18 @@ export default function Home() {
         <AnimatePresence>
           {mobileOpen && (
             <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.24, ease: easeOut }}
+              initial={reduceMotion ? false : { opacity: 0, y: -10 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              exit={reduceMotion ? {} : { opacity: 0, y: -8 }}
+              transition={{ duration: 0.22, ease: easeOut }}
               className="border-t border-white/10 bg-[#0A0A0B]/96 px-5 pb-5 pt-4 shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur md:hidden"
             >
               <div className="mx-auto flex max-w-7xl flex-col gap-2">
                 {[
-                  { href: "#demos", label: "Demos" },
-                  { href: "#process", label: "Process" },
+                  { href: "#who", label: "Who it's for" },
                   { href: "#pricing", label: "Pricing" },
+                  { href: "#examples", label: "Examples" },
+                  { href: "#faq", label: "FAQ" },
                 ].map((item) => (
                   <a
                     key={item.label}
@@ -620,21 +542,16 @@ export default function Home() {
                   </a>
                 ))}
 
-                <Link
-                  href="#demos"
-                  onClick={() => setMobileOpen(false)}
-                  className="mt-2 inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA]"
+                <SecondaryButton
+                  href="#examples"
+                  className="mt-2 w-full"
                 >
-                  View demo websites
-                </Link>
+                  View example websites
+                </SecondaryButton>
 
-                <Link
-                  href="/start"
-                  onClick={() => setMobileOpen(false)}
-                  className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-4 text-sm font-semibold text-white"
-                >
-                  Get my website quote
-                </Link>
+                <PrimaryButton href="/start" className="w-full">
+                  Start my website
+                </PrimaryButton>
               </div>
             </motion.div>
           )}
@@ -642,108 +559,113 @@ export default function Home() {
       </motion.header>
 
       <main className="relative">
-        <section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-start justify-center px-5 pb-10 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
-          <motion.div
-            variants={heroContainer}
-            initial="hidden"
-            animate="show"
-            className="mx-auto max-w-5xl"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
-            >
-              <motion.span
-                animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
-                transition={{
-                  duration: 2.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
-              />
-              Professional websites for UK businesses
-            </motion.div>
+        <section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-center justify-center px-5 pb-14 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+          <div className="mx-auto max-w-5xl">
+            <Reveal>
+              <div className="hidden sm:inline-flex">
+                <SectionLabel>Fast websites for small UK businesses</SectionLabel>
+              </div>
+            </Reveal>
 
-            <motion.h1
-              variants={fadeUp}
-              className="mx-auto mt-4 max-w-[11ch] font-serif text-[clamp(2.1rem,10.5vw,4.8rem)] leading-[0.92] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
-            >
-              Professional websites for UK businesses.
-            </motion.h1>
+            <Reveal delay={0.05}>
+              <h1 className="mx-auto mt-4 max-w-[13ch] font-serif text-[clamp(2.3rem,10vw,5.25rem)] leading-[0.92] tracking-[-0.05em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch]">
+                Fast, professional websites for small UK businesses
+              </h1>
+            </Reveal>
 
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-6 max-w-[24rem] text-[16px] leading-8 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
-            >
-              Clean, fast, mobile-first websites that help your business look
-              credible online and make it easy for customers to get in touch.
-            </motion.p>
+            <Reveal delay={0.1}>
+              <p className="mx-auto mt-6 max-w-3xl text-[16px] leading-8 text-[#A9ABB3] sm:text-[20px] sm:leading-9">
+                A straightforward way to get your business online with a clean,
+                mobile-first website that makes you look credible and makes it
+                easy for customers to get in touch.
+              </p>
+            </Reveal>
 
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-4 hidden max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:block sm:text-[20px]"
-            >
-              Custom-built with a simple process and ready to launch in as
-              little as 24 hours once content is received.
-            </motion.p>
+            <Reveal delay={0.16}>
+              <p className="mx-auto mt-4 max-w-3xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                Built for businesses that want something done properly without a
+                long agency process or vague pricing.
+              </p>
+            </Reveal>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 text-[16px] font-medium text-[#A9ABB3] sm:mt-5 sm:text-sm"
-            >
-              Websites from £595 • Hosting £40/month
-            </motion.div>
+            <Reveal delay={0.2}>
+              <div className="mx-auto mt-6 inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[15px] font-medium text-[#F5F2EA]">
+                Websites from £595 • Managed hosting £40/month
+              </div>
+            </Reveal>
 
-            <motion.div
-              variants={fadeUp}
-              className="mx-auto mt-8 flex w-full max-w-sm items-center justify-center gap-3 sm:mt-8 sm:max-w-none"
-            >
-              <MagneticLink
-                href="/start"
-                disabled={isMobile}
-                className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-4 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
-              >
-                <span className="whitespace-nowrap">Get my website quote</span>
-                <ArrowRight />
-              </MagneticLink>
+            <Reveal delay={0.24}>
+              <div className="mx-auto mt-8 flex w-full max-w-md flex-col items-center justify-center gap-3 sm:max-w-none sm:flex-row">
+                <PrimaryButton href="/start" className="w-full sm:w-auto">
+                  Start my website
+                  <ArrowRight />
+                </PrimaryButton>
 
-              <a
-                href="#demos"
-                className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
-              >
-                <span className="whitespace-nowrap">View demo websites</span>
-                <ArrowRight />
-              </a>
-            </motion.div>
+                <SecondaryButton href="#examples" className="w-full sm:w-auto">
+                  View example websites
+                  <ArrowRight />
+                </SecondaryButton>
+              </div>
+            </Reveal>
 
-            <motion.div
-              variants={fadeUp}
-              className="mx-auto mt-7 hidden max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid sm:grid-cols-2"
-            >
-              {[
-                "Custom-built for your business",
-                "Mobile-first and fast loading",
-                "Managed hosting with free SSL",
-                "Simple launch process",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.42 + index * 0.06,
-                    ease: easeOut,
-                  }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4"
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </motion.div>
-          </motion.div>
+            <Reveal delay={0.28}>
+              <p className="mx-auto mt-4 text-sm text-[#7F828A]">
+                Send your details first. No call booking required.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.34}>
+              <div className="mx-auto mt-8 grid max-w-4xl gap-3 text-left text-sm text-[#A9ABB3] sm:grid-cols-2 xl:grid-cols-4">
+                {[
+                  "Clear fixed starting price",
+                  "Mobile-first build",
+                  "One revision before launch",
+                  "Domain stays in your name",
+                ].map((item) => (
+                  <div
+                    key={item}
+                    className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5"
+                  >
+                    {item}
+                  </div>
+                ))}
+              </div>
+            </Reveal>
+          </div>
         </section>
+
+        <Reveal>
+          <section
+            id="who"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
+          >
+            <div className="max-w-2xl">
+              <SectionLabel>Who it&apos;s for</SectionLabel>
+              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                Built for small businesses that need a proper website
+              </h2>
+              <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                This is designed for businesses that need to look trustworthy
+                online without getting dragged into a bloated project.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-4 lg:grid-cols-3">
+              {whoItsFor.map((item, index) => (
+                <Reveal key={item.title} delay={index * 0.06}>
+                  <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:p-6">
+                    <h3 className="text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
+                      {item.text}
+                    </p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </section>
+        </Reveal>
 
         <Reveal>
           <section
@@ -751,103 +673,137 @@ export default function Home() {
             className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
             <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-7 sm:rounded-[32px] sm:px-8 sm:py-10 lg:px-10">
-              <div className="max-w-2xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Simple launch package
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.1rem,8vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
-                  Simple launch package
+              <div className="max-w-3xl">
+                <SectionLabel>Pricing</SectionLabel>
+                <h2 className="mt-4 font-serif text-[clamp(2.1rem,8vw,3.8rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                  Straightforward pricing for a clean business website
                 </h2>
-                <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  A straightforward website build for businesses that need a
-                  professional online presence without a long agency process.
+                <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  This is a clear launch package for businesses that need a
+                  professional website without mystery pricing or unnecessary
+                  process.
                 </p>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#17181B] sm:rounded-[28px]">
-                <div className="grid lg:grid-cols-2">
-                  <div className="p-5 sm:p-8 lg:p-9">
+              <div className="mt-8 grid gap-5 xl:grid-cols-[1.05fr_0.95fr]">
+                <div className="overflow-hidden rounded-[24px] border border-white/10 bg-[#17181B]">
+                  <div className="border-b border-white/10 p-5 sm:p-7">
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
-
-                    <PriceHighlight className="mt-2 text-[2.2rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
+                    <div className="mt-2 text-[2.5rem] font-semibold tracking-[-0.05em] text-[#F5F2EA] sm:text-5xl">
                       From £595
-                    </PriceHighlight>
-
-                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
-
-                    <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
-                      {[
-                        "Home page",
-                        "About page",
-                        "Services or menu page",
-                        "Contact or booking page",
-                        "Contact or booking form",
-                        "Mobile optimisation",
-                        "One revision included",
-                        "Launch support",
-                      ].map((item, index) => (
-                        <motion.div
-                          key={item}
-                          initial={reduceMotion ? false : { opacity: 0, x: -14 }}
-                          whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                          viewport={{ once: true, amount: 0.6 }}
-                          transition={{
-                            duration: 0.45,
-                            delay: index * 0.04,
-                            ease: easeOut,
-                          }}
-                          className="flex items-start gap-3"
-                        >
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                          <span>{item}</span>
-                        </motion.div>
-                      ))}
                     </div>
+                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time cost</div>
                   </div>
 
-                  <div className="border-t border-white/10 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
-                    <div className="text-sm text-[#A9ABB3]">
-                      After launch - Managed hosting & support
-                    </div>
+                  <div className="grid gap-5 p-5 sm:p-7 lg:grid-cols-2">
+                    <BulletListCard title="Included" items={includedItems} />
+                    <BulletListCard
+                      title="Not included"
+                      items={notIncludedItems}
+                      negative
+                    />
+                  </div>
+                </div>
 
-                    <PriceHighlight className="mt-2 text-[1.9rem] font-semibold tracking-[-0.02em] text-[#F5F2EA] sm:text-3xl">
-                      £40 / month
-                    </PriceHighlight>
+                <div className="rounded-[24px] border border-white/10 bg-[#17181B] p-5 sm:p-7">
+                  <div className="text-sm text-[#A9ABB3]">
+                    Managed hosting & support
+                  </div>
+                  <div className="mt-2 text-[2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-4xl">
+                    £40 / month
+                  </div>
 
-                    <div className="mt-5 space-y-4 text-sm leading-7 text-[#A9ABB3]">
-                      {supportItems.map((item) => (
-                        <SupportItem
-                          key={item.title}
-                          title={item.title}
-                          text={item.text}
-                        />
-                      ))}
+                  <div className="mt-6 space-y-4">
+                    {supportItems.map((item) => (
+                      <div key={item.title}>
+                        <div className="text-sm font-medium text-[#F5F2EA]">
+                          {item.title}
+                        </div>
+                        <p className="mt-1 text-sm leading-7 text-[#A9ABB3]">
+                          {item.text}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
 
-                      <p>
-                        Your domain is purchased separately in your name so you
-                        always keep full ownership.
-                      </p>
-                    </div>
+                  <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] p-4 text-sm leading-7 text-[#A9ABB3]">
+                    Your domain is purchased separately in your name, so you
+                    always keep ownership of it.
+                  </div>
 
-                    <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-                      <MagneticLink
-                        href="/start"
-                        disabled={isMobile}
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
-                      >
-                        Get my website quote
-                      </MagneticLink>
+                  <div className="mt-7 flex flex-col gap-3">
+                    <PrimaryButton href="/start" className="w-full">
+                      Start my website
+                    </PrimaryButton>
 
-                      <Link
-                        href="/start"
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
-                      >
-                        Send an enquiry
-                      </Link>
-                    </div>
+                    <SecondaryButton href="#faq" className="w-full">
+                      Read common questions
+                    </SecondaryButton>
                   </div>
                 </div>
               </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+              <div className="max-w-xl">
+                <SectionLabel>Why choose Clean Websites</SectionLabel>
+                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                  A simpler option for businesses that just need it done right
+                </h2>
+                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  This business is new, so the site does not pretend there is a
+                  huge portfolio or years of inflated social proof behind it.
+                </p>
+                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  The offer is built around clarity, transparent pricing, and a
+                  lower-friction process for small businesses that need a proper
+                  website online.
+                </p>
+              </div>
+
+              <div className="space-y-4">
+                {reasons.map((card, index) => (
+                  <Reveal key={card.title} delay={index * 0.06}>
+                    <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:p-6">
+                      <h3 className="text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
+                        {card.title}
+                      </h3>
+                      <p className="mt-3 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
+                        {card.copy}
+                      </p>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section
+            id="examples"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
+          >
+            <div className="max-w-3xl">
+              <SectionLabel>Example websites</SectionLabel>
+              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                Example website styles for common business types
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                These are example layouts showing style and structure. They are
+                not presented as client case studies. Your website is built
+                around your business details, services, and contact flow.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
+              {exampleSites.map((card) => (
+                <ExampleCard key={card.title} {...card} />
+              ))}
             </div>
           </section>
         </Reveal>
@@ -858,128 +814,33 @@ export default function Home() {
             className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
             <div className="max-w-2xl">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                Process
-              </div>
+              <SectionLabel>Process</SectionLabel>
               <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                A simple process
+                A simple process from details to launch
               </h2>
               <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                A clear path so your business lives and grows online.
+                The goal is to keep this straightforward. You send the business
+                information, the draft is built, you review it, and the site is
+                launched properly.
               </p>
             </div>
 
-            <div className="relative mt-8 sm:mt-10">
-              <motion.div
-                initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
-                whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 1, ease: easeOut }}
-                style={{ originX: 0 }}
-                className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
-              />
-
-              <div className="grid gap-4 lg:grid-cols-4">
-                {processSteps.map((item, index) => (
-                  <motion.div
-                    key={item.step}
-                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
-                    transition={{
-                      duration: 0.7,
-                      delay: index * 0.08,
-                      ease: easeOut,
-                    }}
-                    className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[28px] sm:p-6"
-                  >
-                    <motion.div
-                      initial={reduceMotion ? false : { scale: 0.85, opacity: 0 }}
-                      whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: 0.12 + index * 0.08,
-                        ease: easeOut,
-                      }}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA] sm:h-12 sm:w-12"
-                    >
+            <div className="mt-8 grid gap-4 lg:grid-cols-4">
+              {processSteps.map((item, index) => (
+                <Reveal key={item.step} delay={index * 0.06}>
+                  <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:p-6">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA]">
                       {item.step}
-                    </motion.div>
+                    </div>
 
                     <h3 className="mt-5 text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
+                    <p className="mt-3 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
                       {item.desc}
                     </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </section>
-        </Reveal>
-
-        <Reveal>
-          <section
-            id="demos"
-            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
-            <div className="max-w-2xl">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                Demo websites
-              </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                Demo websites
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                Preview example website styles and layouts that can be adapted
-                to different types of businesses.
-              </p>
-              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
-                These are demo builds designed to show layout structure, design
-                direction, and how your website could be organised.
-              </p>
-              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
-                Built to support enquiries, bookings, or quote requests.
-              </p>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
-              {[
-                "Service businesses",
-                "Studios and beauty",
-                "Restaurants and hospitality",
-                "Local service companies",
-                "Other small businesses",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: index * 0.04,
-                    ease: easeOut,
-                  }}
-                  className={`rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 ${
-                    index > 2 ? "hidden sm:block" : ""
-                  }`}
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-3">
-              {featuredDemos.map((card, index) => (
-                <DemoCard
-                  key={card.title}
-                  card={card}
-                  index={index}
-                  interactionEnabled={!isMobile}
-                />
+                  </div>
+                </Reveal>
               ))}
             </div>
           </section>
@@ -987,81 +848,88 @@ export default function Home() {
 
         <Reveal>
           <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-              <div className="max-w-xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Why it works
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                  Designed to make your business look established online
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr]">
+              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-8">
+                <SectionLabel>About</SectionLabel>
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
+                  Built for small businesses that need a professional online presence
                 </h2>
                 <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  A good website should help customers trust your business and
-                  get in touch easily.
+                  Clean Websites is positioned as a simple, affordable option
+                  for businesses that need a clean website without the drag of a
+                  traditional agency setup.
                 </p>
                 <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  The result is a website that feels modern, professional, and
-                  easy to use.
+                  The aim is not to oversell. It is to offer a clear service,
+                  transparent pricing, and a website that helps your business
+                  look credible and easy to contact.
                 </p>
               </div>
 
-              <div className="space-y-4">
-                {trustCards.map((card, index) => (
-                  <motion.div
-                    key={card.title}
-                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{
-                      duration: 0.65,
-                      delay: index * 0.06,
-                      ease: easeOut,
-                    }}
-                    whileHover={
-                      motionEnabled
-                        ? {
-                            y: -4,
-                            transition: { duration: 0.25, ease: easeOut },
-                          }
-                        : {}
-                    }
-                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
-                  >
-                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                    <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
-                      {card.title}
-                    </h3>
-                    <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-                      {card.copy}
-                    </p>
-                  </motion.div>
-                ))}
-
-                <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.65, delay: 0.18, ease: easeOut }}
-                  whileHover={
-                    motionEnabled
-                      ? {
-                          y: -4,
-                          transition: { duration: 0.25, ease: easeOut },
-                        }
-                      : {}
-                  }
-                  className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
-                >
-                  <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                  <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
-                    Clear enquiry points
-                  </h3>
-                  <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-                    Customers always have a clear next step to call, message,
-                    book, or request a quote.
-                  </p>
-                </motion.div>
+              <div className="rounded-[28px] border border-white/10 bg-[#111214] p-6 sm:p-8">
+                <SectionLabel>What the website is designed to do</SectionLabel>
+                <div className="mt-5 space-y-4">
+                  {[
+                    {
+                      title: "Make your business look legitimate",
+                      text: "A lot of small businesses lose trust because their online presence looks unfinished or outdated.",
+                    },
+                    {
+                      title: "Help customers understand what you do fast",
+                      text: "Visitors should not have to hunt around the page to figure out your services.",
+                    },
+                    {
+                      title: "Make it easy to get in touch",
+                      text: "Strong structure and clear enquiry points matter more than flashy effects.",
+                    },
+                    {
+                      title: "Work properly on phones",
+                      text: "A large share of local-business traffic is mobile, so the layout is built with that in mind from the start.",
+                    },
+                  ].map((item) => (
+                    <div key={item.title} className="rounded-2xl border border-white/10 bg-white/[0.03] p-4">
+                      <h3 className="text-[17px] font-medium text-[#F5F2EA]">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm leading-7 text-[#A9ABB3]">
+                        {item.text}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section
+            id="faq"
+            className="mx-auto w-full max-w-4xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
+          >
+            <div className="text-center">
+              <SectionLabel>FAQ</SectionLabel>
+              <h2 className="mt-4 font-serif text-[clamp(2.1rem,7vw,3.7rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
+                Common questions before getting started
+              </h2>
+              <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                These are the practical questions people usually want answered
+                before they commit to anything.
+              </p>
+            </div>
+
+            <div className="mt-8 space-y-3">
+              {faqs.map((item, index) => (
+                <FAQItem
+                  key={item.q}
+                  q={item.q}
+                  a={item.a}
+                  open={openFaq === index}
+                  onClick={() =>
+                    setOpenFaq((current) => (current === index ? null : index))
+                  }
+                />
+              ))}
             </div>
           </section>
         </Reveal>
@@ -1069,58 +937,37 @@ export default function Home() {
         <Reveal>
           <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-20 lg:px-8">
             <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-12 text-center sm:rounded-[34px] sm:px-10 sm:py-14">
-              <motion.div
-                animate={
-                  motionEnabled
-                    ? {
-                        x: [0, 14, -8, 0],
-                        y: [0, -10, 8, 0],
-                        scale: [1, 1.05, 0.98, 1],
-                      }
-                    : {}
-                }
-                transition={{
-                  duration: 12,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[#3B82F6]/14 blur-[100px] sm:h-64 sm:w-64 sm:bg-[#3B82F6]/18 sm:blur-[110px]"
-              />
+              <div className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[#3B82F6]/18 blur-[110px]" />
 
               <div className="relative mx-auto max-w-3xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Start
-                </div>
+                <SectionLabel>Start</SectionLabel>
                 <h2 className="mt-4 font-serif text-[clamp(2.3rem,8vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
-                  Get your business online properly
+                  Ready to get your business online properly?
                 </h2>
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  Send your details and we’ll review your project and the next
-                  steps.
+                  Send your business details and the next step can be reviewed
+                  clearly without dragging you through a long sales process.
                 </p>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  Websites start from £595. Managed hosting is £40/month after
-                  launch.
+                  Website builds start from £595. Managed hosting is £40/month
+                  after launch.
                 </p>
 
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
-                  <MagneticLink
-                    href="/start"
-                    disabled={isMobile}
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
-                  >
-                    Get my website quote
+                  <PrimaryButton href="/start" className="w-full sm:w-auto">
+                    Start my website
                     <ArrowRight />
-                  </MagneticLink>
+                  </PrimaryButton>
 
-                  <Link
-                    href="#demos"
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto"
-                  >
-                    View demo websites
+                  <SecondaryButton href="#examples" className="w-full sm:w-auto">
+                    View example websites
                     <ArrowRight />
-                  </Link>
+                  </SecondaryButton>
                 </div>
+
+                <p className="mt-4 text-sm text-[#7F828A]">
+                  Clear starting price. Clear process. No fake portfolio claims.
+                </p>
               </div>
             </div>
           </section>
@@ -1133,7 +980,7 @@ export default function Home() {
                 CLEAN WEBSITES
               </div>
               <p className="mt-3 max-w-sm text-sm leading-7 text-[#A9ABB3]">
-                Professional websites for UK businesses.
+                Fast, professional websites for small UK businesses.
               </p>
             </div>
 
@@ -1141,17 +988,20 @@ export default function Home() {
               <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
                 Navigate
               </div>
-              <Link href="#demos" className="transition hover:text-[#F5F2EA]">
-                Demos
-              </Link>
-              <Link href="#pricing" className="transition hover:text-[#F5F2EA]">
+              <a href="#who" className="transition hover:text-[#F5F2EA]">
+                Who it&apos;s for
+              </a>
+              <a href="#pricing" className="transition hover:text-[#F5F2EA]">
                 Pricing
-              </Link>
-              <a href="#process" className="transition hover:text-[#F5F2EA]">
-                Process
+              </a>
+              <a href="#examples" className="transition hover:text-[#F5F2EA]">
+                Examples
+              </a>
+              <a href="#faq" className="transition hover:text-[#F5F2EA]">
+                FAQ
               </a>
               <Link href="/start" className="transition hover:text-[#F5F2EA]">
-                Contact
+                Start
               </Link>
             </div>
 
@@ -1177,7 +1027,7 @@ export default function Home() {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-[#7F828A] sm:flex-row sm:items-center sm:justify-between">
-            <div>© {new Date().getFullYear()} Clean Websites. All rights reserved.</div>
+            <div>© {year} Clean Websites. All rights reserved.</div>
             <div className="flex gap-5">
               <Link href="/privacy" className="transition hover:text-[#F5F2EA]">
                 Privacy
@@ -1192,28 +1042,18 @@ export default function Home() {
         <AnimatePresence>
           {scrolled && (
             <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
+              initial={reduceMotion ? false : { opacity: 0, y: 18, scale: 0.96 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0, scale: 1 }}
+              exit={reduceMotion ? {} : { opacity: 0, y: 12, scale: 0.98 }}
               transition={{ type: "spring", stiffness: 220, damping: 20 }}
               className="fixed bottom-6 right-6 z-40 hidden lg:block"
             >
-              <motion.div
-                animate={motionEnabled ? { scale: [1, 1.03, 1] } : {}}
-                transition={{
-                  duration: 1.8,
-                  delay: 0.3,
-                  repeat: 1,
-                  ease: "easeInOut",
-                }}
+              <Link
+                href="/start"
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
               >
-                <Link
-                  href="/start"
-                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
-                >
-                  Get my website quote
-                </Link>
-              </motion.div>
+                Start my website
+              </Link>
             </motion.div>
           )}
         </AnimatePresence>
@@ -1223,7 +1063,7 @@ export default function Home() {
             href="/start"
             className="flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white"
           >
-            Get my website quote
+            Start my website
           </Link>
         </div>
       </main>
