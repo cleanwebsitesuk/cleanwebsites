@@ -29,7 +29,7 @@ const demoLinks = [
   },
   {
     label: "Restaurant demo",
-    href: "https://cleanwebsites.co.uk/demo/restaurant",
+    href: "https://cleanwebsites.co.uk/demo/burger",
   },
   {
     label: "Salon demo",
