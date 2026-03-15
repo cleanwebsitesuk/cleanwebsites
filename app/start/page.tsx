@@ -561,20 +561,16 @@ export default function StartPage() {
             variants={heroContainer}
             initial="hidden"
             animate="show"
-            className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_320px]"
+            className="max-w-4xl"
           >
             <div className="max-w-4xl">
               <motion.div variants={fadeUp}>
                 <BackHomeLink isMobile={isMobile} />
               </motion.div>
 
-              <motion.div variants={fadeUp} className="mt-6">
-                <SectionEyebrow>Start your website</SectionEyebrow>
-              </motion.div>
-
               <motion.h1
                 variants={fadeUp}
-                className="mt-5 max-w-[14ch] font-serif text-[clamp(2.45rem,10vw,5.4rem)] leading-[0.93] tracking-[-0.05em] text-[#F5F2EA]"
+                className="mt-5 max-w-[15ch] font-serif text-[clamp(2.1rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.045em] text-[#F5F2EA]"
               >
                 Tell us about your business and get your website project started.
               </motion.h1>
@@ -595,42 +591,6 @@ export default function StartPage() {
                 Website builds start from £595 • Hosting £40/month after launch
               </motion.div>
             </div>
-
-            <motion.div variants={fadeUp} className="hidden lg:block">
-              <GlassCard className="p-5">
-                <div className="rounded-[24px] border border-white/10 bg-[#0D0E11]/80 p-5">
-                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-                    Get started
-                  </div>
-
-                  <div className="mt-4 grid gap-3">
-                    {[
-                      "Tell us about your project",
-                      "We review your enquiry",
-                      "We reply with the next steps",
-                    ].map((item, index) => (
-                      <div
-                        key={item}
-                        className="flex items-start gap-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#E5E7EC]"
-                      >
-                        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                          {index + 1}
-                        </span>
-                        <span className="pt-0.5">{item}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="mt-4 rounded-[20px] border border-[#3B82F6]/20 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-4">
-                    <p className="text-sm leading-6 text-[#D7E5FF]">
-                      No obligation. Just send your details and we’ll review your
-                      project.
-                    </p>
-                  </div>
-                </div>
-              </GlassCard>
-            </motion.div>
-          </motion.div>
         </SectionShell>
 
         <SectionShell className="pb-20">
