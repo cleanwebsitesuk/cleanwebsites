@@ -948,7 +948,7 @@ function DemoCard({
                 <img
                   src={card.image}
                   alt={`${card.title} preview`}
-                  className="h-full w-full object-cover object-top transition duration-700 md:group-hover:scale-[1.03]"
+                  className="h-full w-full object-contain object-top transition duration-700 md:group-hover:scale-[1.03]"
                 />
               </div>
             </motion.div>
