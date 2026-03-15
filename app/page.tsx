@@ -759,28 +759,33 @@ export default function Home() {
               businesses.
             </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
-            >
-              {[
-                "Clear pricing",
-                "Designed for small businesses",
-                "Managed hosting included",
-                "Domain stays in your name",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.5,
-                    delay: 0.42 + index * 0.06,
-                    ease: easeOut,
-                  }}
-                  className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
-                >
-                  <span className="max-w-[16ch] text-center">{item}</span>
+<motion.div
+  variants={fadeUp}
+  className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
+>
+  {[
+    "Clear pricing",
+    "Designed for small businesses",
+    "Managed hosting included",
+    "Domain stays in your name",
+  ].map((item, index) => (
+    <motion.div
+      key={item}
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.5,
+        delay: 0.42 + index * 0.06,
+        ease: easeOut,
+      }}
+      className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
+    >
+      <span className="max-w-[16ch] text-center">{item}</span>
+    </motion.div>
+  ))}
+</motion.div>
+</motion.div>
+</section>
         <Reveal>
           <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
