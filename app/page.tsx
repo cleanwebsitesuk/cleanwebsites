@@ -913,7 +913,7 @@ function DemoCard({
         }
         className="group block overflow-hidden rounded-[28px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
       >
-        <div className="relative h-72 overflow-hidden border-b border-white/10 bg-[#0C0D10] sm:h-80 lg:h-[22rem]">
+        <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10]">
           <motion.div
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_35%)]"
             animate={
@@ -936,7 +936,7 @@ function DemoCard({
               style={
                 interactionEnabled ? { transform: "translateZ(28px)" } : undefined
               }
-              className="flex h-full flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4 sm:p-5"
+              className="flex flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4 sm:p-5"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
@@ -947,11 +947,11 @@ function DemoCard({
                 </span>
               </div>
 
-              <div className="mt-4 flex-1 overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] aspect-[16/10]">
                 <img
                   src={card.image}
                   alt={`${card.title} preview`}
-                  className={`h-full w-full ${card.imageClass} transition duration-700 md:group-hover:scale-[1.03]`}
+                  className="h-full w-full object-cover object-top transition duration-700 md:group-hover:scale-[1.03]"
                 />
               </div>
             </motion.div>
