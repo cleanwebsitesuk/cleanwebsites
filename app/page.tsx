@@ -656,13 +656,13 @@ function HeroSection({
                   ))}
                 </div>
 
-                <div className="mt-auto rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-5">
-                  <p className="text-sm leading-6 text-[#D7E5FF]">
-                    Websites can be built within 24 hours once content is
-                    received.
-                  </p>
-                </div>
-              </div>
+<div className="mt-auto pt-3">
+  <div className="rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-5">
+    <p className="text-sm leading-6 text-[#D7E5FF]">
+      Websites can be built within 24 hours once content is received.
+    </p>
+  </div>
+</div>
             </GlassCard>
           </motion.div>
         </motion.div>
