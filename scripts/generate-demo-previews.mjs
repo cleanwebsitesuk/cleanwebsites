@@ -5,22 +5,9 @@ import path from "path";
 const BASE_URL = "http://127.0.0.1:3000";
 
 const demos = [
-  {
-    url: "/demo/barber",
-    output: "barber.jpg",
-  },
-  {
-    url: "/demo/burger",
-    output: "burger.jpg",
-  },
-  {
-    url: "/demo/salon",
-    output: "salon.jpg",
-  },
-  {
-    url: "/demo/trades",
-    output: "trades.jpg",
-  },
+  { url: "/demo/barber", output: "barber.jpg" },
+  { url: "/demo/burger", output: "burger.jpg" },
+  { url: "/demo/trades", output: "trades.jpg" },
 ];
 
 const outputDir = path.join(process.cwd(), "public", "demo-previews");
@@ -48,6 +35,8 @@ async function generate() {
       waitUntil: "networkidle",
       timeout: 30000,
     });
+
+    await page.waitForTimeout(1200);
 
     await page.screenshot({
       path: outputPath,
