@@ -35,6 +35,7 @@ const featuredDemos = [
     href: "/demo/barber",
     kicker: "Demo website",
     image: "/demo-previews/barber.jpg",
+    imageClass: "object-cover object-top",
   },
   {
     title: "Restaurant / Takeaway",
@@ -42,6 +43,7 @@ const featuredDemos = [
     href: "/demo/burger",
     kicker: "Demo website",
     image: "/demo-previews/burger.jpg",
+    imageClass: "object-cover object-center",
   },
   {
     title: "Trades / Services",
@@ -49,6 +51,7 @@ const featuredDemos = [
     href: "/demo/trades",
     kicker: "Demo website",
     image: "/demo-previews/trades.jpg",
+    imageClass: "object-cover object-center",
   },
 ];
 
@@ -948,7 +951,7 @@ function DemoCard({
                 <img
                   src={card.image}
                   alt={`${card.title} preview`}
-                  className="h-full w-full object-contain object-top transition duration-700 md:group-hover:scale-[1.03]"
+                  className={`h-full w-full ${card.imageClass} transition duration-700 md:group-hover:scale-[1.03]`}
                 />
               </div>
             </motion.div>
