@@ -663,6 +663,7 @@ function HeroSection({
     </p>
   </div>
 </div>
+              </div>
             </GlassCard>
           </motion.div>
         </motion.div>
