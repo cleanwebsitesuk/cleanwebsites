@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
 
 const WHATSAPP_LINK = "https://wa.me/message/CIUXDPB67KAAJ1";
 
@@ -66,18 +66,114 @@ const fadeUp = {
   },
 };
 
+function useIsMobile(breakpoint = 767) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const media = window.matchMedia(`(max-width: ${breakpoint}px)`);
+    const update = () => setIsMobile(media.matches);
+
+    update();
+
+    if (typeof media.addEventListener === "function") {
+      media.addEventListener("change", update);
+      return () => media.removeEventListener("change", update);
+    }
+
+    media.addListener(update);
+    return () => media.removeListener(update);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
+function SectionShell({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section className={`mx-auto w-full max-w-7xl px-5 sm:px-6 lg:px-8 ${className}`}>
+      {children}
+    </section>
+  );
+}
+
+function SectionEyebrow({ children }: { children: ReactNode }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+      {children}
+    </div>
+  );
+}
+
+function GlassCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_24px_90px_rgba(0,0,0,0.3)] backdrop-blur-sm ${className}`}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_28%)]" />
+      <div className="relative">{children}</div>
+    </div>
+  );
+}
+
+function CheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
+function ArrowRight() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
 function Reveal({
   children,
   delay = 0,
   amount = 0.2,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
   amount?: number;
   className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
 
   if (reduceMotion) {
     return <div className={className}>{children}</div>;
@@ -102,12 +198,12 @@ function MagneticLink({
   href,
   disabled = false,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className: string;
   href: string;
   disabled?: boolean;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
   const [style, setStyle] = useState({ x: 0, y: 0 });
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -150,43 +246,205 @@ function WhatsAppIcon() {
   );
 }
 
+function BackHomeLink({ isMobile }: { isMobile: boolean }) {
+  return (
+    <MagneticLink
+      href="/"
+      disabled={isMobile}
+      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:text-[12px] sm:tracking-[0.18em]"
+    >
+      Back to homepage
+    </MagneticLink>
+  );
+}
+
 function SectionCard({
   eyebrow,
   title,
   copy,
   children,
+  className = "",
 }: {
   eyebrow: string;
   title?: string;
   copy?: string;
-  children: React.ReactNode;
+  children: ReactNode;
+  className?: string;
 }) {
   return (
-    <div className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[28px] sm:p-7">
+    <GlassCard className={`p-5 sm:p-7 ${className}`}>
       <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
         {eyebrow}
       </div>
 
       {title && (
-        <h2 className="mt-4 font-serif text-[clamp(1.8rem,6vw,2.9rem)] leading-[1] tracking-[-0.04em] text-[#F5F2EA]">
+        <h2 className="mt-4 font-serif text-[clamp(1.85rem,6vw,2.95rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
           {title}
         </h2>
       )}
 
       {copy && (
-        <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px]">
+        <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px]">
           {copy}
         </p>
       )}
 
       <div className="mt-5 sm:mt-6">{children}</div>
+    </GlassCard>
+  );
+}
+
+function BulletListCard({
+  eyebrow,
+  title,
+  copy,
+  items,
+  hideFromIndexOnMobile,
+  delay = 0,
+}: {
+  eyebrow: string;
+  title?: string;
+  copy?: string;
+  items: string[];
+  hideFromIndexOnMobile?: number;
+  delay?: number;
+}) {
+  const reduceMotion = useReducedMotion() ?? false;
+
+  return (
+    <Reveal delay={delay}>
+      <SectionCard eyebrow={eyebrow} title={title} copy={copy}>
+        <div className="grid gap-3">
+          {items.map((item, index) => (
+            <motion.div
+              key={item}
+              initial={reduceMotion ? false : { opacity: 0, x: -14 }}
+              whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.6 }}
+              transition={{
+                duration: 0.45,
+                delay: index * 0.04,
+                ease: easeOut,
+              }}
+              className={`group relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:px-4 sm:py-4 ${
+                hideFromIndexOnMobile !== undefined && index >= hideFromIndexOnMobile
+                  ? "hidden sm:flex"
+                  : "flex"
+              }`}
+            >
+              <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+              <div className="relative flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                  <CheckIcon />
+                </span>
+                <span className="text-sm leading-6 text-[#F5F2EA]">{item}</span>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </SectionCard>
+    </Reveal>
+  );
+}
+
+function DemoLinkCard({
+  label,
+  href,
+  index,
+  motionEnabled,
+}: {
+  label: string;
+  href: string;
+  index: number;
+  motionEnabled: boolean;
+}) {
+  const reduceMotion = useReducedMotion() ?? false;
+
+  return (
+    <motion.a
+      href={href}
+      target="_blank"
+      rel="noreferrer"
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.8 }}
+      transition={{
+        duration: 0.45,
+        delay: index * 0.05,
+        ease: easeOut,
+      }}
+      whileHover={motionEnabled ? { y: -4 } : {}}
+      className="group relative flex items-center justify-between overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+    >
+      <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+      <div className="relative flex items-center gap-3">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[#8BB5FF]">
+          <ArrowRight />
+        </span>
+        <span>{label}</span>
+      </div>
+      <span className="relative inline-flex items-center gap-2 text-[#8BB5FF]">
+        Open
+        <ArrowRight />
+      </span>
+    </motion.a>
+  );
+}
+
+function InputShell({
+  label,
+  htmlFor,
+  optional,
+  children,
+}: {
+  label: string;
+  htmlFor: string;
+  optional?: boolean;
+  children: ReactNode;
+}) {
+  return (
+    <div>
+      <label
+        htmlFor={htmlFor}
+        className="mb-2 block text-sm font-medium text-[#F5F2EA]"
+      >
+        {label}
+        {optional && <span className="text-[#7F828A]"> (optional)</span>}
+      </label>
+      {children}
     </div>
+  );
+}
+
+function RadioOption({
+  name,
+  value,
+  label,
+  disabled,
+}: {
+  name: string;
+  value: string;
+  label: string;
+  disabled?: boolean;
+}) {
+  return (
+    <label className="group relative flex cursor-pointer items-center gap-3 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] has-[:checked]:border-[#3B82F6]/40 has-[:checked]:bg-[#3B82F6]/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#3B82F6]/40">
+      <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+      <input
+        type="radio"
+        name={name}
+        value={value}
+        required
+        disabled={disabled}
+        className="relative h-4 w-4 accent-[#3B82F6]"
+      />
+      <span className="relative">{label}</span>
+    </label>
   );
 }
 
 export default function StartPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
   const [submitMessage, setSubmitMessage] = useState<{
     type: "success" | "error" | null;
     text: string;
@@ -195,7 +453,8 @@ export default function StartPage() {
     text: "",
   });
 
-  const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion() ?? false;
   const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
@@ -208,13 +467,11 @@ export default function StartPage() {
     return () => clearTimeout(timeout);
   }, [submitMessage]);
 
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
+  const formCardClass = useMemo(
+    () =>
+      "rounded-[28px] border border-white/10 bg-[#111214]/90 shadow-[0_30px_100px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:rounded-[32px]",
+    []
+  );
 
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -274,7 +531,7 @@ export default function StartPage() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[32rem] sm:w-[32rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
+          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[34rem] sm:w-[34rem] sm:bg-[#3B82F6]/10 sm:blur-[145px]"
         />
         <motion.div
           animate={
@@ -291,467 +548,400 @@ export default function StartPage() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/8 sm:blur-[140px]"
+          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/8 sm:blur-[145px]"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
+        <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
       </div>
 
       <main className="relative">
-        <section className="mx-auto w-full max-w-7xl px-5 pb-10 pt-8 sm:px-6 sm:pb-12 sm:pt-12 lg:px-8 lg:pb-16 lg:pt-16">
+        <SectionShell className="pb-10 pt-8 sm:pb-14 sm:pt-12 lg:pb-16 lg:pt-16">
           <motion.div
             variants={heroContainer}
             initial="hidden"
             animate="show"
-            className="max-w-3xl"
+            className="grid items-end gap-8 lg:grid-cols-[minmax(0,1fr)_320px]"
           >
-            <motion.div variants={fadeUp}>
-              <MagneticLink
-                href="/"
-                disabled={isMobile}
-                className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:text-[12px] sm:tracking-[0.18em]"
+            <div className="max-w-4xl">
+              <motion.div variants={fadeUp}>
+                <BackHomeLink isMobile={isMobile} />
+              </motion.div>
+
+              <motion.div variants={fadeUp} className="mt-6">
+                <SectionEyebrow>Start your website</SectionEyebrow>
+              </motion.div>
+
+              <motion.h1
+                variants={fadeUp}
+                className="mt-5 max-w-[14ch] font-serif text-[clamp(2.45rem,10vw,5.4rem)] leading-[0.93] tracking-[-0.05em] text-[#F5F2EA]"
               >
-                Back to homepage
-              </MagneticLink>
+                Tell us about your business and get your website project started.
+              </motion.h1>
+
+              <motion.p
+                variants={fadeUp}
+                className="mt-6 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
+              >
+                We build clean, professional websites for UK businesses that want
+                to look credible online and make it easy for customers to get in
+                touch.
+              </motion.p>
+
+              <motion.div
+                variants={fadeUp}
+                className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
+              >
+                Website builds start from £595 • Hosting £40/month after launch
+              </motion.div>
+            </div>
+
+            <motion.div variants={fadeUp} className="hidden lg:block">
+              <GlassCard className="p-5">
+                <div className="rounded-[24px] border border-white/10 bg-[#0D0E11]/80 p-5">
+                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                    Get started
+                  </div>
+
+                  <div className="mt-4 grid gap-3">
+                    {[
+                      "Tell us about your project",
+                      "We review your enquiry",
+                      "We reply with the next steps",
+                    ].map((item, index) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm text-[#E5E7EC]"
+                      >
+                        <span className="inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                          {index + 1}
+                        </span>
+                        <span className="pt-0.5">{item}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  <div className="mt-4 rounded-[20px] border border-[#3B82F6]/20 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-4">
+                    <p className="text-sm leading-6 text-[#D7E5FF]">
+                      No obligation. Just send your details and we’ll review your
+                      project.
+                    </p>
+                  </div>
+                </div>
+              </GlassCard>
             </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="mt-6 max-w-[14ch] font-serif text-[clamp(2.35rem,10vw,5rem)] leading-[0.94] tracking-[-0.04em] text-[#F5F2EA]"
-            >
-              Tell us about your business and get your website project started.
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
-            >
-              We build clean, professional websites for UK businesses that want
-              to look credible online and make it easy for customers to get in
-              touch.
-            </motion.p>
-
-            <motion.p
-              variants={fadeUp}
-              className="mt-4 text-sm text-[#A9ABB3] sm:text-base"
-            >
-              Website builds start from £595 • Hosting £40/month after launch
-            </motion.p>
           </motion.div>
-        </section>
+        </SectionShell>
 
-        <section className="mx-auto grid w-full max-w-7xl gap-5 px-5 pb-20 sm:px-6 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6 lg:px-8">
-          <div className="space-y-5 sm:space-y-6">
-            <Reveal>
-              <SectionCard
+        <SectionShell className="pb-20">
+          <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6">
+            <div className="space-y-5 sm:space-y-6">
+              <BulletListCard
                 eyebrow="What you’ll get"
                 title="A professional website built for your business"
                 copy="Every website includes the core pages most businesses need."
-              >
-                <div className="space-y-3">
-                  {servicePoints.map((item, index) => (
-                    <motion.div
-                      key={item}
-                      initial={reduceMotion ? false : { opacity: 0, x: -14 }}
-                      whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.6 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: index * 0.04,
-                        ease: easeOut,
-                      }}
-                      className={`flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
-                        index > 3 ? "hidden sm:flex" : ""
-                      }`}
-                    >
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                      <span className="text-sm leading-6 text-[#F5F2EA]">
-                        {item}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </SectionCard>
-            </Reveal>
+                items={servicePoints}
+                hideFromIndexOnMobile={4}
+              />
 
-            <Reveal delay={0.05}>
-              <SectionCard eyebrow="What happens next">
-                <div className="space-y-3 sm:space-y-4">
-                  {[
-                    "We review your enquiry",
-                    "We reply with next steps",
-                    "We confirm scope and timeline",
-                    "We build and prepare launch",
-                  ].map((title, index) => (
-                    <motion.div
-                      key={title}
-                      initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.45 }}
-                      transition={{
-                        duration: 0.55,
-                        delay: index * 0.06,
-                        ease: easeOut,
-                      }}
-                      className="flex gap-3 rounded-2xl border border-white/10 bg-white/[0.03] p-4"
-                    >
+              <Reveal delay={0.05}>
+                <SectionCard eyebrow="What happens next">
+                  <div className="space-y-3 sm:space-y-4">
+                    {[
+                      "We review your enquiry",
+                      "We reply with next steps",
+                      "We confirm scope and timeline",
+                      "We build and prepare launch",
+                    ].map((title, index) => (
                       <motion.div
-                        initial={
-                          reduceMotion ? false : { scale: 0.9, opacity: 0 }
-                        }
-                        whileInView={
-                          reduceMotion ? {} : { scale: 1, opacity: 1 }
-                        }
-                        viewport={{ once: true, amount: 0.8 }}
+                        key={title}
+                        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                        whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                        viewport={{ once: true, amount: 0.45 }}
                         transition={{
-                          duration: 0.4,
-                          delay: 0.08 + index * 0.06,
+                          duration: 0.55,
+                          delay: index * 0.06,
                           ease: easeOut,
                         }}
-                        className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-sm text-[#F5F2EA]"
+                        className="group relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05]"
                       >
-                        0{index + 1}
+                        <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+                        <div className="relative flex gap-3">
+                          <motion.div
+                            initial={
+                              reduceMotion ? false : { scale: 0.9, opacity: 0 }
+                            }
+                            whileInView={
+                              reduceMotion ? {} : { scale: 1, opacity: 1 }
+                            }
+                            viewport={{ once: true, amount: 0.8 }}
+                            transition={{
+                              duration: 0.4,
+                              delay: 0.08 + index * 0.06,
+                              ease: easeOut,
+                            }}
+                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
+                          >
+                            0{index + 1}
+                          </motion.div>
+                          <div>
+                            <p className="pt-0.5 text-sm font-medium leading-6 text-[#F5F2EA]">
+                              {title}
+                            </p>
+                            <p className="pt-1 text-sm leading-6 text-[#A9ABB3]">
+                              {nextSteps[index]}
+                            </p>
+                          </div>
+                        </div>
                       </motion.div>
-                      <div>
-                        <p className="pt-0.5 text-sm font-medium leading-6 text-[#F5F2EA]">
-                          {title}
-                        </p>
-                        <p className="pt-1 text-sm leading-6 text-[#A9ABB3]">
-                          {nextSteps[index]}
-                        </p>
-                      </div>
-                    </motion.div>
-                  ))}
-                </div>
-              </SectionCard>
-            </Reveal>
+                    ))}
+                  </div>
+                </SectionCard>
+              </Reveal>
 
-            <Reveal delay={0.1}>
-              <SectionCard eyebrow="Practical details">
-                <div className="space-y-3">
-                  {practicalDetails.map((item, index) => (
-                    <motion.div
-                      key={item}
-                      initial={reduceMotion ? false : { opacity: 0, x: -14 }}
-                      whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                      viewport={{ once: true, amount: 0.6 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: index * 0.04,
-                        ease: easeOut,
-                      }}
-                      className={`flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4 ${
-                        index > 2 ? "hidden sm:flex" : ""
-                      }`}
+              <BulletListCard
+                eyebrow="Practical details"
+                items={practicalDetails}
+                hideFromIndexOnMobile={3}
+                delay={0.1}
+              />
+
+              <Reveal delay={0.15}>
+                <SectionCard
+                  eyebrow="Demo websites"
+                  title="Explore example website styles"
+                  copy="You can explore demo websites before sending an enquiry."
+                >
+                  <div className="space-y-3">
+                    {demoLinks.map((demo, index) => (
+                      <DemoLinkCard
+                        key={demo.label}
+                        label={demo.label}
+                        href={demo.href}
+                        index={index}
+                        motionEnabled={motionEnabled}
+                      />
+                    ))}
+                  </div>
+                </SectionCard>
+              </Reveal>
+            </div>
+
+            <Reveal className="h-fit lg:sticky lg:top-6">
+              <div className={formCardClass}>
+                <div className="border-b border-white/10 px-5 py-5 sm:px-8 sm:py-6">
+                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
+                    Tell us about your project
+                  </div>
+                  <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-[2rem]">
+                    Tell us about your project
+                  </h2>
+                  <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
+                    Fill out the form below and we’ll review your enquiry and
+                    reply with the next steps.
+                  </p>
+                </div>
+
+                <form
+                  onSubmit={handleSubmit}
+                  className="space-y-5 px-5 py-5 sm:space-y-6 sm:px-8 sm:py-8"
+                >
+                  <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
+                    <InputShell label="Name" htmlFor="name">
+                      <input
+                        id="name"
+                        name="name"
+                        type="text"
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="name"
+                        placeholder="Your name"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      />
+                    </InputShell>
+
+                    <InputShell label="Email" htmlFor="email">
+                      <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="email"
+                        placeholder="you@business.com"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      />
+                    </InputShell>
+
+                    <InputShell label="Phone" htmlFor="phone" optional>
+                      <input
+                        id="phone"
+                        name="phone"
+                        type="tel"
+                        disabled={isSubmitting}
+                        autoComplete="tel"
+                        placeholder="Phone number"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      />
+                    </InputShell>
+
+                    <InputShell label="Business name" htmlFor="businessName">
+                      <input
+                        id="businessName"
+                        name="businessName"
+                        type="text"
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="organization"
+                        placeholder="Business name"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      />
+                    </InputShell>
+                  </div>
+
+                  <InputShell label="Type of business" htmlFor="businessType">
+                    <input
+                      id="businessType"
+                      name="businessType"
+                      type="text"
+                      required
+                      disabled={isSubmitting}
+                      placeholder="Describe your business"
+                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                    />
+                  </InputShell>
+
+                  <fieldset disabled={isSubmitting}>
+                    <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
+                      Do you already have a website?
+                    </legend>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <RadioOption
+                        name="hasWebsite"
+                        value="yes"
+                        label="Yes"
+                        disabled={isSubmitting}
+                      />
+                      <RadioOption
+                        name="hasWebsite"
+                        value="no"
+                        label="No"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </fieldset>
+
+                  <fieldset disabled={isSubmitting}>
+                    <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
+                      Do you already own a domain?
+                    </legend>
+
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      <RadioOption
+                        name="hasDomain"
+                        value="yes"
+                        label="Yes"
+                        disabled={isSubmitting}
+                      />
+                      <RadioOption
+                        name="hasDomain"
+                        value="no"
+                        label="No"
+                        disabled={isSubmitting}
+                      />
+                    </div>
+                  </fieldset>
+
+                  <InputShell
+                    label="Tell us about your business"
+                    htmlFor="about"
+                  >
+                    <textarea
+                      id="about"
+                      name="about"
+                      rows={6}
+                      required
+                      disabled={isSubmitting}
+                      placeholder="Tell us what your business does, which pages you need, and anything else we should know."
+                      className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                    />
+                  </InputShell>
+
+                  <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+                    <button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                     >
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                      <span className="text-sm leading-6 text-[#F5F2EA]">
-                        {item}
-                      </span>
-                    </motion.div>
-                  ))}
-                </div>
-              </SectionCard>
-            </Reveal>
+                      {isSubmitting ? "Sending..." : "Send my enquiry"}
+                    </button>
 
-            <Reveal delay={0.15}>
-              <SectionCard
-                eyebrow="Demo websites"
-                title="Explore example website styles"
-                copy="You can explore demo websites before sending an enquiry."
-              >
-                <div className="space-y-3">
-                  {demoLinks.map((demo, index) => (
-                    <motion.a
-                      key={demo.label}
-                      href={demo.href}
+                    <a
+                      href={WHATSAPP_LINK}
                       target="_blank"
-                      rel="noreferrer"
-                      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-                      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: index * 0.05,
-                        ease: easeOut,
-                      }}
-                      whileHover={motionEnabled ? { y: -3 } : {}}
-                      className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:py-4"
+                      rel="noopener noreferrer"
+                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(32,212,102,0.22)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
                     >
-                      <span>{demo.label}</span>
-                      <span className="text-[#8BB5FF]">Open</span>
-                    </motion.a>
-                  ))}
-                </div>
-              </SectionCard>
+                      <WhatsAppIcon />
+                      Message us on WhatsApp
+                    </a>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-sm leading-6 text-[#7F828A]">
+                      No obligation. Just send your details and we’ll review your
+                      project.
+                    </p>
+                    <p className="hidden text-sm leading-6 text-[#7F828A] sm:block">
+                      Prefer messaging? You can also contact us directly on
+                      WhatsApp.
+                    </p>
+                  </div>
+
+                  <AnimatePresence mode="wait">
+                    {submitMessage.type && (
+                      <motion.div
+                        key={submitMessage.type + submitMessage.text}
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -6 }}
+                        transition={{ duration: 0.22 }}
+                        aria-live="polite"
+                        className={`rounded-[18px] border px-4 py-3 text-sm leading-6 ${
+                          submitMessage.type === "success"
+                            ? "border-green-400/20 bg-green-400/10 text-green-300"
+                            : "border-red-400/20 bg-red-400/10 text-red-300"
+                        }`}
+                      >
+                        {submitMessage.text}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+
+                  <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
+                    <p>
+                      Website builds start from £595 depending on scope. Managed
+                      hosting is £40/month after launch. Your domain is purchased
+                      separately in your name.
+                    </p>
+                    <p className="hidden sm:block">
+                      By sending this form, you’re asking us to review your
+                      project and reply with the next steps.
+                    </p>
+                  </div>
+                </form>
+              </div>
             </Reveal>
           </div>
+        </SectionShell>
 
-          <Reveal className="h-fit">
-            <div className="rounded-[26px] border border-white/10 bg-[#111214] shadow-[0_30px_100px_rgba(0,0,0,0.45)] sm:rounded-[30px]">
-              <div className="border-b border-white/10 px-5 py-5 sm:px-8">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Tell us about your project
-                </div>
-                <h2 className="mt-3 text-[1.65rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-2xl">
-                  Tell us about your project
-                </h2>
-                <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
-                  Fill out the form below and we’ll review your enquiry and
-                  reply with the next steps.
-                </p>
-              </div>
-
-              <form
-                onSubmit={handleSubmit}
-                className="space-y-5 px-5 py-5 sm:space-y-6 sm:px-8 sm:py-8"
-              >
-                <div className="grid gap-4 sm:grid-cols-2 sm:gap-5">
-                  <div className="sm:col-span-1">
-                    <label
-                      htmlFor="name"
-                      className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                    >
-                      Name
-                    </label>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      required
-                      disabled={isSubmitting}
-                      autoComplete="name"
-                      placeholder="Your name"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-1">
-                    <label
-                      htmlFor="email"
-                      className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                    >
-                      Email
-                    </label>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      required
-                      disabled={isSubmitting}
-                      autoComplete="email"
-                      placeholder="you@business.com"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-1">
-                    <label
-                      htmlFor="phone"
-                      className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                    >
-                      Phone <span className="text-[#7F828A]">(optional)</span>
-                    </label>
-                    <input
-                      id="phone"
-                      name="phone"
-                      type="tel"
-                      disabled={isSubmitting}
-                      autoComplete="tel"
-                      placeholder="Phone number"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                    />
-                  </div>
-
-                  <div className="sm:col-span-1">
-                    <label
-                      htmlFor="businessName"
-                      className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                    >
-                      Business name
-                    </label>
-                    <input
-                      id="businessName"
-                      name="businessName"
-                      type="text"
-                      required
-                      disabled={isSubmitting}
-                      autoComplete="organization"
-                      placeholder="Business name"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                    />
-                  </div>
-                </div>
-
-                <div>
-                  <label
-                    htmlFor="businessType"
-                    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                  >
-                    Type of business
-                  </label>
-                  <input
-                    id="businessType"
-                    name="businessType"
-                    type="text"
-                    required
-                    disabled={isSubmitting}
-                    placeholder="Describe your business"
-                    className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                  />
-                </div>
-
-                <fieldset disabled={isSubmitting}>
-                  <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
-                    Do you already have a website?
-                  </legend>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
-                      <input
-                        type="radio"
-                        name="hasWebsite"
-                        value="yes"
-                        required
-                        className="h-4 w-4 accent-[#3B82F6]"
-                      />
-                      <span>Yes</span>
-                    </label>
-
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
-                      <input
-                        type="radio"
-                        name="hasWebsite"
-                        value="no"
-                        required
-                        className="h-4 w-4 accent-[#3B82F6]"
-                      />
-                      <span>No</span>
-                    </label>
-                  </div>
-                </fieldset>
-
-                <fieldset disabled={isSubmitting}>
-                  <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
-                    Do you already own a domain?
-                  </legend>
-
-                  <div className="grid gap-3 sm:grid-cols-2">
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
-                      <input
-                        type="radio"
-                        name="hasDomain"
-                        value="yes"
-                        required
-                        className="h-4 w-4 accent-[#3B82F6]"
-                      />
-                      <span>Yes</span>
-                    </label>
-
-                    <label className="flex cursor-pointer items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 text-sm text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05] sm:py-4">
-                      <input
-                        type="radio"
-                        name="hasDomain"
-                        value="no"
-                        required
-                        className="h-4 w-4 accent-[#3B82F6]"
-                      />
-                      <span>No</span>
-                    </label>
-                  </div>
-                </fieldset>
-
-                <div>
-                  <label
-                    htmlFor="about"
-                    className="mb-2 block text-sm font-medium text-[#F5F2EA]"
-                  >
-                    Tell us about your business
-                  </label>
-                  <textarea
-                    id="about"
-                    name="about"
-                    rows={6}
-                    required
-                    disabled={isSubmitting}
-                    placeholder="Tell us what your business does, which pages you need, and anything else we should know."
-                    className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] disabled:cursor-not-allowed disabled:opacity-70"
-                  />
-                </div>
-
-                <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center">
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
-                  >
-                    {isSubmitting ? "Sending..." : "Send my enquiry"}
-                  </button>
-
-                  <a
-                    href={WHATSAPP_LINK}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] px-6 text-sm font-semibold text-white transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
-                  >
-                    <WhatsAppIcon />
-                    Message us on WhatsApp
-                  </a>
-                </div>
-
-                <div className="space-y-2">
-                  <p className="text-sm leading-6 text-[#7F828A]">
-                    No obligation. Just send your details and we’ll review your
-                    project.
-                  </p>
-                  <p className="hidden text-sm leading-6 text-[#7F828A] sm:block">
-                    Prefer messaging? You can also contact us directly on
-                    WhatsApp.
-                  </p>
-                </div>
-
-                <AnimatePresence mode="wait">
-                  {submitMessage.type && (
-                    <motion.p
-                      key={submitMessage.type + submitMessage.text}
-                      initial={{ opacity: 0, y: 8 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      exit={{ opacity: 0, y: -6 }}
-                      transition={{ duration: 0.22 }}
-                      aria-live="polite"
-                      className={`text-sm leading-6 ${
-                        submitMessage.type === "success"
-                          ? "text-green-400"
-                          : "text-red-400"
-                      }`}
-                    >
-                      {submitMessage.text}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-
-                <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
-                  <p>
-                    Website builds start from £595 depending on scope. Managed
-                    hosting is £40/month after launch. Your domain is purchased
-                    separately in your name.
-                  </p>
-                  <p className="hidden sm:block">
-                    By sending this form, you’re asking us to review your
-                    project and reply with the next steps.
-                  </p>
-                </div>
-              </form>
-            </div>
-          </Reveal>
-        </section>
-
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur-2xl md:hidden">
           <a
             href={WHATSAPP_LINK}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] text-sm font-semibold text-white"
+            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] text-sm font-semibold text-white shadow-[0_12px_28px_rgba(32,212,102,0.22)]"
           >
             <WhatsAppIcon />
             Message us on WhatsApp
