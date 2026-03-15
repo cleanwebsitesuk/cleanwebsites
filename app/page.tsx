@@ -925,8 +925,9 @@ function DemoCard({
               ease: "easeInOut",
             }}
           />
+
           <motion.div
-            className="absolute inset-0 p-4 sm:p-5"
+            className="relative p-4 sm:p-5"
             transition={{ duration: 0.55, ease: easeOut }}
             whileHover={
               reduceMotion || !interactionEnabled ? {} : { scale: 1.02, y: -4 }
@@ -947,7 +948,7 @@ function DemoCard({
                 </span>
               </div>
 
-              <div className="mt-4 overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] aspect-[16/10]">
+              <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <img
                   src={card.image}
                   alt={`${card.title} preview`}
