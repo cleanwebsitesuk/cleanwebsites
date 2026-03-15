@@ -7,7 +7,26 @@ import {
   motion,
   useReducedMotion,
 } from "framer-motion";
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
+
+const NAV_ITEMS = [
+  { href: "#demos", label: "Demos" },
+  { href: "#pricing", label: "Pricing" },
+  { href: "#process", label: "Process" },
+] as const;
+
+const HERO_POINTS = [
+  "Clear pricing",
+  "Designed for small businesses",
+  "Managed hosting included",
+  "Domain stays in your name",
+] as const;
 
 const featuredDemos = [
   {
@@ -135,6 +154,42 @@ const heroContainer = {
   },
 };
 
+function useIsMobile(breakpoint = 767) {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
+
+    const onChange = () => setIsMobile(mediaQuery.matches);
+
+    onChange();
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    }
+
+    mediaQuery.addListener(onChange);
+    return () => mediaQuery.removeListener(onChange);
+  }, [breakpoint]);
+
+  return isMobile;
+}
+
+function useLockBodyScroll(locked: boolean) {
+  useEffect(() => {
+    const { overflow } = document.body.style;
+
+    if (locked) {
+      document.body.style.overflow = "hidden";
+    }
+
+    return () => {
+      document.body.style.overflow = overflow;
+    };
+  }, [locked]);
+}
+
 function ArrowRight() {
   return (
     <svg
@@ -154,22 +209,19 @@ function ArrowRight() {
 }
 
 function MenuIcon({ open }: { open: boolean }) {
+  const lineBase =
+    "absolute left-0 h-px w-5 bg-[#F5F2EA] transition-all duration-300";
+
   return (
-    <div className="relative h-5 w-5">
+    <div className="relative h-5 w-5" aria-hidden="true">
       <span
-        className={`absolute left-0 top-1 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
-          open ? "translate-y-1.5 rotate-45" : ""
-        }`}
+        className={`${lineBase} top-1 ${open ? "translate-y-1.5 rotate-45" : ""}`}
       />
       <span
-        className={`absolute left-0 top-2.5 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
-          open ? "opacity-0" : ""
-        }`}
+        className={`${lineBase} top-2.5 ${open ? "opacity-0" : "opacity-100"}`}
       />
       <span
-        className={`absolute left-0 top-4 h-px w-5 bg-[#F5F2EA] transition-all duration-300 ${
-          open ? "-translate-y-1.5 -rotate-45" : ""
-        }`}
+        className={`${lineBase} top-4 ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
       />
     </div>
   );
@@ -243,6 +295,326 @@ function MagneticLink({
         {children}
       </Link>
     </motion.div>
+  );
+}
+
+function DesktopNav() {
+  return (
+    <nav className="hidden items-center gap-8 text-[15px] text-[#A9ABB3] md:flex">
+      {NAV_ITEMS.map((item) => (
+        <a
+          key={item.href}
+          href={item.href}
+          className="transition hover:text-[#F5F2EA]"
+        >
+          {item.label}
+        </a>
+      ))}
+    </nav>
+  );
+}
+
+function DesktopActions({ isMobile }: { isMobile: boolean }) {
+  return (
+    <div className="hidden items-center gap-3 md:flex">
+      <Link
+        href="#demos"
+        className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+      >
+        View demo websites
+      </Link>
+
+      <MagneticLink
+        href="/start"
+        disabled={isMobile}
+        className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
+      >
+        Start my website
+      </MagneticLink>
+    </div>
+  );
+}
+
+function MobileMenu({
+  open,
+  onClose,
+  reduceMotion,
+}: {
+  open: boolean;
+  onClose: () => void;
+  reduceMotion: boolean;
+}) {
+  return (
+    <AnimatePresence>
+      {open && (
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.22, ease: easeOut }}
+          className="fixed inset-x-0 bottom-0 top-[74px] z-40 flex flex-col bg-[#0A0A0B]/92 backdrop-blur-md md:hidden"
+        >
+          <div className="flex-1 overflow-y-auto px-5 pb-8 pt-8">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              exit={reduceMotion ? {} : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.28, ease: easeOut }}
+              className="mx-auto w-full max-w-7xl"
+            >
+              <div className="flex flex-col items-center gap-8">
+                {NAV_ITEMS.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={onClose}
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.04 + index * 0.08,
+                      ease: easeOut,
+                    }}
+                    className="text-center text-lg font-medium text-[#F5F2EA] transition hover:text-[#A9ABB3]"
+                  >
+                    {item.label}
+                  </motion.a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="border-t border-white/10 px-5 py-6">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              transition={{ duration: 0.32, delay: 0.28, ease: easeOut }}
+              className="mx-auto w-full max-w-7xl"
+            >
+              <Link
+                href="/start"
+                onClick={onClose}
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[15px] font-semibold text-white transition duration-300 hover:brightness-110"
+              >
+                Start my website
+              </Link>
+            </motion.div>
+          </div>
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+}
+
+function HeroSection({
+  isMobile,
+  reduceMotion,
+}: {
+  isMobile: boolean;
+  reduceMotion: boolean;
+}) {
+  const motionEnabled = !reduceMotion && !isMobile;
+
+  return (
+    <section className="mx-auto flex min-h-[74svh] w-full max-w-7xl items-start justify-center px-5 pb-6 pt-10 text-center sm:min-h-[calc(100svh-74px)] sm:items-center sm:px-6 sm:pb-16 sm:pt-8 lg:px-8 lg:pb-20 lg:pt-12">
+      <motion.div
+        variants={heroContainer}
+        initial="hidden"
+        animate="show"
+        className="mx-auto w-full max-w-3xl"
+      >
+        <motion.div
+          variants={fadeUp}
+          className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
+        >
+          <motion.span
+            animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
+            transition={{
+              duration: 2.2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
+          />
+          Professional websites for UK businesses
+        </motion.div>
+
+        <motion.h1
+          variants={fadeUp}
+          className="mx-auto mt-4 w-full font-serif text-[clamp(2.25rem,9.5vw,4rem)] leading-[1.1] tracking-[-0.04em] text-[#F5F2EA] sm:mt-6 sm:text-[clamp(2.5rem,10vw,4.2rem)] sm:leading-[1.12]"
+        >
+          Professional websites for UK businesses
+        </motion.h1>
+
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-5 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-6 sm:text-[17px] sm:leading-7"
+        >
+          Clean, fast, mobile-first websites built with a simple process.
+        </motion.p>
+
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-3 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[17px] sm:leading-7"
+        >
+          Once your content is received, your website can be built within 24
+          hours.
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp}
+          className="mt-6 text-center text-[16px] font-semibold leading-6 text-[#E2E4E9] sm:text-[15px]"
+        >
+          Website build £595 • Hosting £40/month after launch
+        </motion.div>
+
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mt-7 flex w-full flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4"
+        >
+          <MagneticLink
+            href="/start"
+            disabled={isMobile}
+            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6"
+          >
+            Start my website
+            <ArrowRight />
+          </MagneticLink>
+
+          <a
+            href="#demos"
+            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto sm:px-6"
+          >
+            View demo websites
+            <ArrowRight />
+          </a>
+        </motion.div>
+
+        <motion.p
+          variants={fadeUp}
+          className="mx-auto mt-6 w-full max-w-2xl text-[14px] leading-6 text-[#A9ABB3] sm:mt-7"
+        >
+          Ideal for trades, salons, restaurants, studios and local businesses.
+        </motion.p>
+
+        <motion.div
+          variants={fadeUp}
+          className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
+        >
+          {HERO_POINTS.map((item, index) => (
+            <motion.div
+              key={item}
+              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.5,
+                delay: 0.42 + index * 0.06,
+                ease: easeOut,
+              }}
+              className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
+            >
+              <span className="max-w-[16ch] text-center">{item}</span>
+            </motion.div>
+          ))}
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+}
+
+function MobileStickyCta({ hidden }: { hidden: boolean }) {
+  if (hidden) return null;
+
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
+      <div className="mx-auto flex max-w-7xl flex-col gap-2">
+        <Link
+          href="/start"
+          className="flex h-14 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[16px] font-semibold text-white"
+        >
+          Start my website
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function HeroHeader({ scrolled }: { scrolled: boolean }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion();
+
+  useLockBodyScroll(mobileOpen);
+
+  useEffect(() => {
+    if (!isMobile && mobileOpen) {
+      setMobileOpen(false);
+    }
+  }, [isMobile, mobileOpen]);
+
+  const headerHeightClass = useMemo(
+    () => (scrolled ? "h-[68px]" : "h-[74px] sm:h-[78px]"),
+    [scrolled]
+  );
+
+  return (
+    <>
+      <motion.header
+        animate={{
+          backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
+        }}
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "border-b border-white/10 bg-[#0A0A0B]/72"
+            : "bg-transparent"
+        }`}
+      >
+        <div
+          className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 lg:px-8 ${headerHeightClass}`}
+        >
+          <Link href="/" className="flex items-center gap-3" aria-label="Home">
+            <motion.div
+              animate={{ scale: scrolled ? 0.96 : 1 }}
+              transition={{ duration: 0.25 }}
+            >
+              <Image
+                src="/logo.png"
+                alt="Clean Websites logo"
+                width={144}
+                height={40}
+                className="h-8 w-auto opacity-95 sm:h-9"
+                priority
+              />
+            </motion.div>
+          </Link>
+
+          <DesktopNav />
+          <DesktopActions isMobile={isMobile} />
+
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Toggle menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
+            onClick={() => setMobileOpen((value) => !value)}
+          >
+            <MenuIcon open={mobileOpen} />
+          </button>
+        </div>
+      </motion.header>
+
+      <div id="mobile-menu">
+        <MobileMenu
+          open={mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          reduceMotion={reduceMotion}
+        />
+      </div>
+
+      <HeroSection isMobile={isMobile} reduceMotion={reduceMotion} />
+      <MobileStickyCta hidden={mobileOpen} />
+    </>
   );
 }
 
@@ -474,8 +846,7 @@ function PriceHighlight({
 
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion();
   const motionEnabled = !reduceMotion && !isMobile;
 
@@ -485,21 +856,6 @@ export default function Home() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
-  useEffect(() => {
-    const media = window.matchMedia("(max-width: 767px)");
-    const update = () => setIsMobile(media.matches);
-    update();
-    media.addEventListener("change", update);
-    return () => media.removeEventListener("change", update);
-  }, []);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
 
   return (
     <div className="min-h-screen scroll-smooth bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
@@ -542,250 +898,9 @@ export default function Home() {
         <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
       </div>
 
-      <motion.header
-        animate={{
-          backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
-        }}
-        className={`sticky top-0 z-50 transition-all duration-300 ${
-          scrolled
-            ? "border-b border-white/10 bg-[#0A0A0B]/72"
-            : "bg-transparent"
-        }`}
-      >
-        <div
-          className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 lg:px-8 ${
-            scrolled ? "h-[68px]" : "h-[74px] sm:h-[78px]"
-          }`}
-        >
-          <Link href="/" className="flex items-center gap-3">
-            <motion.div
-              animate={{ scale: scrolled ? 0.96 : 1 }}
-              transition={{ duration: 0.25 }}
-            >
-              <Image
-                src="/logo.png"
-                alt="Clean Websites logo"
-                width={144}
-                height={40}
-                className="h-8 w-auto opacity-95 sm:h-9"
-              />
-            </motion.div>
-          </Link>
-
-          <nav className="hidden items-center gap-8 text-[15px] text-[#A9ABB3] md:flex">
-            <a className="transition hover:text-[#F5F2EA]" href="#demos">
-              Demos
-            </a>
-            <a className="transition hover:text-[#F5F2EA]" href="#pricing">
-              Pricing
-            </a>
-            <a className="transition hover:text-[#F5F2EA]" href="#process">
-              Process
-            </a>
-          </nav>
-
-          <div className="hidden items-center gap-3 md:flex">
-            <Link
-              href="#demos"
-              className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
-            >
-              View demo websites
-            </Link>
-
-            <MagneticLink
-              href="/start"
-              disabled={isMobile}
-              className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
-            >
-              Start my website
-            </MagneticLink>
-          </div>
-
-          <button
-            type="button"
-            aria-label="Toggle menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
-            onClick={() => setMobileOpen((value) => !value)}
-          >
-            <MenuIcon open={mobileOpen} />
-          </button>
-        </div>
-      </motion.header>
-
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.22, ease: easeOut }}
-            className="fixed inset-x-0 bottom-0 top-[74px] z-40 flex flex-col bg-[#0A0A0B]/92 backdrop-blur-md md:hidden"
-          >
-            <div className="flex-1 overflow-y-auto px-5 pt-8 pb-8">
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                exit={reduceMotion ? {} : { opacity: 0, y: 12 }}
-                transition={{ duration: 0.28, ease: easeOut }}
-                className="mx-auto w-full max-w-7xl"
-              >
-                <div className="flex flex-col items-center gap-8">
-                  {[
-                    { href: "#demos", label: "Demos" },
-                    { href: "#pricing", label: "Pricing" },
-                    { href: "#process", label: "Process" },
-                  ].map((item, index) => (
-                    <motion.a
-                      key={item.label}
-                      href={item.href}
-                      onClick={() => setMobileOpen(false)}
-                      initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-                      animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.3,
-                        delay: 0.04 + index * 0.08,
-                        ease: easeOut,
-                      }}
-                      className="text-center text-lg font-medium text-[#F5F2EA] transition hover:text-[#A9ABB3]"
-                    >
-                      {item.label}
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            </div>
-
-            <div className="border-t border-white/10 px-5 py-6">
-              <motion.div
-                initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                transition={{ duration: 0.32, delay: 0.28, ease: easeOut }}
-                className="mx-auto w-full max-w-7xl"
-              >
-                <Link
-                  href="/start"
-                  onClick={() => setMobileOpen(false)}
-                  className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[15px] font-semibold text-white transition duration-300 hover:brightness-110"
-                >
-                  Start my website
-                </Link>
-              </motion.div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <HeroHeader scrolled={scrolled} />
 
       <main className="relative scroll-smooth">
-        {/* HERO SECTION STARTS */}
-        <section className="mx-auto flex min-h-[74svh] w-full max-w-7xl items-start justify-center px-5 pb-6 pt-10 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-16 sm:pt-8 lg:px-8 lg:pb-20 lg:pt-12">
-          <motion.div
-            variants={heroContainer}
-            initial="hidden"
-            animate="show"
-            className="mx-auto w-full max-w-3xl"
-          >
-            <motion.div
-              variants={fadeUp}
-              className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
-            >
-              <motion.span
-                animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
-                transition={{
-                  duration: 2.2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-                className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
-              />
-              Professional websites for UK businesses
-            </motion.div>
-
-            <motion.h1
-              variants={fadeUp}
-              className="mx-auto mt-4 w-full font-serif text-[clamp(2.25rem,9.5vw,4rem)] leading-[1.1] tracking-[-0.04em] text-[#F5F2EA] sm:mt-6 sm:text-[clamp(2.5rem,10vw,4.2rem)] sm:leading-[1.12]"
-            >
-              Professional websites for UK businesses
-            </motion.h1>
-
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-5 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-6 sm:text-[17px] sm:leading-7"
-            >
-              Clean, fast, mobile-first websites built with a simple process.
-            </motion.p>
-
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-3 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-3 sm:text-[17px] sm:leading-7"
-            >
-              Once your content is received, your website can be built within 24
-              hours.
-            </motion.p>
-
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 text-center text-[16px] font-semibold leading-6 text-[#E2E4E9] sm:mt-6 sm:text-[15px]"
-            >
-              Website build £595 • Hosting £40/month after launch
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="mx-auto mt-7 flex w-full flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4"
-            >
-              <MagneticLink
-                href="/start"
-                disabled={isMobile}
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6"
-              >
-                Start my website
-                <ArrowRight />
-              </MagneticLink>
-
-              <a
-                href="#demos"
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto sm:px-6"
-              >
-                View demo websites
-                <ArrowRight />
-              </a>
-            </motion.div>
-
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-6 w-full max-w-2xl text-[14px] leading-6 text-[#A9ABB3] sm:mt-7 sm:text-[14px]"
-            >
-              Ideal for trades, salons, restaurants, studios and local
-              businesses.
-            </motion.p>
-
-<motion.div
-  variants={fadeUp}
-  className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
->
-  {[
-    "Clear pricing",
-    "Designed for small businesses",
-    "Managed hosting included",
-    "Domain stays in your name",
-  ].map((item, index) => (
-    <motion.div
-      key={item}
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-      animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-      transition={{
-        duration: 0.5,
-        delay: 0.42 + index * 0.06,
-        ease: easeOut,
-      }}
-      className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
-    >
-      <span className="max-w-[16ch] text-center">{item}</span>
-    </motion.div>
-  ))}
-</motion.div>
-</motion.div>
-</section>
         <Reveal>
           <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
@@ -826,7 +941,7 @@ export default function Home() {
                           }
                         : {}
                     }
-                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:min-h-[100px] sm:px-6 sm:py-5 sm:rounded-[26px]"
+                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:min-h-[100px] sm:rounded-[26px] sm:px-6 sm:py-5"
                   >
                     <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
                     <div className="relative flex items-start gap-3">
@@ -933,7 +1048,7 @@ export default function Home() {
                       delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 sm:min-h-[92px] sm:px-6 sm:py-5 sm:rounded-[26px]"
+                    className="rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 sm:min-h-[92px] sm:rounded-[26px] sm:px-6 sm:py-5"
                   >
                     <div className="flex items-start gap-3">
                       <span className="mt-[0.6rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
@@ -1342,17 +1457,6 @@ export default function Home() {
             </motion.div>
           )}
         </AnimatePresence>
-
-        <div className={`fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden ${mobileOpen ? "hidden" : ""}`}>
-          <div className="mx-auto flex max-w-7xl flex-col gap-2">
-            <Link
-              href="/start"
-              className="flex h-14 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[16px] font-semibold text-white"
-            >
-              Start my website
-            </Link>
-          </div>
-        </div>
       </main>
     </div>
   );
