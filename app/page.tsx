@@ -238,7 +238,7 @@ function Reveal({
   amount?: number;
   className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
 
   if (reduceMotion) {
     return <div className={className}>{children}</div>;
@@ -268,7 +268,7 @@ function MagneticLink({
   href: string;
   disabled?: boolean;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
   const [style, setStyle] = useState({ x: 0, y: 0 });
 
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
@@ -542,7 +542,7 @@ function MobileStickyCta({ hidden }: { hidden: boolean }) {
 function HeroHeader({ scrolled }: { scrolled: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
   const isMobile = useIsMobile();
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
 
   useLockBodyScroll(mobileOpen);
 
@@ -718,7 +718,7 @@ function DemoCard({
   index: number;
   interactionEnabled: boolean;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
   const [rotateX, setRotateX] = useState(0);
   const [rotateY, setRotateY] = useState(0);
 
@@ -829,7 +829,7 @@ function PriceHighlight({
   children: ReactNode;
   className?: string;
 }) {
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
 
   return (
     <motion.div
@@ -847,7 +847,7 @@ function PriceHighlight({
 export default function Home() {
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
-  const reduceMotion = useReducedMotion();
+  const reduceMotion = useReducedMotion() ?? false;
   const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
