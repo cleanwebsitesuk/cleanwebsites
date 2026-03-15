@@ -133,6 +133,14 @@ const supportItems = [
   },
 ];
 
+const audienceTags = [
+  "Service businesses",
+  "Studios and beauty",
+  "Restaurants and hospitality",
+  "Local service companies",
+  "Small business layouts",
+] as const;
+
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 const fadeUp = {
@@ -149,7 +157,7 @@ const heroContainer = {
   show: {
     transition: {
       staggerChildren: 0.08,
-      delayChildren: 0.06,
+      delayChildren: 0.04,
     },
   },
 };
@@ -190,6 +198,51 @@ function useLockBodyScroll(locked: boolean) {
   }, [locked]);
 }
 
+function SectionShell({
+  id,
+  children,
+  className = "",
+}: {
+  id?: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <section
+      id={id}
+      className={`mx-auto w-full max-w-7xl px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-24 ${className}`}
+    >
+      {children}
+    </section>
+  );
+}
+
+function SectionEyebrow({ children }: { children: ReactNode }) {
+  return (
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#9DA2AE] sm:text-[12px]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+      {children}
+    </div>
+  );
+}
+
+function GlassCard({
+  children,
+  className = "",
+}: {
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <div
+      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_20px_80px_rgba(0,0,0,0.25)] backdrop-blur-sm ${className}`}
+    >
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_28%)]" />
+      <div className="relative">{children}</div>
+    </div>
+  );
+}
+
 function ArrowRight() {
   return (
     <svg
@@ -208,9 +261,26 @@ function ArrowRight() {
   );
 }
 
+function CheckIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M20 6 9 17l-5-5" />
+    </svg>
+  );
+}
+
 function MenuIcon({ open }: { open: boolean }) {
   const lineBase =
-    "absolute left-0 h-px w-5 bg-[#F5F2EA] transition-all duration-300";
+    "absolute left-0 h-px w-5 rounded-full bg-[#F5F2EA] transition-all duration-300";
 
   return (
     <div className="relative h-5 w-5" aria-hidden="true">
@@ -300,12 +370,12 @@ function MagneticLink({
 
 function DesktopNav() {
   return (
-    <nav className="hidden items-center gap-8 text-[15px] text-[#A9ABB3] md:flex">
+    <nav className="hidden items-center gap-2 md:flex">
       {NAV_ITEMS.map((item) => (
         <a
           key={item.href}
           href={item.href}
-          className="transition hover:text-[#F5F2EA]"
+          className="rounded-full px-4 py-2 text-[15px] text-[#A9ABB3] transition duration-300 hover:bg-white/[0.04] hover:text-[#F5F2EA]"
         >
           {item.label}
         </a>
@@ -319,7 +389,7 @@ function DesktopActions({ isMobile }: { isMobile: boolean }) {
     <div className="hidden items-center gap-3 md:flex">
       <Link
         href="#demos"
-        className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05]"
+        className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
       >
         View demo websites
       </Link>
@@ -327,7 +397,7 @@ function DesktopActions({ isMobile }: { isMobile: boolean }) {
       <MagneticLink
         href="/start"
         disabled={isMobile}
-        className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
+        className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
       >
         Start my website
       </MagneticLink>
@@ -352,57 +422,90 @@ function MobileMenu({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22, ease: easeOut }}
-          className="fixed inset-x-0 bottom-0 top-[74px] z-40 flex flex-col bg-[#0A0A0B]/92 backdrop-blur-md md:hidden"
+          className="fixed inset-x-0 bottom-0 top-[78px] z-40 border-t border-white/10 bg-[#090A0C]/96 backdrop-blur-2xl md:hidden"
         >
-          <div className="flex-1 overflow-y-auto px-5 pb-8 pt-8">
+          <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-5 pb-6 pt-6 sm:px-6">
             <motion.div
               initial={reduceMotion ? false : { opacity: 0, y: 18 }}
               animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
               exit={reduceMotion ? {} : { opacity: 0, y: 12 }}
               transition={{ duration: 0.28, ease: easeOut }}
-              className="mx-auto w-full max-w-7xl"
+              className="flex flex-1 flex-col"
             >
-              <div className="flex flex-col items-center gap-8">
+              <div className="grid gap-3">
                 {NAV_ITEMS.map((item, index) => (
                   <motion.a
                     key={item.href}
                     href={item.href}
                     onClick={onClose}
-                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                     animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                     transition={{
                       duration: 0.3,
-                      delay: 0.04 + index * 0.08,
+                      delay: 0.04 + index * 0.07,
                       ease: easeOut,
                     }}
-                    className="text-center text-lg font-medium text-[#F5F2EA] transition hover:text-[#A9ABB3]"
+                    className="flex items-center justify-between rounded-[22px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[17px] font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]"
                   >
-                    {item.label}
+                    <span>{item.label}</span>
+                    <ArrowRight />
                   </motion.a>
                 ))}
               </div>
-            </motion.div>
-          </div>
 
-          <div className="border-t border-white/10 px-5 py-6">
-            <motion.div
-              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{ duration: 0.32, delay: 0.28, ease: easeOut }}
-              className="mx-auto w-full max-w-7xl"
-            >
-              <Link
-                href="/start"
-                onClick={onClose}
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[15px] font-semibold text-white transition duration-300 hover:brightness-110"
-              >
-                Start my website
-              </Link>
+              <div className="mt-auto pt-6">
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  transition={{ duration: 0.32, delay: 0.24, ease: easeOut }}
+                  className="rounded-[24px] border border-white/10 bg-white/[0.03] p-3"
+                >
+                  <Link
+                    href="/start"
+                    onClick={onClose}
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(59,130,246,0.28)] transition duration-300 hover:brightness-110"
+                  >
+                    Start my website
+                  </Link>
+                </motion.div>
+              </div>
             </motion.div>
           </div>
         </motion.div>
       )}
     </AnimatePresence>
+  );
+}
+
+function HeroStatsStrip({ reduceMotion }: { reduceMotion: boolean }) {
+  return (
+    <motion.div
+      variants={fadeUp}
+      className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {HERO_POINTS.map((item, index) => (
+        <motion.div
+          key={item}
+          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+          animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.5,
+            delay: 0.4 + index * 0.06,
+            ease: easeOut,
+          }}
+          className="rounded-[22px] border border-white/10 bg-white/[0.04] px-5 py-4 text-left shadow-[0_10px_30px_rgba(0,0,0,0.12)] sm:min-h-[84px]"
+        >
+          <div className="flex items-start gap-3">
+            <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+              <CheckIcon />
+            </span>
+            <span className="text-[15px] font-medium leading-6 text-[#E7E9EE]">
+              {item}
+            </span>
+          </div>
+        </motion.div>
+      ))}
+    </motion.div>
   );
 }
 
@@ -416,108 +519,154 @@ function HeroSection({
   const motionEnabled = !reduceMotion && !isMobile;
 
   return (
-    <section className="mx-auto flex min-h-[74svh] w-full max-w-7xl items-start justify-center px-5 pb-6 pt-10 text-center sm:min-h-[calc(100svh-74px)] sm:items-center sm:px-6 sm:pb-16 sm:pt-8 lg:px-8 lg:pb-20 lg:pt-12">
-      <motion.div
-        variants={heroContainer}
-        initial="hidden"
-        animate="show"
-        className="mx-auto w-full max-w-3xl"
-      >
+    <section className="relative">
+      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8 lg:pb-16 lg:pt-12">
         <motion.div
-          variants={fadeUp}
-          className="hidden sm:inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]"
+          variants={heroContainer}
+          initial="hidden"
+          animate="show"
+          className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.7fr)] lg:gap-10"
         >
-          <motion.span
-            animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
-            transition={{
-              duration: 2.2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
-          />
-          Professional websites for UK businesses
-        </motion.div>
-
-        <motion.h1
-          variants={fadeUp}
-          className="mx-auto mt-4 w-full font-serif text-[clamp(2.25rem,9.5vw,4rem)] leading-[1.1] tracking-[-0.04em] text-[#F5F2EA] sm:mt-6 sm:text-[clamp(2.5rem,10vw,4.2rem)] sm:leading-[1.12]"
-        >
-          Professional websites for UK businesses
-        </motion.h1>
-
-        <motion.p
-          variants={fadeUp}
-          className="mx-auto mt-5 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-6 sm:text-[17px] sm:leading-7"
-        >
-          Clean, fast, mobile-first websites built with a simple process.
-        </motion.p>
-
-        <motion.p
-          variants={fadeUp}
-          className="mx-auto mt-3 w-full max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[17px] sm:leading-7"
-        >
-          Once your content is received, your website can be built within 24
-          hours.
-        </motion.p>
-
-        <motion.div
-          variants={fadeUp}
-          className="mt-6 text-center text-[16px] font-semibold leading-6 text-[#E2E4E9] sm:text-[15px]"
-        >
-          Website build £595 • Hosting £40/month after launch
-        </motion.div>
-
-        <motion.div
-          variants={fadeUp}
-          className="mx-auto mt-7 flex w-full flex-col items-center justify-center gap-3 sm:mt-8 sm:flex-row sm:gap-4"
-        >
-          <MagneticLink
-            href="/start"
-            disabled={isMobile}
-            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6"
-          >
-            Start my website
-            <ArrowRight />
-          </MagneticLink>
-
-          <a
-            href="#demos"
-            className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto sm:px-6"
-          >
-            View demo websites
-            <ArrowRight />
-          </a>
-        </motion.div>
-
-        <motion.p
-          variants={fadeUp}
-          className="mx-auto mt-6 w-full max-w-2xl text-[14px] leading-6 text-[#A9ABB3] sm:mt-7"
-        >
-          Ideal for trades, salons, restaurants, studios and local businesses.
-        </motion.p>
-
-        <motion.div
-          variants={fadeUp}
-          className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
-        >
-          {HERO_POINTS.map((item, index) => (
-            <motion.div
-              key={item}
-              initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
-              transition={{
-                duration: 0.5,
-                delay: 0.42 + index * 0.06,
-                ease: easeOut,
-              }}
-              className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
-            >
-              <span className="max-w-[16ch] text-center">{item}</span>
+          <div className="mx-auto flex w-full max-w-3xl flex-col justify-center lg:mx-0 lg:max-w-none">
+            <motion.div variants={fadeUp} className="w-fit">
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
+                <motion.span
+                  animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
+                />
+                Professional websites for UK businesses
+              </div>
             </motion.div>
-          ))}
+
+            <motion.h1
+              variants={fadeUp}
+              className="mt-5 max-w-[14ch] font-serif text-[clamp(2.7rem,7vw,5.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]"
+            >
+              Professional websites for UK businesses
+            </motion.h1>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-6 max-w-2xl space-y-3"
+            >
+              <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[17px] sm:leading-8">
+                Clean, fast, mobile-first websites built with a simple process.
+              </p>
+
+              <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[17px] sm:leading-8">
+                Once your content is received, your website can be built within
+                24 hours.
+              </p>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-6 w-fit rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
+            >
+              Website build £595 • Hosting £40/month after launch
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-7 flex w-full flex-col gap-3 sm:mt-8 sm:flex-row"
+            >
+              <MagneticLink
+                href="/start"
+                disabled={isMobile}
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[14px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+              >
+                Start my website
+                <ArrowRight />
+              </MagneticLink>
+
+              <a
+                href="#demos"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
+              >
+                View demo websites
+                <ArrowRight />
+              </a>
+            </motion.div>
+
+            <motion.p
+              variants={fadeUp}
+              className="mt-6 max-w-2xl text-[14px] leading-6 text-[#A9ABB3] sm:mt-7"
+            >
+              Ideal for trades, salons, restaurants, studios and local
+              businesses.
+            </motion.p>
+
+            <HeroStatsStrip reduceMotion={reduceMotion} />
+          </div>
+
+          <motion.div
+            variants={fadeUp}
+            className="hidden lg:block"
+            aria-hidden="true"
+          >
+            <GlassCard className="h-full min-h-[560px] p-5">
+              <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#0D0E11]/80 p-5">
+                <div className="flex items-center justify-between">
+                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                    Launch package
+                  </div>
+                  <div className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-xs text-[#9CC0FF]">
+                    Fast launch
+                  </div>
+                </div>
+
+                <div className="mt-5 rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="text-sm text-[#A9ABB3]">Website build</div>
+                  <div className="mt-2 text-5xl font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                    £595
+                  </div>
+                  <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+                </div>
+
+                <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
+                  <div className="text-sm text-[#A9ABB3]">
+                    Managed hosting and support
+                  </div>
+                  <div className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                    £40 / month
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3">
+                  {[
+                    "Home page",
+                    "Mobile optimisation",
+                    "One revision",
+                    "Launch support",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 rounded-[18px] border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-[#E5E7EC]"
+                    >
+                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                        <CheckIcon />
+                      </span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-auto rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-5">
+                  <p className="text-sm leading-6 text-[#D7E5FF]">
+                    Websites can be built within 24 hours once content is
+                    received.
+                  </p>
+                </div>
+              </div>
+            </GlassCard>
+          </motion.div>
         </motion.div>
-      </motion.div>
+      </div>
     </section>
   );
 }
@@ -526,11 +675,11 @@ function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
-      <div className="mx-auto flex max-w-7xl flex-col gap-2">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/92 p-4 backdrop-blur-2xl md:hidden">
+      <div className="mx-auto max-w-7xl">
         <Link
           href="/start"
-          className="flex h-14 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[16px] font-semibold text-white"
+          className="flex h-14 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[16px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.3)]"
         >
           Start my website
         </Link>
@@ -553,7 +702,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
   }, [isMobile, mobileOpen]);
 
   const headerHeightClass = useMemo(
-    () => (scrolled ? "h-[68px]" : "h-[74px] sm:h-[78px]"),
+    () => (scrolled ? "h-[72px]" : "h-[78px] sm:h-[84px]"),
     [scrolled]
   );
 
@@ -561,11 +710,11 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
     <>
       <motion.header
         animate={{
-          backdropFilter: scrolled ? "blur(20px)" : "blur(0px)",
+          backdropFilter: scrolled ? "blur(22px)" : "blur(0px)",
         }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "border-b border-white/10 bg-[#0A0A0B]/72"
+            ? "border-b border-white/10 bg-[#090A0C]/70 shadow-[0_10px_40px_rgba(0,0,0,0.18)]"
             : "bg-transparent"
         }`}
       >
@@ -574,8 +723,9 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
         >
           <Link href="/" className="flex items-center gap-3" aria-label="Home">
             <motion.div
-              animate={{ scale: scrolled ? 0.96 : 1 }}
+              animate={{ scale: scrolled ? 0.98 : 1 }}
               transition={{ duration: 0.25 }}
+              className="rounded-full"
             >
               <Image
                 src="/logo.png"
@@ -596,7 +746,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
             aria-label={mobileOpen ? "Close menu" : "Toggle menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] shadow-[0_8px_24px_rgba(0,0,0,0.12)] md:hidden"
             onClick={() => setMobileOpen((value) => !value)}
           >
             <MenuIcon open={mobileOpen} />
@@ -654,7 +804,7 @@ function InfoTooltip({ text }: { text: string }) {
         aria-label="More information"
         aria-expanded={open}
         onClick={() => setOpen((value) => !value)}
-        className="inline-flex h-5 w-5 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#A9ABB3] transition hover:border-white/25 hover:text-[#F5F2EA]"
+        className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#A9ABB3] transition hover:border-white/25 hover:text-[#F5F2EA]"
       >
         <svg
           aria-hidden="true"
@@ -679,7 +829,7 @@ function InfoTooltip({ text }: { text: string }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 6, scale: 0.98 }}
             transition={{ duration: 0.18, ease: "easeOut" }}
-            className="absolute right-0 top-7 z-30 w-64 rounded-2xl border border-white/10 bg-[#111214] p-3 text-left text-xs leading-6 text-[#A9ABB3] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:w-72"
+            className="absolute right-0 top-8 z-30 w-64 rounded-2xl border border-white/10 bg-[#111214] p-3 text-left text-xs leading-6 text-[#A9ABB3] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:w-72"
           >
             {text}
           </motion.div>
@@ -697,7 +847,7 @@ function SupportItem({
   text: string;
 }) {
   return (
-    <div>
+    <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
       <div className="flex items-start justify-between gap-3">
         <span className="text-sm text-[#F5F2EA]">{title}</span>
         <div className="hidden sm:block">
@@ -727,8 +877,8 @@ function DemoCard({
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width;
     const py = (e.clientY - rect.top) / rect.height;
-    const ry = (px - 0.5) * 6;
-    const rx = (0.5 - py) * 5;
+    const ry = (px - 0.5) * 7;
+    const rx = (0.5 - py) * 6;
     setRotateX(rx);
     setRotateY(ry);
   };
@@ -757,13 +907,13 @@ function DemoCard({
               }
             : undefined
         }
-        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_80px_rgba(0,0,0,0.32)] sm:rounded-[28px]"
+        className="group block overflow-hidden rounded-[28px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
       >
-        <div className="relative h-64 overflow-hidden border-b border-white/10 bg-[#0D0E10] sm:h-72 lg:h-[20rem]">
+        <div className="relative h-72 overflow-hidden border-b border-white/10 bg-[#0C0D10] sm:h-80 lg:h-[22rem]">
           <motion.div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_35%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_35%)]"
             animate={
-              reduceMotion || !interactionEnabled ? {} : { scale: [1, 1.04, 1] }
+              reduceMotion || !interactionEnabled ? {} : { scale: [1, 1.05, 1] }
             }
             transition={{
               duration: 10,
@@ -772,31 +922,32 @@ function DemoCard({
             }}
           />
           <motion.div
-            className="absolute inset-0"
+            className="absolute inset-0 p-4 sm:p-5"
             transition={{ duration: 0.55, ease: easeOut }}
             whileHover={
-              reduceMotion || !interactionEnabled ? {} : { scale: 1.035, y: -4 }
+              reduceMotion || !interactionEnabled ? {} : { scale: 1.02, y: -4 }
             }
           >
             <motion.div
               style={
                 interactionEnabled ? { transform: "translateZ(28px)" } : undefined
               }
-              className="absolute left-4 right-4 top-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 sm:left-6 sm:right-6 sm:top-6 sm:rounded-[22px] sm:p-5"
+              className="flex h-full flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4 sm:p-5"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
                   {card.kicker}
                 </span>
-                <span className="rounded-full bg-[#3B82F6]/15 px-2.5 py-1 text-[11px] text-[#8BB5FF] sm:px-3 sm:text-xs">
+                <span className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/12 px-2.5 py-1 text-[11px] text-[#8BB5FF] sm:px-3 sm:text-xs">
                   Preview build
                 </span>
               </div>
-              <div className="mt-4 overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] sm:mt-5 sm:rounded-[18px]">
+
+              <div className="mt-4 flex-1 overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <img
                   src={card.image}
                   alt={`${card.title} preview`}
-                  className="h-36 w-full object-cover object-top sm:h-44"
+                  className="h-full w-full object-cover object-top transition duration-700 md:group-hover:scale-[1.03]"
                 />
               </div>
             </motion.div>
@@ -858,7 +1009,7 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="min-h-screen scroll-smooth bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
+    <div className="min-h-screen scroll-smooth bg-[#07080A] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           animate={
@@ -875,7 +1026,7 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[32rem] sm:w-[32rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
+          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/10 blur-[120px] sm:h-[34rem] sm:w-[34rem] sm:bg-[#3B82F6]/12 sm:blur-[150px]"
         />
         <motion.div
           animate={
@@ -892,23 +1043,22 @@ export default function Home() {
             repeat: Infinity,
             ease: "easeInOut",
           }}
-          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/8 sm:blur-[140px]"
+          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/8 blur-[110px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/10 sm:blur-[145px]"
         />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.045),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.025] sm:opacity-[0.035] [background-image:radial-gradient(rgba(255,255,255,0.9)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
+        <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
       </div>
 
       <HeroHeader scrolled={scrolled} />
 
       <main className="relative scroll-smooth">
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
-            <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+          <SectionShell className="pt-4 sm:pt-6 lg:pt-10">
+            <div className="grid gap-7 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Fast launch
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.15rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                <SectionEyebrow>Fast launch</SectionEyebrow>
+                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                   Launch your website within 24 hours
                 </h2>
                 <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -941,11 +1091,11 @@ export default function Home() {
                           }
                         : {}
                     }
-                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:min-h-[100px] sm:rounded-[26px] sm:px-6 sm:py-5"
+                    className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.04] px-5 py-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[110px] sm:px-6"
                   >
                     <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
                     <div className="relative flex items-start gap-3">
-                      <span className="mt-[0.6rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
                       <p className="text-[15px] leading-7 text-[#F5F2EA] sm:text-[16px] sm:leading-7">
                         {item}
                       </p>
@@ -954,19 +1104,14 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </section>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section
-            id="demos"
-            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
+          <SectionShell id="demos">
             <div className="max-w-3xl">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                Demo websites
-              </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              <SectionEyebrow>Demo websites</SectionEyebrow>
+              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                 Example websites for different types of businesses
               </h2>
               <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -980,13 +1125,7 @@ export default function Home() {
             </div>
 
             <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
-              {[
-                "Service businesses",
-                "Studios and beauty",
-                "Restaurants and hospitality",
-                "Local service companies",
-                "Small business layouts",
-              ].map((item, index) => (
+              {audienceTags.map((item, index) => (
                 <motion.div
                   key={item}
                   initial={reduceMotion ? false : { opacity: 0, y: 12 }}
@@ -1016,17 +1155,15 @@ export default function Home() {
                 />
               ))}
             </div>
-          </section>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <SectionShell>
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
               <div className="max-w-xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Who this is for
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                <SectionEyebrow>Who this is for</SectionEyebrow>
+                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                   Ideal for businesses that need a professional website quickly
                 </h2>
                 <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -1048,10 +1185,10 @@ export default function Home() {
                       delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 sm:min-h-[92px] sm:rounded-[26px] sm:px-6 sm:py-5"
+                    className="rounded-[26px] border border-white/10 bg-white/[0.04] px-5 py-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] sm:min-h-[98px] sm:px-6"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="mt-[0.6rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <span className="mt-[0.6rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
                       <p className="text-[15px] leading-7 text-[#F5F2EA] sm:text-[16px] sm:leading-7">
                         {item}
                       </p>
@@ -1060,20 +1197,15 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </section>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section
-            id="pricing"
-            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
-            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-7 sm:rounded-[32px] sm:px-8 sm:py-10 lg:px-10">
+          <SectionShell id="pricing">
+            <GlassCard className="px-5 py-7 sm:px-8 sm:py-10 lg:px-10">
               <div className="max-w-4xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Pricing
-                </div>
-                <h2 className="mt-4 max-w-none font-serif text-[clamp(2.15rem,7vw,3.75rem)] leading-[1.05] tracking-[-0.04em] text-[#F5F2EA]">
+                <SectionEyebrow>Pricing</SectionEyebrow>
+                <h2 className="mt-5 max-w-none font-serif text-[clamp(2.2rem,7vw,4rem)] leading-[1.02] tracking-[-0.05em] text-[#F5F2EA]">
                   <span className="block sm:inline">Simple website launch</span>
                   <span className="hidden sm:inline"> package</span>
                   <span className="block sm:hidden">package</span>
@@ -1084,18 +1216,18 @@ export default function Home() {
                 </p>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#17181B] sm:rounded-[28px]">
-                <div className="grid lg:grid-cols-2">
+              <div className="mt-8 overflow-hidden rounded-[26px] border border-white/10 bg-[#121417]/90 shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
+                <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
                   <div className="p-5 sm:p-8 lg:p-9">
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
 
-                    <PriceHighlight className="mt-2 text-[2.2rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
+                    <PriceHighlight className="mt-2 text-[2.4rem] font-semibold tracking-[-0.05em] text-[#F5F2EA] sm:text-6xl">
                       £595
                     </PriceHighlight>
 
                     <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
-                    <div className="mt-6 space-y-3 text-sm text-[#F5F2EA]">
+                    <div className="mt-6 grid gap-3 text-sm text-[#F5F2EA] sm:grid-cols-2">
                       {[
                         "Home page",
                         "About page",
@@ -1116,30 +1248,32 @@ export default function Home() {
                             delay: index * 0.04,
                             ease: easeOut,
                           }}
-                          className="flex items-start gap-3"
+                          className="flex items-start gap-3 rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3"
                         >
-                          <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                            <CheckIcon />
+                          </span>
                           <span>{item}</span>
                         </motion.div>
                       ))}
                     </div>
 
-                    <div className="mt-7 rounded-2xl border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                    <div className="mt-7 rounded-[22px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
                       Websites can be built within 24 hours once content is
                       received.
                     </div>
                   </div>
 
-                  <div className="border-t border-white/10 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
+                  <div className="border-t border-white/10 bg-white/[0.02] p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
                     <div className="text-sm text-[#A9ABB3]">
                       Managed hosting and support
                     </div>
 
-                    <PriceHighlight className="mt-2 text-[1.9rem] font-semibold tracking-[-0.02em] text-[#F5F2EA] sm:text-3xl">
+                    <PriceHighlight className="mt-2 text-[2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-4xl">
                       £40 / month
                     </PriceHighlight>
 
-                    <div className="mt-5 space-y-4 text-sm leading-7 text-[#A9ABB3]">
+                    <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
                       {supportItems.map((item) => (
                         <SupportItem
                           key={item.title}
@@ -1148,24 +1282,26 @@ export default function Home() {
                         />
                       ))}
 
-                      <p>
-                        Your domain is purchased separately in your name so you
-                        keep full ownership.
-                      </p>
+                      <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
+                        <p>
+                          Your domain is purchased separately in your name so
+                          you keep full ownership.
+                        </p>
+                      </div>
                     </div>
 
                     <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                       <MagneticLink
                         href="/start"
                         disabled={isMobile}
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
                       >
                         Start my website
                       </MagneticLink>
 
                       <Link
                         href="#demos"
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
                       >
                         View demo websites
                       </Link>
@@ -1173,20 +1309,15 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </GlassCard>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section
-            id="process"
-            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
+          <SectionShell id="process">
             <div className="max-w-2xl">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                Process
-              </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+              <SectionEyebrow>Process</SectionEyebrow>
+              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                 A simple 4-step process
               </h2>
               <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -1202,7 +1333,7 @@ export default function Home() {
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 1, ease: easeOut }}
                 style={{ originX: 0 }}
-                className="absolute left-0 right-0 top-7 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
+                className="absolute left-[8%] right-[8%] top-9 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
               />
 
               <div className="grid gap-4 lg:grid-cols-4">
@@ -1217,7 +1348,7 @@ export default function Home() {
                       delay: index * 0.08,
                       ease: easeOut,
                     }}
-                    className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[28px] sm:p-6"
+                    className="relative rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] sm:p-6"
                   >
                     <motion.div
                       initial={reduceMotion ? false : { scale: 0.85, opacity: 0 }}
@@ -1228,7 +1359,7 @@ export default function Home() {
                         delay: 0.12 + index * 0.08,
                         ease: easeOut,
                       }}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-sm text-[#F5F2EA] sm:h-12 sm:w-12"
+                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
                     >
                       {item.step}
                     </motion.div>
@@ -1248,17 +1379,15 @@ export default function Home() {
                 hours.
               </div>
             </div>
-          </section>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+          <SectionShell>
             <div className="grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
               <div className="max-w-xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Why it works
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                <SectionEyebrow>Why it works</SectionEyebrow>
+                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                   Designed to make your business look credible online
                 </h2>
                 <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -1287,7 +1416,7 @@ export default function Home() {
                           }
                         : {}
                     }
-                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
+                    className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:p-6"
                   >
                     <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
                     <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
@@ -1300,12 +1429,12 @@ export default function Home() {
                 ))}
               </div>
             </div>
-          </section>
+          </SectionShell>
         </Reveal>
 
         <Reveal>
-          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-20 lg:px-8">
-            <div className="relative overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-12 text-center sm:rounded-[34px] sm:px-10 sm:py-14">
+          <SectionShell className="pb-16 sm:pb-20 lg:pb-24">
+            <GlassCard className="px-5 py-12 text-center sm:px-10 sm:py-14">
               <motion.div
                 animate={
                   motionEnabled
@@ -1325,10 +1454,8 @@ export default function Home() {
               />
 
               <div className="relative mx-auto max-w-3xl">
-                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Start
-                </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.3rem,8vw,4.5rem)] leading-[0.97] tracking-[-0.045em] text-[#F5F2EA]">
+                <SectionEyebrow>Start</SectionEyebrow>
+                <h2 className="mt-5 font-serif text-[clamp(2.4rem,8vw,4.8rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
                   Get your business online properly
                 </h2>
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
@@ -1347,7 +1474,7 @@ export default function Home() {
                   <MagneticLink
                     href="/start"
                     disabled={isMobile}
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
                   >
                     Start my website
                     <ArrowRight />
@@ -1355,15 +1482,15 @@ export default function Home() {
 
                   <Link
                     href="#demos"
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto"
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto"
                   >
                     View demo websites
                     <ArrowRight />
                   </Link>
                 </div>
               </div>
-            </div>
-          </section>
+            </GlassCard>
+          </SectionShell>
         </Reveal>
 
         <footer className="mx-auto w-full max-w-7xl border-t border-white/10 px-5 py-10 sm:px-6 lg:px-8">
@@ -1417,7 +1544,9 @@ export default function Home() {
           </div>
 
           <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-[#7F828A] sm:flex-row sm:items-center sm:justify-between">
-            <div>© {new Date().getFullYear()} Clean Websites. All rights reserved.</div>
+            <div>
+              © {new Date().getFullYear()} Clean Websites. All rights reserved.
+            </div>
             <div className="flex gap-5">
               <Link href="/privacy" className="transition hover:text-[#F5F2EA]">
                 Privacy
