@@ -658,7 +658,7 @@ export default function Home() {
       </motion.header>
 
       <main className="relative scroll-smooth">
-        <section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-start justify-center px-5 pb-12 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+        <section className="mx-auto flex min-h-[78svh] w-full max-w-7xl items-start justify-center px-5 pb-10 pt-12 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-18 sm:pt-8 lg:px-8 lg:pb-22 lg:pt-12">
           <motion.div
             variants={heroContainer}
             initial="hidden"
@@ -683,21 +683,21 @@ export default function Home() {
 
             <motion.h1
               variants={fadeUp}
-              className="mx-auto mt-4 max-w-[11ch] font-serif text-[clamp(2.2rem,10.5vw,4.9rem)] leading-[0.92] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.55rem,10vw,4.9rem)] sm:leading-[0.94]"
+              className="mx-auto mt-4 max-w-[9.5ch] font-serif text-[clamp(2.05rem,8.9vw,4.9rem)] leading-[0.94] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.55rem,10vw,4.9rem)] sm:leading-[0.94]"
             >
               Professional websites for UK businesses
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-[25rem] text-[16px] leading-8 text-[#A9ABB3] sm:max-w-3xl sm:text-[20px] sm:leading-8"
+              className="mx-auto mt-5 max-w-[22rem] text-[15px] leading-7 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
             >
               Clean, fast, mobile-first websites built with a simple process.
             </motion.p>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-4 max-w-[25rem] text-[16px] leading-8 text-[#A9ABB3] sm:max-w-3xl sm:text-[20px] sm:leading-8"
+              className="mx-auto mt-3 max-w-[22rem] text-[15px] leading-7 text-[#A9ABB3] sm:mt-4 sm:max-w-3xl sm:text-[20px] sm:leading-8"
             >
               Once your content is received, your website can be built within 24
               hours.
@@ -705,19 +705,19 @@ export default function Home() {
 
             <motion.div
               variants={fadeUp}
-              className="mt-6 text-[15px] font-medium text-[#A9ABB3] sm:mt-5 sm:text-base"
+              className="mt-5 text-[15px] font-medium leading-7 text-[#C6C8CE] sm:mt-5 sm:text-base"
             >
               Website build £595 • Hosting £40/month after launch
             </motion.div>
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-8 flex w-full max-w-md flex-col items-center justify-center gap-3 sm:mt-8 sm:max-w-none sm:flex-row"
+              className="mx-auto mt-7 flex w-full max-w-sm flex-col items-center justify-center gap-3 sm:mt-8 sm:max-w-none sm:flex-row"
             >
               <MagneticLink
                 href="/start"
                 disabled={isMobile}
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:min-w-[220px] sm:px-6"
               >
                 Start my website
                 <ArrowRight />
@@ -725,7 +725,7 @@ export default function Home() {
 
               <a
                 href="#demos"
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto sm:px-6"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto sm:min-w-[220px] sm:px-6"
               >
                 View demo websites
                 <ArrowRight />
@@ -741,7 +741,7 @@ export default function Home() {
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-[#A9ABB3] sm:text-[15px]"
+              className="mx-auto mt-6 max-w-[24rem] text-sm leading-7 text-[#A9ABB3] sm:mt-7 sm:max-w-3xl sm:text-[15px]"
             >
               Ideal for trades, salons, restaurants, studios and local
               businesses.
@@ -749,7 +749,7 @@ export default function Home() {
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-7 hidden max-w-4xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid sm:grid-cols-2 lg:grid-cols-4"
+              className="mx-auto mt-8 hidden max-w-6xl gap-3 text-sm text-[#A9ABB3] sm:mt-9 sm:grid sm:grid-cols-2 lg:grid-cols-4"
             >
               {[
                 "Clear pricing",
@@ -766,9 +766,9 @@ export default function Home() {
                     delay: 0.42 + index * 0.06,
                     ease: easeOut,
                   }}
-                  className="rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-3.5 sm:px-4 sm:py-4"
+                  className="flex min-h-[76px] items-center justify-center rounded-[22px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[84px]"
                 >
-                  {item}
+                  <span className="max-w-[16ch] text-center">{item}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -815,12 +815,12 @@ export default function Home() {
                           }
                         : {}
                     }
-                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
+                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:min-h-[120px] sm:px-6 sm:py-6 sm:rounded-[26px]"
                   >
                     <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
                     <div className="relative flex items-start gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-sm leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-7">
+                      <span className="mt-[0.7rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[17px] leading-8 text-[#F5F2EA] sm:text-[18px] sm:leading-8">
                         {item}
                       </p>
                     </div>
@@ -922,11 +922,11 @@ export default function Home() {
                       delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[26px] sm:p-6"
+                    className="rounded-[24px] border border-white/10 bg-[#111214] px-5 py-5 sm:min-h-[124px] sm:px-6 sm:py-6 sm:rounded-[26px]"
                   >
                     <div className="flex items-start gap-3">
-                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-sm leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-7">
+                      <span className="mt-[0.7rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[17px] leading-8 text-[#F5F2EA] sm:text-[18px] sm:leading-8">
                         {item}
                       </p>
                     </div>
@@ -943,11 +943,11 @@ export default function Home() {
             className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
           >
             <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-7 sm:rounded-[32px] sm:px-8 sm:py-10 lg:px-10">
-              <div className="max-w-2xl">
+              <div className="max-w-4xl">
                 <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
                   Pricing
                 </div>
-                <h2 className="mt-4 font-serif text-[clamp(2.1rem,8vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
+                <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,4.8vw,3.75rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA] lg:whitespace-nowrap">
                   Simple website launch package
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
