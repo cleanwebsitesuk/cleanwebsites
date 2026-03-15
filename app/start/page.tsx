@@ -556,42 +556,41 @@ export default function StartPage() {
       </div>
 
       <main className="relative">
-        <SectionShell className="pb-10 pt-8 sm:pb-14 sm:pt-12 lg:pb-16 lg:pt-16">
-          <motion.div
-            variants={heroContainer}
-            initial="hidden"
-            animate="show"
-            className="max-w-4xl"
-          >
-            <div className="max-w-4xl">
-              <motion.div variants={fadeUp}>
-                <BackHomeLink isMobile={isMobile} />
-              </motion.div>
+<SectionShell className="pb-10 pt-8 sm:pb-14 sm:pt-12 lg:pb-16 lg:pt-16">
+  <motion.div
+    variants={heroContainer}
+    initial="hidden"
+    animate="show"
+    className="max-w-4xl"
+  >
+    <motion.div variants={fadeUp}>
+      <BackHomeLink isMobile={isMobile} />
+    </motion.div>
 
-              <motion.h1
-                variants={fadeUp}
-                className="mt-5 max-w-[15ch] font-serif text-[clamp(2.1rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.045em] text-[#F5F2EA]"
-              >
-                Tell us about your business and get your website project started.
-              </motion.h1>
+    <motion.h1
+      variants={fadeUp}
+      className="mt-5 max-w-[15ch] font-serif text-[clamp(2.1rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.045em] text-[#F5F2EA]"
+    >
+      Tell us about your business and get your website project started.
+    </motion.h1>
 
-              <motion.p
-                variants={fadeUp}
-                className="mt-6 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
-              >
-                We build clean, professional websites for UK businesses that want
-                to look credible online and make it easy for customers to get in
-                touch.
-              </motion.p>
+    <motion.p
+      variants={fadeUp}
+      className="mt-6 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
+    >
+      We build clean, professional websites for UK businesses that want
+      to look credible online and make it easy for customers to get in
+      touch.
+    </motion.p>
 
-              <motion.div
-                variants={fadeUp}
-                className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
-              >
-                Website builds start from £595 • Hosting £40/month after launch
-              </motion.div>
-            </div>
-        </SectionShell>
+    <motion.div
+      variants={fadeUp}
+      className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
+    >
+      Website builds start from £595 • Hosting £40/month after launch
+    </motion.div>
+  </motion.div>
+</SectionShell>
 
         <SectionShell className="pb-20">
           <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6">
