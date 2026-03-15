@@ -689,9 +689,6 @@ export default function StartPage() {
             <Reveal className="h-fit lg:sticky lg:top-6">
               <div className={formCardClass}>
                 <div className="border-b border-white/10 px-5 py-5 sm:px-8 sm:py-6">
-                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                    Tell us about your project
-                  </div>
                   <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-[2rem]">
                     Tell us about your project
                   </h2>
