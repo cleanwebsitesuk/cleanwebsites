@@ -848,8 +848,8 @@ function SupportItem({
   text: string;
 }) {
   return (
-    <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
-      <div className="flex items-start justify-between gap-3">
+    <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3 sm:min-h-[54px]">
+      <div className="flex items-center justify-between gap-3">
         <span className="text-sm text-[#F5F2EA]">{title}</span>
         <div className="hidden sm:block">
           <InfoTooltip text={text} />
