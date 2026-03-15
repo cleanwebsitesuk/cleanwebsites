@@ -780,7 +780,7 @@ export default function Home() {
                   }}
                   className="flex min-h-[70px] items-center justify-center rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[15px] font-medium leading-6 text-[#E2E4E9] lg:min-h-[78px]"
                 >
-                  <span className="max-w-[16ch*
+                  <span className="max-w-[16ch] text-center">{item}</span>
         <Reveal>
           <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
             <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
