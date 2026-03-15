@@ -7,7 +7,7 @@ import {
   motion,
   useReducedMotion,
 } from "framer-motion";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 
 const featuredDemos = [
   {
@@ -33,42 +33,62 @@ const featuredDemos = [
   },
 ];
 
+const speedPoints = [
+  "Simple structured website builds",
+  "Designed for small businesses",
+  "Clear pricing",
+  "Fast turnaround once content is ready",
+];
+
 const processSteps = [
   {
     step: "01",
-    title: "Send your details",
-    desc: "Tell us about your business and share your logo, services, and contact details.",
+    title: "Send your business details and content",
+    desc: "Tell us about your business and provide your website content.",
   },
   {
     step: "02",
-    title: "We build your site",
-    desc: "Your website is structured and styled around your business.",
+    title: "We build your website",
+    desc: "Your website is structured and built around your business.",
   },
   {
     step: "03",
-    title: "You review",
-    desc: "One revision is included to refine layout or content.",
+    title: "You review the build",
+    desc: "You can request one revision to refine the layout or content.",
   },
   {
     step: "04",
-    title: "We launch",
-    desc: "We connect your domain, set up SSL, and launch the site.",
+    title: "We connect your domain and launch",
+    desc: "We set up hosting, SSL and launch your website.",
   },
 ];
 
 const trustCards = [
   {
     title: "Clear structure",
-    copy: "Visitors can quickly understand what you do and how to contact you.",
+    copy: "Visitors can quickly understand what your business does and how to contact you.",
   },
   {
     title: "Mobile-first layout",
-    copy: "Built to look clean and work properly on phones as well as desktop.",
+    copy: "Your website is designed to work properly on phones as well as desktop.",
   },
   {
     title: "Fast loading pages",
-    copy: "Focused on speed, clarity, and easy enquiry or booking points.",
+    copy: "Clean builds focused on speed and usability.",
   },
+  {
+    title: "Clear enquiry points",
+    copy: "Customers always have an easy way to call, message or request a quote.",
+  },
+];
+
+const whoItsFor = [
+  "Barbers and salons",
+  "Restaurants and takeaways",
+  "Trades and service businesses",
+  "Studios and beauty clinics",
+  "Local service companies",
+  "Businesses launching their first website",
 ];
 
 const supportItems = [
@@ -161,7 +181,7 @@ function Reveal({
   amount = 0.2,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   delay?: number;
   amount?: number;
   className?: string;
@@ -191,7 +211,7 @@ function MagneticLink({
   href,
   disabled = false,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className: string;
   href: string;
   disabled?: boolean;
@@ -354,9 +374,7 @@ function DemoCard({
         rel="noreferrer"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        whileHover={
-          reduceMotion || !interactionEnabled ? {} : { y: -8 }
-        }
+        whileHover={reduceMotion || !interactionEnabled ? {} : { y: -8 }}
         transition={{ duration: 0.35, ease: easeOut }}
         style={
           interactionEnabled
@@ -373,9 +391,7 @@ function DemoCard({
           <motion.div
             className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.18),transparent_35%)]"
             animate={
-              reduceMotion || !interactionEnabled
-                ? {}
-                : { scale: [1, 1.04, 1] }
+              reduceMotion || !interactionEnabled ? {} : { scale: [1, 1.04, 1] }
             }
             transition={{
               duration: 10,
@@ -387,13 +403,13 @@ function DemoCard({
             className="absolute inset-0"
             transition={{ duration: 0.55, ease: easeOut }}
             whileHover={
-              reduceMotion || !interactionEnabled
-                ? {}
-                : { scale: 1.035, y: -4 }
+              reduceMotion || !interactionEnabled ? {} : { scale: 1.035, y: -4 }
             }
           >
             <motion.div
-              style={interactionEnabled ? { transform: "translateZ(28px)" } : undefined}
+              style={
+                interactionEnabled ? { transform: "translateZ(28px)" } : undefined
+              }
               className="absolute left-4 right-4 top-4 rounded-[20px] border border-white/10 bg-white/[0.03] p-4 sm:left-6 sm:right-6 sm:top-6 sm:rounded-[22px] sm:p-5"
             >
               <div className="flex items-center justify-between gap-3">
@@ -405,12 +421,12 @@ function DemoCard({
                 </span>
               </div>
               <div className="mt-4 overflow-hidden rounded-[16px] border border-white/10 bg-white/[0.03] sm:mt-5 sm:rounded-[18px]">
-  <img
-    src={card.image}
-    alt={`${card.title} preview`}
-    className="h-36 w-full object-cover object-top sm:h-44"
-  />
-</div>
+                <img
+                  src={card.image}
+                  alt={`${card.title} preview`}
+                  className="h-36 w-full object-cover object-top sm:h-44"
+                />
+              </div>
             </motion.div>
           </motion.div>
         </div>
@@ -438,7 +454,7 @@ function PriceHighlight({
   children,
   className,
 }: {
-  children: React.ReactNode;
+  children: ReactNode;
   className?: string;
 }) {
   const reduceMotion = useReducedMotion();
@@ -486,7 +502,7 @@ export default function Home() {
   }, [mobileOpen]);
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
+    <div className="min-h-screen scroll-smooth bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           animate={
@@ -560,11 +576,11 @@ export default function Home() {
             <a className="transition hover:text-[#F5F2EA]" href="#demos">
               Demos
             </a>
-            <a className="transition hover:text-[#F5F2EA]" href="#process">
-              Process
-            </a>
             <a className="transition hover:text-[#F5F2EA]" href="#pricing">
               Pricing
+            </a>
+            <a className="transition hover:text-[#F5F2EA]" href="#process">
+              Process
             </a>
           </nav>
 
@@ -581,7 +597,7 @@ export default function Home() {
               disabled={isMobile}
               className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110"
             >
-              Get my website quote
+              Start my website
             </MagneticLink>
           </div>
 
@@ -607,8 +623,8 @@ export default function Home() {
               <div className="mx-auto flex max-w-7xl flex-col gap-2">
                 {[
                   { href: "#demos", label: "Demos" },
-                  { href: "#process", label: "Process" },
                   { href: "#pricing", label: "Pricing" },
+                  { href: "#process", label: "Process" },
                 ].map((item) => (
                   <a
                     key={item.label}
@@ -633,7 +649,7 @@ export default function Home() {
                   onClick={() => setMobileOpen(false)}
                   className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-4 text-sm font-semibold text-white"
                 >
-                  Get my website quote
+                  Start my website
                 </Link>
               </div>
             </motion.div>
@@ -641,8 +657,8 @@ export default function Home() {
         </AnimatePresence>
       </motion.header>
 
-      <main className="relative">
-        <section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-start justify-center px-5 pb-10 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
+      <main className="relative scroll-smooth">
+        <section className="mx-auto flex min-h-[82svh] w-full max-w-7xl items-start justify-center px-5 pb-12 pt-16 text-center sm:min-h-[calc(100svh-74px)] sm:px-6 sm:items-center sm:pb-20 sm:pt-10 lg:px-8 lg:pb-24 lg:pt-14">
           <motion.div
             variants={heroContainer}
             initial="hidden"
@@ -667,65 +683,79 @@ export default function Home() {
 
             <motion.h1
               variants={fadeUp}
-              className="mx-auto mt-4 max-w-[11ch] font-serif text-[clamp(2.1rem,10.5vw,4.8rem)] leading-[0.92] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.45rem,10vw,4.8rem)] sm:leading-[0.94]"
+              className="mx-auto mt-4 max-w-[11ch] font-serif text-[clamp(2.2rem,10.5vw,4.9rem)] leading-[0.92] tracking-[-0.045em] text-[#F5F2EA] sm:mt-6 sm:max-w-[14ch] sm:text-[clamp(2.55rem,10vw,4.9rem)] sm:leading-[0.94]"
             >
-              Professional websites for UK businesses.
+              Professional websites for UK businesses
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-6 max-w-[24rem] text-[16px] leading-8 text-[#A9ABB3] sm:mt-6 sm:max-w-3xl sm:text-[20px] sm:leading-8"
+              className="mx-auto mt-6 max-w-[25rem] text-[16px] leading-8 text-[#A9ABB3] sm:max-w-3xl sm:text-[20px] sm:leading-8"
             >
-              Clean, fast, mobile-first websites that help your business look
-              credible online and make it easy for customers to get in touch.
+              Clean, fast, mobile-first websites built with a simple process.
             </motion.p>
 
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-4 hidden max-w-3xl text-[18px] leading-8 text-[#A9ABB3] sm:block sm:text-[20px]"
+              className="mx-auto mt-4 max-w-[25rem] text-[16px] leading-8 text-[#A9ABB3] sm:max-w-3xl sm:text-[20px] sm:leading-8"
             >
-              Custom-built with a simple process and ready to launch in as
-              little as 24 hours once content is received.
+              Once your content is received, your website can be built within 24
+              hours.
             </motion.p>
 
             <motion.div
               variants={fadeUp}
-              className="mt-6 text-[16px] font-medium text-[#A9ABB3] sm:mt-5 sm:text-sm"
+              className="mt-6 text-[15px] font-medium text-[#A9ABB3] sm:mt-5 sm:text-base"
             >
-              Websites from £595 • Hosting £40/month
+              Website build £595 • Hosting £40/month after launch
             </motion.div>
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-8 flex w-full max-w-sm items-center justify-center gap-3 sm:mt-8 sm:max-w-none"
+              className="mx-auto mt-8 flex w-full max-w-md flex-col items-center justify-center gap-3 sm:mt-8 sm:max-w-none sm:flex-row"
             >
               <MagneticLink
                 href="/start"
                 disabled={isMobile}
-                className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-4 text-[14px] font-semibold text-white transition duration-300 hover:brightness-110 sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto sm:px-6"
               >
-                <span className="whitespace-nowrap">Get my website quote</span>
+                Start my website
                 <ArrowRight />
               </MagneticLink>
 
               <a
                 href="#demos"
-                className="group inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:h-12 sm:flex-none sm:px-6 sm:text-sm"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] sm:w-auto sm:px-6"
               >
-                <span className="whitespace-nowrap">View demo websites</span>
+                View demo websites
                 <ArrowRight />
               </a>
             </motion.div>
 
             <motion.div
               variants={fadeUp}
-              className="mx-auto mt-7 hidden max-w-3xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid sm:grid-cols-2"
+              className="mt-3 text-sm text-[#7F828A]"
+            >
+              No obligation enquiry
+            </motion.div>
+
+            <motion.p
+              variants={fadeUp}
+              className="mx-auto mt-6 max-w-3xl text-sm leading-7 text-[#A9ABB3] sm:text-[15px]"
+            >
+              Ideal for trades, salons, restaurants, studios and local
+              businesses.
+            </motion.p>
+
+            <motion.div
+              variants={fadeUp}
+              className="mx-auto mt-7 hidden max-w-4xl gap-3 text-sm text-[#A9ABB3] sm:mt-8 sm:grid sm:grid-cols-2 lg:grid-cols-4"
             >
               {[
-                "Custom-built for your business",
-                "Mobile-first and fast loading",
-                "Managed hosting with free SSL",
-                "Simple launch process",
+                "Clear pricing",
+                "Designed for small businesses",
+                "Managed hosting included",
+                "Domain stays in your name",
               ].map((item, index) => (
                 <motion.div
                   key={item}
@@ -746,6 +776,168 @@ export default function Home() {
         </section>
 
         <Reveal>
+          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <div className="grid gap-6 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <div className="max-w-xl">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
+                  Fast launch
+                </div>
+                <h2 className="mt-4 font-serif text-[clamp(2.15rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                  Launch your website within 24 hours
+                </h2>
+                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  Once your business content is ready, your website can be built
+                  and prepared for launch within 24 hours.
+                </p>
+                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  The process is designed to be simple and efficient so your
+                  business can get online quickly without a complicated project.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {speedPoints.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.65,
+                      delay: index * 0.06,
+                      ease: easeOut,
+                    }}
+                    whileHover={
+                      motionEnabled
+                        ? {
+                            y: -4,
+                            transition: { duration: 0.25, ease: easeOut },
+                          }
+                        : {}
+                    }
+                    className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
+                  >
+                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+                    <div className="relative flex items-start gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-sm leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-7">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section
+            id="demos"
+            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
+          >
+            <div className="max-w-3xl">
+              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
+                Demo websites
+              </div>
+              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                Example websites for different types of businesses
+              </h2>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                These examples show how your website could be structured
+                depending on your type of business.
+              </p>
+              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                Each layout is designed to help visitors quickly understand what
+                you do and how to get in touch.
+              </p>
+            </div>
+
+            <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
+              {[
+                "Service businesses",
+                "Studios and beauty",
+                "Restaurants and hospitality",
+                "Local service companies",
+                "Small business layouts",
+              ].map((item, index) => (
+                <motion.div
+                  key={item}
+                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.8 }}
+                  transition={{
+                    duration: 0.45,
+                    delay: index * 0.04,
+                    ease: easeOut,
+                  }}
+                  className={`rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 ${
+                    index > 2 ? "hidden sm:block" : ""
+                  }`}
+                >
+                  {item}
+                </motion.div>
+              ))}
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-3">
+              {featuredDemos.map((card, index) => (
+                <DemoCard
+                  key={card.title}
+                  card={card}
+                  index={index}
+                  interactionEnabled={!isMobile}
+                />
+              ))}
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
+          <section className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <div className="max-w-xl">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
+                  Who this is for
+                </div>
+                <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
+                  Ideal for businesses that need a professional website quickly
+                </h2>
+                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  If your business needs a clean website that helps customers
+                  understand what you do and how to contact you, this service is
+                  designed for you.
+                </p>
+              </div>
+
+              <div className="grid gap-4 sm:grid-cols-2">
+                {whoItsFor.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.65,
+                      delay: index * 0.05,
+                      ease: easeOut,
+                    }}
+                    className="rounded-[24px] border border-white/10 bg-[#111214] p-5 sm:rounded-[26px] sm:p-6"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-sm leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-7">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </section>
+        </Reveal>
+
+        <Reveal>
           <section
             id="pricing"
             className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
@@ -753,14 +945,14 @@ export default function Home() {
             <div className="overflow-hidden rounded-[28px] border border-white/10 bg-[#111214] px-5 py-7 sm:rounded-[32px] sm:px-8 sm:py-10 lg:px-10">
               <div className="max-w-2xl">
                 <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                  Simple launch package
+                  Pricing
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.1rem,8vw,3.5rem)] leading-[1.02] tracking-[-0.04em] text-[#F5F2EA]">
-                  Simple launch package
+                  Simple website launch package
                 </h2>
                 <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  A straightforward website build for businesses that need a
-                  professional online presence without a long agency process.
+                  Clear pricing for small businesses that want a professional
+                  website without a complicated agency process.
                 </p>
               </div>
 
@@ -770,7 +962,7 @@ export default function Home() {
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
 
                     <PriceHighlight className="mt-2 text-[2.2rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-5xl">
-                      From £595
+                      £595
                     </PriceHighlight>
 
                     <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
@@ -781,9 +973,9 @@ export default function Home() {
                         "About page",
                         "Services or menu page",
                         "Contact or booking page",
-                        "Contact or booking form",
+                        "Contact form",
                         "Mobile optimisation",
-                        "One revision included",
+                        "One revision",
                         "Launch support",
                       ].map((item, index) => (
                         <motion.div
@@ -803,11 +995,16 @@ export default function Home() {
                         </motion.div>
                       ))}
                     </div>
+
+                    <div className="mt-7 rounded-2xl border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                      Websites can be built within 24 hours once content is
+                      received.
+                    </div>
                   </div>
 
                   <div className="border-t border-white/10 p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
                     <div className="text-sm text-[#A9ABB3]">
-                      After launch - Managed hosting & support
+                      Managed hosting and support
                     </div>
 
                     <PriceHighlight className="mt-2 text-[1.9rem] font-semibold tracking-[-0.02em] text-[#F5F2EA] sm:text-3xl">
@@ -825,7 +1022,7 @@ export default function Home() {
 
                       <p>
                         Your domain is purchased separately in your name so you
-                        always keep full ownership.
+                        keep full ownership.
                       </p>
                     </div>
 
@@ -835,15 +1032,19 @@ export default function Home() {
                         disabled={isMobile}
                         className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
                       >
-                        Get my website quote
+                        Start my website
                       </MagneticLink>
 
                       <Link
-                        href="/start"
+                        href="#demos"
                         className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
                       >
-                        Send an enquiry
+                        View demo websites
                       </Link>
+                    </div>
+
+                    <div className="mt-3 text-sm text-[#7F828A]">
+                      No obligation enquiry
                     </div>
                   </div>
                 </div>
@@ -862,10 +1063,11 @@ export default function Home() {
                 Process
               </div>
               <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                A simple process
+                A simple 4-step process
               </h2>
               <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                A clear path so your business lives and grows online.
+                A clear process from your content to a live, professional
+                website.
               </p>
             </div>
 
@@ -916,71 +1118,11 @@ export default function Home() {
                   </motion.div>
                 ))}
               </div>
-            </div>
-          </section>
-        </Reveal>
 
-        <Reveal>
-          <section
-            id="demos"
-            className="mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8"
-          >
-            <div className="max-w-2xl">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-                Demo websites
+              <div className="mt-6 text-sm leading-7 text-[#A9ABB3] sm:mt-8 sm:text-[15px]">
+                Once content is received, the website can be built within 24
+                hours.
               </div>
-              <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                Demo websites
-              </h2>
-              <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                Preview example website styles and layouts that can be adapted
-                to different types of businesses.
-              </p>
-              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
-                These are demo builds designed to show layout structure, design
-                direction, and how your website could be organised.
-              </p>
-              <p className="mt-4 hidden max-w-xl text-[18px] leading-8 text-[#A9ABB3] sm:block">
-                Built to support enquiries, bookings, or quote requests.
-              </p>
-            </div>
-
-            <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
-              {[
-                "Service businesses",
-                "Studios and beauty",
-                "Restaurants and hospitality",
-                "Local service companies",
-                "Other small businesses",
-              ].map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: index * 0.04,
-                    ease: easeOut,
-                  }}
-                  className={`rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 ${
-                    index > 2 ? "hidden sm:block" : ""
-                  }`}
-                >
-                  {item}
-                </motion.div>
-              ))}
-            </div>
-
-            <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-3">
-              {featuredDemos.map((card, index) => (
-                <DemoCard
-                  key={card.title}
-                  card={card}
-                  index={index}
-                  interactionEnabled={!isMobile}
-                />
-              ))}
             </div>
           </section>
         </Reveal>
@@ -993,15 +1135,11 @@ export default function Home() {
                   Why it works
                 </div>
                 <h2 className="mt-4 font-serif text-[clamp(2.2rem,8vw,4rem)] leading-[0.98] tracking-[-0.04em] text-[#F5F2EA]">
-                  Designed to make your business look established online
+                  Designed to make your business look credible online
                 </h2>
                 <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  A good website should help customers trust your business and
-                  get in touch easily.
-                </p>
-                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  The result is a website that feels modern, professional, and
-                  easy to use.
+                  The goal is simple: give your business a clean, professional
+                  website that is easy to understand and easy to contact.
                 </p>
               </div>
 
@@ -1036,31 +1174,6 @@ export default function Home() {
                     </p>
                   </motion.div>
                 ))}
-
-                <motion.div
-                  initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.35 }}
-                  transition={{ duration: 0.65, delay: 0.18, ease: easeOut }}
-                  whileHover={
-                    motionEnabled
-                      ? {
-                          y: -4,
-                          transition: { duration: 0.25, ease: easeOut },
-                        }
-                      : {}
-                  }
-                  className="group relative overflow-hidden rounded-[24px] border border-white/10 bg-[#111214] p-5 transition duration-300 hover:border-white/15 hover:bg-[#141518] sm:rounded-[26px] sm:p-6"
-                >
-                  <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                  <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
-                    Clear enquiry points
-                  </h3>
-                  <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-                    Customers always have a clear next step to call, message,
-                    book, or request a quote.
-                  </p>
-                </motion.div>
               </div>
             </div>
           </section>
@@ -1095,12 +1208,15 @@ export default function Home() {
                   Get your business online properly
                 </h2>
                 <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  Send your details and we’ll review your project and the next
-                  steps.
+                  Send your details and we’ll review your project and confirm
+                  the next steps.
                 </p>
                 <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  Websites start from £595. Managed hosting is £40/month after
-                  launch.
+                  Websites start from £595 with £40/month hosting after launch.
+                </p>
+                <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  Websites can be built within 24 hours once content is
+                  received.
                 </p>
 
                 <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -1109,7 +1225,7 @@ export default function Home() {
                     disabled={isMobile}
                     className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white transition duration-300 hover:brightness-110 sm:w-auto"
                   >
-                    Get my website quote
+                    Start my website
                     <ArrowRight />
                   </MagneticLink>
 
@@ -1120,6 +1236,10 @@ export default function Home() {
                     View demo websites
                     <ArrowRight />
                   </Link>
+                </div>
+
+                <div className="mt-3 text-sm text-[#7F828A]">
+                  No obligation enquiry
                 </div>
               </div>
             </div>
@@ -1151,7 +1271,7 @@ export default function Home() {
                 Process
               </a>
               <Link href="/start" className="transition hover:text-[#F5F2EA]">
-                Contact
+                Start
               </Link>
             </div>
 
@@ -1211,7 +1331,7 @@ export default function Home() {
                   href="/start"
                   className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
                 >
-                  Get my website quote
+                  Start my website
                 </Link>
               </motion.div>
             </motion.div>
@@ -1219,12 +1339,17 @@ export default function Home() {
         </AnimatePresence>
 
         <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur md:hidden">
-          <Link
-            href="/start"
-            className="flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white"
-          >
-            Get my website quote
-          </Link>
+          <div className="mx-auto flex max-w-7xl flex-col gap-2">
+            <Link
+              href="/start"
+              className="flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] text-sm font-semibold text-white"
+            >
+              Start my website
+            </Link>
+            <div className="text-center text-xs text-[#7F828A]">
+              No obligation enquiry
+            </div>
+          </div>
         </div>
       </main>
     </div>
