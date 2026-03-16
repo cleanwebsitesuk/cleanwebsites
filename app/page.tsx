@@ -220,13 +220,6 @@ const FAQS = [
   },
 ] as const;
 
-const IDEAL_FOR = [
-  "Salons and barbers",
-  "Restaurants and takeaways",
-  "Trades and local services",
-  "Studios and wellness businesses",
-] as const;
-
 const OFFER_STATS = [
   { label: "Build fee", value: "£595" },
   { label: "Monthly hosting", value: "£40" },
@@ -278,7 +271,7 @@ function SectionShell({
   return (
     <section
       id={id}
-      className={`mx-auto w-full max-w-7xl px-5 py-14 sm:px-6 sm:py-18 lg:px-8 lg:py-24 ${className}`}
+      className={`mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 ${className}`}
     >
       {children}
     </section>
@@ -303,7 +296,7 @@ function GlassCard({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.045] shadow-[0_20px_80px_rgba(0,0,0,0.25)] backdrop-blur-md ${className}`}
+      className={`relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.045] shadow-[0_20px_80px_rgba(0,0,0,0.22)] backdrop-blur-md ${className}`}
     >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
@@ -386,10 +379,10 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 26 }}
+      initial={{ opacity: 0, y: 22 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ duration: 0.72, delay, ease: easeOut }}
+      transition={{ duration: 0.68, delay, ease: easeOut }}
     >
       {children}
     </motion.div>
@@ -437,17 +430,9 @@ function MagneticLink({
   );
 }
 
-function Pill({ children }: { children: ReactNode }) {
-  return (
-    <div className="rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm text-[#A9ABB3]">
-      {children}
-    </div>
-  );
-}
-
 function BulletRow({ children }: { children: ReactNode }) {
   return (
-    <div className="flex items-start gap-3 rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
+    <div className="flex items-start gap-3 rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
       <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#93C5FD]">
         <CheckIcon />
       </span>
@@ -534,7 +519,7 @@ function MobileMenu({
                       delay: 0.04 + index * 0.07,
                       ease: easeOut,
                     }}
-                    className="flex items-center justify-between rounded-[22px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[17px] font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]"
+                    className="flex items-center justify-between rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[17px] font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]"
                   >
                     <span>{item.label}</span>
                     <ArrowRight />
@@ -542,17 +527,17 @@ function MobileMenu({
                 ))}
               </div>
 
-              <div className="mt-6 rounded-[24px] border border-white/10 bg-white/[0.03] p-4">
+              <div className="mt-6 rounded-[20px] border border-white/10 bg-white/[0.03] p-4">
                 <div className="grid grid-cols-3 gap-3">
                   {OFFER_STATS.map((item) => (
                     <div
                       key={item.label}
-                      className="rounded-[18px] border border-white/10 bg-[#0C0E11] px-3 py-3 text-center"
+                      className="rounded-[16px] border border-white/10 bg-[#0C0E11] px-3 py-3 text-center"
                     >
-                      <div className="text-lg font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                      <div className="text-base font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-lg">
                         {item.value}
                       </div>
-                      <div className="mt-1 text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                         {item.label}
                       </div>
                     </div>
@@ -569,7 +554,7 @@ function MobileMenu({
                     delay: 0.24,
                     ease: easeOut,
                   }}
-                  className="rounded-[24px] border border-white/10 bg-white/[0.03] p-3"
+                  className="rounded-[20px] border border-white/10 bg-white/[0.03] p-3"
                 >
                   <Link
                     href="/start"
@@ -592,7 +577,7 @@ function HeroSupportStrip() {
   const reduceMotion = useReducedMotion() ?? false;
 
   return (
-    <div className="mt-8 grid gap-3 sm:mt-10 sm:grid-cols-3">
+    <div className="mt-7 grid gap-3 sm:mt-8 sm:grid-cols-3">
       {HERO_SUPPORTING_POINTS.map((item, index) => (
         <motion.div
           key={item}
@@ -604,13 +589,13 @@ function HeroSupportStrip() {
             delay: 0.18 + index * 0.06,
             ease: easeOut,
           }}
-          className="rounded-[22px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
+          className="rounded-[18px] border border-white/10 bg-white/[0.04] px-4 py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
         >
           <div className="flex items-start gap-3">
             <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
               <CheckIcon />
             </span>
-            <span className="text-[15px] font-medium leading-6 text-[#E7E9EE]">
+            <span className="text-[14px] font-medium leading-6 text-[#E7E9EE] sm:text-[15px]">
               {item}
             </span>
           </div>
@@ -622,16 +607,16 @@ function HeroSupportStrip() {
 
 function HeroMetrics() {
   return (
-    <div className="mt-8 grid gap-3 sm:grid-cols-3">
+    <div className="mt-5 grid gap-3 sm:grid-cols-3">
       {OFFER_STATS.map((item) => (
         <div
           key={item.label}
-          className="rounded-[24px] border border-white/10 bg-[#0C0E11]/90 px-5 py-4"
+          className="rounded-[18px] border border-white/10 bg-[#0C0E11]/90 px-4 py-3.5"
         >
-          <div className="text-[1.65rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+          <div className="text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]">
             {item.value}
           </div>
-          <div className="mt-1 text-[12px] uppercase tracking-[0.16em] text-[#7F828A]">
+          <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
             {item.label}
           </div>
         </div>
@@ -651,8 +636,8 @@ function HeroSection({
 
   return (
     <section className="relative">
-      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8 lg:pb-16 lg:pt-12">
-        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(350px,0.78fr)] lg:gap-10">
+      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
+        <div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.76fr)] lg:gap-8">
           <div className="mx-auto flex w-full max-w-3xl flex-col justify-center lg:mx-0 lg:max-w-none">
             <div className="w-fit">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
@@ -669,24 +654,26 @@ function HeroSection({
               </div>
             </div>
 
-            <h1 className="mt-5 max-w-[13ch] font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.93] tracking-[-0.055em] text-[#F5F2EA]">
+            <h1 className="mt-4 max-w-[12.5ch] font-serif text-[clamp(2.6rem,7vw,4.95rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
               A professional website for your business — built within 24 hours
             </h1>
 
-            <p className="mt-6 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[17px] sm:leading-8">
+            <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
               A clean, mobile-first website designed to make your business look
               credible online and make it easy for customers to get in touch.
               Once your content is ready, your website can be built and prepared
               for launch within 24 hours.
             </p>
 
-            <div className="mt-6 flex flex-wrap gap-3">
-              {IDEAL_FOR.map((item) => (
-                <Pill key={item}>{item}</Pill>
-              ))}
+            <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3 text-[14px] font-medium leading-6 text-[#E4E7ED] sm:inline-flex sm:w-fit sm:items-center sm:px-5">
+              Website build £595 • Hosting &amp; support £40/month after launch
             </div>
 
-            <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row">
+            <p className="mt-3 text-sm leading-6 text-[#A9ABB3]">
+              Clear pricing. Secure hosting. Your domain stays in your name.
+            </p>
+
+            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
               <MagneticLink
                 href="/start"
                 disabled={isMobile}
@@ -705,16 +692,12 @@ function HeroSection({
               </a>
             </div>
 
-            <p className="mt-5 text-sm leading-6 text-[#A9ABB3]">
-              Website build £595 • Hosting &amp; support £40/month after launch
-            </p>
-
             <HeroSupportStrip />
           </div>
 
-          <div className="lg:block" aria-hidden="true">
-            <GlassCard className="h-full min-h-[unset] p-4 sm:p-5">
-              <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#0D0E11]/85 p-4 sm:p-5">
+          <div className="hidden lg:block" aria-hidden="true">
+            <GlassCard className="h-full p-4">
+              <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-[#0D0E11]/85 p-4">
                 <div className="flex items-center justify-between gap-3">
                   <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
                     Website launch package
@@ -726,22 +709,13 @@ function HeroSection({
 
                 <HeroMetrics />
 
-                <div className="mt-4 rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-4 sm:p-5">
-                  <div className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="text-sm text-[#A9ABB3]">
-                        What is included
-                      </div>
-                      <div className="mt-1 text-lg font-medium text-[#F5F2EA]">
-                        Everything needed to launch cleanly
-                      </div>
-                    </div>
-                    <div className="hidden rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-[#A9ABB3] sm:block">
-                      One-time build + monthly hosting
-                    </div>
+                <div className="mt-4 rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-4">
+                  <div className="text-sm text-[#A9ABB3]">What is included</div>
+                  <div className="mt-1 text-base font-medium text-[#F5F2EA]">
+                    Everything needed to launch cleanly
                   </div>
 
-                  <div className="mt-5 grid gap-3">
+                  <div className="mt-4 grid gap-2.5">
                     {[
                       "Home, About and Services/Menu pages",
                       "Contact or booking page with clear action points",
@@ -750,9 +724,9 @@ function HeroSection({
                     ].map((item) => (
                       <div
                         key={item}
-                        className="flex items-start gap-3 rounded-[18px] border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-[#E5E7EC]"
+                        className="flex items-start gap-3 rounded-[14px] border border-white/10 bg-white/[0.02] px-3.5 py-3 text-sm leading-6 text-[#E5E7EC]"
                       >
-                        <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                        <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
                           <CheckIcon />
                         </span>
                         {item}
@@ -761,7 +735,7 @@ function HeroSection({
                   </div>
                 </div>
 
-                <div className="mt-4 rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))] p-5">
+                <div className="mt-4 rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))] p-4">
                   <p className="text-sm leading-6 text-[#D7E5FF]">
                     Once your content is received, your website can be built
                     within 24 hours.
@@ -769,16 +743,16 @@ function HeroSection({
                 </div>
 
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[20px] border border-white/10 bg-[#0B0D10] p-4">
-                    <div className="text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                  <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                       Domain ownership
                     </div>
                     <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
                       Your domain stays in your name.
                     </div>
                   </div>
-                  <div className="rounded-[20px] border border-white/10 bg-[#0B0D10] p-4">
-                    <div className="text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                  <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                       Review before launch
                     </div>
                     <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
@@ -824,7 +798,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
   }, [isMobile, mobileOpen]);
 
   const headerHeightClass = useMemo(
-    () => (scrolled ? "h-[72px]" : "h-[78px] sm:h-[84px]"),
+    () => (scrolled ? "h-[70px]" : "h-[76px] sm:h-[82px]"),
     [scrolled]
   );
 
@@ -961,7 +935,7 @@ function SupportItem({
   text: string;
 }) {
   return (
-    <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
+    <div className="rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
       <div className="flex items-center justify-between gap-3">
         <span className="text-sm text-[#F5F2EA]">{title}</span>
         <div className="hidden sm:block">
@@ -1013,14 +987,14 @@ function DemoCard({
         rel="noreferrer"
         onMouseMove={handleMove}
         onMouseLeave={handleLeave}
-        whileHover={reduceMotion || !interactionEnabled ? {} : { y: -8 }}
+        whileHover={reduceMotion || !interactionEnabled ? {} : { y: -6 }}
         transition={{ duration: 0.35, ease: easeOut }}
         style={
           interactionEnabled
             ? { transformStyle: "preserve-3d", rotateX, rotateY }
             : undefined
         }
-        className="group block overflow-hidden rounded-[28px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
+        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
       >
         <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10]">
           <motion.div
@@ -1031,12 +1005,12 @@ function DemoCard({
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
 
-          <div className="relative p-4 sm:p-5">
+          <div className="relative p-4">
             <div
               style={
                 interactionEnabled ? { transform: "translateZ(28px)" } : undefined
               }
-              className="flex flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4 sm:p-5"
+              className="flex flex-col rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4"
             >
               <div className="flex items-center justify-between gap-3">
                 <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
@@ -1047,7 +1021,7 @@ function DemoCard({
                 </span>
               </div>
 
-              <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[16px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
                 <Image
                   src={card.image}
                   alt={`${card.title} preview`}
@@ -1060,10 +1034,10 @@ function DemoCard({
           </div>
         </div>
 
-        <div className="relative overflow-hidden p-5 sm:p-6">
+        <div className="relative overflow-hidden p-5">
           <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
           <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
-          <h3 className="mt-2 text-2xl font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[26px]">
+          <h3 className="mt-2 text-[1.45rem] font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[1.6rem]">
             {card.title}
           </h3>
           <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
@@ -1089,14 +1063,14 @@ function FAQItem({
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-[24px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
+    <div className="rounded-[20px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
         className="flex w-full items-start justify-between gap-4 text-left"
         aria-expanded={open}
       >
-        <span className="text-[17px] font-medium leading-7 text-[#F5F2EA] sm:text-[18px]">
+        <span className="text-[16px] font-medium leading-7 text-[#F5F2EA] sm:text-[17px]">
           {question}
         </span>
         <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#A9ABB3]">
@@ -1150,7 +1124,7 @@ export default function HomePage() {
               : {}
           }
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/10 blur-[120px] sm:h-[34rem] sm:w-[34rem] sm:bg-[#3B82F6]/12 sm:blur-[150px]"
+          className="absolute left-[-12%] top-[-8%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/10 blur-[120px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/12 sm:blur-[145px]"
         />
         <motion.div
           animate={
@@ -1163,35 +1137,35 @@ export default function HomePage() {
               : {}
           }
           transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/8 blur-[110px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/10 sm:blur-[145px]"
+          className="absolute bottom-[-14%] right-[-10%] h-[20rem] w-[20rem] rounded-full bg-[#3B82F6]/8 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
         <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
-        <div className="absolute inset-x-0 top-0 h-[560px] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]" />
+        <div className="absolute inset-x-0 top-0 h-[500px] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]" />
       </div>
 
       <HeroHeader scrolled={scrolled} />
 
       <main className="relative">
         <Reveal>
-          <SectionShell className="pt-2 sm:pt-4 lg:pt-8">
-            <GlassCard className="p-5 sm:p-6 lg:p-8">
-              <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+          <SectionShell className="pt-2 sm:pt-3 lg:pt-6">
+            <GlassCard className="p-5 sm:p-6 lg:p-7">
+              <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
                 <div>
                   <SectionEyebrow>Why this works</SectionEyebrow>
-                  <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                  <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.4rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                     A straightforward way to get your website properly in place
                   </h2>
                 </div>
 
                 <div className="grid gap-4">
-                  <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                     Your website should do a simple job well: help people
                     understand your business quickly, trust what they see, and
                     know how to contact you. Clean Websites is built around that
                     goal.
                   </p>
-                  <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                  <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                     You send the business details and content. Your website is
                     then structured, built and prepared for launch with a simple
                     process and clear pricing from the start. No unnecessary
@@ -1208,22 +1182,22 @@ export default function HomePage() {
             <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
                 <SectionEyebrow>Fast launch</SectionEyebrow>
-                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Launch your website within 24 hours
                 </h2>
-                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   Once your business content is ready, your website can be built
                   and prepared for launch within 24 hours. That means no
                   drawn-out project timeline and no need to wait weeks just to
                   get a straightforward business website live.
                 </p>
-                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   If you already know what you want your customers to see, the
                   process is designed to get it online quickly and properly.
                 </p>
               </div>
 
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="grid gap-3 sm:grid-cols-2">
                 {FAST_LAUNCH_POINTS.map((item, index) => (
                   <motion.div
                     key={item}
@@ -1235,12 +1209,12 @@ export default function HomePage() {
                       delay: index * 0.06,
                       ease: easeOut,
                     }}
-                    className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.04] px-5 py-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[110px] sm:px-6"
+                    className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
                   >
                     <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
                     <div className="relative flex items-start gap-3">
-                      <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[15px] leading-7 text-[#F5F2EA] sm:text-[16px] sm:leading-7">
+                      <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
                         {item}
                       </p>
                     </div>
@@ -1256,18 +1230,18 @@ export default function HomePage() {
             <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
               <div className="max-w-xl">
                 <SectionEyebrow>What your website needs to do</SectionEyebrow>
-                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   A website that makes your business easier to trust
                 </h2>
               </div>
 
               <div>
-                <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   For most businesses, a good website is not about unnecessary
                   complexity. It is about clarity.
                 </p>
 
-                <div className="mt-6 grid gap-3 rounded-[28px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
+                <div className="mt-5 grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
                   {[
                     "who you are",
                     "what you offer",
@@ -1278,13 +1252,13 @@ export default function HomePage() {
                   ))}
                 </div>
 
-                <p className="mt-6 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-5 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   That is what this service is designed to deliver: a website
                   that looks professional, feels credible, and makes it easier
                   for customers to take the next step.
                 </p>
 
-                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   Designed to work well for businesses such as restaurants,
                   salons, studios, service businesses and local companies — or
                   any business that needs a clean, credible online presence.
@@ -1298,22 +1272,22 @@ export default function HomePage() {
           <SectionShell id="demos">
             <div className="max-w-3xl">
               <SectionEyebrow>Demo websites</SectionEyebrow>
-              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                 See how your website could be structured
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                 These demo websites show how different types of businesses can
                 present their services clearly and make it easy for customers to
                 take action.
               </p>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                 Each layout is designed around clarity, mobile usability and
                 strong contact points so visitors can quickly understand what
                 the business does and what to do next.
               </p>
             </div>
 
-            <div className="mt-7 flex flex-wrap gap-3 text-sm text-[#A9ABB3] sm:mt-8">
+            <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
               {DEMO_TAGS.map((item, index) => (
                 <motion.div
                   key={item}
@@ -1334,7 +1308,7 @@ export default function HomePage() {
               ))}
             </div>
 
-            <div className="mt-8 grid gap-5 lg:mt-10 lg:grid-cols-3">
+            <div className="mt-8 grid gap-5 lg:grid-cols-3">
               {DEMO_CARDS.map((card, index) => (
                 <DemoCard
                   key={card.title}
@@ -1351,22 +1325,22 @@ export default function HomePage() {
           <SectionShell id="process">
             <div className="max-w-2xl">
               <SectionEyebrow>What happens next</SectionEyebrow>
-              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                 A simple process from content to launch
               </h2>
-              <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+              <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                 Starting your website should feel straightforward.
               </p>
             </div>
 
-            <div className="relative mt-8 sm:mt-10">
+            <div className="relative mt-8">
               <motion.div
                 initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
                 whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
                 viewport={{ once: true, amount: 0.6 }}
                 transition={{ duration: 1, ease: easeOut }}
                 style={{ originX: 0 }}
-                className="absolute left-[8%] right-[8%] top-9 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
+                className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
               />
 
               <div className="grid gap-4 lg:grid-cols-4">
@@ -1381,7 +1355,7 @@ export default function HomePage() {
                       delay: index * 0.08,
                       ease: easeOut,
                     }}
-                    className="relative rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] sm:p-6"
+                    className="relative rounded-[20px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)]"
                   >
                     <motion.div
                       initial={
@@ -1394,12 +1368,12 @@ export default function HomePage() {
                         delay: 0.12 + index * 0.08,
                         ease: easeOut,
                       }}
-                      className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
                     >
                       {item.step}
                     </motion.div>
 
-                    <h3 className="mt-5 text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
+                    <h3 className="mt-4 text-[19px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[20px]">
                       {item.title}
                     </h3>
                     <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
@@ -1409,7 +1383,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              <div className="mt-6 text-sm leading-7 text-[#A9ABB3] sm:mt-8 sm:text-[15px]">
+              <div className="mt-6 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
                 Once content is received, websites can be built within 24 hours.
               </div>
             </div>
@@ -1418,28 +1392,28 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell id="pricing">
-            <GlassCard className="px-5 py-7 sm:px-8 sm:py-10 lg:px-10">
+            <GlassCard className="px-5 py-6 sm:px-7 sm:py-8 lg:px-8">
               <div className="max-w-4xl">
                 <SectionEyebrow>Pricing</SectionEyebrow>
-                <h2 className="mt-5 max-w-none font-serif text-[clamp(2.2rem,7vw,4rem)] leading-[1.02] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
                   Simple pricing for a professional launch
                 </h2>
-                <p className="mt-4 max-w-xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   The pricing is designed to be clear from the start, so you
                   know exactly what is included and what happens after launch.
                 </p>
               </div>
 
-              <div className="mt-8 overflow-hidden rounded-[26px] border border-white/10 bg-[#121417]/90 shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
+              <div className="mt-7 overflow-hidden rounded-[22px] border border-white/10 bg-[#121417]/90 shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
                 <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-                  <div className="p-5 sm:p-8 lg:p-9">
+                  <div className="p-5 sm:p-7 lg:p-8">
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
-                    <div className="mt-2 text-[2.4rem] font-semibold tracking-[-0.05em] text-[#F5F2EA] sm:text-6xl">
+                    <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA] sm:text-[3.2rem]">
                       £595
                     </div>
                     <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
-                    <div className="mt-6 grid gap-3 text-sm text-[#F5F2EA] sm:grid-cols-2">
+                    <div className="mt-5 grid gap-3 text-sm text-[#F5F2EA] sm:grid-cols-2">
                       {BUILD_INCLUDES.map((item, index) => (
                         <motion.div
                           key={item}
@@ -1451,7 +1425,7 @@ export default function HomePage() {
                             delay: index * 0.04,
                             ease: easeOut,
                           }}
-                          className="flex items-start gap-3 rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3"
+                          className="flex items-start gap-3 rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3"
                         >
                           <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
                             <CheckIcon />
@@ -1461,21 +1435,21 @@ export default function HomePage() {
                       ))}
                     </div>
 
-                    <div className="mt-7 rounded-[22px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                    <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
                       Once your content is received, your website can be built
                       within 24 hours.
                     </div>
                   </div>
 
-                  <div className="border-t border-white/10 bg-white/[0.02] p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
+                  <div className="border-t border-white/10 bg-white/[0.02] p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
                     <div className="text-sm text-[#A9ABB3]">
                       Hosting &amp; support
                     </div>
-                    <div className="mt-2 text-[2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-4xl">
+                    <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-[2.2rem]">
                       £40 / month
                     </div>
 
-                    <p className="mt-5 text-sm leading-7 text-[#A9ABB3]">
+                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
                       Your website is hosted securely and managed technically so
                       it stays online, loads properly and continues to run as
                       expected after launch.
@@ -1490,7 +1464,7 @@ export default function HomePage() {
                         />
                       ))}
 
-                      <div className="rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
+                      <div className="rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
                         <p>
                           Your domain is purchased separately in your name, so
                           you keep full ownership of it.
@@ -1498,7 +1472,7 @@ export default function HomePage() {
                       </div>
                     </div>
 
-                    <div className="mt-7 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+                    <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
                       <MagneticLink
                         href="/start"
                         disabled={isMobile}
@@ -1526,10 +1500,10 @@ export default function HomePage() {
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
               <div className="max-w-xl">
                 <SectionEyebrow>What is included</SectionEyebrow>
-                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Everything needed for a clean, credible business website
                 </h2>
-                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   The service is designed to give your business the essentials
                   needed for a professional online presence without
                   overcomplicating the process.
@@ -1548,7 +1522,7 @@ export default function HomePage() {
                       delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="rounded-[22px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.16)]"
+                    className="rounded-[18px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.16)]"
                   >
                     <div className="flex items-start gap-3">
                       <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
@@ -1561,7 +1535,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <p className="mt-8 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+            <p className="mt-7 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
               The result is a website that looks professional, works properly,
               and is ready for customers to use.
             </p>
@@ -1572,10 +1546,10 @@ export default function HomePage() {
           <SectionShell>
             <div className="max-w-3xl">
               <SectionEyebrow>Why businesses choose this</SectionEyebrow>
-              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                 Built for clarity, credibility and ease
               </h2>
-              <p className="mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                 A website often loses people for simple reasons: it feels
                 outdated, confusing or incomplete. This service focuses on the
                 fundamentals that make a business website work better.
@@ -1594,10 +1568,10 @@ export default function HomePage() {
                     delay: index * 0.05,
                     ease: easeOut,
                   }}
-                  className="group relative overflow-hidden rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:p-6"
+                  className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.16)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05]"
                 >
                   <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                  <h3 className="relative text-[20px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[22px]">
+                  <h3 className="relative text-[19px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[20px]">
                     {card.title}
                   </h3>
                   <p className="relative mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
@@ -1614,10 +1588,10 @@ export default function HomePage() {
             <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
               <div className="max-w-xl">
                 <SectionEyebrow>What you need to provide</SectionEyebrow>
-                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Getting started is simple
                 </h2>
-                <p className="mt-5 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   To build your website, the main things needed are usually:
                 </p>
               </div>
@@ -1634,12 +1608,12 @@ export default function HomePage() {
                       delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="flex items-start gap-4 rounded-[24px] border border-white/10 bg-white/[0.04] px-5 py-4"
+                    className="flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4"
                   >
                     <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
                       <CheckIcon />
                     </span>
-                    <p className="text-[15px] leading-7 text-[#F5F2EA] sm:text-[16px]">
+                    <p className="text-[15px] leading-7 text-[#F5F2EA]">
                       {item}
                     </p>
                   </motion.div>
@@ -1647,7 +1621,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            <p className="mt-8 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+            <p className="mt-7 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
               Once this is received, the website can be built and prepared for
               review.
             </p>
@@ -1658,7 +1632,7 @@ export default function HomePage() {
           <SectionShell id="faq">
             <div className="max-w-3xl">
               <SectionEyebrow>FAQ</SectionEyebrow>
-              <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                 Common questions
               </h2>
             </div>
@@ -1677,7 +1651,7 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell className="pb-16 sm:pb-20 lg:pb-24">
-            <GlassCard className="overflow-hidden px-5 py-12 text-center sm:px-10 sm:py-14">
+            <GlassCard className="overflow-hidden px-5 py-10 text-center sm:px-8 sm:py-12">
               <motion.div
                 animate={
                   motionEnabled
@@ -1693,27 +1667,27 @@ export default function HomePage() {
                   repeat: Infinity,
                   ease: "easeInOut",
                 }}
-                className="pointer-events-none absolute left-1/2 top-0 h-56 w-56 -translate-x-1/2 rounded-full bg-[#3B82F6]/14 blur-[100px] sm:h-64 sm:w-64 sm:bg-[#3B82F6]/18 sm:blur-[110px]"
+                className="pointer-events-none absolute left-1/2 top-0 h-52 w-52 -translate-x-1/2 rounded-full bg-[#3B82F6]/14 blur-[100px] sm:h-60 sm:w-60 sm:bg-[#3B82F6]/18 sm:blur-[110px]"
               />
 
               <div className="relative mx-auto max-w-3xl">
-                <h2 className="mt-5 font-serif text-[clamp(2.4rem,8vw,4.8rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
+                <h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Get your website properly in place
                 </h2>
-                <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   If your business needs a clean, professional website that is
                   quick to launch and easy for customers to use, you can start
                   here.
                 </p>
-                <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   Website build £595 • Hosting &amp; support £40/month after
                   launch
                 </p>
-                <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   Built within 24 hours once content is received.
                 </p>
 
-                <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <MagneticLink
                     href="/start"
                     disabled={isMobile}
@@ -1732,7 +1706,7 @@ export default function HomePage() {
                   </Link>
                 </div>
 
-                <p className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-[#A9ABB3]">
+                <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#A9ABB3]">
                   Clear pricing, secure hosting, SSL included, and your domain
                   stays in your name.
                 </p>
