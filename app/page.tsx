@@ -19,6 +19,7 @@ const NAV_ITEMS = [
   { href: "#demos", label: "Demos" },
   { href: "#pricing", label: "Pricing" },
   { href: "#process", label: "Process" },
+  { href: "#faq", label: "FAQ" },
 ] as const;
 
 const HERO_SUPPORTING_POINTS = [
@@ -219,6 +220,19 @@ const FAQS = [
   },
 ] as const;
 
+const IDEAL_FOR = [
+  "Salons and barbers",
+  "Restaurants and takeaways",
+  "Trades and local services",
+  "Studios and wellness businesses",
+] as const;
+
+const OFFER_STATS = [
+  { label: "Build fee", value: "£595" },
+  { label: "Monthly hosting", value: "£40" },
+  { label: "Launch time", value: "24h" },
+] as const;
+
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
 function useIsMobile(breakpoint = 767) {
@@ -273,8 +287,8 @@ function SectionShell({
 
 function SectionEyebrow({ children }: { children: ReactNode }) {
   return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#9DA2AE] sm:text-[12px]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#9DA2AE] sm:text-[12px]">
+      <span className="h-1.5 w-1.5 rounded-full bg-[#60A5FA]" />
       {children}
     </div>
   );
@@ -289,9 +303,10 @@ function GlassCard({
 }) {
   return (
     <div
-      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_20px_80px_rgba(0,0,0,0.25)] backdrop-blur-sm ${className}`}
+      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.045] shadow-[0_20px_80px_rgba(0,0,0,0.25)] backdrop-blur-md ${className}`}
     >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),transparent_28%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_30%)]" />
+      <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
       <div className="relative">{children}</div>
     </div>
   );
@@ -354,7 +369,7 @@ function MenuIcon({ open }: { open: boolean }) {
 function Reveal({
   children,
   delay = 0,
-  amount = 0.2,
+  amount = 0.18,
   className,
 }: {
   children: ReactNode;
@@ -371,7 +386,7 @@ function Reveal({
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 24 }}
+      initial={{ opacity: 0, y: 26 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
       transition={{ duration: 0.72, delay, ease: easeOut }}
@@ -422,9 +437,30 @@ function MagneticLink({
   );
 }
 
+function Pill({ children }: { children: ReactNode }) {
+  return (
+    <div className="rounded-full border border-white/10 bg-white/[0.035] px-4 py-2 text-sm text-[#A9ABB3]">
+      {children}
+    </div>
+  );
+}
+
+function BulletRow({ children }: { children: ReactNode }) {
+  return (
+    <div className="flex items-start gap-3 rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3">
+      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#93C5FD]">
+        <CheckIcon />
+      </span>
+      <span className="text-sm leading-6 text-[#E8EAF0] sm:text-[15px]">
+        {children}
+      </span>
+    </div>
+  );
+}
+
 function DesktopNav() {
   return (
-    <nav className="hidden items-center gap-2 md:flex">
+    <nav className="hidden items-center gap-1 md:flex">
       {NAV_ITEMS.map((item) => (
         <a
           key={item.href}
@@ -475,7 +511,7 @@ function MobileMenu({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.22, ease: easeOut }}
-          className="fixed inset-x-0 bottom-0 top-[78px] z-40 border-t border-white/10 bg-[#090A0C]/96 backdrop-blur-2xl md:hidden"
+          className="fixed inset-x-0 bottom-0 top-[78px] z-40 border-t border-white/10 bg-[#08090C]/96 backdrop-blur-2xl md:hidden"
         >
           <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-5 pb-6 pt-6 sm:px-6">
             <motion.div
@@ -504,6 +540,24 @@ function MobileMenu({
                     <ArrowRight />
                   </motion.a>
                 ))}
+              </div>
+
+              <div className="mt-6 rounded-[24px] border border-white/10 bg-white/[0.03] p-4">
+                <div className="grid grid-cols-3 gap-3">
+                  {OFFER_STATS.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[18px] border border-white/10 bg-[#0C0E11] px-3 py-3 text-center"
+                    >
+                      <div className="text-lg font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                        {item.value}
+                      </div>
+                      <div className="mt-1 text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <div className="mt-auto pt-6">
@@ -547,7 +601,7 @@ function HeroSupportStrip() {
           viewport={{ once: true, amount: 0.7 }}
           transition={{
             duration: 0.5,
-            delay: 0.2 + index * 0.06,
+            delay: 0.18 + index * 0.06,
             ease: easeOut,
           }}
           className="rounded-[22px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
@@ -566,6 +620,26 @@ function HeroSupportStrip() {
   );
 }
 
+function HeroMetrics() {
+  return (
+    <div className="mt-8 grid gap-3 sm:grid-cols-3">
+      {OFFER_STATS.map((item) => (
+        <div
+          key={item.label}
+          className="rounded-[24px] border border-white/10 bg-[#0C0E11]/90 px-5 py-4"
+        >
+          <div className="text-[1.65rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+            {item.value}
+          </div>
+          <div className="mt-1 text-[12px] uppercase tracking-[0.16em] text-[#7F828A]">
+            {item.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 function HeroSection({
   isMobile,
   reduceMotion,
@@ -577,8 +651,8 @@ function HeroSection({
 
   return (
     <section className="relative">
-      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8 lg:pb-16 lg:pt-12">
-        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:gap-10">
+      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-12 pt-8 sm:px-6 sm:pb-14 sm:pt-10 lg:px-8 lg:pb-16 lg:pt-12">
+        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(350px,0.78fr)] lg:gap-10">
           <div className="mx-auto flex w-full max-w-3xl flex-col justify-center lg:mx-0 lg:max-w-none">
             <div className="w-fit">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
@@ -591,11 +665,11 @@ function HeroSection({
                   }}
                   className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
                 />
-                Clean Websites
+                Professional business websites
               </div>
             </div>
 
-            <h1 className="mt-5 max-w-[12ch] font-serif text-[clamp(2.9rem,7vw,5.6rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+            <h1 className="mt-5 max-w-[13ch] font-serif text-[clamp(3rem,7vw,6rem)] leading-[0.93] tracking-[-0.055em] text-[#F5F2EA]">
               A professional website for your business — built within 24 hours
             </h1>
 
@@ -606,13 +680,11 @@ function HeroSection({
               for launch within 24 hours.
             </p>
 
-            <div className="mt-6 w-fit rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5">
-              Website build £595 • Hosting &amp; support £40/month after launch
+            <div className="mt-6 flex flex-wrap gap-3">
+              {IDEAL_FOR.map((item) => (
+                <Pill key={item}>{item}</Pill>
+              ))}
             </div>
-
-            <p className="mt-4 text-sm leading-6 text-[#A9ABB3]">
-              Clear pricing. Secure hosting. Your domain stays in your name.
-            </p>
 
             <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row">
               <MagneticLink
@@ -633,13 +705,17 @@ function HeroSection({
               </a>
             </div>
 
+            <p className="mt-5 text-sm leading-6 text-[#A9ABB3]">
+              Website build £595 • Hosting &amp; support £40/month after launch
+            </p>
+
             <HeroSupportStrip />
           </div>
 
-          <div className="hidden lg:block" aria-hidden="true">
-            <GlassCard className="h-full min-h-[590px] p-5">
-              <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#0D0E11]/80 p-5">
-                <div className="flex items-center justify-between">
+          <div className="lg:block" aria-hidden="true">
+            <GlassCard className="h-full min-h-[unset] p-4 sm:p-5">
+              <div className="flex h-full flex-col rounded-[24px] border border-white/10 bg-[#0D0E11]/85 p-4 sm:p-5">
+                <div className="flex items-center justify-between gap-3">
                   <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
                     Website launch package
                   </div>
@@ -648,49 +724,66 @@ function HeroSection({
                   </div>
                 </div>
 
-                <div className="mt-5 rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
-                  <div className="text-sm text-[#A9ABB3]">Website build</div>
-                  <div className="mt-2 text-5xl font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                    £595
-                  </div>
-                  <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
-                </div>
+                <HeroMetrics />
 
-                <div className="mt-4 rounded-[22px] border border-white/10 bg-white/[0.03] p-5">
-                  <div className="text-sm text-[#A9ABB3]">Hosting &amp; support</div>
-                  <div className="mt-2 text-3xl font-semibold tracking-[-0.04em] text-[#F5F2EA]">
-                    £40 / month
-                  </div>
-                </div>
-
-                <div className="mt-4 grid gap-3">
-                  {[
-                    "Home page",
-                    "About page",
-                    "Services or menu page",
-                    "Contact or booking page",
-                    "Mobile optimisation",
-                    "One revision",
-                    "Launch support",
-                  ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 rounded-[18px] border border-white/10 bg-white/[0.02] px-4 py-3 text-sm text-[#E5E7EC]"
-                    >
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                        <CheckIcon />
-                      </span>
-                      {item}
+                <div className="mt-4 rounded-[24px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-4 sm:p-5">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <div className="text-sm text-[#A9ABB3]">
+                        What is included
+                      </div>
+                      <div className="mt-1 text-lg font-medium text-[#F5F2EA]">
+                        Everything needed to launch cleanly
+                      </div>
                     </div>
-                  ))}
+                    <div className="hidden rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 text-xs text-[#A9ABB3] sm:block">
+                      One-time build + monthly hosting
+                    </div>
+                  </div>
+
+                  <div className="mt-5 grid gap-3">
+                    {[
+                      "Home, About and Services/Menu pages",
+                      "Contact or booking page with clear action points",
+                      "Mobile optimisation and launch support",
+                      "Hosting, SSL and technical setup included",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3 rounded-[18px] border border-white/10 bg-white/[0.02] px-4 py-3 text-sm leading-6 text-[#E5E7EC]"
+                      >
+                        <span className="mt-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                          <CheckIcon />
+                        </span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
                 </div>
 
-                <div className="mt-auto pt-3">
-                  <div className="rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.10),rgba(255,255,255,0.03))] p-5">
-                    <p className="text-sm leading-6 text-[#D7E5FF]">
-                      Once your content is received, your website can be built
-                      within 24 hours.
-                    </p>
+                <div className="mt-4 rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))] p-5">
+                  <p className="text-sm leading-6 text-[#D7E5FF]">
+                    Once your content is received, your website can be built
+                    within 24 hours.
+                  </p>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[20px] border border-white/10 bg-[#0B0D10] p-4">
+                    <div className="text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                      Domain ownership
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                      Your domain stays in your name.
+                    </div>
+                  </div>
+                  <div className="rounded-[20px] border border-white/10 bg-[#0B0D10] p-4">
+                    <div className="text-[11px] uppercase tracking-[0.15em] text-[#7F828A]">
+                      Review before launch
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                      One revision included before going live.
+                    </div>
                   </div>
                 </div>
               </div>
@@ -741,7 +834,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
         animate={{ backdropFilter: scrolled ? "blur(22px)" : "blur(0px)" }}
         className={`sticky top-0 z-50 transition-all duration-300 ${
           scrolled
-            ? "border-b border-white/10 bg-[#090A0C]/70 shadow-[0_10px_40px_rgba(0,0,0,0.18)]"
+            ? "border-b border-white/10 bg-[#090A0C]/72 shadow-[0_10px_40px_rgba(0,0,0,0.18)]"
             : "bg-transparent"
         }`}
       >
@@ -749,16 +842,14 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
           className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 lg:px-8 ${headerHeightClass}`}
         >
           <Link href="/" className="flex items-center gap-3" aria-label="Home">
-            <div className="rounded-full">
-              <Image
-                src="/logo.png"
-                alt="Clean Websites logo"
-                width={144}
-                height={40}
-                className="h-8 w-auto opacity-95 sm:h-9"
-                priority
-              />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="Clean Websites logo"
+              width={144}
+              height={40}
+              className="h-8 w-auto opacity-95 sm:h-9"
+              priority
+            />
           </Link>
 
           <DesktopNav />
@@ -933,11 +1024,9 @@ function DemoCard({
       >
         <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10]">
           <motion.div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.22),transparent_35%)]"
+            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.24),transparent_35%)]"
             animate={
-              reduceMotion || !interactionEnabled
-                ? {}
-                : { scale: [1, 1.05, 1] }
+              reduceMotion || !interactionEnabled ? {} : { scale: [1, 1.05, 1] }
             }
             transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
           />
@@ -959,9 +1048,11 @@ function DemoCard({
               </div>
 
               <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[18px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                <img
+                <Image
                   src={card.image}
                   alt={`${card.title} preview`}
+                  width={1280}
+                  height={800}
                   className={`h-full w-full object-cover object-top ${card.zoom} transition duration-700 md:group-hover:scale-[1.03]`}
                 />
               </div>
@@ -1046,7 +1137,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen scroll-smooth bg-[#07080A] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
+    <div className="min-h-screen scroll-smooth bg-[#06070A] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
         <motion.div
           animate={
@@ -1076,45 +1167,45 @@ export default function HomePage() {
         />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
         <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
-        <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
+        <div className="absolute inset-x-0 top-0 h-[560px] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]" />
       </div>
 
       <HeroHeader scrolled={scrolled} />
 
       <main className="relative">
         <Reveal>
-          <SectionShell className="pt-4 sm:pt-6 lg:pt-10">
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-              <div className="max-w-xl">
-                <SectionEyebrow>Why this works</SectionEyebrow>
-                <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
-                  A straightforward way to get your website properly in place
-                </h2>
-              </div>
+          <SectionShell className="pt-2 sm:pt-4 lg:pt-8">
+            <GlassCard className="p-5 sm:p-6 lg:p-8">
+              <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+                <div>
+                  <SectionEyebrow>Why this works</SectionEyebrow>
+                  <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                    A straightforward way to get your website properly in place
+                  </h2>
+                </div>
 
-              <div className="max-w-2xl">
-                <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  Your website should do a simple job well: help people
-                  understand your business quickly, trust what they see, and
-                  know how to contact you. Clean Websites is built around that
-                  goal.
-                </p>
-                <p className="mt-4 text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
-                  You send the business details and content. Your website is
-                  then structured, built and prepared for launch with a simple
-                  process and clear pricing from the start. No unnecessary
-                  back-and-forth or vague proposal process. Just a clean,
-                  professional website built to support your business properly
-                  online.
-                </p>
+                <div className="grid gap-4">
+                  <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                    Your website should do a simple job well: help people
+                    understand your business quickly, trust what they see, and
+                    know how to contact you. Clean Websites is built around that
+                    goal.
+                  </p>
+                  <p className="text-base leading-7 text-[#A9ABB3] sm:text-[18px] sm:leading-8">
+                    You send the business details and content. Your website is
+                    then structured, built and prepared for launch with a simple
+                    process and clear pricing from the start. No unnecessary
+                    back-and-forth or vague proposal process.
+                  </p>
+                </div>
               </div>
-            </div>
+            </GlassCard>
           </SectionShell>
         </Reveal>
 
         <Reveal>
           <SectionShell>
-            <div className="grid gap-7 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
                 <SectionEyebrow>Fast launch</SectionEyebrow>
                 <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
@@ -1183,17 +1274,7 @@ export default function HomePage() {
                     "where you are",
                     "how to contact or book with you",
                   ].map((item) => (
-                    <div
-                      key={item}
-                      className="flex items-center gap-3 rounded-[18px] border border-white/8 bg-white/[0.02] px-4 py-3"
-                    >
-                      <span className="inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                        <CheckIcon />
-                      </span>
-                      <span className="text-sm text-[#F5F2EA] sm:text-[15px]">
-                        {item}
-                      </span>
-                    </div>
+                    <BulletRow key={item}>{item}</BulletRow>
                   ))}
                 </div>
 
@@ -1303,7 +1384,9 @@ export default function HomePage() {
                     className="relative rounded-[26px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)] sm:p-6"
                   >
                     <motion.div
-                      initial={reduceMotion ? false : { scale: 0.85, opacity: 0 }}
+                      initial={
+                        reduceMotion ? false : { scale: 0.85, opacity: 0 }
+                      }
                       whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
                       viewport={{ once: true, amount: 0.8 }}
                       transition={{
@@ -1385,7 +1468,9 @@ export default function HomePage() {
                   </div>
 
                   <div className="border-t border-white/10 bg-white/[0.02] p-5 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
-                    <div className="text-sm text-[#A9ABB3]">Hosting &amp; support</div>
+                    <div className="text-sm text-[#A9ABB3]">
+                      Hosting &amp; support
+                    </div>
                     <div className="mt-2 text-[2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-4xl">
                       £40 / month
                     </div>
@@ -1570,7 +1655,7 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal>
-          <SectionShell>
+          <SectionShell id="faq">
             <div className="max-w-3xl">
               <SectionEyebrow>FAQ / objections</SectionEyebrow>
               <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
@@ -1592,7 +1677,7 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell className="pb-16 sm:pb-20 lg:pb-24">
-            <GlassCard className="px-5 py-12 text-center sm:px-10 sm:py-14">
+            <GlassCard className="overflow-hidden px-5 py-12 text-center sm:px-10 sm:py-14">
               <motion.div
                 animate={
                   motionEnabled
@@ -1681,6 +1766,9 @@ export default function HomePage() {
               <a href="#process" className="transition hover:text-[#F5F2EA]">
                 Process
               </a>
+              <Link href="#faq" className="transition hover:text-[#F5F2EA]">
+                FAQ
+              </Link>
               <Link href="/start" className="transition hover:text-[#F5F2EA]">
                 Start
               </Link>
