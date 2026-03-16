@@ -1657,7 +1657,7 @@ export default function HomePage() {
         <Reveal>
           <SectionShell id="faq">
             <div className="max-w-3xl">
-              <SectionEyebrow>FAQ / objections</SectionEyebrow>
+              <SectionEyebrow>FAQ</SectionEyebrow>
               <h2 className="mt-5 font-serif text-[clamp(2.25rem,8vw,4.4rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
                 Common questions
               </h2>
@@ -1697,7 +1697,6 @@ export default function HomePage() {
               />
 
               <div className="relative mx-auto max-w-3xl">
-                <SectionEyebrow>Final CTA</SectionEyebrow>
                 <h2 className="mt-5 font-serif text-[clamp(2.4rem,8vw,4.8rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
                   Get your website properly in place
                 </h2>
