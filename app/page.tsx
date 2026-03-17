@@ -1253,125 +1253,124 @@ export default function HomePage() {
           </SectionShell>
         </Reveal>
   
-  <Reveal>
-    <SectionShell>
-      <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
-        <div>
-          <SectionEyebrow>What your website needs to do</SectionEyebrow>
+<Reveal>
+  <SectionShell>
+    <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,420px)] lg:items-start">
+      <div>
+        <SectionEyebrow>What your website needs to do</SectionEyebrow>
 
-          <h2 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-            A website that makes your business easier to trust
-          </h2>
+        <h2 className="mt-4 max-w-[15ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+          A website that makes your business easier to trust
+        </h2>
 
-          <div className="mt-6 max-w-[980px]">
-            <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8 lg:whitespace-nowrap">
-              For most businesses, a good website is not about unnecessary
-              complexity. It is about clarity.
-            </p>
+        <div className="mt-6 max-w-[760px]">
+          <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            For most businesses, a good website is not about unnecessary
+            complexity. It is about clarity.
+          </p>
 
-            <div className="mt-5 grid max-w-[760px] gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-              {[
-                "who you are",
-                "what you offer",
-                "where you are",
-                "how to contact or book with you",
-              ].map((item) => (
-                <BulletRow key={item}>{item}</BulletRow>
-              ))}
-            </div>
-
-            <p className="mt-5 max-w-[760px] text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              That is what this service is designed to deliver: a website that
-              looks professional, feels credible, and makes it easier for
-              customers to take the next step.
-            </p>
-
-            <p className="mt-4 max-w-[760px] text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              Designed to work well for businesses such as restaurants, salons,
-              studios, service businesses and local companies — or any business
-              that needs a clean, credible online presence.
-            </p>
+          <div className="mt-5 grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+            {[
+              "who you are",
+              "what you offer",
+              "where you are",
+              "how to contact or book with you",
+            ].map((item) => (
+              <BulletRow key={item}>{item}</BulletRow>
+            ))}
           </div>
-        </div>
 
-        <div className="hidden lg:block">
-          <GlassCard className="sticky top-24 p-5">
-            <div className="rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(13,14,17,0.96),rgba(13,14,17,0.82))] p-5">
-              <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
-                Customer journey
-              </div>
+          <p className="mt-5 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            That is what this service is designed to deliver: a website that
+            looks professional, feels credible, and makes it easier for
+            customers to take the next step.
+          </p>
 
-              <div className="mt-2 text-[1.05rem] font-medium text-[#F5F2EA]">
-                What a clear website helps people do
-              </div>
-
-              <div className="relative mt-6">
-                <div className="absolute bottom-2 left-[17px] top-2 w-px bg-gradient-to-b from-white/10 to-[#3B82F6]/30" />
-
-                <div className="space-y-5">
-                  {[
-                    {
-                      title: "Visitor lands",
-                      text: "A clean first impression makes the business feel real and professional.",
-                    },
-                    {
-                      title: "They understand the business",
-                      text: "What you do, who it is for and where you are becomes obvious quickly.",
-                    },
-                    {
-                      title: "Trust builds",
-                      text: "The website feels clear, complete and properly put together.",
-                    },
-                    {
-                      title: "They take action",
-                      text: "Call, message, book or send an enquiry without friction.",
-                      highlight: true,
-                    },
-                  ].map((item) => (
-                    <div
-                      key={item.title}
-                      className="relative flex items-start gap-4"
-                    >
-                      <div
-                        className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
-                          item.highlight
-                            ? "border-[#60A5FA]/40 bg-[#3B82F6]/15 text-[#CFE0FF] shadow-[0_0_24px_rgba(59,130,246,0.18)]"
-                            : "border-white/10 bg-white/[0.03] text-[#A9ABB3]"
-                        }`}
-                      >
-                        <span className="h-2.5 w-2.5 rounded-full bg-current opacity-90" />
-                      </div>
-
-                      <div
-                        className={`rounded-[18px] border px-4 py-3 ${
-                          item.highlight
-                            ? "border-[#3B82F6]/20 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))]"
-                            : "border-white/10 bg-white/[0.025]"
-                        }`}
-                      >
-                        <div
-                          className={`text-sm font-medium ${
-                            item.highlight
-                              ? "text-[#F5F2EA]"
-                              : "text-[#E5E7EC]"
-                          }`}
-                        >
-                          {item.title}
-                        </div>
-                        <p className="mt-1 text-sm leading-6 text-[#A9ABB3]">
-                          {item.text}
-                        </p>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </GlassCard>
+          <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            Designed to work well for businesses such as restaurants, salons,
+            studios, service businesses and local companies — or any business
+            that needs a clean, credible online presence.
+          </p>
         </div>
       </div>
-    </SectionShell>
-  </Reveal>
+
+      <div className="hidden lg:block">
+        <div className="sticky top-24 pl-4">
+          <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
+            Customer journey
+          </div>
+
+          <div className="mt-2 text-[1.05rem] font-medium text-[#F5F2EA]">
+            What a clear website helps people do
+          </div>
+
+          <div className="relative mt-8">
+            <div className="absolute bottom-4 left-[17px] top-4 w-px bg-gradient-to-b from-white/10 via-white/10 to-[#3B82F6]/35" />
+
+            <div className="space-y-8">
+              {[
+                {
+                  title: "Visitor lands",
+                  text: "A clean first impression makes the business feel real and professional.",
+                },
+                {
+                  title: "They understand the business",
+                  text: "What you do, who it is for and where you are becomes obvious quickly.",
+                },
+                {
+                  title: "Trust builds",
+                  text: "The website feels clear, complete and properly put together.",
+                },
+                {
+                  title: "They take action",
+                  text: "Call, message, book or send an enquiry without friction.",
+                  highlight: true,
+                },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.title}
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  viewport={{ once: true, amount: 0.7 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: index * 0.08,
+                    ease: easeOut,
+                  }}
+                  className="relative flex items-start gap-5"
+                >
+                  <div
+                    className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border backdrop-blur-sm ${
+                      item.highlight
+                        ? "border-[#60A5FA]/45 bg-[#3B82F6]/12 text-[#CFE0FF] shadow-[0_0_28px_rgba(59,130,246,0.2)]"
+                        : "border-white/10 bg-white/[0.03] text-[#A9ABB3]"
+                    }`}
+                  >
+                    <span className="h-2.5 w-2.5 rounded-full bg-current opacity-90" />
+                  </div>
+
+                  <div className="max-w-[280px] pt-0.5">
+                    <div
+                      className={`text-[1rem] leading-6 ${
+                        item.highlight ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
+                      }`}
+                    >
+                      {item.title}
+                    </div>
+                    <p className="mt-1.5 text-[15px] leading-7 text-[#A9ABB3]">
+                      {item.text}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </SectionShell>
+</Reveal>
+  
         <Reveal>
           <SectionShell id="demos">
             <div className="max-w-3xl">
