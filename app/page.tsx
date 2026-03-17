@@ -1256,7 +1256,6 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[minmax(0,560px)_minmax(0,620px)] lg:justify-start lg:gap-12">
   <div className="grid gap-8 lg:grid-cols-[max-content_minmax(0,620px)] lg:justify-start lg:gap-10">
   <div className="max-w-none">
     <SectionEyebrow>What your website needs to do</SectionEyebrow>
