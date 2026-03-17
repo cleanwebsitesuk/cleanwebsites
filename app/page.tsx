@@ -656,7 +656,7 @@ function HeroSection({
 
 return (
   <section className="relative">
-    <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
+    <div className="mx-auto flex w-full max-w-7xl items-center px-5 pb-8 pt-4 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
       <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(440px,1fr)] lg:items-start lg:gap-10">
         <div className="mx-auto flex w-full max-w-[680px] flex-col justify-center lg:mx-0 lg:max-w-[680px]">
           <div className="w-fit">
@@ -674,7 +674,7 @@ return (
             </div>
           </div>
 
-<h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[1] tracking-[-0.05em] text-[#F5F2EA]">
+<h1 className="mt-4 max-w-[14ch] font-serif text-[2.9rem] leading-[0.96] tracking-[-0.05em] text-[#F5F2EA] sm:text-[clamp(3.4rem,6.2vw,4.5rem)] sm:max-w-[11.5ch]">
   A professional website for your business — built within{" "}
   <motion.span
     initial={reduceMotion ? false : { opacity: 0.7, y: 6 }}
@@ -702,7 +702,7 @@ return (
   </motion.span>
 </h1>
 
-          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+          <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-5 sm:text-[16px] sm:leading-8">
             A clean, mobile-first website designed to make your business look
             credible online and make it easy for customers to get in touch.
             Once your content is ready, your website can be built and prepared
@@ -746,7 +746,7 @@ return (
       <div className="mt-5 h-px w-full bg-white/8" />
 
       <div className="mt-5">
-        <div className="text-[1.15rem] font-semibold tracking-[-0.02em] text-[#F5F2EA]">
+        <div className="text-[1.2rem] font-semibold tracking-[-0.02em] text-[#F5F2EA]">
           Everything included
         </div>
 
@@ -771,7 +771,7 @@ return (
       </div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-[18px] border border-white/8 bg-white/[0.02] p-4">
+        <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
           <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
             Domain ownership
           </div>
@@ -779,7 +779,7 @@ return (
             Your domain stays in your name.
           </div>
         </div>
-        <div className="rounded-[18px] border border-white/8 bg-white/[0.02] p-4">
+        <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
           <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
             Review before launch
           </div>
@@ -801,7 +801,7 @@ function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/92 p-4 backdrop-blur-2xl md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/92 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 backdrop-blur-2xl md:hidden">
       <div className="mx-auto max-w-7xl">
         <Link
           href="/start"
@@ -879,7 +879,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
       </div>
 
       <HeroSection isMobile={isMobile} reduceMotion={reduceMotion} />
-      <MobileStickyCta hidden={mobileOpen} />
+      <MobileStickyCta hidden={mobileOpen || !scrolled} />
     </>
   );
 }
