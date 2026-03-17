@@ -1255,7 +1255,7 @@ export default function HomePage() {
   
 <Reveal>
   <SectionShell>
-    <div className="grid gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(360px,420px)] lg:items-start">
+    <div className="grid gap-16 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,420px)] lg:items-start xl:gap-20">
       <div>
         <SectionEyebrow>What your website needs to do</SectionEyebrow>
 
@@ -1295,7 +1295,7 @@ export default function HomePage() {
       </div>
 
       <div className="hidden lg:block">
-        <div className="sticky top-24 pl-4">
+        <div className="sticky top-24 pl-6">
           <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
             Customer journey
           </div>
@@ -1305,7 +1305,14 @@ export default function HomePage() {
           </div>
 
           <div className="relative mt-8">
-            <div className="absolute bottom-4 left-[17px] top-4 w-px bg-gradient-to-b from-white/10 via-white/10 to-[#3B82F6]/35" />
+            <motion.div
+              initial={reduceMotion ? false : { scaleY: 0, opacity: 0.35 }}
+              whileInView={reduceMotion ? {} : { scaleY: 1, opacity: 1 }}
+              viewport={{ once: true, amount: 0.7 }}
+              transition={{ duration: 1.1, ease: easeOut, delay: 0.15 }}
+              style={{ originY: 0 }}
+              className="absolute left-[17px] top-4 h-[calc(100%-94px)] w-px bg-gradient-to-b from-white/10 via-white/10 to-[#3B82F6]/35"
+            />
 
             <div className="space-y-8">
               {[
@@ -1329,27 +1336,75 @@ export default function HomePage() {
               ].map((item, index) => (
                 <motion.div
                   key={item.title}
-                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  initial={reduceMotion ? false : { opacity: 0, x: 18 }}
+                  whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.7 }}
                   transition={{
-                    duration: 0.5,
-                    delay: index * 0.08,
+                    duration: 0.55,
+                    delay: 0.2 + index * 0.12,
                     ease: easeOut,
                   }}
                   className="relative flex items-start gap-5"
                 >
-                  <div
+                  <motion.div
+                    initial={reduceMotion ? false : { scale: 0.82, opacity: 0.4 }}
+                    whileInView={
+                      reduceMotion
+                        ? {}
+                        : {
+                            scale: [0.9, 1.05, 1],
+                            opacity: 1,
+                          }
+                    }
+                    viewport={{ once: true, amount: 0.7 }}
+                    transition={{
+                      duration: 0.6,
+                      delay: 0.12 + index * 0.12,
+                      ease: easeOut,
+                    }}
+                    animate={
+                      reduceMotion || !item.highlight
+                        ? {}
+                        : {
+                            boxShadow: [
+                              "0 0 0px rgba(59,130,246,0)",
+                              "0 0 20px rgba(59,130,246,0.22)",
+                              "0 0 10px rgba(59,130,246,0.12)",
+                            ],
+                          }
+                    }
                     className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border backdrop-blur-sm ${
                       item.highlight
-                        ? "border-[#60A5FA]/45 bg-[#3B82F6]/12 text-[#CFE0FF] shadow-[0_0_28px_rgba(59,130,246,0.2)]"
+                        ? "border-[#60A5FA]/45 bg-[#3B82F6]/12 text-[#CFE0FF]"
                         : "border-white/10 bg-white/[0.03] text-[#A9ABB3]"
                     }`}
                   >
-                    <span className="h-2.5 w-2.5 rounded-full bg-current opacity-90" />
-                  </div>
+                    <motion.span
+                      animate={
+                        reduceMotion || !item.highlight
+                          ? {}
+                          : { scale: [1, 1.18, 1] }
+                      }
+                      transition={{
+                        duration: 1.8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                      className="h-2.5 w-2.5 rounded-full bg-current opacity-90"
+                    />
+                  </motion.div>
 
-                  <div className="max-w-[280px] pt-0.5">
+                  <motion.div
+                    initial={reduceMotion ? false : { opacity: 0, y: 10 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.7 }}
+                    transition={{
+                      duration: 0.5,
+                      delay: 0.26 + index * 0.12,
+                      ease: easeOut,
+                    }}
+                    className="max-w-[290px] pt-0.5"
+                  >
                     <div
                       className={`text-[1rem] leading-6 ${
                         item.highlight ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
@@ -1360,7 +1415,7 @@ export default function HomePage() {
                     <p className="mt-1.5 text-[15px] leading-7 text-[#A9ABB3]">
                       {item.text}
                     </p>
-                  </div>
+                  </motion.div>
                 </motion.div>
               ))}
             </div>
