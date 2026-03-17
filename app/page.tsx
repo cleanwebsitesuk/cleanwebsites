@@ -1180,7 +1180,7 @@ export default function HomePage() {
           <SectionShell>
             <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
-                <SectionEyebarow>Fast launch</SectionEyebrow>
+                <SectionEyebrow>Fast launch</SectionEyebrow>
                 <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Launch your website within 24 hours
                 </h2>
