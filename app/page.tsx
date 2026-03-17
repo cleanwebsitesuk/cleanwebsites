@@ -81,25 +81,25 @@ const PROCESS_STEPS = [
     step: "01",
     title: "Send your business details and content",
     description:
-      "Provide the text, business information and any images you want included.",
+      "Provide the text, business information and any images or videos you would like included.",
   },
   {
     step: "02",
     title: "Your website is built",
     description:
-      "Your website is structured and built around your business, with a clean layout designed to be easy to use.",
+      "Your website is designed around your business, with a clean, well-structured layout that is simple for visitors to use.",
   },
   {
     step: "03",
     title: "Review the build",
     description:
-      "One revision is included so you can refine the layout or content before launch.",
+      "One revision is included so you can review and refine the layout or content before launch.",
   },
   {
     step: "04",
     title: "Go live",
     description:
-      "Your domain is connected, hosting is configured, SSL is active, and the website is prepared for launch.",
+      "Your domain is connected, hosting is configured, SSL is enabled, and your website is fully prepared for launch.",
   },
 ] as const;
 
@@ -1181,7 +1181,7 @@ export default function HomePage() {
           <SectionShell>
             <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
-                <SectionEyebrow>Fast launch</SectionEyebrow>
+                <SectionEyebarow>Fast launch</SectionEyebrow>
                 <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Launch your website within 24 hours
                 </h2>
@@ -1192,8 +1192,8 @@ export default function HomePage() {
                   get a straightforward business website live.
                 </p>
                 <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  If you already know what you want your customers to see, the
-                  process is designed to get it online quickly and properly.
+                  If you already know what you want your customers to see,
+                  our process is designed to get your website online quickly and set up the right way.
                 </p>
               </div>
 
