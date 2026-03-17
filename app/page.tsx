@@ -5,6 +5,7 @@ import Link from "next/link";
 import {
   AnimatePresence,
   motion,
+  useInView,
   useReducedMotion,
 } from "framer-motion";
 import {
@@ -1129,19 +1130,26 @@ function FAQItem({
 function CustomerJourney() {
   const reduceMotion = useReducedMotion() ?? false;
   const [progress, setProgress] = useState(reduceMotion ? 1 : 0);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+  const isInView = useInView(wrapperRef, { once: true, amount: 0.45 });
 
   useEffect(() => {
-    if (reduceMotion) return;
+    if (reduceMotion) {
+      setProgress(1);
+      return;
+    }
+
+    if (!isInView) return;
 
     let frame = 0;
     let start: number | null = null;
     const duration = 3200;
 
     const checkpoints = [
-      0.0,   // first dot
-      0.32,  // second dot
-      0.64,  // third dot
-      0.96,  // fourth dot
+      0.0,
+      0.32,
+      0.64,
+      0.96,
       1.0,
     ];
 
@@ -1186,37 +1194,37 @@ function CustomerJourney() {
 
     frame = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(frame);
-  }, [reduceMotion]);
+  }, [isInView, reduceMotion]);
 
-const steps = [
-  {
-    title: "Visitor lands",
-    text: "A clean first impression makes the business feel real and professional.",
-    point: 0.0,
-    highlight: false,
-  },
-  {
-    title: "They understand the business",
-    text: "What you do, who it is for and where you are becomes obvious quickly.",
-    point: 0.32,
-    highlight: false,
-  },
-  {
-    title: "Trust builds",
-    text: "The website feels clear, complete and properly put together.",
-    point: 0.64,
-    highlight: false,
-  },
-  {
-    title: "They take action",
-    text: "Call, message, book or send an enquiry without friction.",
-    point: 0.96,
-    highlight: true,
-  },
-] as const;
-  
+  const steps = [
+    {
+      title: "Visitor lands",
+      text: "A clean first impression makes the business feel real and professional.",
+      point: 0.0,
+      highlight: false,
+    },
+    {
+      title: "They understand the business",
+      text: "What you do, who it is for and where you are becomes obvious quickly.",
+      point: 0.32,
+      highlight: false,
+    },
+    {
+      title: "Trust builds",
+      text: "The website feels clear, complete and properly put together.",
+      point: 0.64,
+      highlight: false,
+    },
+    {
+      title: "They take action",
+      text: "Call, message, book or send an enquiry without friction.",
+      point: 0.96,
+      highlight: true,
+    },
+  ] as const;
+
   return (
-    <div className="sticky top-24 pl-10 xl:pl-16">
+    <div ref={wrapperRef} className="sticky top-24 pl-10 xl:pl-16">
       <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
         Customer journey
       </div>
@@ -1234,43 +1242,43 @@ const steps = [
         />
 
         <div className="space-y-8">
-{steps.map((item, index) => {
-  const reached = progress >= item.point;
-  const isHighlighted = item.highlight === true;
+          {steps.map((item) => {
+            const reached = progress >= item.point;
+            const isHighlighted = item.highlight === true;
 
-  return (
-    <div key={item.title} className="relative flex items-start gap-5">
-      <motion.div
-        animate={
-          reduceMotion
-            ? {}
-            : reached
-              ? {
-                  scale: [1, 1.14, 1],
-                  boxShadow: isHighlighted
-                    ? [
-                        "0 0 0px rgba(59,130,246,0)",
-                        "0 0 18px rgba(59,130,246,0.24)",
-                        "0 0 8px rgba(59,130,246,0.14)",
-                      ]
-                    : [
-                        "0 0 0px rgba(255,255,255,0)",
-                        "0 0 10px rgba(255,255,255,0.10)",
-                        "0 0 0px rgba(255,255,255,0)",
-                      ],
-                }
-              : {}
-        }
-        transition={{
-          duration: 0.26,
-          ease: easeOut,
-        }}
-        className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
-          isHighlighted
-            ? "border-[#60A5FA]/45 bg-[#3B82F6]/10 text-[#CFE0FF]"
-            : "border-white/10 bg-white/[0.03] text-[#B8BDC8]"
-        }`}
-      >
+            return (
+              <div key={item.title} className="relative flex items-start gap-5">
+                <motion.div
+                  animate={
+                    reduceMotion
+                      ? {}
+                      : reached
+                        ? {
+                            scale: [1, 1.14, 1],
+                            boxShadow: isHighlighted
+                              ? [
+                                  "0 0 0px rgba(59,130,246,0)",
+                                  "0 0 18px rgba(59,130,246,0.24)",
+                                  "0 0 8px rgba(59,130,246,0.14)",
+                                ]
+                              : [
+                                  "0 0 0px rgba(255,255,255,0)",
+                                  "0 0 10px rgba(255,255,255,0.10)",
+                                  "0 0 0px rgba(255,255,255,0)",
+                                ],
+                          }
+                        : {}
+                  }
+                  transition={{
+                    duration: 0.26,
+                    ease: easeOut,
+                  }}
+                  className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
+                    isHighlighted
+                      ? "border-[#60A5FA]/45 bg-[#3B82F6]/10 text-[#CFE0FF]"
+                      : "border-white/10 bg-white/[0.03] text-[#B8BDC8]"
+                  }`}
+                >
                   <motion.span
                     animate={
                       reduceMotion
