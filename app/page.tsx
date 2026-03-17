@@ -676,7 +676,7 @@ return (
       delay: 0.35,
       ease: "easeOut",
     }}
-    className="inline-block bg-gradient-to-r from-[#8BB5FF] to-[#3B82F6] bg-clip-text font-medium text-transparent"
+    className="inline-block bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent"
   >
     24 hours
   </motion.span>
