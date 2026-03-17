@@ -708,10 +708,10 @@ return (
             </a>
           </div>
         </div>
-
 <div className="hidden lg:block lg:pt-2" aria-hidden="true">
-  <GlassCard className="p-5">
-    <div className="flex flex-col rounded-[22px] border border-white/10 bg-[#0D0E11]/85 p-5">
+  <GlassCard className="p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+    <div className="absolute -top-20 right-[-10%] h-[220px] w-[220px] rounded-full bg-[#3B82F6]/10 blur-[100px]" />
+    <div className="flex flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(13,14,17,0.9),rgba(13,14,17,0.75))] p-5">
       <div className="flex items-center justify-between gap-3">
         <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
           Website launch package
@@ -741,7 +741,7 @@ return (
               key={item}
               className="flex items-start gap-3.5 text-[15px] leading-7 text-[#E5E7EC]"
             >
-              <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+              <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/18 text-[#A5C8FF]">
                 <CheckIcon />
               </span>
               {item}
@@ -771,11 +771,6 @@ return (
     </div>
   </GlassCard>
 </div>
-      </div>
-    </div>
-  </section>
-  );
-}
 
 function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
