@@ -749,6 +749,7 @@ return (
     </div>
   </section>
 );
+}
 
 function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
@@ -1101,7 +1102,7 @@ export default function HomePage() {
                   x: [0, 20, -10, 0],
                   y: [0, -14, 10, 0],
                   scale: [1, 1.04, 0.98, 1],
-                }
+                }  
               : {}
           }
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
