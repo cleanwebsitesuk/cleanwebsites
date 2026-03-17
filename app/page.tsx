@@ -634,128 +634,121 @@ function HeroSection({
 }) {
   const motionEnabled = !reduceMotion && !isMobile;
 
-  return (
-    <section className="relative">
-      <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
-        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:items-start lg:gap-10">
+return (
+  <section className="relative">
+    <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
+      <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(440px,1fr)] lg:items-start lg:gap-10">
+        <div className="mx-auto flex w-full max-w-[680px] flex-col justify-center lg:mx-0 lg:max-w-[680px]">
+          <div className="w-fit">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
+              <motion.span
+                animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
+                transition={{
+                  duration: 2.2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
+              />
+              Professional business websites
+            </div>
+          </div>
+
           <h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
-            <div className="w-fit">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
-                <motion.span
-                  animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
-                  transition={{
-                    duration: 2.2,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }}
-                  className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
-                />
-                Professional business websites
+            A professional website for your business — built within 24 hours
+          </h1>
+
+          <p className="mt-5 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            A clean, mobile-first website designed to make your business look
+            credible online and make it easy for customers to get in touch.
+            Once your content is ready, your website can be built and prepared
+            for launch within 24 hours.
+          </p>
+
+          <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
+            <MagneticLink
+              href="/start"
+              disabled={isMobile}
+              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[14px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+            >
+              Start my website
+              <ArrowRight />
+            </MagneticLink>
+
+            <a
+              href="#demos"
+              className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
+            >
+              View demo websites
+              <ArrowRight />
+            </a>
+          </div>
+        </div>
+
+        <div className="hidden lg:block lg:pt-2" aria-hidden="true">
+          <GlassCard className="p-5">
+            <div className="flex flex-col rounded-[22px] border border-white/10 bg-[#0D0E11]/85 p-5">
+              <div className="flex items-center justify-between gap-3">
+                <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                  Website launch package
+                </div>
+                <div className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-xs text-[#9CC0FF]">
+                  Fast launch
+                </div>
+              </div>
+
+              <HeroMetrics />
+
+              <div className="mt-5">
+                <div className="text-lg font-semibold tracking-tight text-[#F5F2EA]">
+                  Everything included
+                </div>
+
+                <div className="mt-4 grid gap-3">
+                  {[
+                    "Core pages (Home, About, Services, Contact)",
+                    "Contact or booking page",
+                    "Mobile-optimised and launch ready",
+                    "Hosting, SSL and setup",
+                  ].map((item) => (
+                    <div
+                      key={item}
+                      className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
+                    >
+                      <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                        <CheckIcon />
+                      </span>
+                      {item}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-5 grid gap-3 sm:grid-cols-2">
+                <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                    Domain ownership
+                  </div>
+                  <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                    Your domain stays in your name.
+                  </div>
+                </div>
+                <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+                  <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                    Review before launch
+                  </div>
+                  <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                    One revision included before going live.
+                  </div>
+                </div>
               </div>
             </div>
-
-            <h1 className="mt-4 max-w-[12.5ch] font-serif text-[clamp(2.6rem,7vw,4.95rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
-              A professional website for your business — built within 24 hours
-            </h1>
-
-            <p className="mt-5 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              A clean, mobile-first website designed to make your business look
-              credible online and make it easy for customers to get in touch.
-              Once your content is ready, your website can be built and prepared
-              for launch within 24 hours.
-            </p>
-
-            <div className="mt-5 rounded-[18px] border border-white/10 bg-white/[0.03] px-4 py-3 text-[14px] font-medium leading-6 text-[#E4E7ED] sm:inline-flex sm:w-fit sm:items-center sm:px-5">
-              Website build £595 • Hosting &amp; support £40/month after launch
-            </div>
-
-            <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
-              <MagneticLink
-                href="/start"
-                disabled={isMobile}
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[14px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
-              >
-                Start my website
-                <ArrowRight />
-              </MagneticLink>
-
-              <a
-                href="#demos"
-                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
-              >
-                View demo websites
-                <ArrowRight />
-              </a>
-            </div>
-
-            <HeroSupportStrip />
-          </div>
-
-<div className="hidden lg:block" aria-hidden="true">
-  <GlassCard className="p-5">
-    <div className="flex flex-col rounded-[22px] border border-white/10 bg-[#0D0E11]/85 p-5">
-      <div className="flex items-center justify-between gap-3">
-        <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-          Website launch package
-        </div>
-        <div className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-xs text-[#9CC0FF]">
-          Fast launch
-        </div>
-      </div>
-
-      <HeroMetrics />
-
-      <div className="mt-4">
-        <div className="mt-1 text-lg font-semibold tracking-tight text-[#F5F2EA]">
-          Everything included
-        </div>
-
-        <div className="mt-4 grid gap-3">
-          {[
-            "Core pages (Home, About, Services, Contact)",
-            "Contact or booking page",
-            "Mobile-optimised and launch ready",
-            "Hosting, SSL and setup",
-          ].map((item) => (
-            <div
-              key={item}
-              className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
-            >
-              <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                <CheckIcon />
-              </span>
-              {item}
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="mt-4 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
-          <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-            Domain ownership
-          </div>
-          <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-            Your domain stays in your name.
-          </div>
-        </div>
-        <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
-          <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-            Review before launch
-          </div>
-          <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-            One revision included before going live.
-          </div>
+          </GlassCard>
         </div>
       </div>
     </div>
-  </GlassCard>
-</div>
-          </div>
-      </div>
-    </section>
-  );
-}
+  </section>
+);
 
 function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
