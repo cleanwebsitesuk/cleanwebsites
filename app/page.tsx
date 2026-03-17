@@ -656,7 +656,7 @@ function HeroSection({
 
 return (
   <section className="relative">
-    <div className="mx-auto flex min-h-[calc(100svh-76px)] w-full max-w-7xl items-center px-5 pb-10 pt-10 sm:min-h-0 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
+    <div className="mx-auto flex w-full max-w-7xl items-center px-5 pb-8 pt-8 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
       <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(440px,1fr)] lg:items-start lg:gap-10">
         <div className="mx-auto flex w-full max-w-[680px] flex-col justify-center lg:mx-0 lg:max-w-[680px]">
           <div className="w-fit">
@@ -674,7 +674,7 @@ return (
             </div>
           </div>
 
-<h1 className="mt-4 max-w-[12.5ch] font-serif text-[2.55rem] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA] sm:max-w-[11.5ch] sm:text-[clamp(3.4rem,6.2vw,4.5rem)]">
+<h1 className="mt-4 max-w-[14ch] font-serif text-[2.55rem] leading-[1] tracking-[-0.05em] text-[#F5F2EA] sm:max-w-[11.5ch] sm:text-[clamp(3.4rem,6.2vw,4.5rem)]">
   A professional website for your business — built within{" "}
   <motion.span
     initial={reduceMotion ? false : { opacity: 0.7 }}
@@ -696,7 +696,7 @@ return (
       delay: 0.35,
       ease: "easeOut",
     }}
-    className="bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent whitespace-nowrap"
+    className="bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent"
   >
     24 hours
   </motion.span>
