@@ -1176,36 +1176,42 @@ export default function HomePage() {
       <HeroHeader scrolled={scrolled} />
 
       <main className="relative">
-        <Reveal>
-          <SectionShell className="pt-2 sm:pt-3 lg:pt-6">
-            <GlassCard className="p-5 sm:p-6 lg:p-7">
-              <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
-                <div>
-                  <SectionEyebrow>Why this works</SectionEyebrow>
-                  <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.4rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                    A straightforward way to get your website properly in place
-                  </h2>
-                </div>
+<Reveal>
+  <SectionShell>
+    <div className="max-w-[1100px]">
+      <SectionEyebrow>What your website needs to do</SectionEyebrow>
 
-                <div className="grid gap-4">
-                  <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                    Your website should do a simple job well: help people
-                    understand your business quickly, trust what they see, and
-                    know how to contact you. Clean Websites is built around that
-                    goal.
-                  </p>
-                  <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                    You send the business details and content. Your website is
-                    then structured, built and prepared for launch with a simple
-                    process and clear pricing from the start. No unnecessary
-                    back-and-forth or vague proposal process.
-                  </p>
-                </div>
-              </div>
-            </GlassCard>
-          </SectionShell>
-        </Reveal>
+      <h2 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+        A website that makes your business easier to trust
+      </h2>
 
+      <div className="mt-6 max-w-[980px]">
+        <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8 lg:whitespace-nowrap">
+          For most businesses, a good website is not about unnecessary complexity. It is about clarity.
+        </p>
+
+        <div className="mt-5 max-w-[760px] grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+          {[
+            "who you are",
+            "what you offer",
+            "where you are",
+            "how to contact or book with you",
+          ].map((item) => (
+            <BulletRow key={item}>{item}</BulletRow>
+          ))}
+        </div>
+
+        <p className="mt-5 max-w-[760px] text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+          That is what this service is designed to deliver: a website that looks professional, feels credible, and makes it easier for customers to take the next step.
+        </p>
+
+        <p className="mt-4 max-w-[760px] text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+          Designed to work well for businesses such as restaurants, salons, studios, service businesses and local companies — or any business that needs a clean, credible online presence.
+        </p>
+      </div>
+    </div>
+  </SectionShell>
+</Reveal>
         <Reveal>
           <SectionShell>
             <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
