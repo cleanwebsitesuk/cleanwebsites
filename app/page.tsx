@@ -1126,6 +1126,181 @@ function FAQItem({
   );
 }
 
+function CustomerJourney() {
+  const reduceMotion = useReducedMotion() ?? false;
+  const [progress, setProgress] = useState(reduceMotion ? 1 : 0);
+
+  useEffect(() => {
+    if (reduceMotion) return;
+
+    let frame = 0;
+    let start: number | null = null;
+    const duration = 3200;
+
+    const checkpoints = [
+      0.0,   // first dot
+      0.32,  // second dot
+      0.64,  // third dot
+      0.96,  // fourth dot
+      1.0,
+    ];
+
+    const pause = 140;
+
+    const animate = (timestamp: number) => {
+      if (start === null) start = timestamp;
+      const elapsed = timestamp - start;
+
+      const segments = [
+        { from: checkpoints[0], to: checkpoints[1], start: 0, end: 700 },
+        { from: checkpoints[1], to: checkpoints[2], start: 840, end: 1540 },
+        { from: checkpoints[2], to: checkpoints[3], start: 1680, end: 2380 },
+        { from: checkpoints[3], to: checkpoints[4], start: 2520, end: duration },
+      ];
+
+      let current = 0;
+
+      for (const segment of segments) {
+        if (elapsed >= segment.end) {
+          current = segment.to;
+          continue;
+        }
+
+        if (elapsed >= segment.start) {
+          const local =
+            (elapsed - segment.start) / (segment.end - segment.start);
+          const eased = 1 - Math.pow(1 - local, 3);
+          current = segment.from + (segment.to - segment.from) * eased;
+          break;
+        }
+      }
+
+      setProgress(Math.min(current, 1));
+
+      if (elapsed < duration + pause) {
+        frame = requestAnimationFrame(animate);
+      } else {
+        setProgress(1);
+      }
+    };
+
+    frame = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(frame);
+  }, [reduceMotion]);
+
+  const steps = [
+    {
+      title: "Visitor lands",
+      text: "A clean first impression makes the business feel real and professional.",
+      point: 0.0,
+    },
+    {
+      title: "They understand the business",
+      text: "What you do, who it is for and where you are becomes obvious quickly.",
+      point: 0.32,
+    },
+    {
+      title: "Trust builds",
+      text: "The website feels clear, complete and properly put together.",
+      point: 0.64,
+    },
+    {
+      title: "They take action",
+      text: "Call, message, book or send an enquiry without friction.",
+      point: 0.96,
+      highlight: true,
+    },
+  ] as const;
+
+  return (
+    <div className="sticky top-24 pl-10 xl:pl-16">
+      <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
+        Customer journey
+      </div>
+
+      <div className="mt-2 text-[1.05rem] font-medium text-[#F5F2EA]">
+        What a clear website helps people do
+      </div>
+
+      <div className="relative mt-8">
+        <div className="absolute left-[17px] top-4 h-[calc(100%-94px)] w-px bg-white/8" />
+
+        <motion.div
+          style={{ originY: 0, scaleY: progress }}
+          className="absolute left-[17px] top-4 h-[calc(100%-94px)] w-px bg-gradient-to-b from-[#9CA3AF] via-[#94A3B8] to-[#3B82F6]"
+        />
+
+        <div className="space-y-8">
+          {steps.map((item, index) => {
+            const reached = progress >= item.point;
+
+            return (
+              <div key={item.title} className="relative flex items-start gap-5">
+                <motion.div
+                  animate={
+                    reduceMotion
+                      ? {}
+                      : reached
+                        ? {
+                            scale: [1, 1.14, 1],
+                            boxShadow: item.highlight
+                              ? [
+                                  "0 0 0px rgba(59,130,246,0)",
+                                  "0 0 18px rgba(59,130,246,0.24)",
+                                  "0 0 8px rgba(59,130,246,0.14)",
+                                ]
+                              : [
+                                  "0 0 0px rgba(255,255,255,0)",
+                                  "0 0 10px rgba(255,255,255,0.10)",
+                                  "0 0 0px rgba(255,255,255,0)",
+                                ],
+                          }
+                        : {}
+                  }
+                  transition={{
+                    duration: 0.26,
+                    ease: easeOut,
+                  }}
+                  className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
+                    item.highlight
+                      ? "border-[#60A5FA]/45 bg-[#3B82F6]/10 text-[#CFE0FF]"
+                      : "border-white/10 bg-white/[0.03] text-[#B8BDC8]"
+                  }`}
+                >
+                  <motion.span
+                    animate={
+                      reduceMotion
+                        ? {}
+                        : reached
+                          ? { scale: [1, 1.2, 1] }
+                          : {}
+                    }
+                    transition={{ duration: 0.24, ease: easeOut }}
+                    className="h-2.5 w-2.5 rounded-full bg-current opacity-90"
+                  />
+                </motion.div>
+
+                <div className="max-w-[300px] pt-0.5">
+                  <div
+                    className={`text-[1rem] leading-6 ${
+                      item.highlight ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
+                    }`}
+                  >
+                    {item.title}
+                  </div>
+                  <p className="mt-1.5 text-[15px] leading-7 text-[#A9ABB3]">
+                    {item.text}
+                  </p>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </div>
+  );
+}
+
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
@@ -1255,7 +1430,7 @@ export default function HomePage() {
   
 <Reveal>
   <SectionShell>
-    <div className="grid gap-16 lg:grid-cols-[minmax(0,0.86fr)_minmax(360px,420px)] lg:items-start xl:gap-20">
+    <div className="grid gap-16 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start xl:gap-24">
       <div>
         <SectionEyebrow>What your website needs to do</SectionEyebrow>
 
@@ -1295,133 +1470,7 @@ export default function HomePage() {
       </div>
 
       <div className="hidden lg:block">
-        <div className="sticky top-24 pl-6">
-          <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
-            Customer journey
-          </div>
-
-          <div className="mt-2 text-[1.05rem] font-medium text-[#F5F2EA]">
-            What a clear website helps people do
-          </div>
-
-          <div className="relative mt-8">
-            <motion.div
-              initial={reduceMotion ? false : { scaleY: 0, opacity: 0.35 }}
-              whileInView={reduceMotion ? {} : { scaleY: 1, opacity: 1 }}
-              viewport={{ once: true, amount: 0.7 }}
-              transition={{ duration: 1.1, ease: easeOut, delay: 0.15 }}
-              style={{ originY: 0 }}
-              className="absolute left-[17px] top-4 h-[calc(100%-94px)] w-px bg-gradient-to-b from-white/10 via-white/10 to-[#3B82F6]/35"
-            />
-
-            <div className="space-y-8">
-              {[
-                {
-                  title: "Visitor lands",
-                  text: "A clean first impression makes the business feel real and professional.",
-                },
-                {
-                  title: "They understand the business",
-                  text: "What you do, who it is for and where you are becomes obvious quickly.",
-                },
-                {
-                  title: "Trust builds",
-                  text: "The website feels clear, complete and properly put together.",
-                },
-                {
-                  title: "They take action",
-                  text: "Call, message, book or send an enquiry without friction.",
-                  highlight: true,
-                },
-              ].map((item, index) => (
-                <motion.div
-                  key={item.title}
-                  initial={reduceMotion ? false : { opacity: 0, x: 18 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                  viewport={{ once: true, amount: 0.7 }}
-                  transition={{
-                    duration: 0.55,
-                    delay: 0.2 + index * 0.12,
-                    ease: easeOut,
-                  }}
-                  className="relative flex items-start gap-5"
-                >
-                  <motion.div
-                    initial={reduceMotion ? false : { scale: 0.82, opacity: 0.4 }}
-                    whileInView={
-                      reduceMotion
-                        ? {}
-                        : {
-                            scale: [0.9, 1.05, 1],
-                            opacity: 1,
-                          }
-                    }
-                    viewport={{ once: true, amount: 0.7 }}
-                    transition={{
-                      duration: 0.6,
-                      delay: 0.12 + index * 0.12,
-                      ease: easeOut,
-                    }}
-                    animate={
-                      reduceMotion || !item.highlight
-                        ? {}
-                        : {
-                            boxShadow: [
-                              "0 0 0px rgba(59,130,246,0)",
-                              "0 0 20px rgba(59,130,246,0.22)",
-                              "0 0 10px rgba(59,130,246,0.12)",
-                            ],
-                          }
-                    }
-                    className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border backdrop-blur-sm ${
-                      item.highlight
-                        ? "border-[#60A5FA]/45 bg-[#3B82F6]/12 text-[#CFE0FF]"
-                        : "border-white/10 bg-white/[0.03] text-[#A9ABB3]"
-                    }`}
-                  >
-                    <motion.span
-                      animate={
-                        reduceMotion || !item.highlight
-                          ? {}
-                          : { scale: [1, 1.18, 1] }
-                      }
-                      transition={{
-                        duration: 1.8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                      }}
-                      className="h-2.5 w-2.5 rounded-full bg-current opacity-90"
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={reduceMotion ? false : { opacity: 0, y: 10 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.7 }}
-                    transition={{
-                      duration: 0.5,
-                      delay: 0.26 + index * 0.12,
-                      ease: easeOut,
-                    }}
-                    className="max-w-[290px] pt-0.5"
-                  >
-                    <div
-                      className={`text-[1rem] leading-6 ${
-                        item.highlight ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
-                      }`}
-                    >
-                      {item.title}
-                    </div>
-                    <p className="mt-1.5 text-[15px] leading-7 text-[#A9ABB3]">
-                      {item.text}
-                    </p>
-                  </motion.div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
+        <CustomerJourney />
     </div>
   </SectionShell>
 </Reveal>
