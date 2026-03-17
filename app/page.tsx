@@ -1252,8 +1252,7 @@ export default function HomePage() {
             </div>
           </SectionShell>
         </Reveal>
-
-<main className="relative">
+  
   <Reveal>
     <SectionShell>
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
