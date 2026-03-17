@@ -709,18 +709,17 @@ function HeroSection({
 
                 <HeroMetrics />
 
-                <div className="mt-4 rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02))] p-4">
-                  <div className="text-sm text-[#A9ABB3]">What is included</div>
+                  <div className="mt-4">
                   <div className="mt-1 text-base font-medium text-[#F5F2EA]">
-                    Everything needed to launch cleanly
+                    Everything included
                   </div>
 
                   <div className="mt-4 grid gap-2.5">
                     {[
-                      "Home, About and Services/Menu pages",
-                      "Contact or booking page with clear action points",
-                      "Mobile optimisation and launch support",
-                      "Hosting, SSL and technical setup included",
+                      "Core pages (Home, About, Services, Contact)",
+                      "Contact or booking page",
+                      "Mobile-optimised and launch ready",
+                      "Hosting, SSL and setup",
                     ].map((item) => (
                       <div
                         key={item}
