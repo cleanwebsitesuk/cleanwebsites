@@ -608,19 +608,39 @@ function HeroSupportStrip() {
 function HeroMetrics() {
   return (
     <div className="mt-5 grid gap-3 sm:grid-cols-3">
-      {OFFER_STATS.map((item) => (
-        <div
-          key={item.label}
-          className="rounded-[18px] border border-white/10 bg-[#0C0E11]/90 px-4 py-3.5"
-        >
-          <div className="text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]">
-            {item.value}
+      {OFFER_STATS.map((item) => {
+        const highlighted = item.value === "24h";
+
+        return (
+          <div
+            key={item.label}
+            className={
+              highlighted
+                ? "rounded-[18px] border border-[#60A5FA]/40 bg-[linear-gradient(180deg,rgba(59,130,246,0.18),rgba(59,130,246,0.08))] px-5 py-4 shadow-[0_0_40px_rgba(59,130,246,0.18)]"
+                : "rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4"
+            }
+          >
+            <div
+              className={
+                highlighted
+                  ? "bg-gradient-to-r from-[#C7DDFF] to-[#60A5FA] bg-clip-text text-[1.35rem] font-semibold tracking-[-0.04em] text-transparent sm:text-[1.45rem]"
+                  : "text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]"
+              }
+            >
+              {item.value}
+            </div>
+            <div
+              className={
+                highlighted
+                  ? "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#9FB7D9]"
+                  : "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]"
+              }
+            >
+              {item.label}
+            </div>
           </div>
-          <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
-            {item.label}
-          </div>
-        </div>
-      ))}
+        );
+      })}
     </div>
   );
 }
