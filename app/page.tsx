@@ -703,10 +703,10 @@ return (
 </h1>
 
           <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-5 sm:text-[16px] sm:leading-8">
-            A clean, mobile-first website designed to make your business look
-            credible online and make it easy for customers to get in touch.
-            Once your content is ready, your website can be built and prepared
-            for launch within 24 hours.
+            A clean, mobile-first website designed not just to look credible, 
+            but to turn visitors into customers—clearly communicating what you do, 
+            building trust instantly, and making it effortless for people to get in touch.
+            Once your content is ready, your site can be designed, built, and ready to launch within 24 hours.
           </p>
 
           <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
