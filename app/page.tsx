@@ -637,8 +637,8 @@ function HeroSection({
   return (
     <section className="relative">
       <div className="mx-auto flex min-h-[calc(100svh-78px)] w-full max-w-7xl items-center px-5 pb-10 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:px-8 lg:pb-14 lg:pt-10">
-        <div className="grid w-full gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,0.76fr)] lg:gap-8">
-          <div className="mx-auto flex w-full max-w-3xl flex-col justify-center lg:mx-0 lg:max-w-none">
+        <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1.02fr)_minmax(420px,0.98fr)] lg:items-start lg:gap-10">
+          <h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
             <div className="w-fit">
               <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
                 <motion.span
@@ -692,8 +692,8 @@ function HeroSection({
           </div>
 
 <div className="hidden lg:block" aria-hidden="true">
-  <GlassCard className="p-4">
-    <div className="flex flex-col rounded-[20px] border border-white/10 bg-[#0D0E11]/85 p-4">
+  <GlassCard className="p-5">
+    <div className="flex flex-col rounded-[22px] border border-white/10 bg-[#0D0E11]/85 p-5">
       <div className="flex items-center justify-between gap-3">
         <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
           Website launch package
