@@ -1258,7 +1258,7 @@ export default function HomePage() {
   <SectionShell>
     <div className="max-w-[680px]">
       <SectionEyebrow>What your website needs to do</SectionEyebrow>
-      <h2 className="mt-4 max-w-[10ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+      <h2 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
         A website that makes your business easier to trust
       </h2>
 
