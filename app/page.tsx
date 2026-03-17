@@ -1188,30 +1188,33 @@ function CustomerJourney() {
     return () => cancelAnimationFrame(frame);
   }, [reduceMotion]);
 
-  const steps = [
-    {
-      title: "Visitor lands",
-      text: "A clean first impression makes the business feel real and professional.",
-      point: 0.0,
-    },
-    {
-      title: "They understand the business",
-      text: "What you do, who it is for and where you are becomes obvious quickly.",
-      point: 0.32,
-    },
-    {
-      title: "Trust builds",
-      text: "The website feels clear, complete and properly put together.",
-      point: 0.64,
-    },
-    {
-      title: "They take action",
-      text: "Call, message, book or send an enquiry without friction.",
-      point: 0.96,
-      highlight: true,
-    },
-  ] as const;
-
+const steps = [
+  {
+    title: "Visitor lands",
+    text: "A clean first impression makes the business feel real and professional.",
+    point: 0.0,
+    highlight: false,
+  },
+  {
+    title: "They understand the business",
+    text: "What you do, who it is for and where you are becomes obvious quickly.",
+    point: 0.32,
+    highlight: false,
+  },
+  {
+    title: "Trust builds",
+    text: "The website feels clear, complete and properly put together.",
+    point: 0.64,
+    highlight: false,
+  },
+  {
+    title: "They take action",
+    text: "Call, message, book or send an enquiry without friction.",
+    point: 0.96,
+    highlight: true,
+  },
+] as const;
+  
   return (
     <div className="sticky top-24 pl-10 xl:pl-16">
       <div className="text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
@@ -1231,42 +1234,43 @@ function CustomerJourney() {
         />
 
         <div className="space-y-8">
-          {steps.map((item, index) => {
-            const reached = progress >= item.point;
+{steps.map((item, index) => {
+  const reached = progress >= item.point;
+  const isHighlighted = item.highlight === true;
 
-            return (
-              <div key={item.title} className="relative flex items-start gap-5">
-                <motion.div
-                  animate={
-                    reduceMotion
-                      ? {}
-                      : reached
-                        ? {
-                            scale: [1, 1.14, 1],
-                            boxShadow: item.highlight
-                              ? [
-                                  "0 0 0px rgba(59,130,246,0)",
-                                  "0 0 18px rgba(59,130,246,0.24)",
-                                  "0 0 8px rgba(59,130,246,0.14)",
-                                ]
-                              : [
-                                  "0 0 0px rgba(255,255,255,0)",
-                                  "0 0 10px rgba(255,255,255,0.10)",
-                                  "0 0 0px rgba(255,255,255,0)",
-                                ],
-                          }
-                        : {}
-                  }
-                  transition={{
-                    duration: 0.26,
-                    ease: easeOut,
-                  }}
-                  className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
-                    item.highlight
-                      ? "border-[#60A5FA]/45 bg-[#3B82F6]/10 text-[#CFE0FF]"
-                      : "border-white/10 bg-white/[0.03] text-[#B8BDC8]"
-                  }`}
-                >
+  return (
+    <div key={item.title} className="relative flex items-start gap-5">
+      <motion.div
+        animate={
+          reduceMotion
+            ? {}
+            : reached
+              ? {
+                  scale: [1, 1.14, 1],
+                  boxShadow: isHighlighted
+                    ? [
+                        "0 0 0px rgba(59,130,246,0)",
+                        "0 0 18px rgba(59,130,246,0.24)",
+                        "0 0 8px rgba(59,130,246,0.14)",
+                      ]
+                    : [
+                        "0 0 0px rgba(255,255,255,0)",
+                        "0 0 10px rgba(255,255,255,0.10)",
+                        "0 0 0px rgba(255,255,255,0)",
+                      ],
+                }
+              : {}
+        }
+        transition={{
+          duration: 0.26,
+          ease: easeOut,
+        }}
+        className={`relative z-10 mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border ${
+          isHighlighted
+            ? "border-[#60A5FA]/45 bg-[#3B82F6]/10 text-[#CFE0FF]"
+            : "border-white/10 bg-white/[0.03] text-[#B8BDC8]"
+        }`}
+      >
                   <motion.span
                     animate={
                       reduceMotion
@@ -1283,7 +1287,7 @@ function CustomerJourney() {
                 <div className="max-w-[300px] pt-0.5">
                   <div
                     className={`text-[1rem] leading-6 ${
-                      item.highlight ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
+                      isHighlighted ? "text-[#F5F2EA]" : "text-[#E5E7EC]"
                     }`}
                   >
                     {item.title}
