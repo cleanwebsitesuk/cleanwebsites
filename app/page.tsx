@@ -654,9 +654,33 @@ return (
             </div>
           </div>
 
-          <h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[1] tracking-[-0.05em] text-[#F5F2EA]">
-            A professional website for your business — built within 24 hours
-          </h1>
+<h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[1] tracking-[-0.05em] text-[#F5F2EA]">
+  A professional website for your business — built within{" "}
+  <motion.span
+    initial={reduceMotion ? false : { opacity: 0.7, y: 6 }}
+    animate={
+      reduceMotion
+        ? {}
+        : {
+            opacity: [0.75, 1, 0.9, 1],
+            textShadow: [
+              "0 0 0px rgba(59,130,246,0)",
+              "0 0 18px rgba(59,130,246,0.35)",
+              "0 0 8px rgba(59,130,246,0.18)",
+              "0 0 14px rgba(59,130,246,0.28)",
+            ],
+          }
+    }
+    transition={{
+      duration: 1.6,
+      delay: 0.35,
+      ease: "easeOut",
+    }}
+    className="inline-block bg-gradient-to-r from-[#8BB5FF] to-[#3B82F6] bg-clip-text font-medium text-transparent"
+  >
+    24 hours
+  </motion.span>
+</h1>
 
           <p className="mt-5 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
             A clean, mobile-first website designed to make your business look
