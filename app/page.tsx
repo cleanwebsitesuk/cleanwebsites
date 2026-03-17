@@ -669,10 +669,6 @@ function HeroSection({
               Website build £595 • Hosting &amp; support £40/month after launch
             </div>
 
-            <p className="mt-3 text-sm leading-6 text-[#A9ABB3]">
-              Clear pricing. Secure hosting. Your domain stays in your name.
-            </p>
-
             <div className="mt-6 flex w-full flex-col gap-3 sm:flex-row">
               <MagneticLink
                 href="/start"
