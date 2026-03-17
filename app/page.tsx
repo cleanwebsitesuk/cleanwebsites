@@ -695,71 +695,66 @@ function HeroSection({
             <HeroSupportStrip />
           </div>
 
-          <div className="hidden lg:block" aria-hidden="true">
-            <GlassCard className="h-full p-4">
-              <div className="flex h-full flex-col rounded-[20px] border border-white/10 bg-[#0D0E11]/85 p-4">
-                <div className="flex items-center justify-between gap-3">
-                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-                    Website launch package
-                  </div>
-                  <div className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-xs text-[#9CC0FF]">
-                    Fast launch
-                  </div>
-                </div>
-
-                <HeroMetrics />
-
-<div className="mt-4">
-  <div className="mt-1 text-lg font-semibold tracking-tight text-[#F5F2EA]">
-    Everything included
-  </div>
-
-  <div className="mt-4 grid gap-3">
-    {[
-      "Core pages (Home, About, Services, Contact)",
-      "Contact or booking page",
-      "Mobile-optimised and launch ready",
-      "Hosting, SSL and setup",
-    ].map((item) => (
-      <div
-        key={item}
-        className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
-      >
-        <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-          <CheckIcon />
-        </span>
-        {item}
+<div className="hidden lg:block" aria-hidden="true">
+  <GlassCard className="p-4">
+    <div className="flex flex-col rounded-[20px] border border-white/10 bg-[#0D0E11]/85 p-4">
+      <div className="flex items-center justify-between gap-3">
+        <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+          Website launch package
+        </div>
+        <div className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-1 text-xs text-[#9CC0FF]">
+          Fast launch
+        </div>
       </div>
-    ))}
-  </div>
-</div>
 
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
-                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-                      Domain ownership
-                    </div>
-                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-                      Your domain stays in your name.
-                    </div>
-                  </div>
-                  <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
-                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-                      Review before launch
-                    </div>
-                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-                      One revision included before going live.
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </GlassCard>
+      <HeroMetrics />
+
+      <div className="mt-4">
+        <div className="mt-1 text-lg font-semibold tracking-tight text-[#F5F2EA]">
+          Everything included
+        </div>
+
+        <div className="mt-4 grid gap-3">
+          {[
+            "Core pages (Home, About, Services, Contact)",
+            "Contact or booking page",
+            "Mobile-optimised and launch ready",
+            "Hosting, SSL and setup",
+          ].map((item) => (
+            <div
+              key={item}
+              className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
+            >
+              <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+                <CheckIcon />
+              </span>
+              {item}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="mt-4 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+          <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+            Domain ownership
+          </div>
+          <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+            Your domain stays in your name.
+          </div>
+        </div>
+        <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
+          <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+            Review before launch
+          </div>
+          <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+            One revision included before going live.
           </div>
         </div>
       </div>
-    </section>
-  );
-}
+    </div>
+  </GlassCard>
+</div>
 
 function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
