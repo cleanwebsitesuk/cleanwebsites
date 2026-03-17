@@ -1254,17 +1254,15 @@ export default function HomePage() {
           </SectionShell>
         </Reveal>
 
- <Reveal>
+<Reveal>
   <SectionShell>
-    <div className="grid gap-8 lg:grid-cols-[minmax(0,680px)_minmax(0,1fr)] lg:items-start lg:gap-10">
-      <div className="max-w-[680px]">
-        <SectionEyebrow>What your website needs to do</SectionEyebrow>
-        <h2 className="mt-4 max-w-[10ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-          A website that makes your business easier to trust
-        </h2>
-      </div>
+    <div className="max-w-[680px]">
+      <SectionEyebrow>What your website needs to do</SectionEyebrow>
+      <h2 className="mt-4 max-w-[10ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+        A website that makes your business easier to trust
+      </h2>
 
-      <div className="max-w-[620px]">
+      <div className="mt-6 max-w-[620px]">
         <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
           For most businesses, a good website is not about unnecessary
           complexity. It is about clarity.
