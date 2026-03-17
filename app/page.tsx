@@ -771,6 +771,11 @@ return (
     </div>
   </GlassCard>
 </div>
+      </div>
+    </div>
+  </section>
+);
+}
 
 function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
