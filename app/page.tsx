@@ -1256,44 +1256,44 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[1.02fr_0.98fr]">
-              <div className="max-w-xl">
-                <SectionEyebrow>What your website needs to do</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  A website that makes your business easier to trust
-                </h2>
-              </div>
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,560px)_minmax(0,620px)] lg:justify-start lg:gap-12">
+  <div className="max-w-[560px]">
+    <SectionEyebrow>What your website needs to do</SectionEyebrow>
+    <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+      A website that makes your business easier to trust
+    </h2>
+  </div>
 
-              <div>
-                <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  For most businesses, a good website is not about unnecessary
-                  complexity. It is about clarity.
-                </p>
+  <div className="max-w-[620px]">
+    <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+      For most businesses, a good website is not about unnecessary
+      complexity. It is about clarity.
+    </p>
 
-                <div className="mt-5 grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-                  {[
-                    "who you are",
-                    "what you offer",
-                    "where you are",
-                    "how to contact or book with you",
-                  ].map((item) => (
-                    <BulletRow key={item}>{item}</BulletRow>
-                  ))}
-                </div>
+    <div className="mt-5 grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
+      {[
+        "who you are",
+        "what you offer",
+        "where you are",
+        "how to contact or book with you",
+      ].map((item) => (
+        <BulletRow key={item}>{item}</BulletRow>
+      ))}
+    </div>
 
-                <p className="mt-5 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  That is what this service is designed to deliver: a website
-                  that looks professional, feels credible, and makes it easier
-                  for customers to take the next step.
-                </p>
+    <p className="mt-5 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+      That is what this service is designed to deliver: a website
+      that looks professional, feels credible, and makes it easier
+      for customers to take the next step.
+    </p>
 
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Designed to work well for businesses such as restaurants,
-                  salons, studios, service businesses and local companies — or
-                  any business that needs a clean, credible online presence.
-                </p>
-              </div>
-            </div>
+    <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+      Designed to work well for businesses such as restaurants,
+      salons, studios, service businesses and local companies — or
+      any business that needs a clean, credible online presence.
+    </p>
+  </div>
+</div>
           </SectionShell>
         </Reveal>
 
