@@ -654,7 +654,7 @@ return (
             </div>
           </div>
 
-          <h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA]">
+          <h1 className="mt-4 max-w-[11.5ch] font-serif text-[clamp(2.6rem,6.2vw,4.5rem)] leading-[0.98] tracking-[-0.05em] text-[#F5F2EA]">
             A professional website for your business — built within 24 hours
           </h1>
 
