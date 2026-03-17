@@ -734,13 +734,6 @@ function HeroSection({
   </div>
 </div>
 
-                <div className="mt-4 rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))] p-4">
-                  <p className="text-sm leading-6 text-[#D7E5FF]">
-                    Once your content is received, your website can be built
-                    within 24 hours.
-                  </p>
-                </div>
-
                 <div className="mt-4 grid gap-3 sm:grid-cols-2">
                   <div className="rounded-[16px] border border-white/10 bg-[#0B0D10] p-4">
                     <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
