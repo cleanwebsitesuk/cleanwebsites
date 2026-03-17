@@ -1471,11 +1471,7 @@ export default function HomePage() {
 
       <div className="hidden lg:block">
         <CustomerJourney />
-    </div>
-    </div>
-  </SectionShell>
-</Reveal>
-</main>
+      </div>
     </div>
   </SectionShell>
 </Reveal>
