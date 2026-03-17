@@ -709,30 +709,30 @@ function HeroSection({
 
                 <HeroMetrics />
 
-                  <div className="mt-4">
-                  <div className="mt-1 text-base font-medium text-[#F5F2EA]">
-                    Everything included
-                  </div>
+<div className="mt-4">
+  <div className="mt-1 text-lg font-semibold tracking-tight text-[#F5F2EA]">
+    Everything included
+  </div>
 
-                  <div className="mt-4 grid gap-2.5">
-                    {[
-                      "Core pages (Home, About, Services, Contact)",
-                      "Contact or booking page",
-                      "Mobile-optimised and launch ready",
-                      "Hosting, SSL and setup",
-                    ].map((item) => (
-                      <div
-                        key={item}
-                        className="flex items-start gap-3 rounded-[14px] border border-white/10 bg-white/[0.02] px-3.5 py-3 text-sm leading-6 text-[#E5E7EC]"
-                      >
-                        <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                          <CheckIcon />
-                        </span>
-                        {item}
-                      </div>
-                    ))}
-                  </div>
-                </div>
+  <div className="mt-4 grid gap-3">
+    {[
+      "Core pages (Home, About, Services, Contact)",
+      "Contact or booking page",
+      "Mobile-optimised and launch ready",
+      "Hosting, SSL and setup",
+    ].map((item) => (
+      <div
+        key={item}
+        className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
+      >
+        <span className="mt-0.5 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+          <CheckIcon />
+        </span>
+        {item}
+      </div>
+    ))}
+  </div>
+</div>
 
                 <div className="mt-4 rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.12),rgba(255,255,255,0.03))] p-4">
                   <p className="text-sm leading-6 text-[#D7E5FF]">
