@@ -1176,6 +1176,84 @@ export default function HomePage() {
       <HeroHeader scrolled={scrolled} />
 
 <main className="relative">
+<Reveal>
+  <SectionShell className="pt-2 sm:pt-3 lg:pt-6">
+    <GlassCard className="p-5 sm:p-6 lg:p-7">
+      <div className="grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+        <div>
+          <SectionEyebrow>Why this works</SectionEyebrow>
+          <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.4rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+            A straightforward way to get your website properly in place
+          </h2>
+        </div>
+
+        <div className="grid gap-4">
+          <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            Your website should do a simple job well: help people understand
+            your business quickly, trust what they see, and know how to contact
+            you. Clean Websites is built around that goal.
+          </p>
+          <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+            You send the business details and content. Your website is then
+            structured, built and prepared for launch with a simple process and
+            clear pricing from the start. No unnecessary back-and-forth or vague
+            proposal process.
+          </p>
+        </div>
+      </div>
+    </GlassCard>
+  </SectionShell>
+</Reveal>
+          
+        <Reveal>
+          <SectionShell>
+            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+              <div className="max-w-xl">
+                <SectionEyebrow>Fast launch</SectionEyebrow>
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  Launch your website within 24 hours
+                </h2>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  Once your business content is ready, your website can be built
+                  and prepared for launch within 24 hours. That means no
+                  drawn-out project timeline and no need to wait weeks just to
+                  get a straightforward business website live.
+                </p>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  If you already know what you want your customers to see,
+                  our process is designed to get your website online quickly and set up the right way.
+                </p>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                {FAST_LAUNCH_POINTS.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.65,
+                      delay: index * 0.06,
+                      ease: easeOut,
+                    }}
+                    className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
+                  >
+                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+                    <div className="relative flex items-start gap-3">
+                      <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </SectionShell>
+        </Reveal>
+
+<main className="relative">
   <Reveal>
     <SectionShell>
       <div className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start">
@@ -1295,96 +1373,6 @@ export default function HomePage() {
       </div>
     </SectionShell>
   </Reveal>
-          
-        <Reveal>
-          <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
-              <div className="max-w-xl">
-                <SectionEyebrow>Fast launch</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  Launch your website within 24 hours
-                </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Once your business content is ready, your website can be built
-                  and prepared for launch within 24 hours. That means no
-                  drawn-out project timeline and no need to wait weeks just to
-                  get a straightforward business website live.
-                </p>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  If you already know what you want your customers to see,
-                  our process is designed to get your website online quickly and set up the right way.
-                </p>
-              </div>
-
-              <div className="grid gap-3 sm:grid-cols-2">
-                {FAST_LAUNCH_POINTS.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{
-                      duration: 0.65,
-                      delay: index * 0.06,
-                      ease: easeOut,
-                    }}
-                    className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
-                  >
-                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                    <div className="relative flex items-start gap-3">
-                      <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                        {item}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-          </SectionShell>
-        </Reveal>
-
-<Reveal>
-  <SectionShell>
-    <div className="max-w-[680px]">
-      <SectionEyebrow>What your website needs to do</SectionEyebrow>
-      <h2 className="mt-4 max-w-[18ch] font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-        A website that makes your business easier to trust
-      </h2>
-
-      <div className="mt-6 max-w-[620px]">
-        <p className="text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-          For most businesses, a good website is not about unnecessary
-          complexity. It is about clarity.
-        </p>
-
-        <div className="mt-5 grid gap-3 rounded-[22px] border border-white/10 bg-white/[0.03] p-4 sm:p-5">
-          {[
-            "who you are",
-            "what you offer",
-            "where you are",
-            "how to contact or book with you",
-          ].map((item) => (
-            <BulletRow key={item}>{item}</BulletRow>
-          ))}
-        </div>
-
-        <p className="mt-5 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-          That is what this service is designed to deliver: a website
-          that looks professional, feels credible, and makes it easier
-          for customers to take the next step.
-        </p>
-
-        <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-          Designed to work well for businesses such as restaurants,
-          salons, studios, service businesses and local companies — or
-          any business that needs a clean, credible online presence.
-        </p>
-      </div>
-    </div>
-  </SectionShell>
-</Reveal>
-
         <Reveal>
           <SectionShell id="demos">
             <div className="max-w-3xl">
