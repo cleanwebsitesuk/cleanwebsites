@@ -656,7 +656,7 @@ function HeroSection({
 
 return (
   <section className="relative">
-    <div className="mx-auto flex w-full max-w-7xl items-center px-5 pb-12 pt-6 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
+    <div className="mx-auto flex min-h-[calc(100svh-76px)] w-full max-w-7xl items-center px-5 pb-10 pt-10 sm:min-h-0 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
       <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(440px,1fr)] lg:items-start lg:gap-10">
         <div className="mx-auto flex w-full max-w-[680px] flex-col justify-center lg:mx-0 lg:max-w-[680px]">
           <div className="w-fit">
@@ -674,10 +674,10 @@ return (
             </div>
           </div>
 
-<h1 className="mt-4 max-w-[13ch] font-serif text-[2.55rem] leading-[0.94] tracking-[-0.05em] text-[#F5F2EA] sm:text-[clamp(3.4rem,6.2vw,4.5rem)] sm:max-w-[11.5ch]">
+<h1 className="mt-4 max-w-[12.5ch] font-serif text-[2.55rem] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA] sm:max-w-[11.5ch] sm:text-[clamp(3.4rem,6.2vw,4.5rem)]">
   A professional website for your business — built within{" "}
   <motion.span
-    initial={reduceMotion ? false : { opacity: 0.7, y: 6 }}
+    initial={reduceMotion ? false : { opacity: 0.7 }}
     animate={
       reduceMotion
         ? {}
@@ -696,18 +696,19 @@ return (
       delay: 0.35,
       ease: "easeOut",
     }}
-    className="inline-block bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent"
+    className="bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent whitespace-nowrap"
   >
     24 hours
   </motion.span>
 </h1>
 
-          <p className="mt-4 max-w-[34ch] text-[14px] leading-6 text-[#A9ABB3] sm:mt-5 sm:max-w-xl sm:text-[16px] sm:leading-8">
-            A clean, mobile-first website designed not just to look credible, 
-            but to turn visitors into customers—clearly communicating what you do, 
-            building trust instantly, and making it effortless for people to get in touch.
-            Once your content is ready, your site can be designed, built, and ready to launch within 24 hours.
-          </p>
+<p className="mt-4 max-w-[32ch] text-[14px] leading-6 text-[#A9ABB3] sm:hidden">
+  A clean, mobile-first website that helps your business look credible, explain what you do clearly, and make it easy for customers to get in touch.
+</p>
+
+<p className="mt-4 hidden max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-5 sm:block sm:text-[16px] sm:leading-8">
+  A clean, mobile-first website designed not just to look credible, but to turn visitors into customers—clearly communicating what you do, building trust instantly, and making it effortless for people to get in touch. Once your content is ready, your site can be designed, built, and ready to launch within 24 hours.
+</p>
 
           <div className="mt-7 flex w-full flex-col gap-3 sm:mt-6 sm:flex-row">
             <MagneticLink
