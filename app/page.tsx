@@ -872,22 +872,70 @@ function InfoTooltip({ text }: { text: string }) {
   );
 }
 
-function SupportItem({
-  title,
-  text,
+function PricingList({
+  items,
 }: {
-  title: string;
-  text: string;
+  items: readonly string[];
 }) {
   return (
-    <div className="rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
-      <div className="flex items-center justify-between gap-3">
-        <span className="text-sm text-[#F5F2EA]">{title}</span>
-        <div className="hidden sm:block">
-          <InfoTooltip text={text} />
+    <div className="grid gap-0 sm:grid-cols-2 sm:gap-x-6">
+      {items.map((item, index) => (
+        <div
+          key={item}
+          className={`flex items-start gap-3 py-3 ${
+            index !== items.length - 1 ? "border-b border-white/8" : ""
+          } ${
+            index < items.length - 2 ? "sm:border-b sm:border-white/8" : ""
+          }`}
+        >
+          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+            <CheckIcon />
+          </span>
+          <span className="text-sm leading-6 text-[#F5F2EA]">{item}</span>
         </div>
-      </div>
-      <p className="mt-1 text-sm leading-6 text-[#7F828A] sm:hidden">{text}</p>
+      ))}
+    </div>
+  );
+}
+
+function PricingAccordion({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className="overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.03]">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
+        aria-expanded={open}
+      >
+        <span className="text-sm font-medium text-[#F5F2EA]">{title}</span>
+        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#A9ABB3]">
+          {open ? "−" : "+"}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -4 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -4 }}
+            transition={{ duration: 0.22, ease: easeOut }}
+            className="overflow-hidden border-t border-white/10 px-4 py-4"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
@@ -1226,109 +1274,196 @@ export default function HomePage() {
           </SectionShell>
         </Reveal>
 
-        <Reveal>
-          <SectionShell id="pricing">
-            <GlassCard className="px-5 py-6 sm:px-7 sm:py-8 lg:px-8">
-              <div className="max-w-4xl">
-                <SectionEyebrow>Pricing</SectionEyebrow>
-                <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
-                  A complete website for your business
-                </h2>
-                <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Handled for you from start to finish, so getting online is straightforward.
+<Reveal>
+  <SectionShell id="pricing">
+    <div className="max-w-4xl">
+      <SectionEyebrow>Pricing</SectionEyebrow>
+      <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
+        A complete website for your business
+      </h2>
+      <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+        Handled for you from start to finish, so getting online is straightforward.
+      </p>
+    </div>
+
+    {isMobile ? (
+      <div className="mt-8 space-y-4">
+        <GlassCard className="p-4 sm:p-5">
+          <div className="grid grid-cols-3 gap-3">
+            <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                £595
+              </div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                One-time
+              </div>
+            </div>
+
+            <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                £40
+              </div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                Per month
+              </div>
+            </div>
+
+            <div className="rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-4 text-center">
+              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#CFE0FF]">
+                24h
+              </div>
+              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#9FB7D9]">
+                Launch time
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 flex flex-col gap-3">
+            <MagneticLink
+              href="/start"
+              disabled={isMobile}
+              className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+            >
+              Start my website
+            </MagneticLink>
+
+            <Link
+              href="#demos"
+              className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA]"
+            >
+              View demo websites
+            </Link>
+          </div>
+        </GlassCard>
+
+        <PricingAccordion title="Website build" defaultOpen>
+          <div>
+            <div className="text-sm text-[#A9ABB3]">Website build</div>
+            <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+              £595
+            </div>
+            <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+
+            <div className="mt-5">
+              <PricingList items={BUILD_INCLUDES} />
+            </div>
+
+            <div className="mt-5 rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+              Once your content is received, your website can be built
+              within 24 hours.
+            </div>
+          </div>
+        </PricingAccordion>
+
+        <PricingAccordion title="Hosting & support">
+          <div>
+            <div className="text-sm text-[#A9ABB3]">
+              Hosting &amp; support
+            </div>
+            <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+              £40 / month
+            </div>
+
+            <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+              Your website is hosted securely and managed technically so
+              it stays online, loads properly and continues to run as
+              expected after launch.
+            </p>
+
+            <div className="mt-5 divide-y divide-white/8">
+              {HOSTING_INCLUDES.map((item) => (
+                <div key={item.title} className="py-4 first:pt-0 last:pb-0">
+                  <div className="text-sm text-[#F5F2EA]">{item.title}</div>
+                  <p className="mt-1 text-sm leading-6 text-[#7F828A]">
+                    {item.text}
+                  </p>
+                </div>
+              ))}
+
+              <div className="py-4 last:pb-0">
+                <p className="text-sm leading-6 text-[#7F828A]">
+                  Your domain is purchased separately in your name, so
+                  you keep full ownership of it.
                 </p>
               </div>
+            </div>
+          </div>
+        </PricingAccordion>
+      </div>
+    ) : (
+      <GlassCard className="mt-8 overflow-hidden">
+        <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
+          <div className="p-6 lg:p-8">
+            <div className="text-sm text-[#A9ABB3]">Website build</div>
+            <div className="mt-2 text-[3.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+              £595
+            </div>
+            <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
-              <div className="mt-7 overflow-hidden rounded-[22px] border border-white/10 bg-[#121417]/90 shadow-[0_20px_80px_rgba(0,0,0,0.18)]">
-                <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-                  <div className="p-5 sm:p-7 lg:p-8">
-                    <div className="text-sm text-[#A9ABB3]">Website build</div>
-                    <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA] sm:text-[3.2rem]">
-                      £595
-                    </div>
-                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+            <div className="mt-6">
+              <PricingList items={BUILD_INCLUDES} />
+            </div>
 
-                    <div className="mt-5 grid gap-3 text-sm text-[#F5F2EA] sm:grid-cols-2">
-                      {BUILD_INCLUDES.map((item, index) => (
-                        <motion.div
-                          key={item}
-                          initial={reduceMotion ? false : { opacity: 0, x: -14 }}
-                          whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
-                          viewport={{ once: true, amount: 0.6 }}
-                          transition={{
-                            duration: 0.45,
-                            delay: index * 0.04,
-                            ease: easeOut,
-                          }}
-                          className="flex items-start gap-3 rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3"
-                        >
-                          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                            <CheckIcon />
-                          </span>
-                          <span>{item}</span>
-                        </motion.div>
-                      ))}
-                    </div>
+            <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+              Once your content is received, your website can be built
+              within 24 hours.
+            </div>
+          </div>
 
-                    <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
-                      Once your content is received, your website can be built
-                      within 24 hours.
-                    </div>
-                  </div>
+          <div className="border-t border-white/10 bg-white/[0.02] p-6 lg:border-l lg:border-t-0 lg:p-8">
+            <div className="text-sm text-[#A9ABB3]">
+              Hosting &amp; support
+            </div>
+            <div className="mt-2 text-[2.2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+              £40 / month
+            </div>
 
-                  <div className="border-t border-white/10 bg-white/[0.02] p-5 sm:p-7 lg:border-l lg:border-t-0 lg:p-8">
-                    <div className="text-sm text-[#A9ABB3]">
-                      Hosting &amp; support
-                    </div>
-                    <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA] sm:text-[2.2rem]">
-                      £40 / month
-                    </div>
+            <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+              Your website is hosted securely and managed technically so
+              it stays online, loads properly and continues to run as
+              expected after launch.
+            </p>
 
-                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
-                      Your website is hosted securely and managed technically so
-                      it stays online, loads properly and continues to run as
-                      expected after launch.
-                    </p>
-
-                    <div className="mt-5 space-y-3 text-sm leading-7 text-[#A9ABB3]">
-                      {HOSTING_INCLUDES.map((item) => (
-                        <SupportItem
-                          key={item.title}
-                          title={item.title}
-                          text={item.text}
-                        />
-                      ))}
-
-                      <div className="rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
-                        <p>
-                          Your domain is purchased separately in your name, so
-                          you keep full ownership of it.
-                        </p>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-                      <MagneticLink
-                        href="/start"
-                        disabled={isMobile}
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto lg:w-full xl:w-auto"
-                      >
-                        Start my website
-                      </MagneticLink>
-
-                      <Link
-                        href="#demos"
-                        className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] sm:w-auto lg:w-full xl:w-auto"
-                      >
-                        View demo websites
-                      </Link>
-                    </div>
+            <div className="mt-5 divide-y divide-white/8">
+              {HOSTING_INCLUDES.map((item) => (
+                <div key={item.title} className="py-4 first:pt-0">
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="text-sm text-[#F5F2EA]">{item.title}</span>
+                    <InfoTooltip text={item.text} />
                   </div>
                 </div>
+              ))}
+
+              <div className="py-4">
+                <p className="text-sm leading-7 text-[#A9ABB3]">
+                  Your domain is purchased separately in your name, so
+                  you keep full ownership of it.
+                </p>
               </div>
-            </GlassCard>
-          </SectionShell>
-        </Reveal>
+            </div>
+
+            <div className="mt-6 flex flex-col gap-3 xl:flex-row">
+              <MagneticLink
+                href="/start"
+                disabled={isMobile}
+                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 xl:w-auto"
+              >
+                Start my website
+              </MagneticLink>
+
+              <Link
+                href="#demos"
+                className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] xl:w-auto"
+              >
+                View demo websites
+              </Link>
+            </div>
+          </div>
+        </div>
+      </GlassCard>
+    )}
+  </SectionShell>
+</Reveal>
 
         <Reveal>
           <SectionShell id="process">
