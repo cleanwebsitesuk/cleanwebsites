@@ -1593,20 +1593,7 @@ export default function HomePage() {
                     Start my website
                     <ArrowRight />
                   </MagneticLink>
-
-                  <Link
-                    href="#demos"
-                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/15 hover:bg-white/[0.05] sm:w-auto"
-                  >
-                    View demo websites
-                    <ArrowRight />
-                  </Link>
                 </div>
-
-                <p className="mx-auto mt-5 max-w-2xl text-sm leading-7 text-[#A9ABB3]">
-                  Clear pricing, secure hosting, SSL included, and your domain
-                  stays in your name.
-                </p>
               </div>
             </GlassCard>
           </SectionShell>
