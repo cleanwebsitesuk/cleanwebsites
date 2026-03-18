@@ -1391,7 +1391,7 @@ export default function HomePage() {
         </PricingAccordion>
       </div>
     ) : (
-      <GlassCard className="mt-8 overflow-hidden">
+      <GlassCard className="mt-8 overflow-hidden bg-[#0F1115] [&>div:first-child]:hidden [&>div:nth-child(2)]:hidden">
         <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
           <div className="p-6 lg:p-8">
             <div className="text-sm text-[#A9ABB3]">Website build</div>
