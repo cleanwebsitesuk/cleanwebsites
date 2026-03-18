@@ -5,7 +5,6 @@ import Link from "next/link";
 import {
   AnimatePresence,
   motion,
-  useInView,
   useReducedMotion,
 } from "framer-motion";
 import {
@@ -21,12 +20,6 @@ const NAV_ITEMS = [
   { href: "#pricing", label: "Pricing" },
   { href: "#process", label: "Process" },
   { href: "#faq", label: "FAQ" },
-] as const;
-
-const HERO_SUPPORTING_POINTS = [
-  "Built to work properly on mobile",
-  "Fast launch once content is received",
-  "Managed hosting, SSL and technical setup included",
 ] as const;
 
 const FAST_LAUNCH_POINTS = [
@@ -113,33 +106,6 @@ const INCLUDED_ITEMS = [
   "Managed hosting",
   "SSL security",
   "Launch setup and technical support",
-] as const;
-
-const WHY_CHOOSE_CARDS = [
-  {
-    title: "Clear structure",
-    copy: "Visitors can quickly understand what your business does and where to go next.",
-  },
-  {
-    title: "Professional presentation",
-    copy: "A clean, modern layout helps your business look more established and trustworthy online.",
-  },
-  {
-    title: "Mobile-first design",
-    copy: "Your website is designed to work properly on phones, where many customers will first view it.",
-  },
-  {
-    title: "Fast loading pages",
-    copy: "Performance and usability are prioritised so the experience feels smooth and professional.",
-  },
-  {
-    title: "Visible contact points",
-    copy: "Customers can easily call, message, book or send an enquiry without searching for how to do it.",
-  },
-  {
-    title: "Simple launch process",
-    copy: "The service is designed to help you get online properly without turning it into a complicated project.",
-  },
 ] as const;
 
 const WHAT_YOU_NEED = [
@@ -1192,10 +1158,6 @@ export default function HomePage() {
                   drawn-out project timeline and no need to wait weeks just to
                   get a straightforward business website live.
                 </p>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  If you already know what you want your customers to see,
-                  our process is designed to get your website online quickly and set up the right way.
-                </p>
               </div>
 
               <div className="grid gap-3 sm:grid-cols-2">
@@ -1237,11 +1199,6 @@ export default function HomePage() {
                 These demo websites show how different types of businesses can
                 present their services clearly and make it easy for customers to
                 take action.
-              </p>
-              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                Each layout is designed around clarity, mobile usability and
-                strong contact points so visitors can quickly understand what
-                the business does and what to do next.
               </p>
             </div>
 
@@ -1492,56 +1449,6 @@ export default function HomePage() {
                 ))}
               </div>
             </div>
-
-            <p className="mt-7 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              The result is a website that looks professional, works properly,
-              and is ready for customers to use.
-            </p>
-          </SectionShell>
-        </Reveal>
-
-        <Reveal>
-          <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-              <div className="max-w-xl">
-                <SectionEyebrow>What you need to provide</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  Getting started is simple
-                </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  To build your website, the main things needed are usually:
-                </p>
-              </div>
-
-              <div className="grid gap-4">
-                {WHAT_YOU_NEED.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={reduceMotion ? false : { opacity: 0, y: 20 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{
-                      duration: 0.55,
-                      delay: index * 0.05,
-                      ease: easeOut,
-                    }}
-                    className="flex items-start gap-4 rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4"
-                  >
-                    <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                      <CheckIcon />
-                    </span>
-                    <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                      {item}
-                    </p>
-                  </motion.div>
-                ))}
-              </div>
-            </div>
-
-            <p className="mt-7 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              Once this is received, the website can be built and prepared for
-              review.
-            </p>
           </SectionShell>
         </Reveal>
 
@@ -1599,9 +1506,6 @@ export default function HomePage() {
                 <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
                   Website build £595 • Hosting &amp; support £40/month after
                   launch
-                </p>
-                <p className="mx-auto mt-3 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Built within 24 hours once content is received.
                 </p>
 
                 <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -1675,12 +1579,12 @@ export default function HomePage() {
                 hello@cleanwebsites.co.uk
               </a>
               <a
-                href="https://instagram.com"
+                href="https://wa.me/message/CIUXDPB67KAAJ1"
                 target="_blank"
                 rel="noreferrer"
                 className="transition hover:text-[#F5F2EA]"
               >
-                Instagram
+                WhatsApp
               </a>
             </div>
           </div>
