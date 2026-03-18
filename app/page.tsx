@@ -1189,10 +1189,10 @@ export default function HomePage() {
             <div className="max-w-2xl">
               <SectionEyebrow>What happens next</SectionEyebrow>
               <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                A simple process from content to launch
+                A simple process from enquiry to launch
               </h2>
               <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                Starting your website should feel straightforward.
+                Launching your website is straightforward with Clean Websites.
               </p>
             </div>
 
@@ -1244,10 +1244,6 @@ export default function HomePage() {
                     </p>
                   </motion.div>
                 ))}
-              </div>
-
-              <div className="mt-6 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
-                Once content is received, websites can be built within 24 hours.
               </div>
             </div>
           </SectionShell>
