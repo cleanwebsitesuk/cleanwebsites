@@ -622,8 +622,7 @@ return (
 </p>
 
 <p className="mt-4 hidden max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-5 sm:block sm:text-[16px] sm:leading-8">
-  A clean, mobile-first website designed not just to look credible, but to turn visitors into customers—clearly communicating what you do, building trust instantly, and making it effortless for people to get in touch. Once your content is ready, your site can be designed, built, and ready to launch within 24 hours.
-</p>
+  A clean, mobile-first website designed not just to look credible, but to turn visitors into customers—clearly communicating what you do, building trust instantly, and making it effortless for people to get in touch.
 
           <div className="mt-7 flex w-full flex-col gap-3 sm:mt-6 sm:flex-row">
             <MagneticLink
