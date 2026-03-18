@@ -643,6 +643,11 @@ return (
             </a>
           </div>
         </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
 <div className="hidden lg:block lg:pt-2" aria-hidden="true">
   <GlassCard className="p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
     <div className="absolute -top-20 right-[-10%] h-[220px] w-[220px] rounded-full bg-[#3B82F6]/10 blur-[100px]" />
