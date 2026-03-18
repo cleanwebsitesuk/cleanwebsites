@@ -1232,11 +1232,10 @@ export default function HomePage() {
               <div className="max-w-4xl">
                 <SectionEyebrow>Pricing</SectionEyebrow>
                 <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
-                  Simple pricing for a professional launch
+                  A complete website, built and ready for your business
                 </h2>
                 <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  The pricing is designed to be clear from the start, so you
-                  know exactly what is included and what happens after launch.
+                  Handled for you from start to finish, so getting online is straightforward.
                 </p>
               </div>
 
