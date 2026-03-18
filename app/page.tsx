@@ -1210,7 +1210,7 @@ export default function HomePage() {
                     delay: index * 0.04,
                     ease: easeOut,
                   }}
-                  className={`rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 ${
+                  className="hidden sm:inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
                     index > 2 ? "hidden sm:block" : ""
                   }`}
                 >
