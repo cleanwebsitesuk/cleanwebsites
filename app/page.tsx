@@ -1185,63 +1185,40 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal>
-          <SectionShell id="process">
-            <div className="max-w-2xl">
-              <SectionEyebrow>What happens next</SectionEyebrow>
-              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                A simple process from enquiry to launch
-              </h2>
-              <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                Launching your website is straightforward with Clean Websites.
-              </p>
-            </div>
+          <SectionShell>
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <div className="max-w-xl">
+                <SectionEyebrow>What is included</SectionEyebrow>
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  Everything needed for a clean, credible business website
+                </h2>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  The service is designed to give your business the essentials
+                  needed for a professional online presence without
+                  overcomplicating the process.
+                </p>
+              </div>
 
-            <div className="relative mt-8">
-              <motion.div
-                initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
-                whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
-                viewport={{ once: true, amount: 0.6 }}
-                transition={{ duration: 1, ease: easeOut }}
-                style={{ originX: 0 }}
-                className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
-              />
-
-              <div className="grid gap-4 lg:grid-cols-4">
-                {PROCESS_STEPS.map((item, index) => (
+              <div className="grid gap-3 sm:grid-cols-2">
+                {INCLUDED_ITEMS.map((item, index) => (
                   <motion.div
-                    key={item.step}
+                    key={item}
                     initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.4 }}
+                    viewport={{ once: true, amount: 0.35 }}
                     transition={{
-                      duration: 0.7,
-                      delay: index * 0.08,
+                      duration: 0.65,
+                      delay: index * 0.05,
                       ease: easeOut,
                     }}
-                    className="relative rounded-[20px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)]"
+                    className="rounded-[18px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.16)]"
                   >
-                    <motion.div
-                      initial={
-                        reduceMotion ? false : { scale: 0.85, opacity: 0 }
-                      }
-                      whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
-                      viewport={{ once: true, amount: 0.8 }}
-                      transition={{
-                        duration: 0.45,
-                        delay: 0.12 + index * 0.08,
-                        ease: easeOut,
-                      }}
-                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
-                    >
-                      {item.step}
-                    </motion.div>
-
-                    <h3 className="mt-4 text-[19px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[20px]">
-                      {item.title}
-                    </h3>
-                    <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-                      {item.description}
-                    </p>
+                    <div className="flex items-start gap-3">
+                      <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
+                        {item}
+                      </p>
+                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -1355,40 +1332,63 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal>
-          <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-              <div className="max-w-xl">
-                <SectionEyebrow>What is included</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  Everything needed for a clean, credible business website
-                </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  The service is designed to give your business the essentials
-                  needed for a professional online presence without
-                  overcomplicating the process.
-                </p>
-              </div>
+          <SectionShell id="process">
+            <div className="max-w-2xl">
+              <SectionEyebrow>What happens next</SectionEyebrow>
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                A simple process from enquiry to launch
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                Launching your website is straightforward with Clean Websites.
+              </p>
+            </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {INCLUDED_ITEMS.map((item, index) => (
+            <div className="relative mt-8">
+              <motion.div
+                initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
+                whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 1, ease: easeOut }}
+                style={{ originX: 0 }}
+                className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
+              />
+
+              <div className="grid gap-4 lg:grid-cols-4">
+                {PROCESS_STEPS.map((item, index) => (
                   <motion.div
-                    key={item}
+                    key={item.step}
                     initial={reduceMotion ? false : { opacity: 0, y: 24 }}
                     whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
+                    viewport={{ once: true, amount: 0.4 }}
                     transition={{
-                      duration: 0.65,
-                      delay: index * 0.05,
+                      duration: 0.7,
+                      delay: index * 0.08,
                       ease: easeOut,
                     }}
-                    className="rounded-[18px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.16)]"
+                    className="relative rounded-[20px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)]"
                   >
-                    <div className="flex items-start gap-3">
-                      <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                        {item}
-                      </p>
-                    </div>
+                    <motion.div
+                      initial={
+                        reduceMotion ? false : { scale: 0.85, opacity: 0 }
+                      }
+                      whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: 0.12 + index * 0.08,
+                        ease: easeOut,
+                      }}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
+                    >
+                      {item.step}
+                    </motion.div>
+
+                    <h3 className="mt-4 text-[19px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[20px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
+                      {item.description}
+                    </p>
                   </motion.div>
                 ))}
               </div>
