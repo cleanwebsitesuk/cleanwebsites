@@ -108,13 +108,6 @@ const INCLUDED_ITEMS = [
   "Launch setup and technical support",
 ] as const;
 
-const WHAT_YOU_NEED = [
-  "your business name and contact details",
-  "your services, menu or offer",
-  "any business description or wording you want included",
-  "any photos, branding or images you want used",
-] as const;
-
 const BUILD_INCLUDES = [
   "Home page",
   "About page",
@@ -394,19 +387,6 @@ function MagneticLink({
         {children}
       </Link>
     </motion.div>
-  );
-}
-
-function BulletRow({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex items-start gap-3 rounded-[16px] border border-white/8 bg-white/[0.02] px-4 py-3">
-      <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#93C5FD]">
-        <CheckIcon />
-      </span>
-      <span className="text-sm leading-6 text-[#E8EAF0] sm:text-[15px]">
-        {children}
-      </span>
-    </div>
   );
 }
 
@@ -1571,35 +1551,6 @@ export default function HomePage() {
             </div>
           </div>
         </footer>
-
-        <AnimatePresence>
-          {scrolled && (
-            <motion.div
-              initial={{ opacity: 0, y: 18, scale: 0.96 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 12, scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 220, damping: 20 }}
-              className="fixed bottom-6 right-6 z-40 hidden lg:block"
-            >
-              <motion.div
-                animate={motionEnabled ? { scale: [1, 1.03, 1] } : {}}
-                transition={{
-                  duration: 1.8,
-                  delay: 0.3,
-                  repeat: 1,
-                  ease: "easeInOut",
-                }}
-              >
-                <Link
-                  href="/start"
-                  className="inline-flex items-center justify-center rounded-full border border-white/10 bg-[#111214]/92 px-5 py-3 text-sm font-semibold text-[#F5F2EA] shadow-[0_20px_40px_rgba(0,0,0,0.35)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-white/20"
-                >
-                  Start my website
-                </Link>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
       </main>
     </div>
   );
