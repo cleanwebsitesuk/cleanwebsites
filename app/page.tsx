@@ -540,38 +540,6 @@ function MobileMenu({
   );
 }
 
-function HeroSupportStrip() {
-  const reduceMotion = useReducedMotion() ?? false;
-
-  return (
-    <div className="mt-7 grid gap-3 sm:mt-8 sm:grid-cols-3">
-      {HERO_SUPPORTING_POINTS.map((item, index) => (
-        <motion.div
-          key={item}
-          initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-          whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.7 }}
-          transition={{
-            duration: 0.5,
-            delay: 0.18 + index * 0.06,
-            ease: easeOut,
-          }}
-          className="rounded-[18px] border border-white/10 bg-white/[0.04] px-4 py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
-        >
-          <div className="flex items-start gap-3">
-            <span className="mt-1 inline-flex h-6 w-6 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-              <CheckIcon />
-            </span>
-            <span className="text-[14px] font-medium leading-6 text-[#E7E9EE] sm:text-[15px]">
-              {item}
-            </span>
-          </div>
-        </motion.div>
-      ))}
-    </div>
-  );
-}
-
 function HeroMetrics() {
   return (
     <div className="mt-5 grid gap-3 sm:grid-cols-3">
