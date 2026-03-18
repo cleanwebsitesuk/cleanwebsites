@@ -692,7 +692,7 @@ return (
             Domain ownership
           </div>
           <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-            Your domain stays in your name.
+            You keep full ownership of your domain.
           </div>
         </div>
         <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
@@ -700,7 +700,7 @@ return (
             Review before launch
           </div>
           <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
-            One revision included before going live.
+            One revision is included before going live.
           </div>
         </div>
       </div>
