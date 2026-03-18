@@ -1200,23 +1200,21 @@ export default function HomePage() {
 
             <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
               {DEMO_TAGS.map((item, index) => (
-                <motion.div
-                  key={item}
-                  initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-                  whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                  viewport={{ once: true, amount: 0.8 }}
-                  transition={{
-                    duration: 0.45,
-                    delay: index * 0.04,
-                    ease: easeOut,
-                  }}
-                  className="hidden sm:inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
-                    index > 2 ? "hidden sm:block" : ""
-                  }`}
-                >
-                  {item}
-                </motion.div>
-              ))}
+  <motion.div
+    key={item}
+    initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+    viewport={{ once: true, amount: 0.8 }}
+    transition={{
+      duration: 0.45,
+      delay: index * 0.04,
+      ease: easeOut,
+    }}
+    className="hidden sm:inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
+  >
+    {item}
+  </motion.div>
+))}
             </div>
 
             <div className="mt-8 grid gap-5 lg:grid-cols-3">
