@@ -22,11 +22,11 @@ const NAV_ITEMS = [
   { href: "#faq", label: "FAQ" },
 ] as const;
 
-const FAST_LAUNCH_POINTS = [
-  "Clear structure from the start",
-  "Built for speed, clarity and usability",
-  "Designed to be simple to launch",
-  "Fast turnaround once content is received",
+const FIT_POINTS = [
+  "Works well for local and service-based businesses",
+  "A good fit for straightforward, brochure-style websites",
+  "Suitable for trades, salons, restaurants, studios and similar businesses",
+  "Ideal when you want a professional site without a long project",
 ] as const;
 
 const DEMO_TAGS = [
@@ -1092,49 +1092,48 @@ export default function HomePage() {
 
 <main className="relative">
           
-        <Reveal>
-          <SectionShell>
-            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
-              <div className="max-w-xl">
-                <SectionEyebrow>Fast launch</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  Launch your website within 24 hours
-                </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Once your business content is ready, your website can be built
-                  and prepared for launch within 24 hours. That means no
-                  drawn-out project timeline and no need to wait weeks just to
-                  get a straightforward business website live.
-                </p>
-              </div>
+<Reveal>
+  <SectionShell>
+    <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+      <div className="max-w-xl">
+        <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+          Built for businesses that need a clean & professional website
+        </h2>
+        <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+          This service is designed for businesses that need a polished 
+          website without a lengthy or expensive build.
+          It works particularly well for local and service-based businesses
+          that want to clearly present their services and make it easy for customers to get in touch.
+        </p>
+      </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {FAST_LAUNCH_POINTS.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{
-                      duration: 0.65,
-                      delay: index * 0.06,
-                      ease: easeOut,
-                    }}
-                    className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
-                  >
-                    <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                    <div className="relative flex items-start gap-3">
-                      <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                        {item}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {FIT_POINTS.map((item, index) => (
+          <motion.div
+            key={item}
+            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: 0.65,
+              delay: index * 0.06,
+              ease: easeOut,
+            }}
+            className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
+          >
+            <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
+            <div className="relative flex items-start gap-3">
+              <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
+              <p className="text-[15px] leading-7 text-[#F5F2EA]">
+                {item}
+              </p>
             </div>
-          </SectionShell>
-        </Reveal>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </SectionShell>
+</Reveal>
   
         <Reveal>
           <SectionShell id="demos">
