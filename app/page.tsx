@@ -23,10 +23,10 @@ const NAV_ITEMS = [
 ] as const;
 
 const FIT_POINTS = [
-  "Works well for local and service-based businesses",
-  "A good fit for straightforward, brochure-style websites",
-  "Suitable for trades, salons, restaurants, studios and similar businesses",
-  "Ideal when you want a professional site without a long project",
+  "Suitable for straightforward brochure-style websites",
+  "Works well for businesses that need enquiries, calls or bookings",
+  "A good fit when you want a professional website without a long project",
+  "Suitable for many small businesses, including local and professional services",
 ] as const;
 
 const DEMO_TAGS = [
@@ -1156,30 +1156,29 @@ export default function HomePage() {
         </p>
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        {FIT_POINTS.map((item, index) => (
-          <motion.div
-            key={item}
-            initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{
-              duration: 0.65,
-              delay: index * 0.06,
-              ease: easeOut,
-            }}
-            className="group relative overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.18)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:min-h-[100px]"
-          >
-            <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(115deg,transparent,rgba(255,255,255,0.05),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-            <div className="relative flex items-start gap-3">
-              <span className="mt-[0.5rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-              <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                {item}
-              </p>
-            </div>
-          </motion.div>
-        ))}
+<div className="grid gap-2.5 sm:grid-cols-2">
+  {FIT_POINTS.map((item, index) => (
+    <motion.div
+      key={item}
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{
+        duration: 0.45,
+        delay: index * 0.05,
+        ease: easeOut,
+      }}
+      className="rounded-[16px] border border-white/8 bg-white/[0.025] px-4 py-3"
+    >
+      <div className="flex items-start gap-3">
+        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+        <p className="text-[14px] leading-6 text-[#E5E7EC] sm:text-[15px] sm:leading-7">
+          {item}
+        </p>
       </div>
+    </motion.div>
+  ))}
+</div>
     </div>
   </SectionShell>
 </Reveal>
