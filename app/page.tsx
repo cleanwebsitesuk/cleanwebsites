@@ -1192,9 +1192,7 @@ export default function HomePage() {
                 See how your website could be structured
               </h2>
               <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                These demo websites show how different types of businesses can
-                present their services clearly and make it easy for customers to
-                take action.
+              These are demonstration websites built to show the standard, structure, and style you can expect from Clean Websites.
               </p>
             </div>
 
