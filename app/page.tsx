@@ -1444,13 +1444,6 @@ export default function HomePage() {
               >
                 Start my website
               </MagneticLink>
-
-              <Link
-                href="#demos"
-                className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA] xl:w-auto"
-              >
-                View demo websites
-              </Link>
             </div>
           </div>
         </div>
@@ -1567,18 +1560,20 @@ export default function HomePage() {
               />
 
               <div className="relative mx-auto max-w-3xl">
-                <h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  Get your website properly in place
-                </h2>
-                <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  If your business needs a clean, professional website that is
-                  quick to launch and easy for customers to use, you can start
-                  here.
-                </p>
-                <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Website build £595 • Hosting &amp; support £40/month after
-                  launch
-                </p>
+<h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+  A clean website for your business
+  <span className="hidden sm:inline"> — </span>
+  <span className="block sm:inline">built in 24 hours</span>
+</h2>
+
+<p className="mx-auto mt-3 max-w-[34ch] text-[14px] leading-6 text-[#8F949E] sm:mt-4 sm:max-w-2xl sm:text-[15px] sm:leading-7">
+  Clean, coded and built to present your services clearly and make it easy for customers to get in touch.
+</p>
+<p className="mx-auto mt-4 text-[14px] leading-6 text-[#8F949E] sm:text-[15px] sm:leading-7 whitespace-nowrap">
+  <span className="whitespace-nowrap">Website build £595</span>
+  <span className="mx-2">•</span>
+  <span className="whitespace-nowrap">£40/month hosting</span>
+</p>
 
                 <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <MagneticLink
