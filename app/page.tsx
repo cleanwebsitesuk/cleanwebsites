@@ -1235,33 +1235,34 @@ export default function HomePage() {
                 <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Everything needed for a clean, credible business website
                 </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  The service is designed to give your business the essentials
-                  needed for a professional online presence without
-                  overcomplicating the process.
-                </p>
+<p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+  Our service includes everything needed to get your website properly built,
+  set up and live — without needing to handle any of the technical side yourself.
+</p>
               </div>
 
-<div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
-  {INCLUDED_ITEMS.map((item, index) => (
-    <motion.div
-      key={item}
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{
-        duration: 0.45,
-        delay: index * 0.05,
-        ease: easeOut,
-      }}
-      className="flex items-start gap-3"
-    >
-      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-      <p className="text-[15px] leading-7 text-[#F5F2EA]">
-        {item}
-      </p>
-    </motion.div>
-  ))}
+    <div className="grid gap-2.5 sm:grid-cols-2">
+        {INCLUDED_ITEMS.map((item, index) => (
+          <motion.div
+            key={item}
+            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.35 }}
+            transition={{
+              duration: 0.45,
+              delay: index * 0.04,
+              ease: easeOut,
+            }}
+            className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
+          >
+            <div className="flex items-start gap-3">
+              <span className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+              <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
+                {item}
+              </p>
+            </div>
+          </motion.div>
+        ))}
 </div>
             </div>
           </SectionShell>
