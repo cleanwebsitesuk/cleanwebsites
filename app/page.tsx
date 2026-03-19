@@ -1566,12 +1566,12 @@ export default function HomePage() {
   <span className="block sm:inline">built in 24 hours</span>
 </h2>
 
-<p className="mx-auto mt-3 max-w-[34ch] text-[14px] leading-6 text-[#8F949E] sm:mt-4 sm:max-w-2xl sm:text-[15px] sm:leading-7">
+<p className="mx-auto mt-4 max-w-none text-[14px] leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7 sm:whitespace-nowrap">
   Clean, coded and built to present your services clearly and make it easy for customers to get in touch.
 </p>
-<p className="mx-auto mt-4 text-[14px] leading-6 text-[#8F949E] sm:text-[15px] sm:leading-7 whitespace-nowrap">
+<p className="mx-auto mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
   <span className="whitespace-nowrap">Website build £595</span>
-  <span className="mx-2">•</span>
+  <span className="mx-2 text-[#7F8692]">•</span>
   <span className="whitespace-nowrap">£40/month hosting</span>
 </p>
 
