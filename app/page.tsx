@@ -98,14 +98,14 @@ const PROCESS_STEPS = [
 ] as const;
 
 const INCLUDED_ITEMS = [
-  "A clean custom build for your business",
-  "Pages structured around your services and contact flow",
-  "Mobile-first layout",
-  "Fast-loading pages",
-  "Contact or booking enquiry points",
-  "Managed hosting",
-  "SSL security",
-  "Launch setup and technical support",
+  "A custom 4-page website (Home, About, Services, Contact)",
+  "Pages structured around your services and enquiry flow",
+  "Mobile-optimised layout for phones and tablets",
+  "Contact form/booking enquiry setup",
+  "Domain connection and full website launch setup",
+  "Secure hosting and SSL included",
+  "Fast-loading, simple and reliable build",
+  "One revision before launch",
 ] as const;
 
 const BUILD_INCLUDES = [
@@ -1242,29 +1242,27 @@ export default function HomePage() {
                 </p>
               </div>
 
-              <div className="grid gap-3 sm:grid-cols-2">
-                {INCLUDED_ITEMS.map((item, index) => (
-                  <motion.div
-                    key={item}
-                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
-                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-                    viewport={{ once: true, amount: 0.35 }}
-                    transition={{
-                      duration: 0.65,
-                      delay: index * 0.05,
-                      ease: easeOut,
-                    }}
-                    className="rounded-[18px] border border-white/10 bg-white/[0.04] px-5 py-4 shadow-[0_16px_50px_rgba(0,0,0,0.16)]"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="mt-[0.55rem] h-2.5 w-2.5 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[15px] leading-7 text-[#F5F2EA]">
-                        {item}
-                      </p>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+<div className="grid gap-x-6 gap-y-3 sm:grid-cols-2">
+  {INCLUDED_ITEMS.map((item, index) => (
+    <motion.div
+      key={item}
+      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.35 }}
+      transition={{
+        duration: 0.45,
+        delay: index * 0.05,
+        ease: easeOut,
+      }}
+      className="flex items-start gap-3"
+    >
+      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+      <p className="text-[15px] leading-7 text-[#F5F2EA]">
+        {item}
+      </p>
+    </motion.div>
+  ))}
+</div>
             </div>
           </SectionShell>
         </Reveal>
