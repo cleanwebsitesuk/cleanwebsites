@@ -1,35 +1,5 @@
 "use client";
 
-import type { Metadata } from "next";
-
-export const metadata: Metadata = {
-  title: "Professional websites for UK businesses",
-  description:
-    "Clean, mobile-first business websites designed, built and launched in 24 hours.",
-};
-
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  name: "Clean Websites",
-  url: "https://cleanwebsites.co.uk",
-  description:
-    "Professional websites for UK businesses, built in 24 hours.",
-  areaServed: "GB",
-  email: "hello@cleanwebsites.co.uk",
-};
-
-export default function Page() {
-  return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
-      <HomePageClient />
-    </>
-  );
-}
 import Image from "next/image";
 import Link from "next/link";
 import {
