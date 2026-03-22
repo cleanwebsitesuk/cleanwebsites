@@ -1,7 +1,6 @@
 "use client";
 
 import type { Metadata } from "next";
-import HomePageClient from "./homepage-client";
 
 export const metadata: Metadata = {
   title: "Professional websites for UK businesses",
