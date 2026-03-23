@@ -4,14 +4,14 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "24 Hour Web Design for UK Businesses",
   description:
-    "Need a professional website fast? Clean, mobile-first business websites built in 24 hours once your content is ready. Website builds from £595.",
+    "Professional 24 hour web design for UK businesses. Clean, mobile-first websites built fast to generate enquiries, calls and bookings. Website builds from £595.",
   alternates: {
     canonical: "/24-hour-web-design",
   },
   openGraph: {
     title: "24 Hour Web Design for UK Businesses | Clean Websites",
     description:
-      "Professional websites for UK businesses built in 24 hours once content is ready. Clear, credible and built to generate enquiries.",
+      "Professional websites for UK businesses built in 24 hours once content is ready. Clean, credible and built to generate enquiries.",
     url: "https://cleanwebsites.co.uk/24-hour-web-design",
     siteName: "Clean Websites",
     locale: "en_GB",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "24 Hour Web Design for UK Businesses | Clean Websites",
     description:
-      "Need a professional website fast? Website builds from £595.",
+      "Professional 24 hour web design for UK businesses. Website builds from £595.",
     images: ["/og-image.png"],
   },
 };
@@ -99,41 +99,41 @@ const serviceSchema = {
 const included = [
   "Custom website for your business",
   "Core pages such as Home, About, Services and Contact",
-  "Mobile-first design for phones and tablets",
+  "Mobile-first design that works properly on phones",
   "Contact form or booking enquiry setup",
   "Fast-loading build with clean structure",
   "Domain connection and launch support",
   "One revision before launch",
 ] as const;
 
-const fitPoints = [
+const businessTypes = [
   "Local service businesses",
   "Trades and home services",
-  "Barbers, salons and studios",
+  "Barbers and salons",
   "Restaurants and takeaways",
-  "Professional and brochure-style businesses",
+  "Professional service businesses",
 ] as const;
 
 const process = [
   {
     step: "01",
-    title: "Send your content",
-    text: "You send your business details, services, images and contact information.",
+    title: "Send your details",
+    text: "Send your business details, services, images, contact information and page content.",
   },
   {
     step: "02",
-    title: "We build the site",
-    text: "Your website is structured around clarity, trust and getting visitors to contact you.",
+    title: "We build your website",
+    text: "Your website is designed around your services, your credibility and your enquiry flow.",
   },
   {
     step: "03",
-    title: "Review it",
-    text: "You review the build and one revision is included before launch.",
+    title: "Review before launch",
+    text: "You review the website before it goes live. One revision is included.",
   },
   {
     step: "04",
-    title: "Go live",
-    text: "Your domain is connected, hosting is configured, SSL is enabled, and the site is ready to launch.",
+    title: "Launch",
+    text: "Your domain is connected, hosting is configured, SSL is enabled, and the website is prepared for launch.",
   },
 ] as const;
 
@@ -250,45 +250,6 @@ function GlassCard({
   );
 }
 
-function StatCard({
-  value,
-  label,
-  highlight = false,
-}: {
-  value: string;
-  label: string;
-  highlight?: boolean;
-}) {
-  return (
-    <div
-      className={
-        highlight
-          ? "rounded-[18px] border border-[#60A5FA]/40 bg-[linear-gradient(180deg,rgba(59,130,246,0.18),rgba(59,130,246,0.08))] px-5 py-4 shadow-[0_0_40px_rgba(59,130,246,0.18)]"
-          : "rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4"
-      }
-    >
-      <div
-        className={
-          highlight
-            ? "bg-gradient-to-r from-[#C7DDFF] to-[#60A5FA] bg-clip-text text-[1.35rem] font-semibold tracking-[-0.04em] text-transparent sm:text-[1.45rem]"
-            : "text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]"
-        }
-      >
-        {value}
-      </div>
-      <div
-        className={
-          highlight
-            ? "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#9FB7D9]"
-            : "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]"
-        }
-      >
-        {label}
-      </div>
-    </div>
-  );
-}
-
 function FAQItem({ q, a }: { q: string; a: string }) {
   return (
     <details className="group rounded-[20px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
@@ -303,30 +264,6 @@ function FAQItem({ q, a }: { q: string; a: string }) {
       </summary>
       <p className="pt-4 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">{a}</p>
     </details>
-  );
-}
-
-function CtaButtons() {
-  return (
-    <div className="flex flex-col gap-3 sm:flex-row">
-      <Link
-        href="/start"
-        className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-      >
-        Start my website
-        <ArrowRight />
-      </Link>
-
-      <a
-        href="https://wa.me/message/CIUXDPB67KAAJ1"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
-      >
-        Message on WhatsApp
-        <ArrowRight />
-      </a>
-    </div>
   );
 }
 
@@ -376,59 +313,94 @@ export default function TwentyFourHourWebDesignPage() {
 
         <section className="relative">
           <div className="mx-auto flex w-full max-w-7xl px-5 pb-14 pt-10 sm:px-6 sm:pb-16 sm:pt-14 lg:px-8 lg:pb-20 lg:pt-16">
-            <div className="grid w-full gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
+            <div className="grid w-full gap-8 lg:grid-cols-[1.08fr_0.92fr] lg:items-start">
               <div className="max-w-3xl">
-                <SectionEyebrow>24 hour web design for UK businesses</SectionEyebrow>
+                <SectionEyebrow>24 hour web design</SectionEyebrow>
 
-                <h1 className="mt-5 max-w-[11ch] font-serif text-[clamp(2.7rem,8vw,5.2rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
-                  Need a website fast that still looks credible?
+                <h1 className="mt-5 max-w-[10ch] font-serif text-[clamp(2.7rem,8vw,5.1rem)] leading-[0.95] tracking-[-0.05em] text-[#F5F2EA]">
+                  Professional websites built in 24 hours
                 </h1>
 
                 <p className="mt-5 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[19px] sm:leading-8">
-                  We build clean, professional websites for UK businesses within
-                  24 hours once your content is ready — designed to help you get
-                  more enquiries, calls, bookings and messages.
+                  Clean, mobile-first websites for UK businesses built fast and
+                  designed to generate enquiries, calls and bookings.
                 </p>
 
-                <div className="mt-8">
-                  <CtaButtons />
+                <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+                  <Link
+                    href="/start"
+                    className="group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition hover:-translate-y-0.5 hover:brightness-110"
+                  >
+                    Start my website
+                    <ArrowRight />
+                  </Link>
+
+                  <a
+                    href="https://wa.me/message/CIUXDPB67KAAJ1"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
+                  >
+                    Message on WhatsApp
+                    <ArrowRight />
+                  </a>
                 </div>
 
                 <div className="mt-8 grid gap-3 sm:grid-cols-3">
-                  <StatCard value="£595" label="website build" />
-                  <StatCard value="£40" label="monthly hosting" />
-                  <StatCard value="24h" label="launch time" highlight />
+                  <div className="rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4">
+                    <div className="text-[1.45rem] font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                      £595
+                    </div>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
+                      website build
+                    </div>
+                  </div>
+
+                  <div className="rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4">
+                    <div className="text-[1.45rem] font-semibold tracking-[-0.04em] text-[#F5F2EA]">
+                      £40
+                    </div>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]">
+                      monthly hosting
+                    </div>
+                  </div>
+
+                  <div className="rounded-[18px] border border-[#60A5FA]/40 bg-[linear-gradient(180deg,rgba(59,130,246,0.18),rgba(59,130,246,0.08))] px-5 py-4 shadow-[0_0_40px_rgba(59,130,246,0.18)]">
+                    <div className="bg-gradient-to-r from-[#C7DDFF] to-[#60A5FA] bg-clip-text text-[1.45rem] font-semibold tracking-[-0.04em] text-transparent">
+                      24h
+                    </div>
+                    <div className="mt-1 text-[11px] uppercase tracking-[0.16em] text-[#9FB7D9]">
+                      launch time
+                    </div>
+                  </div>
                 </div>
 
-                <div className="mt-6 grid gap-2 text-sm leading-6 text-[#A9ABB3]">
-                  <p>• Built for businesses that need leads, not just a prettier website</p>
-                  <p>• Best for straightforward brochure-style sites with content ready</p>
-                  <p>• Domain stays in your name</p>
+                <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
+                  {["Mobile-first", "Built for enquiries", "Domain stays yours"].map(
+                    (item) => (
+                      <div
+                        key={item}
+                        className="rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
+                      >
+                        {item}
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
 
               <GlassCard className="p-5">
                 <div className="rounded-[20px] border border-white/10 bg-[linear-gradient(180deg,rgba(13,14,17,0.9),rgba(13,14,17,0.75))] p-5">
-                  <div className="flex items-center justify-between gap-3">
-                    <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
-                      Fast launch offer
-                    </div>
-                    <div className="rounded-full border border-[#3B82F6]/18 bg-[#3B82F6]/10 px-2.5 py-0.5 text-[11px] text-[#A9C7FF]">
-                      High intent page
-                    </div>
+                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                    What’s included
                   </div>
 
-                  <h2 className="mt-4 text-[1.9rem] tracking-[-0.03em] text-[#F5F2EA]">
-                    What happens when someone lands here
+                  <h2 className="mt-4 text-[1.8rem] tracking-[-0.03em] text-[#F5F2EA]">
+                    Everything needed to get online fast
                   </h2>
 
                   <div className="mt-5 grid gap-3">
-                    {[
-                      "They understand the offer quickly",
-                      "They see the pricing without friction",
-                      "They know whether they are a good fit",
-                      "They have a clear next step to message or enquire",
-                    ].map((item) => (
+                    {included.map((item) => (
                       <div
                         key={item}
                         className="flex items-start gap-3 rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA]"
@@ -445,11 +417,7 @@ export default function TwentyFourHourWebDesignPage() {
                     <div className="text-sm font-medium text-[#F5F2EA]">
                       Ready to get started?
                     </div>
-                    <p className="mt-2 text-sm leading-6 text-[#A9ABB3]">
-                      Send your details and we’ll tell you if your project is a
-                      good fit for a 24 hour build.
-                    </p>
-                    <div className="mt-4 flex flex-col gap-3">
+                    <div className="mt-3 flex flex-col gap-3">
                       <Link
                         href="/start"
                         className="inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white"
@@ -471,19 +439,19 @@ export default function TwentyFourHourWebDesignPage() {
         </section>
 
         <SectionShell>
-          <div className="grid gap-6 lg:grid-cols-3">
+          <div className="grid gap-4 lg:grid-cols-3">
             {[
               {
-                title: "Built for leads",
-                text: "The page structure is designed to help people understand what you do fast and get in touch without friction.",
+                title: "Built for enquiries",
+                text: "Clear structure, clear calls to action and a straightforward path to contact you.",
               },
               {
-                title: "Built for mobile",
-                text: "Most visitors will land on their phone first, so the layout needs to feel immediate, clean and easy to act on.",
+                title: "Designed for mobile",
+                text: "Your website is built to work properly on phones, where many visitors will see it first.",
               },
               {
-                title: "Built to launch quickly",
-                text: "This is for businesses that want a strong online presence without waiting weeks for a website project to drag on.",
+                title: "Fast to launch",
+                text: "Once your content is ready, the website can be built and prepared for launch within 24 hours.",
               },
             ].map((item) => (
               <div
@@ -493,42 +461,11 @@ export default function TwentyFourHourWebDesignPage() {
                 <h2 className="text-[1.2rem] tracking-[-0.03em] text-[#F5F2EA]">
                   {item.title}
                 </h2>
-                <p className="mt-3 text-sm leading-7 text-[#A9ABB3]">{item.text}</p>
+                <p className="mt-3 text-sm leading-7 text-[#A9ABB3]">
+                  {item.text}
+                </p>
               </div>
             ))}
-          </div>
-        </SectionShell>
-
-        <SectionShell>
-          <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
-            <div className="max-w-xl">
-              <SectionEyebrow>What is included</SectionEyebrow>
-              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                Everything needed to get online properly
-              </h2>
-              <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                The offer is simple on purpose: get your business a clean,
-                professional website online quickly, without unnecessary delay.
-              </p>
-            </div>
-
-            <div className="grid gap-2.5 sm:grid-cols-2">
-              {included.map((item) => (
-                <div
-                  key={item}
-                  className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="mt-[0.45rem] inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
-                      <CheckIcon />
-                    </span>
-                    <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
-                      {item}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </SectionShell>
 
@@ -536,14 +473,14 @@ export default function TwentyFourHourWebDesignPage() {
           <div className="grid gap-5 lg:grid-cols-2">
             <GlassCard className="p-6">
               <div className="text-sm uppercase tracking-[0.16em] text-[#7F828A]">
-                Good fit for
+                Suitable for
               </div>
               <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA]">
-                Businesses that need a strong online presence quickly
+                Businesses that need to get online quickly
               </h2>
 
               <div className="mt-5 grid gap-3">
-                {fitPoints.map((item) => (
+                {businessTypes.map((item) => (
                   <div
                     key={item}
                     className="rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA]"
@@ -554,55 +491,37 @@ export default function TwentyFourHourWebDesignPage() {
               </div>
             </GlassCard>
 
-        <SectionShell>
-          <GlassCard className="p-6 sm:p-8">
-            <div className="grid gap-8 lg:grid-cols-[0.9fr_1.1fr]">
-              <div>
-                <SectionEyebrow>Before build starts</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                  What you need ready for a 24 hour build
-                </h2>
-                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                  Speed depends on content being ready. The more prepared your
-                  business details are, the faster the site can be built and launched.
+            <GlassCard className="p-6">
+              <div className="text-sm uppercase tracking-[0.16em] text-[#7F828A]">
+                Before we start
+              </div>
+              <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA]">
+                Your content needs to be ready
+              </h2>
+
+              <div className="mt-5 space-y-4 text-sm leading-7 text-[#A9ABB3]">
+                <p>
+                  To build within 24 hours, your business details and website
+                  content need to be ready before the build starts.
+                </p>
+                <p>
+                  That usually includes your business name, services, contact
+                  details, page content and any images you want included.
+                </p>
+                <p>
+                  This keeps the build fast and avoids delays.
                 </p>
               </div>
-
-              <div className="grid gap-2.5 sm:grid-cols-2">
-                {[
-                  "Business name and contact details",
-                  "Your services or menu",
-                  "Text for key pages",
-                  "Images you want included",
-                  "Preferred call to action",
-                  "Any domain details if already purchased",
-                ].map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
-                  >
-                    <div className="flex items-start gap-3">
-                      <span className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-                      <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
-                        {item}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </GlassCard>
+            </GlassCard>
+          </div>
         </SectionShell>
 
         <SectionShell id="process">
           <div className="max-w-2xl">
             <SectionEyebrow>Process</SectionEyebrow>
             <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-              From enquiry to launch
+              From brief to launch
             </h2>
-            <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              The process is intentionally simple so the decision feels easy and the build moves fast.
-            </p>
           </div>
 
           <div className="relative mt-8">
@@ -620,7 +539,9 @@ export default function TwentyFourHourWebDesignPage() {
                   <h3 className="mt-4 text-[19px] tracking-[-0.03em] text-[#F5F2EA]">
                     {item.title}
                   </h3>
-                  <p className="mt-3 text-sm leading-6 text-[#A9ABB3]">{item.text}</p>
+                  <p className="mt-3 text-sm leading-6 text-[#A9ABB3]">
+                    {item.text}
+                  </p>
                 </div>
               ))}
             </div>
@@ -631,11 +552,8 @@ export default function TwentyFourHourWebDesignPage() {
           <div className="max-w-4xl">
             <SectionEyebrow>Pricing</SectionEyebrow>
             <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
-              Clear pricing. No vague offer.
+              Clear pricing
             </h2>
-            <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              This page should make the commercial decision feel straightforward.
-            </p>
           </div>
 
           <GlassCard className="mt-8 overflow-hidden bg-[#0F1115] border-white/12 shadow-[0_10px_40px_rgba(0,0,0,0.35)] [&>div:first-child]:hidden [&>div:nth-child(2)]:hidden">
@@ -667,7 +585,9 @@ export default function TwentyFourHourWebDesignPage() {
                       <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
                         <CheckIcon />
                       </span>
-                      <span className="text-sm leading-6 text-[#F5F2EA]">{item}</span>
+                      <span className="text-sm leading-6 text-[#F5F2EA]">
+                        {item}
+                      </span>
                     </div>
                   ))}
                 </div>
@@ -684,31 +604,18 @@ export default function TwentyFourHourWebDesignPage() {
                 </div>
 
                 <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
-                  Includes secure hosting, SSL, technical management and launch support after your website goes live.
+                  Includes secure hosting, SSL, technical management and launch support after the website goes live.
                 </p>
 
                 <div className="mt-5 divide-y divide-white/8">
                   {[
-                    {
-                      title: "Secure hosting",
-                      text: "Reliable hosting designed for speed, stability and performance.",
-                    },
-                    {
-                      title: "SSL included",
-                      text: "Your site can run securely on HTTPS.",
-                    },
-                    {
-                      title: "Deployment support",
-                      text: "The technical side of going live is handled properly.",
-                    },
-                    {
-                      title: "Technical management",
-                      text: "You do not need to deal with setup or server-side issues yourself.",
-                    },
+                    "Secure hosting",
+                    "SSL included",
+                    "Deployment support",
+                    "Technical management",
                   ].map((item) => (
-                    <div key={item.title} className="py-4 first:pt-0">
-                      <div className="text-sm text-[#F5F2EA]">{item.title}</div>
-                      <p className="mt-1 text-sm leading-6 text-[#7F828A]">{item.text}</p>
+                    <div key={item} className="py-4 first:pt-0">
+                      <div className="text-sm text-[#F5F2EA]">{item}</div>
                     </div>
                   ))}
 
@@ -722,7 +629,7 @@ export default function TwentyFourHourWebDesignPage() {
                 <div className="mt-6 flex flex-col gap-3">
                   <Link
                     href="/start"
-                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                    className="inline-flex h-12 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition hover:-translate-y-0.5 hover:brightness-110"
                   >
                     Start my website
                   </Link>
@@ -763,19 +670,13 @@ export default function TwentyFourHourWebDesignPage() {
               </h2>
 
               <p className="mx-auto mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-                Send your business details and we’ll review whether your project is a good fit for a 24 hour website build.
-              </p>
-
-              <p className="mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
-                <span className="whitespace-nowrap">Website build £595</span>
-                <span className="mx-2 text-[#7F8692]">•</span>
-                <span className="whitespace-nowrap">£40/month hosting</span>
+                Start now and send your business details, pages and content.
               </p>
 
               <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                 <Link
                   href="/start"
-                  className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+                  className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
                 >
                   Start my website
                   <ArrowRight />
@@ -785,7 +686,7 @@ export default function TwentyFourHourWebDesignPage() {
                   href="https://wa.me/message/CIUXDPB67KAAJ1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
+                  className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-sm font-semibold text-[#F5F2EA] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
                 >
                   Message on WhatsApp
                   <ArrowRight />
