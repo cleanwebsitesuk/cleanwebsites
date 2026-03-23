@@ -114,13 +114,6 @@ const fitPoints = [
   "Professional and brochure-style businesses",
 ] as const;
 
-const notFor = [
-  "Large custom platforms or web apps",
-  "Complex membership or portal websites",
-  "Projects without content ready",
-  "Businesses needing extensive branding work first",
-] as const;
-
 const process = [
   {
     step: "01",
@@ -560,28 +553,6 @@ export default function TwentyFourHourWebDesignPage() {
                 ))}
               </div>
             </GlassCard>
-
-            <GlassCard className="p-6">
-              <div className="text-sm uppercase tracking-[0.16em] text-[#7F828A]">
-                Not ideal for
-              </div>
-              <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA]">
-                Projects that need a much bigger build
-              </h2>
-
-              <div className="mt-5 grid gap-3">
-                {notFor.map((item) => (
-                  <div
-                    key={item}
-                    className="rounded-[16px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#A9ABB3]"
-                  >
-                    {item}
-                  </div>
-                ))}
-              </div>
-            </GlassCard>
-          </div>
-        </SectionShell>
 
         <SectionShell>
           <GlassCard className="p-6 sm:p-8">
