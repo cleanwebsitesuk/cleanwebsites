@@ -518,42 +518,71 @@ export default function BakerAboutPage() {
           </div>
         </section>
 
-        <section className="mx-auto max-w-7xl px-4 py-18 sm:px-5 sm:py-22 md:px-8 md:py-24">
-          <div className="grid gap-10 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
-            <div>
-              <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.3em]">
-                Our story
-              </p>
-              <h2 className="font-heading mt-3 max-w-[13ch] text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-[var(--cocoa-1)] sm:max-w-none sm:text-[2.45rem] lg:text-[2.95rem]">
-                Built slowly, carefully, and on purpose.
-              </h2>
-              <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--muted)] sm:mt-6 sm:text-base sm:leading-8">
-                Velvet Crumb did not begin with a trend. It began with a question:
-                what makes a brownie feel genuinely exceptional rather than simply
-                indulgent?
-              </p>
-            </div>
+<section className="mx-auto max-w-7xl px-4 py-18 sm:px-5 sm:py-22 md:px-8 md:py-24">
+  <div className="grid gap-10 sm:gap-12 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
+    <div className="lg:sticky lg:top-28">
+      <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.3em]">
+        Our story
+      </p>
 
-            <div className="grid gap-4 sm:gap-5">
-              {storySteps.map((item) => (
-                <article
-                  key={item.title}
-                  className="rounded-[22px] border border-[var(--line)] bg-[rgba(255,251,246,0.88)] p-5 shadow-[0_14px_30px_rgba(76,50,38,0.06)] sm:rounded-[26px] sm:p-6 lg:rounded-[28px]"
-                >
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.24em]">
-                    {item.label}
-                  </p>
-                  <h3 className="font-heading mt-3 text-[1.2rem] font-semibold leading-[1.12] text-[var(--cocoa-1)] sm:text-[1.35rem] lg:text-[1.5rem]">
-                    {item.title}
-                  </h3>
-                  <p className="mt-4 max-w-2xl text-[14px] leading-6 text-[var(--muted)] sm:text-sm sm:leading-7">
-                    {item.text}
-                  </p>
-                </article>
-              ))}
-            </div>
-          </div>
-        </section>
+      <h2 className="font-heading mt-3 max-w-[10ch] text-[2rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[var(--cocoa-1)] sm:max-w-[11ch] sm:text-[2.55rem] lg:text-[3.2rem]">
+        Built slowly, carefully, and on purpose.
+      </h2>
+
+      <div className="mt-6 max-w-lg space-y-4">
+        <p className="text-[15px] leading-7 text-[var(--muted)] sm:text-base sm:leading-8">
+          Velvet Crumb did not begin with a trend. It began with a question:
+          what makes a brownie feel genuinely exceptional rather than simply indulgent?
+        </p>
+
+        <p className="text-[15px] leading-7 text-[var(--muted)] sm:text-base sm:leading-8">
+          The answer was never excess. It was better ingredients, more precise
+          texture, and a quieter, more refined idea of what a bakery experience
+          could feel like.
+        </p>
+      </div>
+
+      <div className="mt-8 grid max-w-md grid-cols-2 gap-3 sm:mt-10">
+        <div className="rounded-[20px] border border-[var(--line)] bg-[rgba(255,251,246,0.82)] p-4 shadow-[0_12px_24px_rgba(76,50,38,0.05)]">
+          <p className="font-heading text-[1.4rem] font-semibold leading-none text-[var(--cocoa-1)] sm:text-[1.7rem]">
+            2019
+          </p>
+          <p className="mt-2 text-[12px] leading-5 text-[var(--muted)] sm:text-[13px]">
+            First recipes refined
+          </p>
+        </div>
+
+        <div className="rounded-[20px] border border-[var(--line)] bg-[rgba(255,251,246,0.82)] p-4 shadow-[0_12px_24px_rgba(76,50,38,0.05)]">
+          <p className="font-heading text-[1.4rem] font-semibold leading-none text-[var(--cocoa-1)] sm:text-[1.7rem]">
+            Small batch
+          </p>
+          <p className="mt-2 text-[12px] leading-5 text-[var(--muted)] sm:text-[13px]">
+            Still the standard
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div className="grid gap-4 sm:gap-5">
+      {storySteps.map((item) => (
+        <article
+          key={item.title}
+          className="rounded-[22px] border border-[var(--line)] bg-[rgba(255,251,246,0.88)] p-5 shadow-[0_14px_30px_rgba(76,50,38,0.06)] sm:rounded-[26px] sm:p-6 lg:rounded-[28px]"
+        >
+          <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.24em]">
+            {item.label}
+          </p>
+          <h3 className="font-heading mt-3 max-w-[18ch] text-[1.2rem] font-semibold leading-[1.12] tracking-[-0.03em] text-[var(--cocoa-1)] sm:text-[1.35rem] lg:text-[1.55rem]">
+            {item.title}
+          </h3>
+          <p className="mt-4 max-w-2xl text-[14px] leading-6 text-[var(--muted)] sm:text-sm sm:leading-7">
+            {item.text}
+          </p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
 
         <section className="mx-auto max-w-7xl px-4 pb-18 sm:px-5 sm:pb-22 md:px-8 md:pb-24">
           <div className="overflow-hidden rounded-[28px] border border-[rgba(255,255,255,0.12)] bg-[linear-gradient(135deg,#2f1f19_0%,#412b22_42%,#6a4838_100%)] shadow-[0_28px_70px_rgba(49,31,24,0.22)] sm:rounded-[34px] lg:rounded-[38px]">
