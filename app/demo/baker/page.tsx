@@ -2,9 +2,9 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { Cormorant_Garamond, Inter } from "next/font/google";
+import { Inter, Sora } from "next/font/google";
 
-const headingFont = Cormorant_Garamond({
+const headingFont = Sora({
   subsets: ["latin"],
   weight: ["500", "600", "700"],
   variable: "--font-heading",
@@ -106,17 +106,16 @@ export default function BakerHomePage() {
     <>
       <style jsx global>{`
         :root {
-          --cream-1: #f8f2ea;
+          --cream-1: #faf5ef;
           --cream-2: #f2e8dc;
-          --cream-3: #eadcca;
-          --cocoa-1: #2f211b;
-          --cocoa-2: #4a342a;
-          --cocoa-3: #6f4d3d;
-          --accent: #b88358;
-          --accent-soft: #e7d0bb;
-          --muted: #6f5c50;
-          --line: rgba(69, 43, 31, 0.12);
-          --white-soft: rgba(255, 251, 246, 0.84);
+          --cream-3: #e9dbc9;
+          --cocoa-1: #241814;
+          --cocoa-2: #433028;
+          --cocoa-3: #6b4a3a;
+          --accent: #b88257;
+          --accent-soft: #ead3bd;
+          --muted: #6a594f;
+          --line: rgba(67, 48, 40, 0.12);
         }
 
         html {
@@ -126,9 +125,9 @@ export default function BakerHomePage() {
         body {
           font-family: var(--font-body), sans-serif;
           background:
-            radial-gradient(circle at top left, rgba(208, 175, 141, 0.18), transparent 28%),
-            radial-gradient(circle at top right, rgba(110, 78, 59, 0.08), transparent 26%),
-            linear-gradient(180deg, #fbf7f2 0%, #f5ede3 38%, #f2e7da 100%);
+            radial-gradient(circle at top left, rgba(212, 180, 146, 0.18), transparent 28%),
+            radial-gradient(circle at top right, rgba(97, 67, 51, 0.08), transparent 24%),
+            linear-gradient(180deg, #fcf8f3 0%, #f5ede4 42%, #f1e6d9 100%);
           color: var(--cocoa-1);
         }
 
@@ -216,7 +215,7 @@ export default function BakerHomePage() {
         }
 
         .font-heading {
-          font-family: var(--font-heading), serif;
+          font-family: var(--font-heading), sans-serif;
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -233,7 +232,7 @@ export default function BakerHomePage() {
       <main
         className={`${headingFont.variable} ${bodyFont.variable} min-h-screen text-[var(--cocoa-1)]`}
       >
-        <div className="fixed inset-x-0 top-0 z-[90] border-b border-white/10 bg-[linear-gradient(90deg,#2d1d17_0%,#5a3b2e_54%,#8a6147_100%)] px-4 py-3 text-center text-sm font-medium text-[#fff8f2] shadow-[0_12px_34px_rgba(48,29,22,0.24)]">
+        <div className="fixed inset-x-0 top-0 z-[90] border-b border-white/10 bg-[linear-gradient(90deg,#2c1c16_0%,#57382c_54%,#876045_100%)] px-4 py-3 text-center text-sm font-medium text-[#fff8f2] shadow-[0_12px_34px_rgba(48,29,22,0.24)]">
           This is a demo website created by{" "}
           <Link
             href="/"
@@ -257,7 +256,7 @@ export default function BakerHomePage() {
                 <p className="text-[10px] font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
                   Brownie Bakery
                 </p>
-                <p className="font-heading text-[1.55rem] leading-none tracking-[0.06em] text-[var(--cocoa-1)] transition group-hover:text-[var(--cocoa-3)]">
+                <p className="font-heading text-[1.15rem] font-semibold tracking-[0.12em] text-[var(--cocoa-1)] transition group-hover:text-[var(--cocoa-3)]">
                   Velvet Crumb
                 </p>
               </div>
@@ -400,15 +399,14 @@ export default function BakerHomePage() {
                 Handcrafted in small batches
               </span>
 
-              <h1 className="font-heading animate-fade-up-delay-1 mt-6 max-w-2xl text-5xl font-semibold leading-[0.95] tracking-tight text-[var(--cocoa-1)] sm:text-6xl lg:text-[5.35rem]">
-                Brownies with depth,
-                <span className="block text-[var(--cocoa-3)]">restraint, and presence.</span>
+              <h1 className="font-heading animate-fade-up-delay-1 mt-6 max-w-2xl text-5xl font-semibold leading-[1.02] tracking-[-0.04em] text-[var(--cocoa-1)] sm:text-6xl lg:text-[5.1rem]">
+                Brownies with depth, balance, and a premium finish.
               </h1>
 
               <p className="animate-fade-up-delay-2 mt-6 max-w-xl text-base leading-8 text-[var(--muted)] sm:text-lg">
                 Velvet Crumb is a premium brownie bakery concept built around deep
-                chocolate flavour, elegant presentation, and the kind of quiet visual
-                confidence that makes a small business feel instantly desirable.
+                chocolate flavour, elegant presentation, and the kind of visual
+                polish that makes a small business feel instantly desirable.
               </p>
 
               <div className="animate-fade-up-delay-2 mt-8 flex flex-col gap-3 sm:flex-row">
@@ -444,7 +442,7 @@ export default function BakerHomePage() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
                     This week’s feature
                   </p>
-                  <p className="font-heading mt-2 text-2xl leading-none text-[var(--cocoa-1)]">
+                  <p className="font-heading mt-2 text-xl font-semibold text-[var(--cocoa-1)]">
                     Sea Salt Dark
                   </p>
                 </div>
@@ -473,9 +471,8 @@ export default function BakerHomePage() {
                           <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[#ddc0a6]">
                             Crafted to feel giftable
                           </p>
-                          <h2 className="font-heading mt-3 text-4xl leading-[0.92]">
-                            Fudgy centres.
-                            <span className="block">Clean finish.</span>
+                          <h2 className="font-heading mt-3 text-[2rem] font-semibold leading-[1.05]">
+                            Fudgy centres. Clean finish.
                           </h2>
                         </div>
 
@@ -492,7 +489,7 @@ export default function BakerHomePage() {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.24em] text-[var(--accent)]">
                     Premium local concept
                   </p>
-                  <p className="font-heading mt-2 text-2xl leading-none text-[var(--cocoa-1)]">
+                  <p className="font-heading mt-2 text-lg font-semibold text-[var(--cocoa-1)]">
                     Velvet Crumb
                   </p>
                 </div>
@@ -507,7 +504,7 @@ export default function BakerHomePage() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
                 Featured brownies
               </p>
-              <h2 className="font-heading mt-3 text-5xl leading-[0.96] text-[var(--cocoa-1)] sm:text-[3.6rem]">
+              <h2 className="font-heading mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--cocoa-1)] sm:text-[3rem]">
                 Signature bakes with a more considered kind of indulgence.
               </h2>
             </div>
@@ -540,7 +537,7 @@ export default function BakerHomePage() {
                       <span className="inline-flex rounded-full border border-[#ead9c8] bg-[#f8eee4] px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)]">
                         {item.note}
                       </span>
-                      <h3 className="font-heading mt-3 text-[2rem] leading-none text-[var(--cocoa-1)]">
+                      <h3 className="font-heading mt-3 text-[1.55rem] font-semibold leading-[1.1] text-[var(--cocoa-1)]">
                         {item.name}
                       </h3>
                     </div>
@@ -566,7 +563,7 @@ export default function BakerHomePage() {
                 <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
                   Why it works
                 </p>
-                <h2 className="font-heading mt-3 text-5xl leading-[0.96] text-[var(--cocoa-1)] sm:text-[3.5rem]">
+                <h2 className="font-heading mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--cocoa-1)] sm:text-[2.95rem]">
                   Warm, premium, and distinctive without trying too hard.
                 </h2>
                 <p className="mt-6 max-w-xl text-base leading-8 text-[var(--muted)]">
@@ -582,7 +579,7 @@ export default function BakerHomePage() {
                     key={item.title}
                     className="rounded-[26px] border border-[var(--line)] bg-[rgba(255,251,246,0.82)] p-6 shadow-[0_14px_30px_rgba(76,50,38,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_18px_36px_rgba(76,50,38,0.12)]"
                   >
-                    <h3 className="font-heading text-[2rem] leading-none text-[var(--cocoa-1)]">
+                    <h3 className="font-heading text-[1.4rem] font-semibold leading-[1.15] text-[var(--cocoa-1)]">
                       {item.title}
                     </h3>
                     <p className="mt-4 text-sm leading-7 text-[var(--muted)]">
@@ -601,7 +598,7 @@ export default function BakerHomePage() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-[var(--accent)]">
                 Customer notes
               </p>
-              <h2 className="font-heading mt-3 text-5xl leading-[0.96] text-[var(--cocoa-1)] sm:text-[3.4rem]">
+              <h2 className="font-heading mt-3 text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--cocoa-1)] sm:text-[2.9rem]">
                 Loved for flavour, texture, and presentation.
               </h2>
 
@@ -642,7 +639,7 @@ export default function BakerHomePage() {
                   Ready to order?
                 </p>
 
-                <h2 className="font-heading mt-3 max-w-xl text-5xl leading-[0.96] text-[var(--cocoa-1)] sm:text-[3.5rem]">
+                <h2 className="font-heading mt-3 max-w-xl text-4xl font-semibold leading-[1.05] tracking-[-0.03em] text-[var(--cocoa-1)] sm:text-[3rem]">
                   Browse the menu and find your next favourite bake.
                 </h2>
 
@@ -685,7 +682,7 @@ export default function BakerHomePage() {
               <p className="text-[11px] font-semibold uppercase tracking-[0.28em] text-[var(--accent)]">
                 Velvet Crumb
               </p>
-              <h3 className="font-heading mt-3 text-4xl leading-none text-[var(--cocoa-1)]">
+              <h3 className="font-heading mt-3 text-[1.65rem] font-semibold tracking-[-0.02em] text-[var(--cocoa-1)]">
                 Premium brownie bakery
               </h3>
               <p className="mt-4 max-w-sm text-sm leading-7 text-[var(--muted)]">
