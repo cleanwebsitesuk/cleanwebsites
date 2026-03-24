@@ -29,35 +29,6 @@ const highlights = [
   "Collection & delivery",
 ];
 
-const featuredMenu = [
-  {
-    name: "Sea Salt Dark",
-    price: "£4.80",
-    tag: "Best seller",
-    description:
-      "Deep cocoa flavour with a glossy centre and a delicate sea salt finish for a rich, balanced bite.",
-    image:
-      "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    name: "Brown Butter Blondie",
-    price: "£4.60",
-    tag: "Small batch",
-    description:
-      "Golden, chewy, and buttery with soft vanilla notes and a caramelised edge.",
-    image:
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1400&q=80",
-  },
-  {
-    name: "Hazelnut Praline",
-    price: "£5.20",
-    tag: "Signature",
-    description:
-      "Dark chocolate layered with toasted hazelnut praline and a touch of crunch.",
-    image:
-      "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?auto=format&fit=crop&w=1400&q=80",
-  },
-];
 
 const brownieMenu = [
   {
