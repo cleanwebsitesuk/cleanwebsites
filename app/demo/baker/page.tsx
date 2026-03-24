@@ -28,8 +28,8 @@ const featuredBrownies = [
     name: "Sea Salt Dark",
     price: "£4.80",
     description:
-      "A rich dark chocolate brownie with a glossy fudgy centre and a clean sea salt finish.",
-    note: "Most loved",
+      "Deep cocoa, glossy centre, and a delicate sea salt finish for a rich, balanced bite.",
+    note: "Best seller",
     image:
       "https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1200&q=80",
   },
@@ -37,7 +37,7 @@ const featuredBrownies = [
     name: "Brown Butter Blondie",
     price: "£4.60",
     description:
-      "Golden, chewy, and quietly indulgent with brown butter depth and soft vanilla notes.",
+      "Golden, chewy, and buttery with soft vanilla notes and a caramelised edge.",
     note: "Small batch",
     image:
       "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80",
@@ -46,7 +46,7 @@ const featuredBrownies = [
     name: "Hazelnut Praline",
     price: "£5.20",
     description:
-      "Deep cocoa layered with toasted hazelnut praline and a little crunch for contrast.",
+      "Dark chocolate layered with toasted hazelnut praline and a little crunch.",
     note: "Signature",
     image:
       "https://images.unsplash.com/photo-1541783245831-57d6fb0926d3?auto=format&fit=crop&w=1200&q=80",
@@ -55,16 +55,16 @@ const featuredBrownies = [
 
 const values = [
   {
-    title: "Thoughtful ingredients",
-    text: "We use proper chocolate, cultured butter, deep cocoa, and balanced sweetness for depth without heaviness.",
+    title: "Exceptional ingredients",
+    text: "Proper chocolate, cultured butter, premium cocoa, and carefully balanced sweetness.",
   },
   {
-    title: "Elegant presentation",
-    text: "Every bake is designed to feel premium enough to gift and approachable enough for a quiet coffee break.",
+    title: "Baked fresh in small batches",
+    text: "Small runs mean better texture, better consistency, and a finish that feels considered.",
   },
   {
-    title: "Hand-finished daily",
-    text: "Small batches allow better texture, cleaner finishing, and a more consistent standard across every tray.",
+    title: "Made to gift and share",
+    text: "From everyday treats to elegant boxes, every order is designed to feel special.",
   },
 ];
 
@@ -72,17 +72,17 @@ const processSteps = [
   {
     number: "01",
     title: "Mixed in small batches",
-    text: "Better control, richer texture, and cleaner consistency.",
+    text: "Careful mixing creates a denser crumb, richer flavour, and a more consistent bake.",
   },
   {
     number: "02",
     title: "Baked for a fudgy centre",
-    text: "Deliberately timed for depth, softness, and a delicate top crust.",
+    text: "Timed for soft middles, delicate tops, and the kind of texture people come back for.",
   },
   {
     number: "03",
-    title: "Finished for gifting",
-    text: "Made to look as considered as they taste.",
+    title: "Finished with care",
+    text: "Each tray is cut, packed, and presented to feel every bit as good as it tastes.",
   },
 ];
 
@@ -94,20 +94,26 @@ const testimonials = [
   },
   {
     quote:
-      "It feels like a proper premium local brand rather than a generic bakery. Everything looks considered.",
+      "Every flavour feels thoughtful. Rich, balanced, and never overly sweet.",
     author: "Daniel S.",
   },
   {
     quote:
-      "Rich and balanced without being too sweet. The kind of place you immediately want to recommend.",
+      "The kind of bakery you recommend instantly. Everything looks and tastes premium.",
     author: "Nina P.",
   },
 ];
 
 const stats = [
-  { value: "4.9/5", label: "Customer rating" },
+  { value: "4.9/5", label: "Average rating" },
   { value: "12+", label: "Signature flavours" },
   { value: "48hr", label: "Fresh-bake window" },
+];
+
+const highlights = [
+  "Freshly baked",
+  "Gift-ready boxes",
+  "Collection & delivery",
 ];
 
 export default function BakerHomePage() {
@@ -133,9 +139,7 @@ export default function BakerHomePage() {
     document.body.style.overflow = "hidden";
 
     const handleKeyDown = (event: KeyboardEvent) => {
-      if (event.key === "Escape") {
-        setMenuOpen(false);
-      }
+      if (event.key === "Escape") setMenuOpen(false);
     };
 
     const handlePointerDown = (event: MouseEvent) => {
@@ -162,9 +166,7 @@ export default function BakerHomePage() {
 
   useEffect(() => {
     const handleResize = () => {
-      if (window.innerWidth >= 768) {
-        setMenuOpen(false);
-      }
+      if (window.innerWidth >= 768) setMenuOpen(false);
     };
 
     window.addEventListener("resize", handleResize);
@@ -175,7 +177,7 @@ export default function BakerHomePage() {
     () =>
       headerSolid
         ? "border-[rgba(66,44,34,0.12)] bg-[rgba(250,244,237,0.94)] shadow-[0_12px_34px_rgba(51,33,25,0.08)]"
-        : "border-transparent bg-[rgba(250,244,237,0.78)]",
+        : "border-transparent bg-[rgba(250,244,237,0.72)]",
     [headerSolid],
   );
 
@@ -193,7 +195,7 @@ export default function BakerHomePage() {
           --accent: #b9865e;
           --accent-strong: #9c6744;
           --line: rgba(66, 44, 34, 0.12);
-          --panel: rgba(255, 251, 246, 0.8);
+          --panel: rgba(255, 251, 246, 0.82);
         }
 
         html {
@@ -282,18 +284,8 @@ export default function BakerHomePage() {
       <main
         className={`${headingFont.variable} ${bodyFont.variable} min-h-screen text-[var(--cocoa-1)]`}
       >
-        <div className="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-[linear-gradient(90deg,#2c1c16_0%,#59392d_54%,#8a6147_100%)] px-4 py-3 text-center text-[13px] font-medium text-[#fff8f2] shadow-[0_12px_30px_rgba(47,29,22,0.22)] sm:text-sm">
-          This is a demo website created by{" "}
-          <Link
-            href="/"
-            className="font-semibold underline decoration-white/75 underline-offset-4 transition hover:text-[#f2dcc5]"
-          >
-            Clean Websites
-          </Link>
-        </div>
-
         <header
-          className={`fixed inset-x-0 top-[46px] z-[90] border-b backdrop-blur-xl transition-all duration-300 ${headerClasses}`}
+          className={`fixed inset-x-0 top-0 z-[90] border-b backdrop-blur-xl transition-all duration-300 ${headerClasses}`}
         >
           <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3.5 sm:px-5 sm:py-4 md:px-8">
             <Link
@@ -301,7 +293,7 @@ export default function BakerHomePage() {
               aria-label="Velvet Crumb home"
               className="group flex min-w-0 items-center gap-3"
             >
-              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[rgba(255,252,248,0.85)] text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--cocoa-2)] sm:h-11 sm:w-11 sm:text-[11px] sm:tracking-[0.24em]">
+              <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-[rgba(255,252,248,0.9)] text-[10px] font-semibold uppercase tracking-[0.22em] text-[var(--cocoa-2)] sm:h-11 sm:w-11 sm:text-[11px] sm:tracking-[0.24em]">
                 VC
               </span>
               <div className="min-w-0">
@@ -337,7 +329,7 @@ export default function BakerHomePage() {
                 href="/demo/baker/menu"
                 className="rounded-full bg-[linear-gradient(90deg,#59392d_0%,#8a6147_100%)] px-5 py-3 text-sm font-semibold text-[#fffaf5] shadow-[0_14px_32px_rgba(78,51,38,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(78,51,38,0.28)]"
               >
-                Order Brownies
+                Order Now
               </Link>
             </nav>
 
@@ -375,7 +367,7 @@ export default function BakerHomePage() {
             <div className="fixed inset-0 z-[70] bg-[rgba(29,18,14,0.5)] md:hidden" />
             <div
               ref={menuPanelRef}
-              className="animate-menu-in fixed inset-x-3 top-[7.6rem] z-[80] rounded-[26px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,38,29,0.98)_0%,rgba(38,24,18,0.98)_100%)] p-3.5 shadow-[0_24px_60px_rgba(28,18,13,0.42)] sm:inset-x-4 sm:top-[8.2rem] sm:p-4 md:hidden"
+              className="animate-menu-in fixed inset-x-3 top-[5.8rem] z-[80] rounded-[26px] border border-white/10 bg-[linear-gradient(180deg,rgba(59,38,29,0.98)_0%,rgba(38,24,18,0.98)_100%)] p-3.5 shadow-[0_24px_60px_rgba(28,18,13,0.42)] sm:inset-x-4 sm:top-[6.1rem] sm:p-4 md:hidden"
             >
               <div className="flex flex-col gap-2">
                 {navItems.map((item) => (
@@ -393,21 +385,14 @@ export default function BakerHomePage() {
                   onClick={() => setMenuOpen(false)}
                   className="mt-2 inline-flex min-h-12 items-center justify-center rounded-full bg-[linear-gradient(90deg,#6f4d3d_0%,#b9865e_100%)] px-5 py-3.5 text-sm font-semibold text-[#fffaf5] shadow-[0_12px_30px_rgba(80,53,39,0.24)]"
                 >
-                  Order Brownies
-                </Link>
-                <Link
-                  href="/"
-                  onClick={() => setMenuOpen(false)}
-                  className="inline-flex min-h-12 items-center justify-center rounded-full border border-white/10 bg-white/5 px-5 py-3.5 text-sm font-medium text-white/90 transition hover:bg-white/10"
-                >
-                  Back to Clean Websites
+                  Order Now
                 </Link>
               </div>
             </div>
           </>
         )}
 
-        <section className="relative isolate overflow-hidden pt-[156px] sm:pt-[172px] md:pt-[136px]">
+        <section className="relative isolate overflow-hidden pt-[104px] sm:pt-[112px]">
           <div className="absolute inset-0">
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(214,177,142,0.22),transparent_30%)]" />
             <div className="absolute inset-0 bg-[radial-gradient(circle_at_right,rgba(88,58,45,0.10),transparent_24%)]" />
@@ -415,34 +400,44 @@ export default function BakerHomePage() {
             <div className="absolute right-0 top-10 h-80 w-80 rounded-full bg-[#7a5338]/10 blur-3xl" />
           </div>
 
-          <div className="relative mx-auto grid min-h-[auto] max-w-7xl items-center gap-10 px-4 py-10 sm:gap-12 sm:px-5 sm:py-14 md:px-8 lg:min-h-[84vh] lg:grid-cols-[0.98fr_1.02fr] lg:gap-14 lg:py-28">
+          <div className="relative mx-auto grid max-w-7xl items-center gap-10 px-4 py-10 sm:gap-12 sm:px-5 sm:py-14 md:px-8 lg:min-h-[86vh] lg:grid-cols-[0.98fr_1.02fr] lg:gap-14 lg:py-24">
             <div className="max-w-2xl">
               <span className="animate-fade-up inline-flex rounded-full border border-[var(--line)] bg-[rgba(255,251,246,0.92)] px-3.5 py-2 text-[10px] font-semibold uppercase tracking-[0.24em] text-[var(--accent)] shadow-[0_8px_18px_rgba(74,52,38,0.05)] backdrop-blur-sm sm:px-4 sm:text-[11px] sm:tracking-[0.28em]">
-                Handcrafted in small batches
+                Freshly baked in small batches
               </span>
 
-              <h1 className="font-heading animate-fade-up-delay-1 mt-5 max-w-[12ch] text-[2.45rem] font-semibold leading-[1.02] tracking-[-0.05em] text-[var(--cocoa-1)] sm:mt-6 sm:max-w-[11ch] sm:text-[3.5rem] md:max-w-2xl md:text-6xl lg:text-[5rem]">
-                Brownies with depth, balance, and a premium finish.
+              <h1 className="font-heading animate-fade-up-delay-1 mt-5 max-w-[11ch] text-[2.65rem] font-semibold leading-[0.98] tracking-[-0.055em] text-[var(--cocoa-1)] sm:mt-6 sm:text-[3.6rem] md:max-w-xl md:text-6xl lg:max-w-[11ch] lg:text-[5.1rem]">
+                Brownies worth coming back for.
               </h1>
 
               <p className="animate-fade-up-delay-2 mt-5 max-w-xl text-[15px] leading-7 text-[var(--muted)] sm:mt-6 sm:text-base sm:leading-8 md:text-lg">
-                Velvet Crumb is a premium brownie bakery concept built around deep
-                chocolate flavour, elegant presentation, and a calmer, more
-                refined brand presence than the usual dessert-site template.
+                Deep chocolate flavour, soft fudgy centres, and elegant finishing
+                for everyday treats, thoughtful gifts, and special occasions.
               </p>
+
+              <div className="animate-fade-up-delay-2 mt-7 flex flex-wrap gap-2.5 sm:mt-8">
+                {highlights.map((item) => (
+                  <span
+                    key={item}
+                    className="inline-flex min-h-10 items-center rounded-full border border-[var(--line)] bg-[rgba(255,251,246,0.8)] px-4 text-[12px] font-medium text-[var(--cocoa-2)] shadow-[0_8px_18px_rgba(73,49,37,0.04)] sm:text-[13px]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
 
               <div className="animate-fade-up-delay-2 mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
                 <Link
                   href="/demo/baker/menu"
                   className="inline-flex min-h-12 items-center justify-center rounded-full bg-[linear-gradient(90deg,#59392d_0%,#8a6147_100%)] px-6 py-3.5 text-sm font-semibold text-[#fffaf5] shadow-[0_14px_32px_rgba(80,53,39,0.22)] transition hover:-translate-y-0.5 hover:shadow-[0_18px_38px_rgba(80,53,39,0.28)]"
                 >
-                  Explore Menu
+                  Shop Brownies
                 </Link>
                 <Link
-                  href="/demo/baker/about"
+                  href="/demo/baker/contact"
                   className="inline-flex min-h-12 items-center justify-center rounded-full border border-[var(--line)] bg-[rgba(255,251,246,0.92)] px-6 py-3.5 text-sm font-semibold text-[var(--cocoa-2)] shadow-[0_8px_24px_rgba(73,49,37,0.05)] transition hover:bg-white"
                 >
-                  Discover the Brand
+                  Order for Events
                 </Link>
               </div>
 
@@ -461,14 +456,14 @@ export default function BakerHomePage() {
             </div>
 
             <div className="animate-fade-in relative">
-              <div className="relative mx-auto max-w-[700px]">
+              <div className="relative mx-auto max-w-[720px]">
                 <div className="overflow-hidden rounded-[28px] border border-[rgba(255,255,255,0.35)] bg-[linear-gradient(180deg,rgba(255,251,246,0.9)_0%,rgba(244,234,223,0.78)_100%)] p-2.5 shadow-[0_26px_70px_rgba(73,48,36,0.14)] sm:rounded-[34px] sm:p-3 lg:rounded-[38px]">
-                  <div className="grid gap-2.5 sm:gap-3 lg:grid-cols-[1.05fr_0.95fr]">
+                  <div className="grid gap-2.5 sm:gap-3 lg:grid-cols-[1.04fr_0.96fr]">
                     <div className="overflow-hidden rounded-[22px] sm:rounded-[28px] lg:rounded-[30px]">
                       <img
                         src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=1400&q=80"
                         alt="A premium stack of rich chocolate brownies"
-                        className="h-[280px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[400px] lg:h-[560px]"
+                        className="h-[300px] w-full object-cover transition duration-700 hover:scale-105 sm:h-[410px] lg:h-[580px]"
                       />
                     </div>
 
@@ -477,23 +472,31 @@ export default function BakerHomePage() {
                         <img
                           src="https://images.unsplash.com/photo-1551024506-0bccd828d307?auto=format&fit=crop&w=1200&q=80"
                           alt="Elegant brownie and dessert table styling"
-                          className="h-36 w-full object-cover transition duration-700 hover:scale-105 sm:h-44 lg:h-[215px]"
+                          className="h-36 w-full object-cover transition duration-700 hover:scale-105 sm:h-44 lg:h-[225px]"
                         />
                       </div>
 
                       <div className="flex flex-col justify-between rounded-[20px] bg-[linear-gradient(180deg,#3a271f_0%,#2d1d17_100%)] p-5 text-[#fff8f2] shadow-[0_20px_40px_rgba(56,36,27,0.24)] sm:rounded-[24px] sm:p-6 lg:rounded-[26px] lg:p-7">
                         <div>
                           <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ddc0a6] sm:text-[11px] sm:tracking-[0.24em]">
-                            Crafted to feel giftable
+                            This week’s favourite
                           </p>
                           <h2 className="font-heading mt-2.5 text-[1.4rem] font-semibold leading-[1.05] sm:mt-3 sm:text-[1.7rem] lg:text-[2rem]">
-                            Fudgy centres. Clean finish.
+                            Sea Salt Dark
                           </h2>
                         </div>
 
                         <p className="mt-4 max-w-sm text-[13px] leading-6 text-[#ead9ca] sm:mt-5 sm:text-sm sm:leading-7">
-                          A stronger mix of warmth, product focus, and premium restraint.
+                          Rich, fudgy, and finished with just enough sea salt to
+                          sharpen the chocolate.
                         </p>
+
+                        <Link
+                          href="/demo/baker/menu"
+                          className="mt-5 inline-flex w-fit items-center text-sm font-semibold text-[#f0d6bf] transition hover:text-white"
+                        >
+                          Order this flavour →
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -501,10 +504,10 @@ export default function BakerHomePage() {
 
                 <div className="absolute left-3 top-3 rounded-[16px] border border-white/30 bg-[rgba(255,250,244,0.82)] px-3.5 py-3 shadow-[0_14px_32px_rgba(80,53,39,0.08)] backdrop-blur-md sm:left-4 sm:top-4 sm:rounded-[18px] sm:px-4 sm:py-3.5 lg:-left-4 lg:top-8 lg:rounded-[22px] lg:px-5 lg:py-4">
                   <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-[var(--accent)] sm:text-[10px] sm:tracking-[0.22em] lg:text-[11px] lg:tracking-[0.24em]">
-                    This week’s feature
+                    Fresh today
                   </p>
                   <p className="font-heading mt-1.5 text-[13px] font-semibold text-[var(--cocoa-1)] sm:text-[15px] lg:mt-2 lg:text-lg">
-                    Sea Salt Dark
+                    Limited trays available
                   </p>
                 </div>
               </div>
@@ -519,7 +522,7 @@ export default function BakerHomePage() {
                 Featured brownies
               </p>
               <h2 className="font-heading mt-3 max-w-[13ch] text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-[var(--cocoa-1)] sm:max-w-none sm:text-[2.5rem] md:text-[3rem]">
-                Signature bakes with a more considered kind of indulgence.
+                Signature bakes with rich flavour and a refined finish.
               </h2>
             </div>
 
@@ -569,7 +572,7 @@ export default function BakerHomePage() {
                     href="/demo/baker/menu"
                     className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--accent-strong)] transition hover:text-[var(--cocoa-1)]"
                   >
-                    View brownie →
+                    Add to order →
                   </Link>
                 </div>
               </article>
@@ -582,15 +585,15 @@ export default function BakerHomePage() {
             <div className="grid gap-0 lg:grid-cols-[0.95fr_1.05fr]">
               <div className="p-6 sm:p-8 lg:p-14">
                 <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-[#d9bca2] sm:text-[11px] sm:tracking-[0.28em]">
-                  Brand feel
+                  Why Velvet Crumb
                 </p>
                 <h2 className="font-heading mt-3 max-w-lg text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-white sm:text-[2.6rem] lg:text-[3rem]">
-                  Warm enough to feel local. Polished enough to feel premium.
+                  Made for people who want more than an ordinary bake.
                 </h2>
                 <p className="mt-5 max-w-xl text-[15px] leading-7 text-[#e7d8cc] sm:mt-6 sm:text-base sm:leading-8">
-                  The page now has stronger variation through the scroll: light product
-                  presentation, a darker immersive brand section, cleaner proof blocks,
-                  and a more deliberate final CTA.
+                  Rich flavour, balanced sweetness, beautiful presentation, and a
+                  bakery experience that feels quietly premium from first glance to
+                  final bite.
                 </p>
 
                 <div className="mt-8 grid gap-4 sm:mt-10 sm:gap-5">
@@ -616,14 +619,15 @@ export default function BakerHomePage() {
                   alt="Luxury brownie arrangement styled for a premium bakery brand"
                   className="absolute inset-0 h-full w-full object-cover"
                 />
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,12,9,0.18)_0%,rgba(20,12,9,0.48)_100%)]" />
+                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(20,12,9,0.16)_0%,rgba(20,12,9,0.52)_100%)]" />
                 <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 sm:pb-7 lg:p-8">
                   <div className="max-w-sm rounded-[20px] border border-white/10 bg-[rgba(255,248,241,0.14)] p-4 backdrop-blur-sm sm:rounded-[22px] sm:p-5 lg:rounded-[24px]">
                     <p className="text-[10px] font-semibold uppercase tracking-[0.2em] text-[#ecd0b7] sm:text-[11px] sm:tracking-[0.24em]">
-                      Designed to convert
+                      Perfect for gifting
                     </p>
                     <p className="mt-3 text-[14px] leading-6 text-white sm:text-base sm:leading-7">
-                      Stronger contrast, better section rhythm, and more believable UX polish.
+                      Elegant boxes, standout flavour, and a finish that feels
+                      ready to share.
                     </p>
                   </div>
                 </div>
@@ -637,14 +641,14 @@ export default function BakerHomePage() {
             <div className="grid gap-10 sm:gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
               <div>
                 <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.3em]">
-                  How we work
+                  Our process
                 </p>
                 <h2 className="font-heading mt-3 max-w-[13ch] text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-[var(--cocoa-1)] sm:max-w-none sm:text-[2.45rem] lg:text-[2.95rem]">
-                  A clearer process creates a more convincing premium brand.
+                  Simple, careful, and centred around flavour.
                 </h2>
                 <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--muted)] sm:mt-6 sm:text-base sm:leading-8">
-                  Instead of repeating the same section pattern, this page now uses
-                  a cleaner flow with distinct visual moments and more functional UI.
+                  Everything is built around better ingredients, better texture,
+                  and a better final experience.
                 </p>
               </div>
 
@@ -676,7 +680,7 @@ export default function BakerHomePage() {
           <div className="grid gap-8 sm:gap-10 lg:grid-cols-[1.02fr_0.98fr] lg:items-center">
             <div>
               <p className="text-[10px] font-semibold uppercase tracking-[0.26em] text-[var(--accent)] sm:text-[11px] sm:tracking-[0.3em]">
-                Customer notes
+                Customer favourites
               </p>
               <h2 className="font-heading mt-3 max-w-[12ch] text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-[var(--cocoa-1)] sm:max-w-none sm:text-[2.4rem] lg:text-[2.9rem]">
                 Loved for flavour, texture, and presentation.
@@ -720,13 +724,12 @@ export default function BakerHomePage() {
                 </p>
 
                 <h2 className="font-heading mt-3 max-w-[12ch] text-[2rem] font-semibold leading-[1.06] tracking-[-0.04em] text-[var(--cocoa-1)] sm:max-w-xl sm:text-[2.45rem] lg:text-[3rem]">
-                  Browse the menu and find your next favourite bake.
+                  Find your next favourite bake.
                 </h2>
 
                 <p className="mt-5 max-w-xl text-[15px] leading-7 text-[var(--cocoa-2)]/80 sm:mt-6 sm:text-base sm:leading-8">
-                  From classic dark chocolate squares to seasonal flavours and
-                  gift-ready boxes, Velvet Crumb is designed to feel like a brand
-                  people want to copy for their own business.
+                  Choose from signature brownies, seasonal flavours, and gift-ready
+                  boxes for birthdays, thank-yous, and just-because moments.
                 </p>
 
                 <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row">
@@ -766,16 +769,9 @@ export default function BakerHomePage() {
                 Premium brownie bakery
               </h3>
               <p className="mt-4 max-w-sm text-[14px] leading-6 text-[var(--muted)] sm:text-sm sm:leading-7">
-                A refined small-business bakery concept focused on handcrafted
-                brownies, elegant presentation, and a visual identity that feels
-                warm, modern, and confidently premium.
+                Handcrafted brownies with rich flavour, elegant presentation, and
+                a warm, modern bakery feel.
               </p>
-              <Link
-                href="/"
-                className="mt-5 inline-flex min-h-11 items-center text-sm font-semibold text-[var(--accent-strong)] transition hover:text-[var(--cocoa-1)]"
-              >
-                Back to Clean Websites →
-              </Link>
             </div>
 
             <div>
