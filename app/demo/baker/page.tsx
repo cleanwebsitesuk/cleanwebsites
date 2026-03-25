@@ -40,7 +40,7 @@ const featuredBrownies = [
       "Golden, chewy, and buttery with soft vanilla notes and a caramelised edge.",
     note: "Small batch",
     image:
-      "https://images.unsplash.com/photo-1519864600265-abb23847ef2c?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1639744092433-0e98ca50d5fc?q=80&w=1200&h=800&fit=crop&crop=entropy&auto=format",
   },
   {
     name: "Hazelnut Praline",
