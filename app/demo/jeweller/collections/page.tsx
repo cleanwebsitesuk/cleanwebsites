@@ -20,6 +20,28 @@ const products: Product[] = [
     blurb:
       "A softly elevated silhouette with a balanced halo and clean, polished finish.",
   },
+
+  const collections = [
+  {
+    name: "Solenne",
+    image:
+      "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1200&auto=format&fit=crop",
+    desc: "Warm gold essentials designed for daily wear, subtle layering, and polished simplicity.",
+  },
+  {
+    name: "Nocturne",
+    image:
+      "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1200&auto=format&fit=crop",
+    desc: "Diamond-led silhouettes with stronger contrast, evening presence, and sculptural finish.",
+  },
+  {
+    name: "Aureline",
+    image:
+      "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1200&auto=format&fit=crop",
+    desc: "Refined pieces shaped around softness, light balance, and understated heirloom character.",
+  },
+];
+
   {
     name: "Solstice Tennis Bracelet",
     category: "Bracelet",
