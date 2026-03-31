@@ -146,22 +146,24 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="mx-auto max-w-[1300px] px-5 py-14 sm:px-6 lg:py-16">
-        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-10">
-          <div>
-            <p className="text-[10px] uppercase tracking-[0.22em] text-black/50">
-              The House
-            </p>
-            <h2 className="mt-4 max-w-[12ch] font-serif text-[1.9rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.2rem] lg:text-[2.6rem]">
-              Contemporary jewellery with a refined retail perspective.
-            </h2>
-          </div>
+      <section className="mx-auto max-w-[1300px] px-5 py-16 sm:px-6 lg:py-20">
+        <div className="mx-auto max-w-[900px] text-center">
+          <p className="text-[10px] uppercase tracking-[0.24em] text-black/50">
+            The House
+          </p>
 
-          <div className="space-y-5 text-[14px] leading-7 text-black/66 sm:text-[15px]">
+          <h2 className="mt-5 font-serif text-[2.2rem] leading-[1.08] tracking-[-0.035em] sm:text-[3rem] lg:text-[3.6rem]">
+            Contemporary jewellery
+            <span className="block">with a refined retail perspective.</span>
+          </h2>
+
+          <div className="mx-auto mt-6 h-px w-20 bg-black/12" />
+
+          <div className="mx-auto mt-6 max-w-[760px] space-y-5 text-[14px] leading-7 text-black/66 sm:text-[15px]">
             <p>
               Maison Valeur brings together fine materials, balanced design, and a
-              more considered way to shop for jewellery. The focus is on pieces
-              that feel polished, wearable, and quietly distinctive.
+              more considered way to shop for jewellery. The focus is on pieces that
+              feel polished, wearable, and quietly distinctive.
             </p>
             <p>
               From engagement rings to giftable fine jewellery and bespoke
@@ -170,10 +172,8 @@ export default function Page() {
             </p>
           </div>
         </div>
-      </section>
 
-      <section className="mx-auto max-w-[1300px] px-5 py-8 sm:px-6 lg:py-10">
-        <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-4">
+        <div className="mt-12 grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           <InfoCard
             eyebrow="Materials"
             title="18k gold & platinum"
@@ -472,12 +472,12 @@ function InfoCard({
   text: string;
 }) {
   return (
-    <div className="border border-black/10 bg-white p-5">
+    <div className="h-full border border-black/10 bg-white p-6 transition hover:-translate-y-0.5">
       <div className="text-[10px] uppercase tracking-[0.2em] text-black/45">
         {eyebrow}
       </div>
-      <h3 className="mt-3 font-serif text-lg">{title}</h3>
-      <p className="mt-3 text-sm leading-6 text-black/64">{text}</p>
+      <h3 className="mt-4 font-serif text-[1.35rem] leading-tight">{title}</h3>
+      <p className="mt-4 text-sm leading-7 text-black/64">{text}</p>
     </div>
   );
 }
