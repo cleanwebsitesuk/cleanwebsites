@@ -73,20 +73,82 @@ export default function Page() {
         </div>
       </section>
 
-      {/* COLLECTIONS */}
-      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 pb-16">
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {["Solenne", "Nocturne", "Aureline"].map((c) => (
-            <div key={c} className="border border-black/10 bg-white">
-              <div className="aspect-[4/3] bg-[#eae7df]" />
-              <div className="p-5">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-black/50">Collection</div>
-                <div className="mt-2 font-serif text-lg">{c}</div>
-              </div>
-            </div>
-          ))}
+{/* COLLECTIONS */}
+<section className="mx-auto max-w-[1300px] px-5 sm:px-6 pb-16">
+  <div className="mb-8">
+    <p className="text-[11px] uppercase tracking-[0.25em] text-black/50">
+      Collections
+    </p>
+    <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
+      Explore the house signatures
+    </h2>
+  </div>
+
+  <div className="grid gap-6 md:grid-cols-3">
+    {/* SOLENNE */}
+    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
+      <img
+        src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000&auto=format&fit=crop"
+        className="w-full h-[260px] object-cover"
+        alt="Gold jewellery"
+      />
+      <div className="p-5">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
+          Collection
         </div>
-      </section>
+        <div className="mt-2 font-serif text-lg">Solenne</div>
+        <p className="mt-3 text-sm text-black/65 leading-6">
+          Warm gold essentials designed for everyday wear and refined simplicity.
+        </p>
+        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
+          Explore →
+        </div>
+      </div>
+    </Link>
+
+    {/* NOCTURNE */}
+    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
+      <img
+        src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1000&auto=format&fit=crop"
+        className="w-full h-[260px] object-cover"
+        alt="Diamond jewellery"
+      />
+      <div className="p-5">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
+          Collection
+        </div>
+        <div className="mt-2 font-serif text-lg">Nocturne</div>
+        <p className="mt-3 text-sm text-black/65 leading-6">
+          Statement diamond pieces designed for evening wear and stronger presence.
+        </p>
+        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
+          Explore →
+        </div>
+      </div>
+    </Link>
+
+    {/* AURELINE */}
+    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
+      <img
+        src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000&auto=format&fit=crop"
+        className="w-full h-[260px] object-cover"
+        alt="Fine jewellery"
+      />
+      <div className="p-5">
+        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
+          Collection
+        </div>
+        <div className="mt-2 font-serif text-lg">Aureline</div>
+        <p className="mt-3 text-sm text-black/65 leading-6">
+          Soft, refined pieces built around light, proportion, and timeless design.
+        </p>
+        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
+          Explore →
+        </div>
+      </div>
+    </Link>
+  </div>
+</section>
 
       {/* ENGAGEMENT */}
       <section className="bg-white border-y border-black/10">
