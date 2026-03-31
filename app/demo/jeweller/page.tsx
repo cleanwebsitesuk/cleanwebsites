@@ -6,14 +6,16 @@ export default function Page() {
       <Header />
 
       {/* HERO */}
-      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 lg:px-8 pt-10 pb-16">
-        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center">
+      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 lg:px-8 pt-6 lg:pt-10 pb-12 lg:min-h-[85vh] flex items-center">
+        <div className="grid gap-10 lg:grid-cols-[1.1fr_0.9fr] items-center w-full">
+          
+          {/* LEFT */}
           <div>
             <p className="text-[10px] uppercase tracking-[0.2em] text-black/50">
               London Jewellery House
             </p>
 
-            <h1 className="mt-5 font-serif text-[2.2rem] leading-[1.2] tracking-[-0.03em] sm:text-[3rem] lg:text-[4.2rem]">
+            <h1 className="mt-5 font-serif text-[2.2rem] leading-[1.2] tracking-[-0.03em] sm:text-[3rem] lg:text-[4.6rem]">
               Refined jewellery,
               <span className="block">designed with intent.</span>
             </h1>
@@ -27,6 +29,7 @@ export default function Page() {
               <Link href="/demo/jeweller/collections" className="bg-black text-white px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-center">
                 Shop Jewellery
               </Link>
+
               <Link href="/demo/jeweller/contact" className="border border-black px-6 py-3 text-[11px] uppercase tracking-[0.18em] text-center">
                 Book Appointment
               </Link>
@@ -39,16 +42,18 @@ export default function Page() {
             </div>
           </div>
 
-          <div className="border border-black/10 overflow-hidden">
+          {/* RIGHT IMAGE */}
+          <div className="border border-black/10 overflow-hidden bg-white">
             <img
               src="https://images.unsplash.com/photo-1605100804763-247f67b3557e?q=80&w=1400&auto=format&fit=crop"
-              className="w-full aspect-[4/5] object-cover lg:h-[460px]"
+              className="w-full h-[380px] sm:h-[420px] lg:h-[520px] object-cover"
+              alt="Diamond ring"
             />
           </div>
         </div>
       </section>
 
-      {/* CATEGORY */}
+      {/* CATEGORY BAR */}
       <section className="border-y border-black/10 bg-white">
         <div className="mx-auto max-w-[1300px] px-5 sm:px-6 py-4 flex flex-wrap justify-between gap-4 text-[11px] uppercase tracking-[0.18em] text-black/60">
           {["Rings", "Necklaces", "Bracelets", "Earrings", "Engagement"].map((item) => (
@@ -67,88 +72,29 @@ export default function Page() {
         </div>
 
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {[1, 2, 3].map((i) => (
-            <ProductCard key={i} />
+          {featured.map((item) => (
+            <ProductCard key={item.name} item={item} />
           ))}
         </div>
       </section>
 
-{/* COLLECTIONS */}
-<section className="mx-auto max-w-[1300px] px-5 sm:px-6 pb-16">
-  <div className="mb-8">
-    <p className="text-[11px] uppercase tracking-[0.25em] text-black/50">
-      Collections
-    </p>
-    <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
-      Explore the house signatures
-    </h2>
-  </div>
+      {/* COLLECTIONS */}
+      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 pb-16">
+        <div className="mb-8">
+          <p className="text-[11px] uppercase tracking-[0.25em] text-black/50">
+            Collections
+          </p>
+          <h2 className="mt-3 font-serif text-2xl sm:text-3xl">
+            Explore the house signatures
+          </h2>
+        </div>
 
-  <div className="grid gap-6 md:grid-cols-3">
-    {/* SOLENNE */}
-    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
-      <img
-        src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000&auto=format&fit=crop"
-        className="w-full h-[260px] object-cover"
-        alt="Gold jewellery"
-      />
-      <div className="p-5">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
-          Collection
+        <div className="grid gap-6 md:grid-cols-3">
+          {collections.map((c) => (
+            <CollectionCard key={c.name} item={c} />
+          ))}
         </div>
-        <div className="mt-2 font-serif text-lg">Solenne</div>
-        <p className="mt-3 text-sm text-black/65 leading-6">
-          Warm gold essentials designed for everyday wear and refined simplicity.
-        </p>
-        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
-          Explore →
-        </div>
-      </div>
-    </Link>
-
-    {/* NOCTURNE */}
-    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
-      <img
-        src="https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1000&auto=format&fit=crop"
-        className="w-full h-[260px] object-cover"
-        alt="Diamond jewellery"
-      />
-      <div className="p-5">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
-          Collection
-        </div>
-        <div className="mt-2 font-serif text-lg">Nocturne</div>
-        <p className="mt-3 text-sm text-black/65 leading-6">
-          Statement diamond pieces designed for evening wear and stronger presence.
-        </p>
-        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
-          Explore →
-        </div>
-      </div>
-    </Link>
-
-    {/* AURELINE */}
-    <Link href="/demo/jeweller/collections" className="group block border border-black/10 bg-white">
-      <img
-        src="https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000&auto=format&fit=crop"
-        className="w-full h-[260px] object-cover"
-        alt="Fine jewellery"
-      />
-      <div className="p-5">
-        <div className="text-[10px] uppercase tracking-[0.2em] text-black/50">
-          Collection
-        </div>
-        <div className="mt-2 font-serif text-lg">Aureline</div>
-        <p className="mt-3 text-sm text-black/65 leading-6">
-          Soft, refined pieces built around light, proportion, and timeless design.
-        </p>
-        <div className="mt-4 text-[11px] uppercase tracking-[0.2em] text-black/60">
-          Explore →
-        </div>
-      </div>
-    </Link>
-  </div>
-</section>
+      </section>
 
       {/* ENGAGEMENT */}
       <section className="bg-white border-y border-black/10">
@@ -171,40 +117,11 @@ export default function Page() {
         </div>
       </section>
 
-      {/* CRAFT */}
-      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 py-16 grid gap-10 lg:grid-cols-2 items-center">
-        <div>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-black/50">Craftsmanship</p>
-          <h2 className="mt-4 font-serif text-2xl sm:text-3xl">Built with precision.</h2>
-          <p className="mt-5 text-[14px] sm:text-[15px] leading-7 text-black/65">
-            Every piece is created with attention to proportion, comfort, and finish.
-          </p>
-
-          <ul className="mt-6 space-y-2 text-[14px] text-black/70">
-            <li>• Bespoke commissions</li>
-            <li>• Carefully sourced stones</li>
-            <li>• Lifetime care guidance</li>
-            <li>• Private consultations</li>
-          </ul>
-        </div>
-
-        <img
-          src="https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1400&auto=format&fit=crop"
-          className="w-full aspect-[4/3] object-cover border border-black/10"
-        />
-      </section>
-
-      {/* SECOND PRODUCT ROW */}
-      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 pb-16">
+      {/* SECOND PRODUCT ROW (FIXED) */}
+      <section className="mx-auto max-w-[1300px] px-5 sm:px-6 py-16">
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {[1, 2, 3, 4].map((i) => (
-            <div key={i} className="border border-black/10 bg-white">
-              <div className="aspect-[4/3] bg-[#eceae4]" />
-              <div className="p-4">
-                <div className="text-[10px] uppercase tracking-[0.18em] text-black/50">Necklace</div>
-                <div className="mt-2 font-serif text-base">Serein Pendant</div>
-              </div>
-            </div>
+          {secondary.map((item) => (
+            <ProductCard key={item.name} item={item} />
           ))}
         </div>
       </section>
@@ -221,10 +138,7 @@ export default function Page() {
             </p>
           </div>
 
-          <Link
-            href="/demo/jeweller/contact"
-            className="border border-white px-6 py-3 text-[11px] uppercase tracking-[0.18em]"
-          >
+          <Link href="/demo/jeweller/contact" className="border border-white px-6 py-3 text-[11px] uppercase tracking-[0.18em]">
             Book Appointment
           </Link>
         </div>
@@ -235,7 +149,97 @@ export default function Page() {
   );
 }
 
-/* COMPONENTS */
+/* ---------- DATA ---------- */
+
+const featured = [
+  {
+    name: "Aveline Halo Ring",
+    category: "Ring",
+    image: "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    name: "Solstice Tennis Bracelet",
+    category: "Bracelet",
+    image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    name: "Lune Drop Earrings",
+    category: "Earrings",
+    image: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000&auto=format&fit=crop",
+  },
+];
+
+const secondary = [
+  {
+    name: "Serein Pendant",
+    category: "Necklace",
+    image: "https://images.unsplash.com/photo-1611107683227-e9060eccd846?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    name: "Orée Necklace",
+    category: "Necklace",
+    image: "https://images.unsplash.com/photo-1602173574767-37ac01994b2a?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    name: "Aurea Chain",
+    category: "Necklace",
+    image: "https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?q=80&w=1000&auto=format&fit=crop",
+  },
+  {
+    name: "Celeste Pendant",
+    category: "Necklace",
+    image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000&auto=format&fit=crop",
+  },
+];
+
+const collections = [
+  {
+    name: "Solenne",
+    image: "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000",
+    desc: "Warm gold essentials for everyday wear.",
+  },
+  {
+    name: "Nocturne",
+    image: "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1000",
+    desc: "Stronger diamond-led statement pieces.",
+  },
+  {
+    name: "Aureline",
+    image: "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000",
+    desc: "Refined silhouettes built around light.",
+  },
+];
+
+/* ---------- COMPONENTS ---------- */
+
+function ProductCard({ item }: any) {
+  return (
+    <div className="border border-black/10 bg-white">
+      <img src={item.image} className="w-full aspect-[4/5] object-cover" />
+      <div className="p-4">
+        <div className="text-[10px] uppercase tracking-[0.18em] text-black/50">
+          {item.category}
+        </div>
+        <div className="mt-2 font-serif text-base">{item.name}</div>
+      </div>
+    </div>
+  );
+}
+
+function CollectionCard({ item }: any) {
+  return (
+    <Link href="/demo/jeweller/collections" className="block border border-black/10 bg-white">
+      <img src={item.image} className="w-full h-[260px] object-cover" />
+      <div className="p-5">
+        <div className="text-[10px] uppercase tracking-[0.18em] text-black/50">
+          Collection
+        </div>
+        <div className="mt-2 font-serif text-lg">{item.name}</div>
+        <p className="mt-3 text-sm text-black/65">{item.desc}</p>
+      </div>
+    </Link>
+  );
+}
 
 function Header() {
   return (
@@ -253,25 +257,6 @@ function Header() {
         Appointment
       </Link>
     </header>
-  );
-}
-
-function ProductCard() {
-  return (
-    <div className="bg-white border border-black/10">
-      <img
-        src="https://images.unsplash.com/photo-1611591437281-460bfbe1220a?q=80&w=1000&auto=format&fit=crop"
-        className="w-full aspect-[4/5] object-cover"
-      />
-      <div className="p-5">
-        <div className="text-[10px] uppercase tracking-[0.18em] text-black/50">
-          Ring
-        </div>
-        <div className="mt-2 font-serif text-lg">
-          Aveline Halo Ring
-        </div>
-      </div>
-    </div>
   );
 }
 
