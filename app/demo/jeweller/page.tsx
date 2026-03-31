@@ -1,447 +1,492 @@
 import Link from "next/link";
 
-type Collection = {
-  name: string;
-  description: string;
-  accent: string;
-  href: string;
-};
-
-type Product = {
-  name: string;
-  category: string;
-  price: string;
-  description: string;
-  accent: string;
-};
-
-type Testimonial = {
-  quote: string;
-  name: string;
-  title: string;
-};
-
-const collections: Collection[] = [
+const collections = [
   {
-    name: "Nocturne",
+    name: "Obsidian Veil",
+    subtitle: "Evening architecture",
     description:
-      "Architectural evening pieces with sculptural lines, deep contrast, and a cinematic glow.",
-    accent: "from-stone-950 via-zinc-900 to-amber-950/70",
-    href: "/demo/jeweller/collections/nocturne",
+      "Dark-polished silhouettes cut with precise light, designed for after-hours presence.",
   },
   {
-    name: "Solenne",
+    name: "Pale Orbit",
+    subtitle: "Modern heirlooms",
     description:
-      "Warm gold essentials refined to their purest expression, designed for modern ritual and daily luxury.",
-    accent: "from-[#6f5327] via-[#9c7b43] to-[#d6bb87]",
-    href: "/demo/jeweller/collections/solenne",
+      "Soft brilliance, restrained proportions, and sculptural lines intended to outlast trend cycles.",
   },
   {
-    name: "Aureline",
+    name: "Atelier 9",
+    subtitle: "Private commissions",
     description:
-      "Softly luminous heirloom silhouettes inspired by light on silk, skin, and brushed metal.",
-    accent: "from-[#d8c8b3] via-[#f3ede4] to-[#c7a978]",
-    href: "/demo/jeweller/collections/aureline",
+      "Rare pieces conceived through intimate consultation, balance studies, and couture-level finishing.",
   },
 ];
 
-const featuredProducts: Product[] = [
+const products = [
   {
-    name: "Celeste Arc Diamond Collar",
-    category: "Signature Necklace",
-    price: "£4,900",
-    description:
-      "A sweeping collar silhouette with graduated brilliance and a fluid, couture-inspired line.",
-    accent: "from-zinc-900 via-zinc-800 to-stone-950",
+    name: "The Seraph Collar",
+    price: "£5,800",
+    type: "Necklace",
   },
   {
-    name: "Solstice Pavé Cuff",
-    category: "Statement Bracelet",
-    price: "£3,200",
-    description:
-      "A polished open cuff with restrained sparkle and mirror-finished edges for clean impact.",
-    accent: "from-[#5d4928] via-[#8c6d3c] to-[#b69562]",
+    name: "Lune Frame Ring",
+    price: "£2,940",
+    type: "Ring",
   },
   {
-    name: "Lune Halo Ring",
-    category: "Fine Ring",
-    price: "£2,480",
-    description:
-      "A poised central stone framed by delicate radiance, balanced for elegance from every angle.",
-    accent: "from-[#c6b49c] via-[#efe7dc] to-[#9e7c4b]",
+    name: "Noir Axis Cuff",
+    price: "£3,100",
+    type: "Bracelet",
   },
   {
-    name: "Étoile Drop Earrings",
-    category: "Evening Earrings",
-    price: "£2,950",
-    description:
-      "Lengthening lines and suspended brilliance create movement, light, and an unmistakably refined finish.",
-    accent: "from-zinc-950 via-zinc-700 to-[#7d653e]",
+    name: "Halide Drop Earrings",
+    price: "£2,760",
+    type: "Earrings",
   },
 ];
 
-const testimonials: Testimonial[] = [
+const testimonials = [
   {
     quote:
-      "The presentation feels like couture translated into jewellery. Every detail feels intentional, quiet, and impossibly elevated.",
-    name: "Mariam K.",
-    title: "Private Client",
+      "It feels less like shopping and more like entering a private fashion object world.",
+    author: "Nadia El-Hariri",
+    role: "Showroom Guest",
   },
   {
     quote:
-      "A rare balance of restraint and presence. It feels luxurious before you even touch the piece.",
-    name: "Elena V.",
-    title: "Creative Consultant",
-  },
-  {
-    quote:
-      "Editorial in spirit, precise in execution, and deeply wearable. The whole experience feels considered.",
-    name: "Sofia R.",
-    title: "Showroom Appointment Guest",
+      "The visual language is disciplined, luxurious, and genuinely memorable.",
+    author: "Iris V.",
+    role: "Creative Director",
   },
 ];
 
-const pressLogos = ["Atelier Review", "The Modern Ledger", "Maison Notes", "Lustre Quarterly"];
-
-export default function JewellerHomepage() {
+export default function Page() {
   return (
-    <main className="min-h-screen bg-[#f7f3ee] text-[#171412] selection:bg-[#b08a57]/20">
-      <div className="relative isolate overflow-hidden">
-        <BackgroundTexture />
-        <SiteHeader />
+    <main className="min-h-screen bg-[#0b0b0d] text-[#f5f1ea]">
+      <div className="relative overflow-hidden">
+        <Noise />
+        <AmbientLines />
+        <Header />
 
-        <section className="relative">
-          <div className="mx-auto grid min-h-[100svh] max-w-7xl grid-cols-1 gap-10 px-6 pb-14 pt-28 sm:px-8 md:pb-20 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:pt-32">
-            <div className="flex max-w-2xl flex-col justify-center">
-              <span className="mb-5 inline-flex w-fit items-center gap-2 rounded-full border border-black/10 bg-white/60 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.28em] text-black/70 backdrop-blur">
-                Fictional luxury jewellery house
-              </span>
+        <section className="relative border-b border-white/10">
+          <div className="mx-auto grid min-h-screen max-w-[1600px] grid-cols-1 px-5 pt-24 md:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:px-10">
+            <div className="flex flex-col justify-between pb-8 lg:pb-10">
+              <div className="max-w-[900px]">
+                <div className="mb-6 inline-flex items-center gap-3 border border-white/12 px-4 py-2 text-[10px] uppercase tracking-[0.35em] text-white/70">
+                  Fictional jewellery house · demo brand
+                </div>
 
-              <h1 className="max-w-4xl font-serif text-5xl leading-[0.92] tracking-[-0.04em] text-[#171412] sm:text-6xl md:text-7xl lg:text-[6.1rem]">
-                Jewellery composed
-                <span className="block text-[#8a6a3d]">with quiet grandeur.</span>
-              </h1>
+                <h1 className="max-w-[1000px] font-serif text-[4.2rem] uppercase leading-[0.9] tracking-[-0.05em] text-[#f3efe8] sm:text-[5.6rem] md:text-[7rem] lg:text-[8.8rem] xl:text-[10.5rem]">
+                  Jewellery
+                  <br />
+                  for the
+                  <br />
+                  <span className="text-white/38">unmistakable.</span>
+                </h1>
 
-              <p className="mt-7 max-w-xl text-base leading-8 text-black/65 sm:text-lg">
-                Welcome to <span className="font-semibold text-black">Maison Aurelienne</span>, a
-                fictional fine jewellery house shaped by sculptural restraint, warm luminosity, and
-                modern heirloom design. Crafted for the woman who prefers presence over noise.
-              </p>
+                <div className="mt-8 grid max-w-3xl gap-6 md:grid-cols-[1fr_auto] md:items-end">
+                  <p className="max-w-xl text-sm leading-7 text-white/68 sm:text-base sm:leading-8">
+                    <span className="text-white">AURELITH</span> is a fictional
+                    luxury jewellery house built around shadow, light, and
+                    deliberate restraint—pieces conceived with the emotional
+                    intensity of couture and the discipline of modern object
+                    design.
+                  </p>
 
-              <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-                <Link
-                  href="/demo/jeweller/collections"
-                  className="group inline-flex items-center justify-center rounded-full bg-[#171412] px-7 py-4 text-sm font-medium tracking-[0.18em] text-white uppercase transition hover:-translate-y-0.5 hover:bg-black"
-                >
-                  Explore Collections
-                  <span className="ml-3 transition group-hover:translate-x-1">→</span>
-                </Link>
-                <Link
-                  href="/demo/jeweller/about"
-                  className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/60 px-7 py-4 text-sm font-medium uppercase tracking-[0.18em] text-[#171412] backdrop-blur transition hover:-translate-y-0.5 hover:border-black/20 hover:bg-white"
-                >
-                  Our Story
-                </Link>
+                  <div className="flex gap-3">
+                    <Link
+                      href="/demo/jeweller/collections"
+                      className="inline-flex items-center justify-center border border-white bg-white px-6 py-3 text-[11px] font-medium uppercase tracking-[0.28em] text-black transition hover:bg-transparent hover:text-white"
+                    >
+                      View Collections
+                    </Link>
+                    <Link
+                      href="/demo/jeweller/about"
+                      className="inline-flex items-center justify-center border border-white/15 px-6 py-3 text-[11px] font-medium uppercase tracking-[0.28em] text-white/80 transition hover:border-white/40 hover:text-white"
+                    >
+                      Brand Story
+                    </Link>
+                  </div>
+                </div>
               </div>
 
-              <dl className="mt-14 grid grid-cols-1 gap-6 border-t border-black/10 pt-8 sm:grid-cols-3">
-                <Stat value="18k" label="Recycled gold" />
-                <Stat value="By hand" label="Finishing approach" />
-                <Stat value="Private" label="Showroom appointments" />
-              </dl>
+              <div className="mt-14 grid gap-8 border-t border-white/10 pt-6 sm:grid-cols-3">
+                <Metric value="01" label="Private showroom model" />
+                <Metric value="18k" label="Recycled gold narrative" />
+                <Metric value="4 pages" label="Tight luxury site architecture" />
+              </div>
             </div>
 
-            <div className="relative flex items-center justify-center lg:justify-end">
-              <HeroComposition />
+            <div className="relative mt-10 min-h-[620px] border-l-0 border-white/10 lg:mt-0 lg:border-l">
+              <HeroArt />
             </div>
           </div>
         </section>
-      </div>
 
-      <PressStrip />
-
-      <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="grid gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-          <div>
-            <SectionEyebrow>Brand introduction</SectionEyebrow>
-            <h2 className="mt-5 max-w-lg font-serif text-3xl leading-tight tracking-[-0.03em] text-[#171412] sm:text-4xl">
-              Designed like modern heirlooms. Presented like editorial objects.
-            </h2>
-          </div>
-
-          <div className="grid gap-8 text-black/68 md:grid-cols-2">
-            <p className="text-base leading-8">
-              Maison Aurelienne is an imagined Paris-and-London-inspired jewellery house devoted to
-              pieces that feel intimate, architectural, and enduring. The aesthetic is refined
-              rather than ornate: soft metal curves, calibrated sparkle, and silhouettes that sit
-              beautifully against skin.
-            </p>
-            <p className="text-base leading-8">
-              Each collection is framed as a study in light, texture, and ritual dressing—from
-              daylit essentials to evening statements. The result is a luxury experience built on
-              confidence, calm, and extraordinary finish.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-8 sm:px-8 lg:px-12 lg:pb-12">
-        <div className="mb-8 flex items-end justify-between gap-6">
-          <div>
-            <SectionEyebrow>Featured collections</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-3xl tracking-[-0.03em] text-[#171412] sm:text-4xl">
-              A study in contrast, glow, and proportion.
-            </h2>
-          </div>
-
-          <Link
-            href="/demo/jeweller/collections"
-            className="hidden text-sm font-medium uppercase tracking-[0.18em] text-[#8a6a3d] transition hover:text-[#5f4724] md:inline-flex"
-          >
-            View all collections
-          </Link>
-        </div>
-
-        <div className="grid gap-5 lg:grid-cols-3">
-          {collections.map((collection) => (
-            <CollectionCard key={collection.name} collection={collection} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-20 sm:px-8 lg:px-12 lg:py-28">
-        <div className="grid gap-7 rounded-[2rem] border border-black/8 bg-[#171412] p-6 text-white sm:p-8 lg:grid-cols-[0.95fr_1.05fr] lg:p-12">
-          <div className="relative overflow-hidden rounded-[1.6rem] border border-white/10 bg-gradient-to-br from-[#2a241f] to-black p-8">
-            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(199,163,104,0.16),transparent_40%),radial-gradient(circle_at_bottom_right,rgba(255,255,255,0.05),transparent_35%)]" />
-            <div className="relative">
-              <SectionEyebrow dark>Craftsmanship</SectionEyebrow>
-              <h2 className="mt-5 max-w-md font-serif text-3xl leading-tight tracking-[-0.03em] sm:text-4xl">
-                Precision made to feel effortless.
+        <section className="border-b border-white/10">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-10 px-5 py-16 md:px-8 lg:grid-cols-[0.8fr_1.2fr] lg:px-10">
+            <div>
+              <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                Positioning
+              </p>
+              <h2 className="mt-4 max-w-md font-serif text-3xl uppercase leading-tight tracking-[-0.04em] text-[#f3efe8] sm:text-4xl">
+                Not decorative.
+                <br />
+                Directional.
               </h2>
-              <p className="mt-5 max-w-lg text-sm leading-7 text-white/72 sm:text-base">
-                Every imagined Maison Aurelienne piece is developed through a luxury design
-                process—stone balance, setting clarity, comfort on the body, and polished finish are
-                considered as carefully as visual impact.
+            </div>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              <p className="text-sm leading-8 text-white/64">
+                The brand language rejects obvious opulence in favour of tension,
+                proportion, surface, and stillness. This is jewellery styled as
+                an object of power rather than sentimentality.
+              </p>
+              <p className="text-sm leading-8 text-white/64">
+                The homepage is structured more like an editorial launch than a
+                standard ecommerce landing page: cinematic introduction, concise
+                identity system, selective product framing, and high-trust
+                service cues.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-white/10">
+          <div className="mx-auto max-w-[1600px] px-5 py-16 md:px-8 lg:px-10 lg:py-24">
+            <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                  Collections
+                </p>
+                <h2 className="mt-4 font-serif text-3xl uppercase tracking-[-0.04em] text-[#f3efe8] sm:text-5xl">
+                  Three worlds. One signature.
+                </h2>
+              </div>
+              <Link
+                href="/demo/jeweller/collections"
+                className="text-[11px] uppercase tracking-[0.28em] text-white/65 transition hover:text-white"
+              >
+                Explore all
+              </Link>
+            </div>
+
+            <div className="grid gap-px bg-white/10 lg:grid-cols-3">
+              {collections.map((item, index) => (
+                <article
+                  key={item.name}
+                  className="group relative min-h-[420px] overflow-hidden bg-[#0b0b0d]"
+                >
+                  <div
+                    className={`absolute inset-0 opacity-80 transition duration-700 group-hover:scale-[1.03] ${
+                      index === 0
+                        ? "bg-[radial-gradient(circle_at_70%_20%,rgba(255,255,255,0.08),transparent_20%),linear-gradient(180deg,#18181b_0%,#08080a_100%)]"
+                        : index === 1
+                          ? "bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.1),transparent_18%),linear-gradient(180deg,#d8d0c4_0%,#9d9181_42%,#151518_100%)]"
+                          : "bg-[radial-gradient(circle_at_60%_25%,rgba(214,185,124,0.14),transparent_18%),linear-gradient(180deg,#2b241c_0%,#0b0b0d_100%)]"
+                    }`}
+                  />
+                  <div className="absolute inset-0 bg-[linear-gradient(135deg,transparent_30%,rgba(255,255,255,0.05)_50%,transparent_70%)] opacity-0 transition duration-700 group-hover:opacity-100" />
+
+                  <div className="relative flex h-full flex-col justify-between p-6 sm:p-8">
+                    <div className="flex items-center justify-between">
+                      <span className="text-[10px] uppercase tracking-[0.35em] text-white/50">
+                        {item.subtitle}
+                      </span>
+                      <span className="text-white/30 transition group-hover:text-white/70">
+                        ↗
+                      </span>
+                    </div>
+
+                    <div>
+                      <h3 className="max-w-xs font-serif text-4xl uppercase leading-none tracking-[-0.05em] text-[#f6f2eb] sm:text-5xl">
+                        {item.name}
+                      </h3>
+                      <p className="mt-5 max-w-sm text-sm leading-7 text-white/68">
+                        {item.description}
+                      </p>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-white/10">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-px bg-white/10 px-5 py-16 md:px-8 lg:grid-cols-[0.95fr_1.05fr] lg:px-10 lg:py-24">
+            <div className="bg-[#111114] p-8 sm:p-10 lg:p-14">
+              <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                Craft
+              </p>
+              <h2 className="mt-5 max-w-lg font-serif text-3xl uppercase leading-tight tracking-[-0.04em] text-[#f3efe8] sm:text-5xl">
+                Built with the discipline of a fashion atelier.
+              </h2>
+              <p className="mt-6 max-w-lg text-sm leading-8 text-white/66">
+                AURELITH is imagined as a house where every decision—metal tone,
+                stone calibration, polish level, comfort curve, clasp weight,
+                and final presentation—exists to support a singular emotional
+                impression: controlled intensity.
               </p>
 
-              <div className="mt-10 grid gap-5 sm:grid-cols-2">
-                <FeatureTile
-                  title="Material integrity"
-                  text="18k recycled gold tones, ethically framed sourcing language, and enduring wearability."
+              <div className="mt-10 grid gap-px bg-white/10 sm:grid-cols-2">
+                <InfoBlock
+                  title="Material language"
+                  text="18k recycled gold, platinum-toned settings, and conflict-conscious fictional sourcing narrative."
                 />
-                <FeatureTile
-                  title="Sculptural comfort"
-                  text="Pieces are shaped to sit with softness on the body, never feeling harsh or overworked."
+                <InfoBlock
+                  title="Finish standard"
+                  text="Mirror, brushed, and shadow-polished treatments selected for how they hold light in motion."
                 />
-                <FeatureTile
-                  title="Quiet distinction"
-                  text="Luxury signaled through finish, silhouette, and restraint rather than excessive embellishment."
+                <InfoBlock
+                  title="Service posture"
+                  text="Private appointment-led consultation for bridal, gifting, collectors, and bespoke enquiries."
                 />
-                <FeatureTile
-                  title="Gift-worthy presentation"
-                  text="Signature cases, appointment wrapping, and tactile detail elevate every unboxing moment."
+                <InfoBlock
+                  title="Presentation"
+                  text="Architectural packaging, restrained wrapping, and tactile details that elevate receipt into ritual."
                 />
               </div>
             </div>
+
+            <div className="relative min-h-[620px] bg-[#09090b]">
+              <EditorialShowcase />
+            </div>
           </div>
+        </section>
 
-          <div className="grid gap-5 md:grid-cols-2">
-            <EditorialPanel
-              title="Private consultations"
-              body="A showroom-led approach for bridal, anniversary, and bespoke commissions—calm, attentive, and highly personal."
-              kicker="Service"
-            />
-            <EditorialPanel
-              title="Signature finishing"
-              body="Mirror polish, soft-brushed texture, and hand-inspected settings designed to reflect light with control."
-              kicker="Atelier"
-            />
-            <EditorialPanel
-              title="Modern heirloom philosophy"
-              body="Created to feel relevant now and meaningful years from now, with a silhouette-first design language."
-              kicker="Design"
-            />
-            <EditorialPanel
-              title="Luxury with clarity"
-              body="Transparent care guidance, considered sizing support, and a service standard that builds confidence."
-              kicker="Experience"
-            />
-          </div>
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 pb-16 sm:px-8 lg:px-12 lg:pb-24">
-        <div className="mb-8 flex items-end justify-between gap-6">
-          <div>
-            <SectionEyebrow>Featured pieces</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-3xl tracking-[-0.03em] text-[#171412] sm:text-4xl">
-              Selected to anchor the collection story.
-            </h2>
-          </div>
-
-          <Link
-            href="/demo/jeweller/collections"
-            className="hidden text-sm font-medium uppercase tracking-[0.18em] text-[#8a6a3d] transition hover:text-[#5f4724] md:inline-flex"
-          >
-            Shop the edit
-          </Link>
-        </div>
-
-        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
-          {featuredProducts.map((product) => (
-            <ProductCard key={product.name} product={product} />
-          ))}
-        </div>
-      </section>
-
-      <section className="mx-auto max-w-7xl px-6 py-16 sm:px-8 lg:px-12 lg:py-24">
-        <div className="grid gap-6 lg:grid-cols-[0.85fr_1.15fr]">
-          <div className="rounded-[2rem] border border-black/8 bg-white p-8 shadow-[0_20px_80px_rgba(17,12,8,0.06)]">
-            <SectionEyebrow>Client impressions</SectionEyebrow>
-            <h2 className="mt-4 max-w-md font-serif text-3xl tracking-[-0.03em] text-[#171412] sm:text-4xl">
-              Luxury that feels felt, not announced.
-            </h2>
-            <p className="mt-5 max-w-md text-base leading-8 text-black/65">
-              Even in demo form, the brand experience is built to communicate trust, refinement, and
-              an unmistakable point of view.
-            </p>
-          </div>
-
-          <div className="grid gap-5 md:grid-cols-3">
-            {testimonials.map((item) => (
-              <article
-                key={item.name}
-                className="group rounded-[1.75rem] border border-black/8 bg-[#efe7dc] p-6 transition duration-300 hover:-translate-y-1 hover:shadow-[0_20px_60px_rgba(29,20,14,0.08)]"
+        <section className="border-b border-white/10">
+          <div className="mx-auto max-w-[1600px] px-5 py-16 md:px-8 lg:px-10 lg:py-24">
+            <div className="mb-10 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                  Featured pieces
+                </p>
+                <h2 className="mt-4 font-serif text-3xl uppercase tracking-[-0.04em] text-[#f3efe8] sm:text-5xl">
+                  Signature forms
+                </h2>
+              </div>
+              <Link
+                href="/demo/jeweller/collections"
+                className="text-[11px] uppercase tracking-[0.28em] text-white/65 transition hover:text-white"
               >
-                <div className="text-3xl text-[#8a6a3d]">“</div>
-                <p className="mt-4 text-sm leading-7 text-black/72">{item.quote}</p>
-                <div className="mt-8 border-t border-black/10 pt-5">
-                  <div className="text-sm font-medium text-[#171412]">{item.name}</div>
-                  <div className="mt-1 text-xs uppercase tracking-[0.18em] text-black/45">
-                    {item.title}
-                  </div>
-                </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+                Shop the edit
+              </Link>
+            </div>
 
-      <section className="mx-auto max-w-7xl px-6 pb-16 sm:px-8 lg:px-12 lg:pb-24">
-        <div className="overflow-hidden rounded-[2.2rem] border border-black/8 bg-gradient-to-br from-[#efe5d7] via-white to-[#e1d0b6]">
-          <div className="grid gap-10 px-6 py-10 sm:px-8 sm:py-12 lg:grid-cols-[1fr_auto] lg:items-center lg:px-12 lg:py-14">
-            <div>
-              <SectionEyebrow>Luxury CTA</SectionEyebrow>
-              <h2 className="mt-4 max-w-2xl font-serif text-3xl tracking-[-0.03em] text-[#171412] sm:text-4xl lg:text-[2.8rem]">
-                Discover the collection or arrange a private showroom appointment.
+            <div className="grid gap-px bg-white/10 md:grid-cols-2 xl:grid-cols-4">
+              {products.map((product, index) => (
+                <article
+                  key={product.name}
+                  className="group bg-[#0d0d10] transition hover:bg-[#111115]"
+                >
+                  <div className="p-4">
+                    <div
+                      className={`relative aspect-[0.9/1] overflow-hidden border border-white/10 ${
+                        index === 0
+                          ? "bg-[radial-gradient(circle_at_40%_20%,rgba(255,255,255,0.08),transparent_18%),linear-gradient(180deg,#151518_0%,#050507_100%)]"
+                          : index === 1
+                            ? "bg-[radial-gradient(circle_at_55%_20%,rgba(255,255,255,0.12),transparent_15%),linear-gradient(180deg,#cabfad_0%,#8f8273_40%,#111114_100%)]"
+                            : index === 2
+                              ? "bg-[radial-gradient(circle_at_60%_25%,rgba(214,185,124,0.12),transparent_18%),linear-gradient(180deg,#2a241d_0%,#070709_100%)]"
+                              : "bg-[radial-gradient(circle_at_40%_18%,rgba(255,255,255,0.12),transparent_17%),linear-gradient(180deg,#d9d5cf_0%,#938778_45%,#0d0d10_100%)]"
+                      }`}
+                    >
+                      <div className="absolute inset-[15%_18%_20%_18%] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.01))]" />
+                      <div className="absolute inset-0 bg-[linear-gradient(125deg,transparent_35%,rgba(255,255,255,0.06)_50%,transparent_65%)] opacity-0 transition duration-700 group-hover:opacity-100" />
+                    </div>
+                  </div>
+
+                  <div className="px-5 pb-5 pt-1">
+                    <div className="text-[10px] uppercase tracking-[0.32em] text-white/38">
+                      {product.type}
+                    </div>
+                    <div className="mt-3 flex items-start justify-between gap-4">
+                      <h3 className="max-w-[12rem] font-serif text-2xl uppercase leading-tight tracking-[-0.04em] text-[#f4f0e9]">
+                        {product.name}
+                      </h3>
+                      <span className="pt-1 text-sm text-white/72">
+                        {product.price}
+                      </span>
+                    </div>
+                    <div className="mt-6 flex items-center justify-between border-t border-white/10 pt-4">
+                      <Link
+                        href="/demo/jeweller/product/seraph-collar"
+                        className="text-[11px] uppercase tracking-[0.28em] text-white/70 transition hover:text-white"
+                      >
+                        View piece
+                      </Link>
+                      <button
+                        className="text-[11px] uppercase tracking-[0.28em] text-white/45 transition hover:text-white"
+                        type="button"
+                      >
+                        Add to bag
+                      </button>
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        <section className="border-b border-white/10">
+          <div className="mx-auto grid max-w-[1600px] grid-cols-1 gap-px bg-white/10 px-5 py-16 md:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:px-10 lg:py-24">
+            <div className="bg-[#0d0d10] p-8 sm:p-10 lg:p-14">
+              <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                Social proof
+              </p>
+              <h2 className="mt-5 max-w-xl font-serif text-3xl uppercase leading-tight tracking-[-0.04em] text-[#f3efe8] sm:text-5xl">
+                Credibility, without shouting.
               </h2>
-              <p className="mt-5 max-w-2xl text-base leading-8 text-black/65">
-                Explore sculptural signatures, bridal-inspired silhouettes, and quiet statement
-                pieces through a premium editorial shopping experience.
+              <p className="mt-6 max-w-lg text-sm leading-8 text-white/66">
+                The brand is fictional, but the experience is designed to feel
+                credible: emotionally precise copy, luxury pacing, service cues,
+                and a visual system that suggests confidence rather than excess.
+              </p>
+
+              <div className="mt-10 grid gap-px bg-white/10 md:grid-cols-2">
+                {testimonials.map((item) => (
+                  <blockquote key={item.author} className="bg-black p-6">
+                    <p className="text-lg leading-8 text-[#f3efe8]">
+                      “{item.quote}”
+                    </p>
+                    <footer className="mt-8">
+                      <div className="text-sm text-white/80">{item.author}</div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.28em] text-white/40">
+                        {item.role}
+                      </div>
+                    </footer>
+                  </blockquote>
+                ))}
+              </div>
+            </div>
+
+            <div className="flex flex-col justify-between bg-[#141418] p-8 sm:p-10 lg:p-14">
+              <div>
+                <p className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                  Appointment
+                </p>
+                <h3 className="mt-5 max-w-md font-serif text-3xl uppercase leading-tight tracking-[-0.04em] text-[#f3efe8] sm:text-4xl">
+                  Enter the showroom by invitation.
+                </h3>
+                <p className="mt-6 max-w-md text-sm leading-8 text-white/66">
+                  For private viewing, bridal selection, gifting, or bespoke
+                  enquiries, the house offers an appointment-led experience with
+                  refined guidance and discreet presentation.
+                </p>
+              </div>
+
+              <div className="mt-10 flex flex-col gap-4 sm:flex-row lg:flex-col">
+                <Link
+                  href="/demo/jeweller/contact"
+                  className="inline-flex items-center justify-center border border-white bg-white px-6 py-4 text-[11px] font-medium uppercase tracking-[0.28em] text-black transition hover:bg-transparent hover:text-white"
+                >
+                  Book appointment
+                </Link>
+                <Link
+                  href="/demo/jeweller/contact"
+                  className="inline-flex items-center justify-center border border-white/15 px-6 py-4 text-[11px] font-medium uppercase tracking-[0.28em] text-white/80 transition hover:border-white/40 hover:text-white"
+                >
+                  Bespoke enquiry
+                </Link>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <footer className="bg-[#08080a]">
+          <div className="mx-auto grid max-w-[1600px] gap-12 px-5 py-12 md:px-8 lg:grid-cols-[1.1fr_0.8fr_0.8fr_0.9fr] lg:px-10 lg:py-16">
+            <div>
+              <div className="font-serif text-3xl uppercase tracking-[0.18em] text-[#f3efe8]">
+                AURELITH
+              </div>
+              <p className="mt-5 max-w-sm text-sm leading-7 text-white/50">
+                A fictional luxury jewellery house created for an elevated,
+                agency-grade demo experience.
               </p>
             </div>
 
-            <div className="flex flex-col gap-4 sm:flex-row lg:flex-col">
-              <Link
-                href="/demo/jeweller/collections"
-                className="inline-flex items-center justify-center rounded-full bg-[#171412] px-7 py-4 text-sm font-medium uppercase tracking-[0.18em] text-white transition hover:-translate-y-0.5 hover:bg-black"
-              >
-                Shop Collections
-              </Link>
-              <Link
-                href="/demo/jeweller/contact"
-                className="inline-flex items-center justify-center rounded-full border border-black/10 bg-white/80 px-7 py-4 text-sm font-medium uppercase tracking-[0.18em] text-[#171412] transition hover:-translate-y-0.5 hover:bg-white"
-              >
-                Book Appointment
-              </Link>
+            <FooterNav
+              title="Navigate"
+              items={[
+                ["Home", "/demo/jeweller"],
+                ["Collections", "/demo/jeweller/collections"],
+                ["About", "/demo/jeweller/about"],
+                ["Contact", "/demo/jeweller/contact"],
+              ]}
+            />
+
+            <FooterNav
+              title="Services"
+              items={[
+                ["Private appointments", "/demo/jeweller/contact"],
+                ["Bespoke", "/demo/jeweller/contact"],
+                ["Bridal guidance", "/demo/jeweller/contact"],
+                ["Care", "/demo/jeweller/contact"],
+              ]}
+            />
+
+            <div>
+              <div className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+                Showroom
+              </div>
+              <p className="mt-5 text-sm leading-7 text-white/55">
+                19 Sable Court
+                <br />
+                Mayfair, London
+                <br />
+                By private appointment
+              </p>
             </div>
           </div>
-        </div>
-      </section>
 
-      <footer className="border-t border-black/8 bg-[#171412] text-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-6 py-12 sm:px-8 lg:grid-cols-[1.15fr_0.85fr_0.85fr_1fr] lg:px-12 lg:py-16">
-          <div>
-            <div className="font-serif text-2xl tracking-[0.08em]">Maison Aurelienne</div>
-            <p className="mt-4 max-w-sm text-sm leading-7 text-white/62">
-              A fictional luxury jewellery house created for premium demo presentation, editorial
-              storytelling, and elevated ecommerce design.
-            </p>
+          <div className="border-t border-white/10">
+            <div className="mx-auto flex max-w-[1600px] flex-col gap-2 px-5 py-4 text-[10px] uppercase tracking-[0.28em] text-white/30 md:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-10">
+              <span>Demo brand only</span>
+              <span>Original fictional identity</span>
+            </div>
           </div>
-
-          <FooterColumn
-            title="Navigate"
-            links={[
-              { label: "Home", href: "/demo/jeweller" },
-              { label: "Collections", href: "/demo/jeweller/collections" },
-              { label: "About", href: "/demo/jeweller/about" },
-              { label: "Contact", href: "/demo/jeweller/contact" },
-            ]}
-          />
-
-          <FooterColumn
-            title="Services"
-            links={[
-              { label: "Private Appointments", href: "/demo/jeweller/contact" },
-              { label: "Bespoke Enquiries", href: "/demo/jeweller/contact" },
-              { label: "Bridal Consultation", href: "/demo/jeweller/contact" },
-              { label: "Care Guidance", href: "/demo/jeweller/contact" },
-            ]}
-          />
-
-          <div>
-            <div className="text-xs uppercase tracking-[0.24em] text-white/45">Showroom</div>
-            <p className="mt-4 text-sm leading-7 text-white/68">
-              18 Rue des Lumières
-              <br />
-              Mayfair House
-              <br />
-              London, W1
-            </p>
-            <p className="mt-5 text-sm text-white/68">By private appointment only</p>
-          </div>
-        </div>
-
-        <div className="border-t border-white/10">
-          <div className="mx-auto flex max-w-7xl flex-col gap-3 px-6 py-5 text-xs uppercase tracking-[0.16em] text-white/38 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-            <span>Demo brand only · Fictional jewellery house</span>
-            <span>Designed for luxury showcase presentation</span>
-          </div>
-        </div>
-      </footer>
+        </footer>
+      </div>
     </main>
   );
 }
 
-function SiteHeader() {
+function Header() {
   return (
-    <header className="absolute inset-x-0 top-0 z-30">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 sm:px-8 lg:px-12">
-        <Link href="/demo/jeweller" className="group inline-flex items-center">
-          <span className="font-serif text-[1.45rem] tracking-[0.12em] text-[#171412] transition group-hover:text-[#8a6a3d]">
-            Maison Aurelienne
-          </span>
+    <header className="absolute inset-x-0 top-0 z-50">
+      <div className="mx-auto flex max-w-[1600px] items-center justify-between px-5 py-5 md:px-8 lg:px-10">
+        <Link
+          href="/demo/jeweller"
+          className="font-serif text-xl uppercase tracking-[0.22em] text-[#f3efe8]"
+        >
+          AURELITH
         </Link>
 
         <nav className="hidden items-center gap-8 md:flex">
-          {[
-            { label: "Collections", href: "/demo/jeweller/collections" },
-            { label: "About", href: "/demo/jeweller/about" },
-            { label: "Contact", href: "/demo/jeweller/contact" },
-          ].map((item) => (
-            <Link
-              key={item.label}
-              href={item.href}
-              className="text-xs font-medium uppercase tracking-[0.2em] text-black/68 transition hover:text-[#171412]"
-            >
-              {item.label}
-            </Link>
-          ))}
+          <Link
+            href="/demo/jeweller/collections"
+            className="text-[11px] uppercase tracking-[0.28em] text-white/65 transition hover:text-white"
+          >
+            Collections
+          </Link>
+          <Link
+            href="/demo/jeweller/about"
+            className="text-[11px] uppercase tracking-[0.28em] text-white/65 transition hover:text-white"
+          >
+            About
+          </Link>
+          <Link
+            href="/demo/jeweller/contact"
+            className="text-[11px] uppercase tracking-[0.28em] text-white/65 transition hover:text-white"
+          >
+            Contact
+          </Link>
         </nav>
 
         <Link
           href="/demo/jeweller/contact"
-          className="hidden rounded-full border border-black/10 bg-white/70 px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-[#171412] backdrop-blur transition hover:-translate-y-0.5 hover:bg-white md:inline-flex"
+          className="border border-white/15 px-4 py-2 text-[10px] uppercase tracking-[0.32em] text-white/80 transition hover:border-white/35 hover:text-white"
         >
           Appointment
         </Link>
@@ -450,207 +495,95 @@ function SiteHeader() {
   );
 }
 
-function HeroComposition() {
+function HeroArt() {
   return (
-    <div className="relative w-full max-w-[620px]">
-      <div className="absolute -left-8 top-8 h-40 w-40 rounded-full bg-[#d3bc93]/30 blur-3xl" />
-      <div className="absolute bottom-10 right-0 h-52 w-52 rounded-full bg-[#8a6a3d]/20 blur-3xl" />
+    <div className="relative h-full min-h-[620px]">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_65%_22%,rgba(255,255,255,0.12),transparent_15%),radial-gradient(circle_at_52%_48%,rgba(255,255,255,0.06),transparent_18%),linear-gradient(180deg,#111114_0%,#08080a_100%)]" />
 
-      <div className="relative grid gap-4 sm:grid-cols-[0.82fr_1fr]">
-        <div className="order-2 flex flex-col gap-4 sm:order-1 sm:pt-16">
-          <VisualTile variant="dark" label="Evening line" />
-          <VisualTile variant="light" label="Private salon" tall />
-        </div>
+      <div className="absolute left-[10%] top-[8%] h-[78%] w-[58%] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01))]" />
+      <div className="absolute right-[8%] top-[18%] h-[64%] w-[34%] border border-white/10 bg-black/30 backdrop-blur-[2px]" />
 
-        <div className="order-1 sm:order-2">
-          <div className="group relative overflow-hidden rounded-[2rem] border border-black/10 bg-[#16120f] p-3 shadow-[0_35px_120px_rgba(17,12,8,0.18)]">
-            <div className="relative aspect-[0.8/1] overflow-hidden rounded-[1.5rem] bg-[radial-gradient(circle_at_30%_20%,rgba(235,220,192,0.26),transparent_24%),radial-gradient(circle_at_80%_18%,rgba(173,133,72,0.2),transparent_20%),linear-gradient(180deg,#2a241f_0%,#0f0c0a_100%)]">
-              <div className="absolute inset-0 bg-[linear-gradient(130deg,transparent_10%,rgba(255,255,255,0.08)_40%,transparent_60%)] opacity-60" />
-              <div className="absolute inset-x-[16%] bottom-[12%] top-[14%] rounded-[45%_45%_40%_40%/20%_20%_30%_30%] border border-[#d7bf8f]/25 bg-[radial-gradient(circle_at_50%_20%,rgba(244,233,214,0.25),transparent_20%),linear-gradient(180deg,rgba(60,47,31,0.8),rgba(23,18,15,0.96))] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]" />
-              <div className="absolute inset-x-[29%] top-[27%] h-[18%] rounded-full border border-[#e5d3ac]/35 bg-[radial-gradient(circle,rgba(255,241,214,0.55),rgba(173,135,77,0.22)_48%,transparent_70%)] blur-[1px]" />
-              <div className="absolute inset-x-[22%] bottom-[17%] h-[22%] rounded-[50%] border border-[#d3ba87]/20 bg-[radial-gradient(circle_at_50%_40%,rgba(236,223,197,0.12),transparent_50%)]" />
-              <div className="absolute inset-0 opacity-0 transition duration-700 group-hover:opacity-100 bg-[linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.08)_50%,transparent_70%)]" />
-            </div>
-          </div>
-        </div>
+      <div className="absolute left-[18%] top-[16%] h-[58%] w-[46%] rounded-[48%_48%_38%_38%/20%_20%_30%_30%] border border-white/10 bg-[radial-gradient(circle_at_50%_16%,rgba(255,255,255,0.18),transparent_12%),linear-gradient(180deg,#2a2a2f_0%,#0a0a0c_100%)] shadow-[0_0_80px_rgba(255,255,255,0.03)]" />
+
+      <div className="absolute left-[31%] top-[24%] h-[15%] w-[21%] rounded-full border border-[#d7c7a0]/20 bg-[radial-gradient(circle,rgba(255,255,255,0.45),rgba(212,190,140,0.18)_42%,transparent_70%)] blur-[1px]" />
+
+      <div className="absolute bottom-[12%] left-[8%] max-w-[15rem] border-l border-white/15 pl-4">
+        <p className="text-[10px] uppercase tracking-[0.35em] text-white/35">
+          Campaign note
+        </p>
+        <p className="mt-3 text-sm leading-7 text-white/58">
+          A silhouette-led hero composition designed to suggest couture styling,
+          not stock ecommerce photography.
+        </p>
       </div>
     </div>
   );
 }
 
-function VisualTile({
-  variant,
-  label,
-  tall = false,
-}: {
-  variant: "light" | "dark";
-  label: string;
-  tall?: boolean;
-}) {
-  const isDark = variant === "dark";
-
+function EditorialShowcase() {
   return (
-    <div
-      className={[
-        "group relative overflow-hidden rounded-[1.75rem] border p-3 transition duration-500 hover:-translate-y-1",
-        tall ? "aspect-[0.95/1.1]" : "aspect-[1/0.78]",
-        isDark
-          ? "border-black/10 bg-[#171412] shadow-[0_20px_80px_rgba(17,12,8,0.18)]"
-          : "border-black/8 bg-white shadow-[0_18px_60px_rgba(17,12,8,0.06)]",
-      ].join(" ")}
-    >
-      <div
-        className={[
-          "relative h-full rounded-[1.35rem]",
-          isDark
-            ? "bg-[radial-gradient(circle_at_20%_20%,rgba(230,210,170,0.12),transparent_24%),linear-gradient(180deg,#28211c_0%,#0d0a08_100%)]"
-            : "bg-[radial-gradient(circle_at_70%_20%,rgba(192,151,89,0.18),transparent_20%),linear-gradient(180deg,#f7f1ea_0%,#e9dccd_100%)]",
-        ].join(" ")}
-      >
-        <div className="absolute inset-0 bg-[linear-gradient(120deg,transparent_20%,rgba(255,255,255,0.12)_48%,transparent_75%)] opacity-0 transition duration-700 group-hover:opacity-100" />
-        <div className="absolute bottom-4 left-4 rounded-full border border-white/10 bg-black/10 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/75 backdrop-blur">
-          {label}
-        </div>
+    <div className="relative h-full min-h-[620px] overflow-hidden">
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,#0a0a0d_0%,#111115_100%)]" />
+      <div className="absolute left-[10%] top-[10%] h-[38%] w-[32%] border border-white/10 bg-[linear-gradient(180deg,#1a1a1f_0%,#0a0a0d_100%)]" />
+      <div className="absolute left-[46%] top-[10%] h-[60%] w-[42%] border border-white/10 bg-[radial-gradient(circle_at_50%_20%,rgba(255,255,255,0.1),transparent_16%),linear-gradient(180deg,#d9d0c3_0%,#918372_38%,#111115_100%)]" />
+      <div className="absolute left-[14%] top-[54%] h-[28%] w-[28%] border border-white/10 bg-[linear-gradient(180deg,#1f1b17_0%,#0b0b0d_100%)]" />
+      <div className="absolute left-[46%] top-[74%] w-[38%]">
+        <p className="text-[10px] uppercase tracking-[0.35em] text-white/38">
+          Atelier language
+        </p>
+        <p className="mt-3 text-sm leading-7 text-white/58">
+          Strong geometry, negative space, and measured reflection create a more
+          recognisable identity than generic luxury gradients and soft cards.
+        </p>
       </div>
     </div>
   );
 }
 
-function PressStrip() {
+function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <section className="border-y border-black/8 bg-white/55 backdrop-blur">
-      <div className="mx-auto flex max-w-7xl flex-col gap-5 px-6 py-5 sm:px-8 lg:flex-row lg:items-center lg:justify-between lg:px-12">
-        <div className="text-xs uppercase tracking-[0.24em] text-black/42">Imagined press mentions</div>
-        <div className="grid grid-cols-2 gap-5 sm:grid-cols-4 sm:gap-10">
-          {pressLogos.map((logo) => (
-            <div
-              key={logo}
-              className="text-sm font-medium tracking-[0.12em] text-black/55 transition hover:text-black/80"
-            >
-              {logo}
-            </div>
-          ))}
-        </div>
+    <div>
+      <div className="font-serif text-3xl tracking-[-0.04em] text-[#f3efe8]">
+        {value}
       </div>
-    </section>
+      <div className="mt-2 text-[10px] uppercase tracking-[0.32em] text-white/40">
+        {label}
+      </div>
+    </div>
   );
 }
 
-function CollectionCard({ collection }: { collection: Collection }) {
+function InfoBlock({ title, text }: { title: string; text: string }) {
   return (
-    <Link
-      href={collection.href}
-      className="group relative overflow-hidden rounded-[2rem] border border-black/8 bg-white p-4 transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_80px_rgba(23,18,15,0.08)]"
-    >
-      <div
-        className={`relative flex min-h-[27rem] flex-col justify-between overflow-hidden rounded-[1.5rem] bg-gradient-to-br ${collection.accent} p-6 text-white`}
-      >
-        <div className="absolute inset-0 bg-[linear-gradient(145deg,rgba(255,255,255,0.08),transparent_40%,rgba(255,255,255,0.03))]" />
-        <div className="relative flex items-start justify-between">
-          <span className="rounded-full border border-white/15 bg-white/8 px-3 py-1 text-[10px] uppercase tracking-[0.24em] text-white/80 backdrop-blur">
-            Collection
-          </span>
-          <span className="text-xl transition group-hover:translate-x-1">↗</span>
-        </div>
-
-        <div className="relative">
-          <h3 className="font-serif text-3xl tracking-[-0.03em]">{collection.name}</h3>
-          <p className="mt-4 max-w-xs text-sm leading-7 text-white/78">{collection.description}</p>
-          <div className="mt-7 inline-flex items-center text-xs font-medium uppercase tracking-[0.2em] text-white/88">
-            Explore story
-          </div>
-        </div>
+    <div className="bg-black p-6">
+      <div className="text-sm uppercase tracking-[0.18em] text-[#f1ede6]">
+        {title}
       </div>
-    </Link>
+      <p className="mt-3 text-sm leading-7 text-white/55">{text}</p>
+    </div>
   );
 }
 
-function ProductCard({ product }: { product: Product }) {
-  return (
-    <article className="group overflow-hidden rounded-[1.8rem] border border-black/8 bg-white transition duration-500 hover:-translate-y-1 hover:shadow-[0_25px_70px_rgba(17,12,8,0.08)]">
-      <div className="p-3">
-        <div
-          className={`relative aspect-[0.92/1] overflow-hidden rounded-[1.35rem] bg-gradient-to-br ${product.accent}`}
-        >
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(255,255,255,0.16),transparent_22%),linear-gradient(130deg,transparent_15%,rgba(255,255,255,0.1)_48%,transparent_75%)] opacity-80" />
-          <div className="absolute inset-x-[22%] bottom-[18%] top-[16%] rounded-[46%_46%_42%_42%/18%_18%_28%_28%] border border-white/12 bg-[radial-gradient(circle_at_50%_15%,rgba(255,244,228,0.18),transparent_16%),linear-gradient(180deg,rgba(255,255,255,0.06),rgba(0,0,0,0.1))] shadow-[inset_0_0_0_1px_rgba(255,255,255,0.03)]" />
-          <div className="absolute inset-0 opacity-0 transition duration-700 group-hover:opacity-100 bg-[linear-gradient(110deg,transparent_20%,rgba(255,255,255,0.08)_50%,transparent_72%)]" />
-        </div>
-      </div>
-
-      <div className="px-5 pb-5 pt-1">
-        <div className="text-[11px] uppercase tracking-[0.22em] text-black/42">{product.category}</div>
-        <div className="mt-3 flex items-start justify-between gap-4">
-          <h3 className="font-serif text-[1.45rem] leading-tight tracking-[-0.03em] text-[#171412]">
-            {product.name}
-          </h3>
-          <span className="pt-1 text-sm font-medium text-[#8a6a3d]">{product.price}</span>
-        </div>
-        <p className="mt-3 text-sm leading-7 text-black/62">{product.description}</p>
-        <div className="mt-5 flex items-center justify-between border-t border-black/8 pt-4">
-          <Link
-            href="/demo/jeweller/product/celeste-arc-diamond-collar"
-            className="text-xs font-medium uppercase tracking-[0.18em] text-[#171412] transition hover:text-[#8a6a3d]"
-          >
-            View piece
-          </Link>
-          <button
-            type="button"
-            className="rounded-full border border-black/10 px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] text-[#171412] transition hover:border-black/20 hover:bg-[#f8f4ef]"
-          >
-            Add to bag
-          </button>
-        </div>
-      </div>
-    </article>
-  );
-}
-
-function EditorialPanel({
-  kicker,
+function FooterNav({
   title,
-  body,
-}: {
-  kicker: string;
-  title: string;
-  body: string;
-}) {
-  return (
-    <div className="rounded-[1.5rem] border border-white/10 bg-white/4 p-6 backdrop-blur">
-      <div className="text-[11px] uppercase tracking-[0.22em] text-[#d0b07a]">{kicker}</div>
-      <h3 className="mt-3 font-serif text-2xl tracking-[-0.03em] text-white">{title}</h3>
-      <p className="mt-3 text-sm leading-7 text-white/68">{body}</p>
-    </div>
-  );
-}
-
-function FeatureTile({ title, text }: { title: string; text: string }) {
-  return (
-    <div className="rounded-[1.25rem] border border-white/10 bg-white/5 p-5 backdrop-blur">
-      <div className="text-sm font-medium text-white">{title}</div>
-      <p className="mt-2 text-sm leading-6 text-white/65">{text}</p>
-    </div>
-  );
-}
-
-function FooterColumn({
-  title,
-  links,
+  items,
 }: {
   title: string;
-  links: { label: string; href: string }[];
+  items: [string, string][];
 }) {
   return (
     <div>
-      <div className="text-xs uppercase tracking-[0.24em] text-white/45">{title}</div>
-      <div className="mt-4 flex flex-col gap-3">
-        {links.map((link) => (
+      <div className="text-[10px] uppercase tracking-[0.35em] text-white/40">
+        {title}
+      </div>
+      <div className="mt-5 flex flex-col gap-3">
+        {items.map(([label, href]) => (
           <Link
-            key={link.label}
-            href={link.href}
-            className="text-sm text-white/68 transition hover:text-white"
+            key={label}
+            href={href}
+            className="text-sm text-white/55 transition hover:text-white"
           >
-            {link.label}
+            {label}
           </Link>
         ))}
       </div>
@@ -658,44 +591,27 @@ function FooterColumn({
   );
 }
 
-function Stat({ value, label }: { value: string; label: string }) {
-  return (
-    <div>
-      <dt className="text-[11px] uppercase tracking-[0.22em] text-black/42">{label}</dt>
-      <dd className="mt-2 font-serif text-2xl tracking-[-0.03em] text-[#171412]">{value}</dd>
-    </div>
-  );
-}
-
-function SectionEyebrow({
-  children,
-  dark = false,
-}: {
-  children: React.ReactNode;
-  dark?: boolean;
-}) {
-  return (
-    <div
-      className={[
-        "text-[11px] uppercase tracking-[0.24em]",
-        dark ? "text-[#d0b07a]" : "text-[#8a6a3d]",
-      ].join(" ")}
-    >
-      {children}
-    </div>
-  );
-}
-
-function BackgroundTexture() {
+function Noise() {
   return (
     <div
       aria-hidden="true"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden"
-    >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(193,162,110,0.16),transparent_24%),radial-gradient(circle_at_85%_16%,rgba(107,85,54,0.09),transparent_16%),linear-gradient(180deg,#f7f3ee_0%,#f3ede5_100%)]" />
-      <div className="absolute left-[-10%] top-[10%] h-[26rem] w-[26rem] rounded-full bg-[#e5d5b7]/25 blur-3xl" />
-      <div className="absolute right-[-8%] top-[14%] h-[22rem] w-[22rem] rounded-full bg-[#cab085]/20 blur-3xl" />
-      <div className="absolute bottom-[-8rem] left-[24%] h-[18rem] w-[18rem] rounded-full bg-[#c4a06e]/10 blur-3xl" />
+      className="pointer-events-none absolute inset-0 opacity-[0.06]"
+      style={{
+        backgroundImage:
+          "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140' viewBox='0 0 140 140'%3E%3Cg fill='white' fill-opacity='1'%3E%3Ccircle cx='8' cy='12' r='1'/%3E%3Ccircle cx='42' cy='90' r='1'/%3E%3Ccircle cx='88' cy='34' r='1'/%3E%3Ccircle cx='121' cy='71' r='1'/%3E%3Ccircle cx='67' cy='121' r='1'/%3E%3C/g%3E%3C/svg%3E\")",
+      }}
+    />
+  );
+}
+
+function AmbientLines() {
+  return (
+    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
+      <div className="absolute left-[7%] top-0 h-full w-px bg-white/6" />
+      <div className="absolute left-1/2 top-0 h-full w-px bg-white/5" />
+      <div className="absolute right-[8%] top-0 h-full w-px bg-white/6" />
+      <div className="absolute top-[22%] h-px w-full bg-white/5" />
+      <div className="absolute bottom-[18%] h-px w-full bg-white/5" />
     </div>
   );
 }
