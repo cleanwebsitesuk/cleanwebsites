@@ -65,19 +65,19 @@ const collections: Collection[] = [
     name: "Solenne",
     image:
       "https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=1000&auto=format&fit=crop",
-    desc: "Warm gold essentials designed for daily wear, subtle layering, and clean, polished styling.",
+    desc: "Warm gold essentials designed for daily wear, subtle layering, and polished simplicity.",
   },
   {
     name: "Nocturne",
     image:
       "https://images.unsplash.com/photo-1602751584552-8ba73aad10e1?q=80&w=1000&auto=format&fit=crop",
-    desc: "Diamond-led silhouettes with stronger contrast, evening presence, and a more sculptural finish.",
+    desc: "Diamond-led silhouettes with stronger contrast, evening presence, and sculptural finish.",
   },
   {
     name: "Aureline",
     image:
       "https://images.unsplash.com/photo-1596944924616-7b38e7cfac36?q=80&w=1000&auto=format&fit=crop",
-    desc: "Refined pieces built around softness, light balance, and understated heirloom character.",
+    desc: "Refined pieces shaped around softness, light balance, and understated heirloom character.",
   },
 ];
 
@@ -99,22 +99,21 @@ export default function Page() {
             </h1>
 
             <p className="mt-5 max-w-md text-[14px] leading-7 text-black/65 sm:text-[15px]">
-              Maison Valeur is a contemporary jeweller specialising in gold,
-              diamonds, and bespoke commissions crafted for everyday wear,
-              meaningful gifting, and modern bridal.
+              Maison Valeur specialises in gold, diamonds, and bespoke commissions
+              crafted for everyday wear, meaningful gifting, and modern bridal.
             </p>
 
             <div className="mt-6 flex flex-col gap-3 sm:flex-row">
               <Link
                 href="/demo/jeweller/collections"
-                className="bg-black px-6 py-3 text-center text-[11px] uppercase tracking-[0.18em] text-white"
+                className="bg-black px-6 py-3 text-center text-[11px] uppercase tracking-[0.18em] text-white transition hover:bg-black/90"
               >
                 Shop Jewellery
               </Link>
 
               <Link
                 href="/demo/jeweller/contact"
-                className="border border-black px-6 py-3 text-center text-[11px] uppercase tracking-[0.18em]"
+                className="border border-black px-6 py-3 text-center text-[11px] uppercase tracking-[0.18em] transition hover:bg-black hover:text-white"
               >
                 Book Appointment
               </Link>
@@ -148,28 +147,26 @@ export default function Page() {
       </section>
 
       <section className="mx-auto max-w-[1300px] px-5 py-14 sm:px-6 lg:py-16">
-        <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+        <div className="grid gap-8 lg:grid-cols-[0.88fr_1.12fr] lg:gap-10">
           <div>
             <p className="text-[10px] uppercase tracking-[0.22em] text-black/50">
               The House
             </p>
-            <h2 className="mt-4 font-serif text-2xl sm:text-3xl">
-              Contemporary jewellery with a considered retail experience.
+            <h2 className="mt-4 max-w-[12ch] font-serif text-[1.9rem] leading-[1.12] tracking-[-0.03em] sm:text-[2.2rem] lg:text-[2.6rem]">
+              Contemporary jewellery with a refined retail perspective.
             </h2>
           </div>
 
           <div className="space-y-5 text-[14px] leading-7 text-black/66 sm:text-[15px]">
             <p>
-              Maison Valeur is imagined as a modern London jeweller combining
-              refined design, practical wearability, and appointment-led service.
-              The intention is not theatrical luxury, but confidence through
-              finish, proportion, and clarity.
+              Maison Valeur brings together fine materials, balanced design, and a
+              more considered way to shop for jewellery. The focus is on pieces
+              that feel polished, wearable, and quietly distinctive.
             </p>
             <p>
               From engagement rings to giftable fine jewellery and bespoke
-              commissions, the house is positioned around trust, material
-              integrity, and a quieter, more polished expression of premium
-              retail.
+              commissions, the collection is shaped around craftsmanship, clarity,
+              and service that feels personal from the first enquiry onward.
             </p>
           </div>
         </div>
@@ -180,22 +177,22 @@ export default function Page() {
           <InfoCard
             eyebrow="Materials"
             title="18k gold & platinum"
-            text="Designed in precious metals chosen for lasting wear, clean finish, and everyday confidence."
+            text="Precious metals selected for lasting wear, clean finish, and everyday confidence."
           />
           <InfoCard
             eyebrow="Diamonds"
-            title="Quality-led selection"
-            text="Stones are framed with clarity, balance, and grading language that supports informed purchase."
+            title="Carefully selected stones"
+            text="Chosen with attention to balance, brilliance, and a clear, informed buying experience."
           />
           <InfoCard
             eyebrow="Bespoke"
             title="Private commissions"
-            text="Consultation-led design for engagement, gifting, anniversaries, and one-off personal pieces."
+            text="A consultation-led service for engagement rings, gifting, and one-off personal pieces."
           />
           <InfoCard
             eyebrow="Service"
             title="Aftercare & guidance"
-            text="Sizing, care, and showroom support help the experience feel credible before and after purchase."
+            text="Support with sizing, care, and appointments to make the experience feel straightforward and considered."
           />
         </div>
       </section>
@@ -205,7 +202,7 @@ export default function Page() {
           <h2 className="font-serif text-2xl sm:text-3xl">Featured Pieces</h2>
           <Link
             href="/demo/jeweller/collections"
-            className="text-[11px] uppercase tracking-[0.18em] text-black/60"
+            className="text-[11px] uppercase tracking-[0.18em] text-black/60 hover:text-black"
           >
             View all
           </Link>
@@ -258,12 +255,12 @@ export default function Page() {
             <p className="mt-4 text-[14px] leading-7 text-black/65 sm:text-[15px]">
               Discover engagement rings designed with clarity and precision,
               from classic solitaires to bespoke designs. The bridal offering is
-              presented as a consultation-led service with a stronger focus on
-              guidance, fit, and lasting significance.
+              presented through a consultation-led service with a stronger focus
+              on guidance, fit, and lasting significance.
             </p>
             <Link
               href="/demo/jeweller/collections"
-              className="mt-5 inline-block text-[11px] uppercase tracking-[0.18em]"
+              className="mt-5 inline-block text-[11px] uppercase tracking-[0.18em] hover:text-black/70"
             >
               Explore →
             </Link>
@@ -282,9 +279,9 @@ export default function Page() {
             </h2>
             <p className="mt-5 max-w-xl text-[14px] leading-7 text-black/65 sm:text-[15px]">
               A strong jewellery site needs more than beautiful product imagery.
-              It needs clear service language, a sense of place, and the kinds
-              of practical details that make a client feel comfortable enquiring,
-              booking, or buying.
+              It needs clear service language, a sense of place, and practical
+              detail that helps a client feel comfortable enquiring, booking, or
+              buying.
             </p>
 
             <div className="mt-8 grid gap-4 sm:grid-cols-2">
@@ -327,8 +324,8 @@ export default function Page() {
               </h2>
               <p className="mt-5 max-w-md text-[14px] leading-7 text-black/66 sm:text-[15px]">
                 For bridal consultations, bespoke design enquiries, and private
-                viewings, clients are welcomed into a calm, appointment-led
-                showroom environment with focused guidance and discreet service.
+                viewings, the showroom offers a calm, appointment-led setting
+                with focused guidance and discreet service.
               </p>
 
               <div className="mt-8 space-y-4 text-[14px] leading-7 text-black/68">
@@ -357,7 +354,7 @@ export default function Page() {
 
               <Link
                 href="/demo/jeweller/contact"
-                className="mt-8 inline-block border border-black px-6 py-3 text-[11px] uppercase tracking-[0.18em]"
+                className="mt-8 inline-block border border-black px-6 py-3 text-[11px] uppercase tracking-[0.18em] transition hover:bg-black hover:text-white"
               >
                 Contact the Showroom
               </Link>
@@ -376,15 +373,15 @@ export default function Page() {
                 Visit our showroom or arrange a private appointment
               </h3>
               <p className="mt-3 max-w-2xl text-sm leading-7 text-white/70">
-                Maison Valeur is a fictional jeweller demo, but the structure is
-                designed to feel like a complete premium retail experience with
-                product depth, trust signals, and a believable point of contact.
+                Explore the collection, arrange a private appointment, or enquire
+                about a bespoke piece through a showroom experience designed to
+                feel calm, personal, and considered.
               </p>
             </div>
 
             <Link
               href="/demo/jeweller/contact"
-              className="border border-white px-6 py-3 text-[11px] uppercase tracking-[0.18em]"
+              className="border border-white px-6 py-3 text-[11px] uppercase tracking-[0.18em] transition hover:bg-white hover:text-black"
             >
               Book Appointment
             </Link>
@@ -411,7 +408,7 @@ function Header() {
 
       <Link
         href="/demo/jeweller/contact"
-        className="border px-3 py-2 text-[11px] uppercase tracking-[0.18em]"
+        className="border px-3 py-2 text-[11px] uppercase tracking-[0.18em] transition hover:bg-black hover:text-white"
       >
         Appointment
       </Link>
@@ -427,7 +424,7 @@ function ProductCard({
   compact?: boolean;
 }) {
   return (
-    <div className="border border-black/10 bg-white">
+    <div className="border border-black/10 bg-white transition hover:-translate-y-0.5">
       <img
         src={item.image}
         className={compact ? "aspect-[4/3] w-full object-cover" : "aspect-[4/5] w-full object-cover"}
@@ -536,8 +533,8 @@ function Footer() {
         <div>
           <div className="font-serif text-lg">Maison Valeur</div>
           <p className="mt-4 text-sm leading-6 text-white/60">
-            Fictional jewellery house demo designed to feel like a complete,
-            premium retail site.
+            A contemporary jewellery house offering fine pieces, bespoke commissions,
+            and appointment-led service.
           </p>
         </div>
 
