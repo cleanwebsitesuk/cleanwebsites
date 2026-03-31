@@ -131,9 +131,8 @@ export default function CollectionsPage() {
               Collections
             </p>
 <h1 className="mt-4 max-w-[24ch] font-serif text-[2.3rem] leading-[1.08] tracking-[-0.03em] sm:text-[3rem] lg:text-[4rem]">
-  Jewellery designed with clarity,
-              <span className="block">balance, and everyday presence.</span>
-            </h1>
+  Jewellery designed with clarity, balance, and everyday presence.
+</h1>
             <p className="mt-5 max-w-2xl text-[14px] leading-7 text-black/66 sm:text-[15px]">
               Explore signature rings, necklaces, earrings, and bracelets across
               the house collections. Each piece is presented with a focus on
