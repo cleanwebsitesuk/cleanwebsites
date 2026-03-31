@@ -130,8 +130,8 @@ export default function CollectionsPage() {
             <p className="text-[10px] uppercase tracking-[0.22em] text-black/50">
               Collections
             </p>
-            <h1 className="mt-4 font-serif text-[2.3rem] leading-[1.08] tracking-[-0.03em] sm:text-[3rem] lg:text-[4rem]">
-              Jewellery designed with clarity,
+<h1 className="mt-4 max-w-[24ch] font-serif text-[2.3rem] leading-[1.08] tracking-[-0.03em] sm:text-[3rem] lg:text-[4rem]">
+  Jewellery designed with clarity,
               <span className="block">balance, and everyday presence.</span>
             </h1>
             <p className="mt-5 max-w-2xl text-[14px] leading-7 text-black/66 sm:text-[15px]">
