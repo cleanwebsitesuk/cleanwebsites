@@ -20,6 +20,7 @@ const products: Product[] = [
     blurb:
       "A softly elevated silhouette with a balanced halo and clean, polished finish.",
   },
+];
 
   const collections = [
   {
