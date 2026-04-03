@@ -665,7 +665,6 @@ export default function StartPage() {
                 <SectionCard
                   eyebrow="Portfolio"
                   title="Recent work"
-                  copy="You can explore a small selection of recent projects before sending an enquiry."
                 >
                   <div className="space-y-3">
                     {portfolioLinks.map((project, index) => (
