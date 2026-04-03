@@ -16,7 +16,7 @@ import {
 } from "react";
 
 const NAV_ITEMS = [
-  { href: "#demos", label: "Demos" },
+  { href: "#portfolio", label: "Portfolio" },
   { href: "#pricing", label: "Pricing" },
   { href: "#process", label: "Process" },
   { href: "#faq", label: "FAQ" },
@@ -29,44 +29,36 @@ const FIT_POINTS = [
   "Suitable for many small businesses, including local and professional services",
 ] as const;
 
-const DEMO_TAGS = [
-  "Service businesses",
-  "Studios and beauty",
-  "Restaurants and hospitality",
-  "Local service companies",
-  "Small business layouts",
-] as const;
-
-const DEMO_CARDS = [
+const PORTFOLIO_ITEMS = [
   {
-    title: "Barber / Salon",
+    title: "McKenzieFriend.ai",
+    domain: "mckenziefriend.ai",
     description:
-      "A booking-led example layout with clear service sections, strong mobile usability and contact points that are easy to find.",
-    href: "/demo/barber",
-    image: "/demo-previews/barber.jpg",
-    kicker: "Demo website",
-    badge: "Preview build",
-    zoom: "scale-[1.08]",
+      "An AI-assisted preparation platform for Family Court, designed to help litigants organise documents, structure information clearly, and prepare with confidence.",
+    href: "https://mckenziefriend.ai",
+    image: "/portfolio/mckenziefriend.jpg",
+    kicker: "Recent work",
+    cta: "Visit website",
+    points: [
+      "Trust-focused legal positioning",
+      "Clear dashboard-led structure",
+      "Designed for clarity in a sensitive context",
+    ],
   },
   {
-    title: "Restaurant / Takeaway",
+    title: "FareGuard",
+    domain: "fareguard.co.uk",
     description:
-      "A menu-first example build with opening hours, directions and mobile-friendly action points for customers ready to order or visit.",
-    href: "/demo/burger",
-    image: "/demo-previews/burger.jpg",
-    kicker: "Demo website",
-    badge: "Preview build",
-    zoom: "scale-[1]",
-  },
-  {
-    title: "Trades / Services",
-    description:
-      "A service-led example layout with clear sections, trust-building structure, coverage information and a straightforward quote enquiry flow.",
-    href: "/demo/trades",
-    image: "/demo-previews/trades.jpg",
-    kicker: "Demo website",
-    badge: "Preview build",
-    zoom: "scale-[0.94]",
+      "A UK-focused product website for a tool that tracks train journeys and reminds users to claim Delay Repay, built around clarity, automation and trust.",
+    href: "https://fareguard.co.uk",
+    image: "/portfolio/fareguard.jpg",
+    kicker: "Recent work",
+    cta: "Visit website",
+    points: [
+      "Clear automation-led user journey",
+      "Built around trust and simplicity",
+      "Designed for everyday commuter use",
+    ],
   },
 ] as const;
 
@@ -410,10 +402,10 @@ function DesktopActions({ isMobile }: { isMobile: boolean }) {
   return (
     <div className="hidden items-center gap-3 md:flex">
       <Link
-        href="#demos"
+        href="#portfolio"
         className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
       >
-        View demo websites
+        View portfolio
       </Link>
       <MagneticLink
         href="/start"
@@ -636,10 +628,10 @@ function HeroSection({
               </MagneticLink>
 
               <a
-                href="#demos"
+                href="#portfolio"
                 className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
               >
-                View demo websites
+                View portfolio
                 <ArrowRight />
               </a>
             </div>
@@ -940,108 +932,77 @@ function PricingAccordion({
   );
 }
 
-function DemoCard({
-  card,
+function PortfolioCard({
+  item,
   index,
-  interactionEnabled,
 }: {
-  card: (typeof DEMO_CARDS)[number];
+  item: (typeof PORTFOLIO_ITEMS)[number];
   index: number;
-  interactionEnabled: boolean;
 }) {
-  const reduceMotion = useReducedMotion() ?? false;
-  const [rotateX, setRotateX] = useState(0);
-  const [rotateY, setRotateY] = useState(0);
-
-  const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion || !interactionEnabled) return;
-
-    const rect = e.currentTarget.getBoundingClientRect();
-    const px = (e.clientX - rect.left) / rect.width;
-    const py = (e.clientY - rect.top) / rect.height;
-
-    const ry = (px - 0.5) * 7;
-    const rx = (0.5 - py) * 6;
-
-    setRotateX(rx);
-    setRotateY(ry);
-  };
-
-  const handleLeave = () => {
-    setRotateX(0);
-    setRotateY(0);
-  };
-
   return (
     <Reveal delay={index * 0.08}>
-      <motion.a
-        href={card.href}
+      <a
+        href={item.href}
         target="_blank"
         rel="noreferrer"
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-        whileHover={reduceMotion || !interactionEnabled ? {} : { y: -6 }}
-        transition={{ duration: 0.35, ease: easeOut }}
-        style={
-          interactionEnabled
-            ? { transformStyle: "preserve-3d", rotateX, rotateY }
-            : undefined
-        }
-        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
+        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:-translate-y-1 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
       >
-        <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10]">
-          <motion.div
-            className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.24),transparent_35%)]"
-            animate={
-              reduceMotion || !interactionEnabled ? {} : { scale: [1, 1.05, 1] }
-            }
-            transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          />
+        <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10] p-4">
+          <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
+                {item.kicker}
+              </span>
+              <span className="text-sm font-medium text-[#F5F2EA]">
+                {item.cta}
+              </span>
+            </div>
 
-          <div className="relative p-4">
-            <div
-              style={
-                interactionEnabled ? { transform: "translateZ(28px)" } : undefined
-              }
-              className="flex flex-col rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4"
-            >
-              <div className="flex items-center justify-between gap-3">
-                <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
-                  {card.kicker}
-                </span>
-                <span className="rounded-full border border-[#3B82F6]/20 bg-[#3B82F6]/12 px-2.5 py-1 text-[11px] text-[#8BB5FF] sm:px-3 sm:text-xs">
-                  {card.badge}
-                </span>
-              </div>
-
-              <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[16px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
-                <Image
-                  src={card.image}
-                  alt={`${card.title} preview`}
-                  width={1280}
-                  height={800}
-                  className={`h-full w-full object-cover object-top ${card.zoom} transition duration-700 md:group-hover:scale-[1.03]`}
-                />
-              </div>
+            <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[16px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <Image
+                src={item.image}
+                alt={`${item.title} preview`}
+                width={1280}
+                height={800}
+                className="h-full w-full object-cover object-top transition duration-700 md:group-hover:scale-[1.03]"
+              />
             </div>
           </div>
         </div>
 
-        <div className="relative overflow-hidden p-5">
-          <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-          <div className="text-sm text-[#A9ABB3]">{card.kicker}</div>
-          <h3 className="mt-2 text-[1.45rem] font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[1.6rem]">
-            {card.title}
+        <div className="p-5 sm:p-6">
+          <div className="text-[12px] uppercase tracking-[0.16em] text-[#7F828A]">
+            {item.domain}
+          </div>
+
+          <h3 className="mt-2 text-[1.55rem] font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[1.75rem]">
+            {item.title}
           </h3>
+
           <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
-            {card.description}
+            {item.description}
           </p>
-          <div className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
-            Open demo
+
+          <div className="mt-5 grid gap-3">
+            {item.points.map((point) => (
+              <div
+                key={point}
+                className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
+              >
+                <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/18 text-[#A5C8FF]">
+                  <CheckIcon />
+                </span>
+                {point}
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
+            Visit website
             <ArrowRight />
           </div>
         </div>
-      </motion.a>
+      </a>
     </Reveal>
   );
 }
@@ -1113,7 +1074,7 @@ export default function HomePage() {
                   x: [0, 20, -10, 0],
                   y: [0, -14, 10, 0],
                   scale: [1, 1.04, 0.98, 1],
-                }  
+                }
               : {}
           }
           transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
@@ -1139,89 +1100,66 @@ export default function HomePage() {
 
       <HeroHeader scrolled={scrolled} />
 
-<main className="relative">
-          
-<Reveal>
-  <SectionShell>
-    <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
-      <div className="max-w-xl">
-        <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-          Built for businesses that need a clean & professional website
-        </h2>
-        <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-          This service is designed for businesses that need a polished 
-          website without a lengthy or expensive build.
-          It works particularly well for local and service-based businesses
-          that want to clearly present their services and make it easy for customers to get in touch.
-        </p>
-      </div>
-
-<div className="grid gap-2.5 sm:grid-cols-2">
-  {FIT_POINTS.map((item, index) => (
-    <motion.div
-      key={item}
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
-      whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.35 }}
-      transition={{
-        duration: 0.45,
-        delay: index * 0.05,
-        ease: easeOut,
-      }}
-      className="rounded-[16px] border border-white/8 bg-white/[0.025] px-4 py-3"
-    >
-      <div className="flex items-start gap-3">
-        <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-        <p className="text-[14px] leading-6 text-[#E5E7EC] sm:text-[15px] sm:leading-7">
-          {item}
-        </p>
-      </div>
-    </motion.div>
-  ))}
-</div>
-    </div>
-  </SectionShell>
-</Reveal>
-  
+      <main className="relative">
         <Reveal>
-          <SectionShell id="demos">
+          <SectionShell>
+            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+              <div className="max-w-xl">
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  Built for businesses that need a clean & professional website
+                </h2>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  This service is designed for businesses that need a polished
+                  website without a lengthy or expensive build. It works
+                  particularly well for local and service-based businesses that
+                  want to clearly present their services and make it easy for
+                  customers to get in touch.
+                </p>
+              </div>
+
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {FIT_POINTS.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.05,
+                      ease: easeOut,
+                    }}
+                    className="rounded-[16px] border border-white/8 bg-white/[0.025] px-4 py-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[14px] leading-6 text-[#E5E7EC] sm:text-[15px] sm:leading-7">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </SectionShell>
+        </Reveal>
+
+        <Reveal>
+          <SectionShell id="portfolio">
             <div className="max-w-3xl">
-              <SectionEyebrow>Demo websites</SectionEyebrow>
+              <SectionEyebrow>Portfolio</SectionEyebrow>
               <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-                See how your website could be structured
+                Recent work
               </h2>
               <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-              These are demonstration websites built to show the standard, structure, and style you can expect from Clean Websites.
+                A selection of recent projects showing the level of structure,
+                presentation and clarity you can expect.
               </p>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-3 text-sm text-[#A9ABB3]">
-              {DEMO_TAGS.map((item, index) => (
-  <motion.div
-    key={item}
-    initial={reduceMotion ? false : { opacity: 0, y: 12 }}
-    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.8 }}
-    transition={{
-      duration: 0.45,
-      delay: index * 0.04,
-      ease: easeOut,
-    }}
-    className="hidden sm:inline-flex rounded-full border border-white/10 bg-white/[0.03] px-4 py-2"
-  >
-    {item}
-  </motion.div>
-))}
-            </div>
-
-            <div className="mt-8 grid gap-5 lg:grid-cols-3">
-              {DEMO_CARDS.map((card, index) => (
-                <DemoCard
-                  key={card.title}
-                  card={card}
-                  index={index}
-                  interactionEnabled={!isMobile}
-                />
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
+              {PORTFOLIO_ITEMS.map((item, index) => (
+                <PortfolioCard key={item.title} item={item} index={index} />
               ))}
             </div>
           </SectionShell>
@@ -1235,222 +1173,231 @@ export default function HomePage() {
                 <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
                   Everything needed for a clean, credible business website
                 </h2>
-<p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-  Our service includes everything needed to get your website properly built,
-  set up and live — without needing to handle any of the technical side yourself.
-</p>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  Our service includes everything needed to get your website
+                  properly built, set up and live — without needing to handle
+                  any of the technical side yourself.
+                </p>
               </div>
 
-    <div className="grid gap-2.5 sm:grid-cols-2">
-        {INCLUDED_ITEMS.map((item, index) => (
-          <motion.div
-            key={item}
-            initial={reduceMotion ? false : { opacity: 0, y: 16 }}
-            whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.35 }}
-            transition={{
-              duration: 0.45,
-              delay: index * 0.04,
-              ease: easeOut,
-            }}
-            className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
-          >
-            <div className="flex items-start gap-3">
-              <span className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-              <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
-                {item}
-              </p>
-            </div>
-          </motion.div>
-        ))}
-</div>
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {INCLUDED_ITEMS.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.04,
+                      ease: easeOut,
+                    }}
+                    className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </SectionShell>
         </Reveal>
 
-<Reveal>
-  <SectionShell id="pricing">
-    <div className="max-w-4xl">
-      <SectionEyebrow>Pricing</SectionEyebrow>
-      <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
-        A complete website for your business
-      </h2>
-      <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
-        Handled for you from start to finish, so getting online is straightforward.
-      </p>
-    </div>
+        <Reveal>
+          <SectionShell id="pricing">
+            <div className="max-w-4xl">
+              <SectionEyebrow>Pricing</SectionEyebrow>
+              <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
+                A complete website for your business
+              </h2>
+              <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                Handled for you from start to finish, so getting online is
+                straightforward.
+              </p>
+            </div>
 
-    {isMobile ? (
-      <div className="mt-8 space-y-4">
-        <GlassCard className="p-4 sm:p-5">
-          <div className="grid grid-cols-3 gap-3">
-            <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
-              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                £595
+            {isMobile ? (
+              <div className="mt-8 space-y-4">
+                <GlassCard className="p-4 sm:p-5">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                        £595
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        One-time
+                      </div>
+                    </div>
+
+                    <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                        £40
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        Per month
+                      </div>
+                    </div>
+
+                    <div className="rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#CFE0FF]">
+                        24h
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#9FB7D9]">
+                        Launch time
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-col gap-3">
+                    <MagneticLink
+                      href="/start"
+                      disabled={isMobile}
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                    >
+                      Start my website
+                    </MagneticLink>
+
+                    <Link
+                      href="#portfolio"
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA]"
+                    >
+                      View portfolio
+                    </Link>
+                  </div>
+                </GlassCard>
+
+                <PricingAccordion title="Website build" defaultOpen>
+                  <div>
+                    <div className="text-sm text-[#A9ABB3]">Website build</div>
+                    <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                      £595
+                    </div>
+                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+
+                    <div className="mt-5">
+                      <PricingList items={BUILD_INCLUDES} />
+                    </div>
+
+                    <div className="mt-5 rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                      Once your content is received, your website can be built
+                      within 24 hours.
+                    </div>
+                  </div>
+                </PricingAccordion>
+
+                <PricingAccordion title="Hosting & support">
+                  <div>
+                    <div className="text-sm text-[#A9ABB3]">
+                      Hosting &amp; support
+                    </div>
+                    <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                      £40 / month
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+                      Your website is hosted securely and managed technically so
+                      it stays online, loads properly and continues to run as
+                      expected after launch.
+                    </p>
+
+                    <div className="mt-5 divide-y divide-white/8">
+                      {HOSTING_INCLUDES.map((item) => (
+                        <div
+                          key={item.title}
+                          className="py-4 first:pt-0 last:pb-0"
+                        >
+                          <div className="text-sm text-[#F5F2EA]">
+                            {item.title}
+                          </div>
+                          <p className="mt-1 text-sm leading-6 text-[#7F828A]">
+                            {item.text}
+                          </p>
+                        </div>
+                      ))}
+
+                      <div className="py-4 last:pb-0">
+                        <p className="text-sm leading-6 text-[#7F828A]">
+                          Your domain is purchased separately in your name, so
+                          you keep full ownership of it.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </PricingAccordion>
               </div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-                One-time
-              </div>
-            </div>
+            ) : (
+              <GlassCard className="mt-8 overflow-hidden bg-[#0F1115] border-white/12 shadow-[0_10px_40px_rgba(0,0,0,0.35)] [&>div:first-child]:hidden [&>div:nth-child(2)]:hidden">
+                <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
+                  <div className="p-6 lg:p-8">
+                    <div className="text-sm text-[#A9ABB3]">Website build</div>
+                    <div className="mt-2 text-[3.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                      £595
+                    </div>
+                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
-            <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
-              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                £40
-              </div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-                Per month
-              </div>
-            </div>
+                    <div className="mt-6">
+                      <PricingList items={BUILD_INCLUDES} />
+                    </div>
 
-            <div className="rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-4 text-center">
-              <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#CFE0FF]">
-                24h
-              </div>
-              <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#9FB7D9]">
-                Launch time
-              </div>
-            </div>
-          </div>
+                    <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                      Once your content is received, your website can be built
+                      within 24 hours.
+                    </div>
+                  </div>
 
-          <div className="mt-4 flex flex-col gap-3">
-            <MagneticLink
-              href="/start"
-              disabled={isMobile}
-              className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
-            >
-              Start my website
-            </MagneticLink>
+                  <div className="border-t border-white/10 bg-white/[0.02] p-6 lg:border-l lg:border-t-0 lg:p-8">
+                    <div className="text-sm text-[#A9ABB3]">
+                      Hosting &amp; support
+                    </div>
+                    <div className="mt-2 text-[2.2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                      £40 / month
+                    </div>
 
-            <Link
-              href="#demos"
-              className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA]"
-            >
-              View demo websites
-            </Link>
-          </div>
-        </GlassCard>
+                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+                      Your website is hosted securely and managed technically so
+                      it stays online, loads properly and continues to run as
+                      expected after launch.
+                    </p>
 
-        <PricingAccordion title="Website build" defaultOpen>
-          <div>
-            <div className="text-sm text-[#A9ABB3]">Website build</div>
-            <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-              £595
-            </div>
-            <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
+                    <div className="mt-5 divide-y divide-white/8">
+                      {HOSTING_INCLUDES.map((item) => (
+                        <div key={item.title} className="py-4 first:pt-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <span className="text-sm text-[#F5F2EA]">
+                              {item.title}
+                            </span>
+                            <InfoTooltip text={item.text} />
+                          </div>
+                        </div>
+                      ))}
 
-            <div className="mt-5">
-              <PricingList items={BUILD_INCLUDES} />
-            </div>
+                      <div className="py-4">
+                        <p className="text-sm leading-7 text-[#A9ABB3]">
+                          Your domain is purchased separately in your name, so
+                          you keep full ownership of it.
+                        </p>
+                      </div>
+                    </div>
 
-            <div className="mt-5 rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
-              Once your content is received, your website can be built
-              within 24 hours.
-            </div>
-          </div>
-        </PricingAccordion>
-
-        <PricingAccordion title="Hosting & support">
-          <div>
-            <div className="text-sm text-[#A9ABB3]">
-              Hosting &amp; support
-            </div>
-            <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-              £40 / month
-            </div>
-
-            <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
-              Your website is hosted securely and managed technically so
-              it stays online, loads properly and continues to run as
-              expected after launch.
-            </p>
-
-            <div className="mt-5 divide-y divide-white/8">
-              {HOSTING_INCLUDES.map((item) => (
-                <div key={item.title} className="py-4 first:pt-0 last:pb-0">
-                  <div className="text-sm text-[#F5F2EA]">{item.title}</div>
-                  <p className="mt-1 text-sm leading-6 text-[#7F828A]">
-                    {item.text}
-                  </p>
-                </div>
-              ))}
-
-              <div className="py-4 last:pb-0">
-                <p className="text-sm leading-6 text-[#7F828A]">
-                  Your domain is purchased separately in your name, so
-                  you keep full ownership of it.
-                </p>
-              </div>
-            </div>
-          </div>
-        </PricingAccordion>
-      </div>
-    ) : (
-      <GlassCard className="mt-8 overflow-hidden bg-[#0F1115] border-white/12 shadow-[0_10px_40px_rgba(0,0,0,0.35)] [&>div:first-child]:hidden [&>div:nth-child(2)]:hidden">
-        <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
-          <div className="p-6 lg:p-8">
-            <div className="text-sm text-[#A9ABB3]">Website build</div>
-            <div className="mt-2 text-[3.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-              £595
-            </div>
-            <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
-
-            <div className="mt-6">
-              <PricingList items={BUILD_INCLUDES} />
-            </div>
-
-            <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
-              Once your content is received, your website can be built
-              within 24 hours.
-            </div>
-          </div>
-
-          <div className="border-t border-white/10 bg-white/[0.02] p-6 lg:border-l lg:border-t-0 lg:p-8">
-            <div className="text-sm text-[#A9ABB3]">
-              Hosting &amp; support
-            </div>
-            <div className="mt-2 text-[2.2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-              £40 / month
-            </div>
-
-            <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
-              Your website is hosted securely and managed technically so
-              it stays online, loads properly and continues to run as
-              expected after launch.
-            </p>
-
-            <div className="mt-5 divide-y divide-white/8">
-              {HOSTING_INCLUDES.map((item) => (
-                <div key={item.title} className="py-4 first:pt-0">
-                  <div className="flex items-start justify-between gap-4">
-                    <span className="text-sm text-[#F5F2EA]">{item.title}</span>
-                    <InfoTooltip text={item.text} />
+                    <div className="mt-6 flex flex-col gap-3 xl:flex-row">
+                      <MagneticLink
+                        href="/start"
+                        disabled={isMobile}
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 xl:w-auto"
+                      >
+                        Start my website
+                      </MagneticLink>
+                    </div>
                   </div>
                 </div>
-              ))}
-
-              <div className="py-4">
-                <p className="text-sm leading-7 text-[#A9ABB3]">
-                  Your domain is purchased separately in your name, so
-                  you keep full ownership of it.
-                </p>
-              </div>
-            </div>
-
-            <div className="mt-6 flex flex-col gap-3 xl:flex-row">
-              <MagneticLink
-                href="/start"
-                disabled={isMobile}
-                className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 xl:w-auto"
-              >
-                Start my website
-              </MagneticLink>
-            </div>
-          </div>
-        </div>
-      </GlassCard>
-    )}
-  </SectionShell>
-</Reveal>
+              </GlassCard>
+            )}
+          </SectionShell>
+        </Reveal>
 
         <Reveal>
           <SectionShell id="process">
@@ -1560,20 +1507,21 @@ export default function HomePage() {
               />
 
               <div className="relative mx-auto max-w-3xl">
-<h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
-  A clean website for your business
-  <span className="hidden sm:inline"> — </span>
-  <span className="block sm:inline">built in 24 hours</span>
-</h2>
+                <h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  A clean website for your business
+                  <span className="hidden sm:inline"> — </span>
+                  <span className="block sm:inline">built in 24 hours</span>
+                </h2>
 
-<p className="mx-auto mt-4 max-w-none text-[14px] leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7 sm:whitespace-nowrap">
-  Clean, coded and built to present your services clearly and make it easy for customers to get in touch.
-</p>
-<p className="mx-auto mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
-  <span className="whitespace-nowrap">Website build £595</span>
-  <span className="mx-2 text-[#7F8692]">•</span>
-  <span className="whitespace-nowrap">£40/month hosting</span>
-</p>
+                <p className="mx-auto mt-4 max-w-none text-[14px] leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7 sm:whitespace-nowrap">
+                  Clean, coded and built to present your services clearly and
+                  make it easy for customers to get in touch.
+                </p>
+                <p className="mx-auto mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
+                  <span className="whitespace-nowrap">Website build £595</span>
+                  <span className="mx-2 text-[#7F8692]">•</span>
+                  <span className="whitespace-nowrap">£40/month hosting</span>
+                </p>
 
                 <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
                   <MagneticLink
@@ -1605,8 +1553,8 @@ export default function HomePage() {
               <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
                 Navigate
               </div>
-              <Link href="#demos" className="transition hover:text-[#F5F2EA]">
-                Demos
+              <Link href="#portfolio" className="transition hover:text-[#F5F2EA]">
+                Portfolio
               </Link>
               <Link href="#pricing" className="transition hover:text-[#F5F2EA]">
                 Pricing
