@@ -36,7 +36,7 @@ const PORTFOLIO_ITEMS = [
     description:
       "An AI-assisted preparation platform for Family and Civil Court, designed to help litigants organise documents, structure information clearly, and prepare with confidence.",
     href: "https://mckenziefriend.ai",
-    image: "/portfolio/mckenziefriend.jpg",
+    image: "/portfolio/mckenziefriend.png",
     kicker: "Recent work",
     cta: "Visit website",
     points: [
@@ -51,7 +51,7 @@ const PORTFOLIO_ITEMS = [
     description:
       "A UK-focused product website for a tool that tracks train journeys and reminds users to claim Delay Repay, built around clarity, automation and trust.",
     href: "https://fareguard.co.uk",
-    image: "/portfolio/fareguard.jpg",
+    image: "/portfolio/fareguard.png",
     kicker: "Recent work",
     cta: "Visit website",
     points: [
