@@ -34,7 +34,7 @@ const PORTFOLIO_ITEMS = [
     title: "McKenzieFriend.ai",
     domain: "mckenziefriend.ai",
     description:
-      "An AI-assisted preparation platform for Family Court, designed to help litigants organise documents, structure information clearly, and prepare with confidence.",
+      "An AI-assisted preparation platform for Family and Civil Court, designed to help litigants organise documents, structure information clearly, and prepare with confidence.",
     href: "https://mckenziefriend.ai",
     image: "/portfolio/mckenziefriend.jpg",
     kicker: "Recent work",
