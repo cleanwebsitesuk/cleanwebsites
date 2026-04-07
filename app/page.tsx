@@ -173,8 +173,8 @@ const FAQS = [
 ] as const;
 
 const OFFER_STATS = [
-  { label: "Build fee", value: "£595" },
-  { label: "Monthly hosting", value: "£40" },
+  { label: "Build fee", value: "£250" },
+  { label: "Monthly hosting", value: "£20" },
   { label: "Launch time", value: "24h" },
 ] as const;
 
@@ -1226,7 +1226,7 @@ export default function HomePage() {
                   <div className="grid grid-cols-3 gap-3">
                     <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
                       <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                        £595
+                        £250
                       </div>
                       <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                         One-time
@@ -1235,7 +1235,7 @@ export default function HomePage() {
 
                     <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
                       <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                        £40
+                        £20
                       </div>
                       <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                         Per month
@@ -1274,7 +1274,7 @@ export default function HomePage() {
                   <div>
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
                     <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                      £595
+                      £250
                     </div>
                     <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
@@ -1295,7 +1295,7 @@ export default function HomePage() {
                       Hosting &amp; support
                     </div>
                     <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-                      £40 / month
+                      £20 / month
                     </div>
 
                     <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
@@ -1335,7 +1335,7 @@ export default function HomePage() {
                   <div className="p-6 lg:p-8">
                     <div className="text-sm text-[#A9ABB3]">Website build</div>
                     <div className="mt-2 text-[3.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                      £595
+                      £250
                     </div>
                     <div className="mt-2 text-sm text-[#A9ABB3]">One-time</div>
 
@@ -1354,7 +1354,7 @@ export default function HomePage() {
                       Hosting &amp; support
                     </div>
                     <div className="mt-2 text-[2.2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-                      £40 / month
+                      £20 / month
                     </div>
 
                     <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
@@ -1518,9 +1518,9 @@ export default function HomePage() {
                   make it easy for customers to get in touch.
                 </p>
                 <p className="mx-auto mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
-                  <span className="whitespace-nowrap">Website build £595</span>
+                  <span className="whitespace-nowrap">Website build £250</span>
                   <span className="mx-2 text-[#7F8692]">•</span>
-                  <span className="whitespace-nowrap">£40/month hosting</span>
+                  <span className="whitespace-nowrap">£20/month hosting</span>
                 </p>
 
                 <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
