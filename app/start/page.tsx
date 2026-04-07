@@ -34,8 +34,8 @@ const portfolioLinks = [
 ];
 
 const practicalDetails = [
-  "Website builds start from £595 depending on scope",
-  "Managed hosting and support is £40/month after launch",
+  "Website builds start from £250 depending on scope",
+  "Managed hosting and support is £20/month after launch",
   "Your domain is purchased separately in your name",
   "Content and images must be supplied before build begins",
   "One revision is included",
@@ -583,7 +583,7 @@ export default function StartPage() {
               variants={fadeUp}
               className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
             >
-              Website builds start from £595 • Hosting £40/month after launch
+              Website builds start from £250 • Hosting £20/month after launch
             </motion.div>
           </motion.div>
         </SectionShell>
@@ -872,8 +872,8 @@ export default function StartPage() {
 
                   <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
                     <p>
-                      Website builds start from £595 depending on scope. Managed
-                      hosting is £40/month after launch. Your domain is purchased
+                      Website builds start from £250 depending on scope. Managed
+                      hosting is £20/month after launch. Your domain is purchased
                       separately in your name.
                     </p>
                     <p className="hidden sm:block">
