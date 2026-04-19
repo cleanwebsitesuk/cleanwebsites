@@ -15,8 +15,6 @@ import {
   type ReactNode,
 } from "react";
 
-// --- Constants & Data ---
-
 const NAV_ITEMS = [
   { href: "#portfolio", label: "Portfolio" },
   { href: "#pricing", label: "Pricing" },
@@ -25,17 +23,10 @@ const NAV_ITEMS = [
 ] as const;
 
 const FIT_POINTS = [
-  "Custom-coded for speed (No slow templates)",
-  "100% UK Based, Managed & Infrastructure",
-  "Fixed price with zero hidden 'Agency Tax'",
-  "Suitable for local and professional UK services",
-] as const;
-
-const COMPARISON_DATA = [
-  { label: "Upfront Build Fee", agency: "£1,500 - £3,500+", us: "£99", highlight: true },
-  { label: "Launch Timeline", agency: "4 - 8 Weeks", us: "24 Hours", highlight: true },
-  { label: "Build Method", agency: "Bloated Templates", us: "Lean, Custom Code", highlight: false },
-  { label: "Location", agency: "Often Offshore", us: "100% UK Based", highlight: false },
+  "Suitable for straightforward brochure-style websites",
+  "Works well for businesses that need enquiries, calls or bookings",
+  "A good fit when you want a professional website without a long project",
+  "Suitable for many small businesses, including local and professional services",
 ] as const;
 
 const PORTFOLIO_ITEMS = [
@@ -50,8 +41,8 @@ const PORTFOLIO_ITEMS = [
     cta: "Visit website",
     points: [
       "Trust-focused legal positioning",
-      "Sub-second load times",
-      "Designed for UK standards",
+      "Clear dashboard-led structure",
+      "Designed for clarity in a sensitive context",
     ],
   },
   {
@@ -65,7 +56,7 @@ const PORTFOLIO_ITEMS = [
     cta: "Visit website",
     points: [
       "Clear automation-led user journey",
-      "Built on UK infrastructure",
+      "Built around trust and simplicity",
       "Designed for everyday commuter use",
     ],
   },
@@ -74,45 +65,45 @@ const PORTFOLIO_ITEMS = [
 const PROCESS_STEPS = [
   {
     step: "01",
-    title: "Send your content",
+    title: "Send your business details and content",
     description:
-      "Provide the text and business information you want included. We cut out the long meetings.",
+      "Provide the text, business information and any images or videos you would like included.",
   },
   {
     step: "02",
     title: "Your website is built",
     description:
-      "We use our proprietary high-speed code stack to build your site from scratch in 24 hours.",
+      "Your website is designed around your business, with a clean, well-structured layout that is simple for visitors to use.",
   },
   {
     step: "03",
     title: "Review the build",
     description:
-      "One revision is included so you can review and refine the layout before we go live.",
+      "One revision is included so you can review and refine the layout or content before launch.",
   },
   {
     step: "04",
-    title: "UK Launch",
+    title: "Go live",
     description:
-      "Your domain is connected, SSL is enabled, and your site is launched on UK-based servers.",
+      "Your domain is connected, hosting is configured, SSL is enabled, and your website is fully prepared for launch.",
   },
 ] as const;
 
 const INCLUDED_ITEMS = [
   "A custom 4-page website (Home, About, Services, Contact)",
-  "Clean, custom code (No bloated builders)",
+  "Pages structured around your services and enquiry flow",
   "Mobile-optimised layout for phones and tablets",
   "Contact form/booking enquiry setup",
-  "UK-Central server infrastructure",
-  "Secure SSL and technical management",
-  "Lightning-fast Vercel deployment",
+  "Domain connection and full website launch setup",
+  "Secure hosting and SSL included",
+  "Fast-loading, simple and reliable build",
   "One revision before launch",
 ] as const;
 
 const BUILD_INCLUDES = [
   "Home page",
   "About page",
-  "Services page",
+  "Services or menu page",
   "Contact or booking page",
   "Contact form",
   "Mobile optimisation",
@@ -122,66 +113,98 @@ const BUILD_INCLUDES = [
 
 const HOSTING_INCLUDES = [
   {
-    title: "Secure UK hosting",
-    text: "Your website runs on reliable London-based infrastructure designed for maximum local speed.",
+    title: "Secure hosting",
+    text: "Your website runs on reliable hosting designed for speed, stability and day-to-day performance.",
   },
   {
     title: "SSL certificate included",
-    text: "Your website includes UK-standard SSL security, enabling HTTPS and the secure padlock.",
+    text: "Your website includes SSL security, which enables HTTPS, shows the secure padlock in browsers, and helps protect information sent through your website such as contact form submissions.",
+  },
+  {
+    title: "Domain connection setup",
+    text: "Your domain is connected properly so visitors reach your live website without technical issues.",
+  },
+  {
+    title: "Deployment and launch support",
+    text: "The technical side of going live is handled for you and checked after launch.",
   },
   {
     title: "Technical management",
-    text: "We manage the technical side so you don't have to deal with server setups or security issues.",
+    text: "The website is managed on the technical side so you do not need to deal with server setup, SSL configuration or launch issues yourself.",
   },
 ] as const;
 
 const FAQS = [
   {
-    question: "Why is it only £99?",
+    question: "How quickly can my website be built?",
     answer:
-      "Most UK agencies charge for fancy offices and sales teams. We don't. We've stripped the 'Agency Tax' by using an efficient, custom-coded workflow that allows us to build in 24 hours what takes others weeks. You pay for the code, not our overhead.",
-  },
-  {
-    question: "Is this a template (Wix/Squarespace)?",
-    answer:
-      "No. We don't use template-mills. Every site is custom-coded using modern tech (Next.js), making it faster, more secure, and professionally built to UK standards.",
+      "Once your content is received, your website can be built and prepared for launch within 24 hours.",
   },
   {
     question: "Do I keep ownership of my domain?",
     answer:
-      "Yes. Your domain stays in your name. We manage the technical hosting and infrastructure to keep you online, but you retain full ownership.",
+      "Yes. Your domain stays in your name. That means you keep control and ownership of your website address.",
   },
   {
-    question: "What does the monthly fee cover?",
+    question: "What does the monthly hosting fee include?",
     answer:
-      "The fee covers secure UK-based hosting, SSL management, technical support, and the infrastructure needed to ensure your site stays lightning-fast and secure.",
+      "For your first year, hosting is included at no extra cost. After 12 months, the £20 monthly fee includes secure hosting, SSL, technical management, deployment support and the ongoing infrastructure needed to keep your website online and working properly.",
+  },
+  {
+    question: "What does SSL do?",
+    answer:
+      "SSL enables secure HTTPS on your website, shows the secure padlock in browsers, and helps protect data submitted through your site, such as contact form enquiries. It also helps your site meet modern browser security expectations.",
   },
   {
     question: "Will my website work on mobile?",
     answer:
-      "Yes. All sites are built mobile-first to ensure they look and work perfectly on smartphones as well as desktops.",
+      "Yes. Websites are built mobile-first so they work properly on phones as well as desktop.",
+  },
+  {
+    question: "Can I review the website before launch?",
+    answer:
+      "Yes. One revision is included before launch so adjustments can be made to the layout or content.",
+  },
+  {
+    question: "What kind of businesses is this suitable for?",
+    answer:
+      "It works well for businesses that need a clear, professional website with a straightforward structure and a clean online presence.",
   },
 ] as const;
 
+// Simplified to 2 panels for the Hero section
 const OFFER_STATS = [
   { label: "Build fee", value: "£99" },
-  { label: "Monthly hosting", value: "£0" },
   { label: "Launch time", value: "24h" },
+] as const;
+
+const COMPARISON_ROWS = [
+  { feature: "Upfront Cost", agency: "£1,500+", us: "£99" },
+  { feature: "Turnaround Time", agency: "4–8 Weeks", us: "24 Hours" },
+  { feature: "Build Setup", agency: "Lengthy project phases", us: "Streamlined launch" },
+  { feature: "Technical Management", agency: "Often left to the client", us: "Fully handled for you" },
 ] as const;
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
 
-// --- Hooks ---
-
 function useIsMobile(breakpoint = 767) {
   const [isMobile, setIsMobile] = useState(false);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia(`(max-width: ${breakpoint}px)`);
+
     const onChange = () => setIsMobile(mediaQuery.matches);
     onChange();
-    mediaQuery.addEventListener("change", onChange);
-    return () => mediaQuery.removeEventListener("change", onChange);
+
+    if (typeof mediaQuery.addEventListener === "function") {
+      mediaQuery.addEventListener("change", onChange);
+      return () => mediaQuery.removeEventListener("change", onChange);
+    }
+
+    mediaQuery.addListener(onChange);
+    return () => mediaQuery.removeListener(onChange);
   }, [breakpoint]);
+
   return isMobile;
 }
 
@@ -189,15 +212,26 @@ function useLockBodyScroll(locked: boolean) {
   useEffect(() => {
     const previous = document.body.style.overflow;
     if (locked) document.body.style.overflow = "hidden";
-    return () => { document.body.style.overflow = previous; };
+    return () => {
+      document.body.style.overflow = previous;
+    };
   }, [locked]);
 }
 
-// --- UI Components ---
-
-function SectionShell({ id, className = "", children }: { id?: string; className?: string; children: ReactNode }) {
+function SectionShell({
+  id,
+  className = "",
+  children,
+}: {
+  id?: string;
+  className?: string;
+  children: ReactNode;
+}) {
   return (
-    <section id={id} className={`mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 ${className}`}>
+    <section
+      id={id}
+      className={`mx-auto w-full max-w-7xl px-5 py-12 sm:px-6 sm:py-16 lg:px-8 lg:py-20 ${className}`}
+    >
       {children}
     </section>
   );
@@ -206,15 +240,23 @@ function SectionShell({ id, className = "", children }: { id?: string; className
 function SectionEyebrow({ children }: { children: ReactNode }) {
   return (
     <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#9DA2AE] sm:text-[12px]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
+      <span className="h-1.5 w-1.5 rounded-full bg-[#60A5FA]" />
       {children}
     </div>
   );
 }
 
-function GlassCard({ className = "", children }: { className?: string; children: ReactNode }) {
+function GlassCard({
+  className = "",
+  children,
+}: {
+  className?: string;
+  children: ReactNode;
+}) {
   return (
-    <div className={`relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.045] shadow-[0_20px_80px_rgba(0,0,0,0.22)] backdrop-blur-md ${className}`}>
+    <div
+      className={`relative overflow-hidden rounded-[24px] border border-white/10 bg-white/[0.045] shadow-[0_20px_80px_rgba(0,0,0,0.22)] backdrop-blur-md ${className}`}
+    >
       <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_30%)]" />
       <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent" />
       <div className="relative">{children}</div>
@@ -224,44 +266,102 @@ function GlassCard({ className = "", children }: { className?: string; children:
 
 function ArrowRight() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M5 12h14" /><path d="m13 5 7 7-7 7" />
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M5 12h14" />
+      <path d="m13 5 7 7-7 7" />
     </svg>
   );
 }
 
 function CheckIcon() {
   return (
-    <svg aria-hidden="true" viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
       <path d="M20 6 9 17l-5-5" />
     </svg>
   );
 }
 
 function MenuIcon({ open }: { open: boolean }) {
-  const lineBase = "absolute left-0 h-px w-5 rounded-full bg-[#F5F2EA] transition-all duration-300";
+  const lineBase =
+    "absolute left-0 h-px w-5 rounded-full bg-[#F5F2EA] transition-all duration-300";
+
   return (
     <div className="relative h-5 w-5" aria-hidden="true">
-      <span className={`${lineBase} top-1 ${open ? "translate-y-1.5 rotate-45" : ""}`} />
-      <span className={`${lineBase} top-2.5 ${open ? "opacity-0" : "opacity-100"}`} />
-      <span className={`${lineBase} top-4 ${open ? "-translate-y-1.5 -rotate-45" : ""}`} />
+      <span
+        className={`${lineBase} top-1 ${open ? "translate-y-1.5 rotate-45" : ""}`}
+      />
+      <span
+        className={`${lineBase} top-2.5 ${open ? "opacity-0" : "opacity-100"}`}
+      />
+      <span
+        className={`${lineBase} top-4 ${open ? "-translate-y-1.5 -rotate-45" : ""}`}
+      />
     </div>
   );
 }
 
-function Reveal({ children, delay = 0, amount = 0.18, className }: { children: ReactNode; delay?: number; amount?: number; className?: string }) {
+function Reveal({
+  children,
+  delay = 0,
+  amount = 0.18,
+  className,
+}: {
+  children: ReactNode;
+  delay?: number;
+  amount?: number;
+  className?: string;
+}) {
   const reduceMotion = useReducedMotion() ?? false;
-  if (reduceMotion) return <div className={className}>{children}</div>;
+
+  if (reduceMotion) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
-    <motion.div className={className} initial={{ opacity: 0, y: 22 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount }} transition={{ duration: 0.68, delay, ease: easeOut }}>
+    <motion.div
+      className={className}
+      initial={{ opacity: 0, y: 22 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount }}
+      transition={{ duration: 0.68, delay, ease: easeOut }}
+    >
       {children}
     </motion.div>
   );
 }
 
-function MagneticLink({ href, className, children, disabled = false }: { href: string; className: string; children: ReactNode; disabled?: boolean }) {
+function MagneticLink({
+  href,
+  className,
+  children,
+  disabled = false,
+}: {
+  href: string;
+  className: string;
+  children: ReactNode;
+  disabled?: boolean;
+}) {
   const reduceMotion = useReducedMotion() ?? false;
   const [style, setStyle] = useState({ x: 0, y: 0 });
+
   const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
     if (reduceMotion || disabled) return;
     const rect = e.currentTarget.getBoundingClientRect();
@@ -269,79 +369,23 @@ function MagneticLink({ href, className, children, disabled = false }: { href: s
     const y = (e.clientY - rect.top - rect.height / 2) * 0.08;
     setStyle({ x, y });
   };
+
+  const handleLeave = () => setStyle({ x: 0, y: 0 });
+
   return (
-    <motion.div animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }} transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}>
-      <Link href={href} className={className} onMouseMove={handleMove} onMouseLeave={() => setStyle({ x: 0, y: 0 })}>
+    <motion.div
+      animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }}
+      transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}
+    >
+      <Link
+        href={href}
+        className={className}
+        onMouseMove={handleMove}
+        onMouseLeave={handleLeave}
+      >
         {children}
       </Link>
     </motion.div>
-  );
-}
-
-// --- Business Components ---
-
-function HeroMetrics() {
-  return (
-    <div className="mt-5 grid gap-3 sm:grid-cols-3">
-      {OFFER_STATS.map((item) => {
-        // Highlighting Build Fee and Launch Time for maximum "Bite"
-        const highlighted = item.value === "£99" || item.value === "24h";
-        return (
-          <div key={item.label} className={highlighted 
-            ? "rounded-[18px] border border-[#3B82F6]/40 bg-[linear-gradient(180deg,rgba(59,130,246,0.18),rgba(59,130,246,0.08))] px-5 py-4 shadow-[0_0_40px_rgba(59,130,246,0.12)]"
-            : "rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4"
-          }>
-            <div className={highlighted 
-              ? "bg-gradient-to-r from-[#C7DDFF] to-[#60A5FA] bg-clip-text text-[1.35rem] font-semibold tracking-[-0.04em] text-transparent sm:text-[1.45rem]"
-              : "text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]"
-            }>
-              {item.value}{item.label === "Monthly hosting" && <span className="text-[0.7rem] ml-1 opacity-60">/12m</span>}
-            </div>
-            <div className={highlighted ? "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#9FB7D9]" : "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]"}>
-              {item.label}
-            </div>
-          </div>
-        );
-      })}
-    </div>
-  );
-}
-
-function ComparisonTable() {
-  return (
-    <div className="mt-10 overflow-hidden rounded-[20px] border border-white/10 bg-white/[0.02]">
-      <div className="grid grid-cols-2 border-b border-white/10 bg-white/[0.04] text-center text-[10px] uppercase tracking-widest text-[#7F828A]">
-        <div className="py-3 border-r border-white/10">Traditional Agencies</div>
-        <div className="py-3 text-[#60A5FA] font-bold">Clean Websites</div>
-      </div>
-      {COMPARISON_DATA.map((item) => (
-        <div key={item.label} className="grid grid-cols-2 border-b border-white/10 last:border-0">
-          <div className="p-4 border-r border-white/10">
-            <div className="text-[10px] uppercase text-[#7F828A] mb-1">{item.label}</div>
-            <div className="text-xs line-through opacity-40">{item.agency}</div>
-          </div>
-          <div className={`p-4 ${item.highlight ? 'bg-[#3B82F6]/5' : ''}`}>
-            <div className="text-[10px] uppercase text-[#7F828A] mb-1 opacity-0">{item.label}</div>
-            <div className={`text-xs font-semibold ${item.highlight ? 'text-[#F5F2EA]' : 'text-[#A9ABB3]'}`}>{item.us}</div>
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function BeforeAfterSlider() {
-  return (
-    <div className="mt-8 overflow-hidden rounded-[24px] border border-white/10 bg-[#0C0D10] p-1">
-      <div className="relative aspect-[16/9] w-full overflow-hidden rounded-[20px]">
-        <Image src="/portfolio/fareguard.png" alt="High Performance Build" fill className="object-cover" />
-        <div className="absolute inset-0 flex flex-col items-center justify-center bg-black/60 backdrop-blur-sm text-center px-6">
-           <SectionEyebrow>The Transformation</SectionEyebrow>
-           <h3 className="mt-4 text-xl font-serif">We turn outdated, slow sites into lean business assets.</h3>
-           <p className="mt-2 text-sm text-[#A9ABB3]">Custom-coded on Vercel for sub-second speeds.</p>
-        </div>
-      </div>
-    </div>
   );
 }
 
@@ -349,7 +393,11 @@ function DesktopNav() {
   return (
     <nav className="hidden items-center gap-1 md:flex">
       {NAV_ITEMS.map((item) => (
-        <a key={item.href} href={item.href} className="rounded-full px-4 py-2 text-[15px] text-[#A9ABB3] transition duration-300 hover:bg-white/[0.04] hover:text-[#F5F2EA]">
+        <a
+          key={item.href}
+          href={item.href}
+          className="rounded-full px-4 py-2 text-[15px] text-[#A9ABB3] transition duration-300 hover:bg-white/[0.04] hover:text-[#F5F2EA]"
+        >
           {item.label}
         </a>
       ))}
@@ -360,32 +408,110 @@ function DesktopNav() {
 function DesktopActions({ isMobile }: { isMobile: boolean }) {
   return (
     <div className="hidden items-center gap-3 md:flex">
-      <Link href="#portfolio" className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:bg-white/[0.06]">
-        Portfolio
+      <Link
+        href="#portfolio"
+        className="inline-flex h-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-4 text-sm font-medium text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06]"
+      >
+        View portfolio
       </Link>
-      <MagneticLink href="/start" disabled={isMobile} className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:brightness-110">
-        Start £99 Website
+      <MagneticLink
+        href="/start"
+        disabled={isMobile}
+        className="group inline-flex h-11 items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+      >
+        Start my website
       </MagneticLink>
     </div>
   );
 }
 
-function MobileMenu({ open, onClose, reduceMotion }: { open: boolean; onClose: () => void; reduceMotion: boolean }) {
+function MobileMenu({
+  open,
+  onClose,
+  reduceMotion,
+}: {
+  open: boolean;
+  onClose: () => void;
+  reduceMotion: boolean;
+}) {
   return (
     <AnimatePresence>
       {open && (
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="fixed inset-x-0 bottom-0 top-[78px] z-40 border-t border-white/10 bg-[#08090C]/96 backdrop-blur-2xl md:hidden">
-          <div className="flex flex-col h-full p-6">
-            <div className="grid gap-3">
-              {NAV_ITEMS.map((item) => (
-                <a key={item.href} href={item.href} onClick={onClose} className="flex items-center justify-between rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[17px] text-[#F5F2EA]">
-                  {item.label} <ArrowRight />
-                </a>
-              ))}
-            </div>
-            <Link href="/start" onClick={onClose} className="mt-auto block w-full bg-[#3B82F6] p-4 text-center rounded-full font-bold shadow-[0_12px_30px_rgba(59,130,246,0.28)]">
-              Start £99 Website
-            </Link>
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.22, ease: easeOut }}
+          className="fixed inset-x-0 bottom-0 top-[78px] z-40 border-t border-white/10 bg-[#08090C]/96 backdrop-blur-2xl md:hidden"
+        >
+          <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-5 pb-6 pt-6 sm:px-6">
+            <motion.div
+              initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+              animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+              exit={reduceMotion ? {} : { opacity: 0, y: 12 }}
+              transition={{ duration: 0.28, ease: easeOut }}
+              className="flex flex-1 flex-col"
+            >
+              <div className="grid gap-3">
+                {NAV_ITEMS.map((item, index) => (
+                  <motion.a
+                    key={item.href}
+                    href={item.href}
+                    onClick={onClose}
+                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                    animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    transition={{
+                      duration: 0.3,
+                      delay: 0.04 + index * 0.07,
+                      ease: easeOut,
+                    }}
+                    className="flex items-center justify-between rounded-[20px] border border-white/10 bg-white/[0.03] px-5 py-4 text-[17px] font-medium text-[#F5F2EA] transition hover:border-white/20 hover:bg-white/[0.05]"
+                  >
+                    <span>{item.label}</span>
+                    <ArrowRight />
+                  </motion.a>
+                ))}
+              </div>
+
+              <div className="mt-6 rounded-[20px] border border-white/10 bg-white/[0.03] p-4">
+                <div className="grid grid-cols-2 gap-3">
+                  {OFFER_STATS.map((item) => (
+                    <div
+                      key={item.label}
+                      className="rounded-[16px] border border-white/10 bg-[#0C0E11] px-3 py-3 text-center"
+                    >
+                      <div className="text-base font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-lg">
+                        {item.value}
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        {item.label}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mt-auto pt-6">
+                <motion.div
+                  initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                  animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.32,
+                    delay: 0.24,
+                    ease: easeOut,
+                  }}
+                  className="rounded-[20px] border border-white/10 bg-white/[0.03] p-3"
+                >
+                  <Link
+                    href="/start"
+                    onClick={onClose}
+                    className="group inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[15px] font-semibold text-white shadow-[0_12px_28px_rgba(59,130,246,0.28)] transition duration-300 hover:brightness-110"
+                  >
+                    Start my website
+                  </Link>
+                </motion.div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
       )}
@@ -393,63 +519,191 @@ function MobileMenu({ open, onClose, reduceMotion }: { open: boolean; onClose: (
   );
 }
 
-function HeroHeader({ scrolled }: { scrolled: boolean }) {
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const isMobile = useIsMobile();
-  useLockBodyScroll(mobileOpen);
+function HeroMetrics() {
   return (
-    <>
-      <header className={`sticky top-0 z-50 transition-all duration-300 ${scrolled ? "border-b border-white/10 bg-[#090A0C]/72 backdrop-blur-md" : "bg-transparent"}`}>
-        <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between px-5">
-          <Link href="/" className="text-xl font-bold tracking-tighter">CLEAN WEBSITES</Link>
-          <DesktopNav />
-          <DesktopActions isMobile={isMobile} />
-          <button className="md:hidden h-11 w-11 flex items-center justify-center rounded-full border border-white/10" onClick={() => setMobileOpen(!mobileOpen)}>
-            <MenuIcon open={mobileOpen} />
-          </button>
-        </div>
-      </header>
-      <MobileMenu open={mobileOpen} onClose={() => setMobileOpen(false)} reduceMotion={false} />
-      <HeroSection isMobile={isMobile} reduceMotion={false} />
-    </>
+    <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      {OFFER_STATS.map((item) => {
+        const highlighted = item.value === "24h" || item.value === "£99";
+
+        return (
+          <div
+            key={item.label}
+            className={
+              highlighted
+                ? "rounded-[18px] border border-[#60A5FA]/40 bg-[linear-gradient(180deg,rgba(59,130,246,0.18),rgba(59,130,246,0.08))] px-5 py-4 shadow-[0_0_40px_rgba(59,130,246,0.18)]"
+                : "rounded-[18px] border border-white/10 bg-white/[0.03] px-5 py-4"
+            }
+          >
+            <div
+              className={
+                highlighted
+                  ? "bg-gradient-to-r from-[#C7DDFF] to-[#60A5FA] bg-clip-text text-[1.35rem] font-semibold tracking-[-0.04em] text-transparent sm:text-[1.45rem]"
+                  : "text-[1.25rem] font-semibold tracking-[-0.04em] text-[#F5F2EA] sm:text-[1.45rem]"
+              }
+            >
+              {item.value}
+            </div>
+            <div
+              className={
+                highlighted
+                  ? "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#9FB7D9]"
+                  : "mt-1 text-[11px] uppercase tracking-[0.16em] text-[#7F828A]"
+              }
+            >
+              {item.label}
+            </div>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
-function HeroSection({ isMobile, reduceMotion }: { isMobile: boolean; reduceMotion: boolean }) {
+function HeroSection({
+  isMobile,
+  reduceMotion,
+}: {
+  isMobile: boolean;
+  reduceMotion: boolean;
+}) {
   const motionEnabled = !reduceMotion && !isMobile;
+
   return (
     <section className="relative">
       <div className="mx-auto flex w-full max-w-7xl items-center px-5 pb-8 pt-8 sm:px-6 sm:pb-12 sm:pt-8 lg:min-h-[calc(100svh-78px)] lg:px-8 lg:pb-14 lg:pt-10">
         <div className="grid w-full gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(440px,1fr)] lg:items-start lg:gap-10">
           <div className="mx-auto flex w-full max-w-[680px] flex-col justify-center lg:mx-0 lg:max-w-[680px]">
             <div className="w-fit">
-              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3]">
-                <motion.span animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}} transition={{ duration: 2.2, repeat: Infinity, ease: "easeInOut" }} className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-                100% UK Based & Custom Coded
+              <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
+                <motion.span
+                  animate={motionEnabled ? { scale: [1, 1.22, 1] } : {}}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                  className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]"
+                />
+                Professional business websites
               </div>
             </div>
+
             <h1 className="mt-4 max-w-[14ch] font-serif text-[2.55rem] leading-[1] tracking-[-0.05em] text-[#F5F2EA] sm:max-w-[11.5ch] sm:text-[clamp(3.4rem,6.2vw,4.5rem)]">
-              A professional UK website — built within <span className="bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent">24 hours</span>
+              A professional website for your business — built within{" "}
+              <motion.span
+                initial={reduceMotion ? false : { opacity: 0.7 }}
+                animate={
+                  reduceMotion
+                    ? {}
+                    : {
+                        opacity: [0.75, 1, 0.9, 1],
+                        textShadow: [
+                          "0 0 0px rgba(59,130,246,0)",
+                          "0 0 18px rgba(59,130,246,0.35)",
+                          "0 0 8px rgba(59,130,246,0.18)",
+                          "0 0 14px rgba(59,130,246,0.28)",
+                        ],
+                      }
+                }
+                transition={{
+                  duration: 1.6,
+                  delay: 0.35,
+                  ease: "easeOut",
+                }}
+                className="bg-gradient-to-r from-[#A5C8FF] to-[#60A5FA] bg-clip-text font-medium text-transparent"
+              >
+                24 hours
+              </motion.span>
             </h1>
-            <p className="mt-5 hidden max-w-xl text-[15px] leading-8 text-[#A9ABB3] sm:block">
-              We've stripped the agency overhead. Get a custom-coded, high-performance digital presence built to UK standards without the £2,000 price tag or the 2-month wait.
+
+            <p className="mt-4 max-w-[32ch] text-[14px] leading-6 text-[#A9ABB3] sm:hidden">
+              A clean, mobile-first website that helps your business look credible, explain what you do clearly, and make it easy for customers to get in touch.
             </p>
-            <div className="mt-7 flex w-full flex-col gap-3 sm:flex-row">
-              <MagneticLink href="/start" disabled={isMobile} className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[14px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:brightness-110 sm:w-auto">
-                Start £99 Build <ArrowRight />
+
+            <p className="mt-4 hidden max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:mt-5 sm:block sm:text-[16px] sm:leading-8">
+              A clean, mobile-first website designed not just to look credible, but to turn visitors into customers—clearly communicating what you do, building trust instantly, and making it effortless for people to get in touch.
+            </p>
+
+            <div className="mt-7 flex w-full flex-col gap-3 sm:mt-6 sm:flex-row">
+              <MagneticLink
+                href="/start"
+                disabled={isMobile}
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-[14px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+              >
+                Start my website
+                <ArrowRight />
               </MagneticLink>
+
+              <a
+                href="#portfolio"
+                className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-6 text-[14px] font-semibold text-[#F5F2EA] transition duration-300 hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.06] sm:w-auto"
+              >
+                View portfolio
+                <ArrowRight />
+              </a>
             </div>
           </div>
-          <div className="hidden lg:block">
-            <GlassCard className="p-5">
+
+          <div className="hidden lg:block lg:pt-2" aria-hidden="true">
+            <GlassCard className="p-5 transition duration-300 hover:-translate-y-1 hover:shadow-[0_30px_80px_rgba(0,0,0,0.35)]">
+              <div className="absolute -top-20 right-[-10%] h-[220px] w-[220px] rounded-full bg-[#3B82F6]/10 blur-[100px]" />
               <div className="flex flex-col rounded-[22px] border border-white/10 bg-[linear-gradient(180deg,rgba(13,14,17,0.9),rgba(13,14,17,0.75))] p-5">
-                <div className="flex items-center justify-between gap-3 text-[10px] uppercase tracking-widest text-[#A9ABB3]">
-                  <span>Launch Special Offer</span>
-                  <span className="text-[#60A5FA]">No Templates</span>
+                <div className="flex items-center justify-between gap-3">
+                  <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3]">
+                    Website launch package
+                  </div>
+                  <div className="rounded-full border border-[#3B82F6]/18 bg-[#3B82F6]/10 px-2.5 py-0.5 text-[11px] text-[#A9C7FF]">
+                    Fast launch
+                  </div>
                 </div>
+
                 <HeroMetrics />
+
                 <div className="mt-5 h-px w-full bg-white/8" />
-                <ComparisonTable />
+
+                <div className="mt-5">
+                  <div className="text-[1.2rem] font-semibold tracking-[-0.02em] text-[#F5F2EA]">
+                    Everything included
+                  </div>
+
+                  <div className="mt-4 grid gap-3.5">
+                    {[
+                      "Core pages (Home, About, Services, Contact)",
+                      "Contact or booking page",
+                      "Mobile-optimised and launch ready",
+                      "Hosting, SSL and setup",
+                    ].map((item) => (
+                      <div
+                        key={item}
+                        className="flex items-start gap-3.5 text-[15px] leading-7 text-[#E5E7EC]"
+                      >
+                        <span className="mt-1 inline-flex h-5 w-5 items-center justify-center rounded-full bg-[#3B82F6]/18 text-[#A5C8FF]">
+                          <CheckIcon />
+                        </span>
+                        {item}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
+                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                      Domain ownership
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                      You keep full ownership of your domain.
+                    </div>
+                  </div>
+                  <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
+                    <div className="text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                      Review before launch
+                    </div>
+                    <div className="mt-2 text-sm leading-6 text-[#E5E7EC]">
+                      One revision is included before going live.
+                    </div>
+                  </div>
+                </div>
               </div>
             </GlassCard>
           </div>
@@ -459,32 +713,332 @@ function HeroSection({ isMobile, reduceMotion }: { isMobile: boolean; reduceMoti
   );
 }
 
-function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]; index: number }) {
+function ComparisonSection() {
+  return (
+    <SectionShell className="!py-0">
+      <div className="mx-auto max-w-4xl">
+        <GlassCard className="overflow-hidden border-white/10">
+          <div className="grid grid-cols-[1fr_1fr_1fr] border-b border-white/10 bg-white/[0.02] text-[11px] uppercase tracking-[0.15em] text-[#7F828A] sm:text-xs">
+            <div className="border-r border-white/10 p-4 font-medium sm:p-5">Features</div>
+            <div className="border-r border-white/10 p-4 font-medium sm:p-5">Traditional Agencies</div>
+            <div className="bg-[#3B82F6]/5 p-4 font-semibold text-[#60A5FA] sm:p-5">Clean Websites</div>
+          </div>
+          
+          <div className="divide-y divide-white/5">
+            {COMPARISON_ROWS.map((row) => (
+              <div key={row.feature} className="grid grid-cols-[1fr_1fr_1fr]">
+                <div className="flex items-center border-r border-white/10 p-4 text-sm font-medium text-[#F5F2EA] sm:p-5">
+                  {row.feature}
+                </div>
+                <div className="flex items-center border-r border-white/10 p-4 text-sm text-[#A9ABB3] sm:p-5">
+                  {row.agency}
+                </div>
+                <div className="flex items-center bg-[#3B82F6]/[0.02] p-4 text-sm font-medium text-[#F5F2EA] sm:p-5">
+                  {row.us}
+                </div>
+              </div>
+            ))}
+          </div>
+        </GlassCard>
+      </div>
+    </SectionShell>
+  );
+}
+
+function MobileStickyCta({ hidden }: { hidden: boolean }) {
+  if (hidden) return null;
+
+  return (
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/92 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 backdrop-blur-2xl md:hidden">
+      <div className="mx-auto max-w-7xl">
+        <Link
+          href="/start"
+          className="flex h-14 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-[16px] font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.3)]"
+        >
+          Start my website
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+function HeroHeader({ scrolled }: { scrolled: boolean }) {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion() ?? false;
+
+  useLockBodyScroll(mobileOpen);
+
+  useEffect(() => {
+    if (!isMobile && mobileOpen) setMobileOpen(false);
+  }, [isMobile, mobileOpen]);
+
+  const headerHeightClass = useMemo(
+    () => (scrolled ? "h-[70px]" : "h-[76px] sm:h-[82px]"),
+    [scrolled]
+  );
+
+  return (
+    <>
+      <motion.header
+        animate={{ backdropFilter: scrolled ? "blur(22px)" : "blur(0px)" }}
+        className={`sticky top-0 z-50 transition-all duration-300 ${
+          scrolled
+            ? "border-b border-white/10 bg-[#090A0C]/72 shadow-[0_10px_40px_rgba(0,0,0,0.18)]"
+            : "bg-transparent"
+        }`}
+      >
+        <div
+          className={`mx-auto flex w-full max-w-7xl items-center justify-between px-5 transition-all duration-300 sm:px-6 lg:px-8 ${headerHeightClass}`}
+        >
+          <Link href="/" className="flex items-center gap-3" aria-label="Home">
+            <Image
+              src="/logo.png"
+              alt="Clean Websites logo"
+              width={144}
+              height={40}
+              className="h-8 w-auto opacity-95 sm:h-9"
+              priority
+            />
+          </Link>
+
+          <DesktopNav />
+          <DesktopActions isMobile={isMobile} />
+
+          <button
+            type="button"
+            aria-label={mobileOpen ? "Close menu" : "Toggle menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-menu"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] shadow-[0_8px_24px_rgba(0,0,0,0.12)] md:hidden"
+            onClick={() => setMobileOpen((value) => !value)}
+          >
+            <MenuIcon open={mobileOpen} />
+          </button>
+        </div>
+      </motion.header>
+
+      <div id="mobile-menu">
+        <MobileMenu
+          open={mobileOpen}
+          onClose={() => setMobileOpen(false)}
+          reduceMotion={reduceMotion}
+        />
+      </div>
+
+      <HeroSection isMobile={isMobile} reduceMotion={reduceMotion} />
+      <MobileStickyCta hidden={mobileOpen || !scrolled} />
+    </>
+  );
+}
+
+function InfoTooltip({ text }: { text: string }) {
+  const [open, setOpen] = useState(false);
+  const wrapperRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!open) return;
+
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        wrapperRef.current &&
+        !wrapperRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    const handleEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEscape);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEscape);
+    };
+  }, [open]);
+
+  return (
+    <div ref={wrapperRef} className="relative ml-2 inline-flex shrink-0">
+      <button
+        type="button"
+        aria-label="More information"
+        aria-expanded={open}
+        onClick={() => setOpen((value) => !value)}
+        className="inline-flex h-6 w-6 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-[#A9ABB3] transition hover:border-white/25 hover:text-[#F5F2EA]"
+      >
+        <svg
+          aria-hidden="true"
+          viewBox="0 0 24 24"
+          className="h-3.5 w-3.5"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="1.9"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        >
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 10v5" />
+          <path d="M12 7.5h.01" />
+        </svg>
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 6, scale: 0.98 }}
+            transition={{ duration: 0.18, ease: "easeOut" }}
+            className="absolute right-0 top-8 z-30 w-64 rounded-2xl border border-white/10 bg-[#111214] p-3 text-left text-xs leading-6 text-[#A9ABB3] shadow-[0_24px_60px_rgba(0,0,0,0.45)] sm:w-72"
+          >
+            {text}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function PricingList({
+  items,
+}: {
+  items: readonly string[];
+}) {
+  return (
+    <div className="grid gap-0 sm:grid-cols-2 sm:gap-x-6">
+      {items.map((item, index) => (
+        <div
+          key={item}
+          className={`flex items-start gap-3 py-3 ${
+            index !== items.length - 1 ? "border-b border-white/8" : ""
+          } ${
+            index < items.length - 2 ? "sm:border-b sm:border-white/8" : ""
+          }`}
+        >
+          <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+            <CheckIcon />
+          </span>
+          <span className="text-sm leading-6 text-[#F5F2EA]">{item}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function PricingAccordion({
+  title,
+  children,
+  defaultOpen = false,
+}: {
+  title: string;
+  children: ReactNode;
+  defaultOpen?: boolean;
+}) {
+  const [open, setOpen] = useState(defaultOpen);
+
+  return (
+    <div className="overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.03]">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-center justify-between gap-4 px-4 py-4 text-left"
+        aria-expanded={open}
+      >
+        <span className="text-sm font-medium text-[#F5F2EA]">{title}</span>
+        <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#A9ABB3]">
+          {open ? "−" : "+"}
+        </span>
+      </button>
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -4 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -4 }}
+            transition={{ duration: 0.22, ease: easeOut }}
+            className="overflow-hidden border-t border-white/10 px-4 py-4"
+          >
+            {children}
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
+  );
+}
+
+function PortfolioCard({
+  item,
+  index,
+}: {
+  item: (typeof PORTFOLIO_ITEMS)[number];
+  index: number;
+}) {
   return (
     <Reveal delay={index * 0.08}>
-      <a href={item.href} target="_blank" rel="noreferrer" className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:-translate-y-1">
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+        className="group block overflow-hidden rounded-[24px] border border-white/10 bg-[#111214]/90 shadow-[0_18px_60px_rgba(0,0,0,0.22)] transition duration-300 md:hover:-translate-y-1 md:hover:border-white/20 md:hover:shadow-[0_30px_90px_rgba(0,0,0,0.34)]"
+      >
         <div className="relative overflow-hidden border-b border-white/10 bg-[#0C0D10] p-4">
-          <div className="rounded-[18px] border border-white/10 bg-white/[0.03] p-4">
-            <div className="flex items-center justify-between gap-3 text-[10px] uppercase tracking-widest text-[#A9ABB3]">
-              <span>{item.kicker}</span>
-              <span className="text-[#F5F2EA] font-medium">{item.cta}</span>
+          <div className="rounded-[18px] border border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.02))] p-4">
+            <div className="flex items-center justify-between gap-3">
+              <span className="text-[10px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[11px]">
+                {item.kicker}
+              </span>
+              <span className="text-sm font-medium text-[#F5F2EA]">
+                {item.cta}
+              </span>
             </div>
-            <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[16px] border border-white/10 relative">
-              <Image src={item.image} alt={item.title} fill className="object-cover object-top transition duration-700 md:group-hover:scale-[1.03]" />
+
+            <div className="mt-4 aspect-[16/10] overflow-hidden rounded-[16px] border border-white/10 bg-[#0D0E10] shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <Image
+                src={item.image}
+                alt={`${item.title} preview`}
+                width={1280}
+                height={800}
+                className="h-full w-full object-cover object-top transition duration-700 md:group-hover:scale-[1.03]"
+              />
             </div>
           </div>
         </div>
-        <div className="p-6">
-          <div className="text-[10px] uppercase tracking-widest text-[#7F828A]">{item.domain}</div>
-          <h3 className="mt-2 text-2xl font-medium tracking-tight text-[#F5F2EA]">{item.title}</h3>
-          <p className="mt-3 text-sm leading-6 text-[#A9ABB3]">{item.description}</p>
-          <div className="mt-5 grid gap-2">
-            {item.points.map(p => (
-              <div key={p} className="flex items-start gap-3 text-xs text-[#E5E7EC]">
-                <span className="mt-1 h-4 w-4 flex items-center justify-center rounded-full bg-[#3B82F6]/10 text-[#60A5FA]"><CheckIcon /></span>
-                {p}
+
+        <div className="p-5 sm:p-6">
+          <div className="text-[12px] uppercase tracking-[0.16em] text-[#7F828A]">
+            {item.domain}
+          </div>
+
+          <h3 className="mt-2 text-[1.55rem] font-medium tracking-[-0.03em] text-[#F5F2EA] sm:text-[1.75rem]">
+            {item.title}
+          </h3>
+
+          <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
+            {item.description}
+          </p>
+
+          <div className="mt-5 grid gap-3">
+            {item.points.map((point) => (
+              <div
+                key={point}
+                className="flex items-start gap-3 text-sm leading-6 text-[#E5E7EC]"
+              >
+                <span className="mt-1 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/18 text-[#A5C8FF]">
+                  <CheckIcon />
+                </span>
+                {point}
               </div>
             ))}
+          </div>
+
+          <div className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-[#F5F2EA]">
+            Visit website
+            <ArrowRight />
           </div>
         </div>
       </a>
@@ -492,64 +1046,55 @@ function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]
   );
 }
 
-function PricingList({ items }: { items: readonly string[] }) {
-  return (
-    <div className="grid gap-0 sm:grid-cols-2 sm:gap-x-6">
-      {items.map((item, index) => (
-        <div key={item} className="flex items-start gap-3 py-3 border-b border-white/5 last:border-0">
-          <span className="mt-1 h-5 w-5 flex items-center justify-center rounded-full bg-[#3B82F6]/10 text-[#60A5FA]"><CheckIcon /></span>
-          <span className="text-sm text-[#F5F2EA]">{item}</span>
-        </div>
-      ))}
-    </div>
-  );
-}
-
-function PricingAccordion({ title, children, defaultOpen = false }: { title: string; children: ReactNode; defaultOpen?: boolean }) {
-  const [open, setOpen] = useState(defaultOpen);
-  return (
-    <div className="overflow-hidden rounded-[18px] border border-white/10 bg-white/[0.03] mt-3">
-      <button onClick={() => setOpen(!open)} className="flex w-full items-center justify-between px-5 py-4 text-sm font-medium">
-        {title} <span>{open ? "−" : "+"}</span>
-      </button>
-      <AnimatePresence>{open && (
-        <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden border-t border-white/10 p-5">
-          {children}
-        </motion.div>
-      )}</AnimatePresence>
-    </div>
-  );
-}
-
-function InfoTooltip({ text }: { text: string }) {
+function FAQItem({
+  question,
+  answer,
+}: {
+  question: string;
+  answer: string;
+}) {
   const [open, setOpen] = useState(false);
-  return (
-    <div className="relative inline-flex ml-2">
-      <button onClick={() => setOpen(!open)} className="h-5 w-5 flex items-center justify-center rounded-full border border-white/20 text-[10px] opacity-40 hover:opacity-100 transition">i</button>
-      {open && <div className="absolute right-0 top-7 z-30 w-64 rounded-xl bg-[#111214] p-3 text-xs text-[#A9ABB3] border border-white/10 shadow-2xl">{text}</div>}
-    </div>
-  );
-}
 
-function FAQItem({ question, answer }: { question: string; answer: string }) {
-  const [open, setOpen] = useState(false);
   return (
-    <div className="rounded-[20px] border border-white/10 bg-white/[0.03] p-6">
-      <button onClick={() => setOpen(!open)} className="flex w-full items-start justify-between text-left gap-4">
-        <span className="font-medium text-[#F5F2EA]">{question}</span>
-        <span className="opacity-40">{open ? "−" : "+"}</span>
+    <div className="rounded-[20px] border border-white/10 bg-white/[0.03] p-5 sm:p-6">
+      <button
+        type="button"
+        onClick={() => setOpen((value) => !value)}
+        className="flex w-full items-start justify-between gap-4 text-left"
+        aria-expanded={open}
+      >
+        <span className="text-[16px] font-medium leading-7 text-[#F5F2EA] sm:text-[17px]">
+          {question}
+        </span>
+        <span className="mt-1 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.03] text-[#A9ABB3]">
+          {open ? "−" : "+"}
+        </span>
       </button>
-      {open && <p className="pt-4 text-sm leading-7 text-[#A9ABB3]">{answer}</p>}
+
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -4 }}
+            animate={{ opacity: 1, height: "auto", y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -4 }}
+            transition={{ duration: 0.22, ease: easeOut }}
+            className="overflow-hidden"
+          >
+            <p className="pt-4 text-sm leading-7 text-[#A9ABB3] sm:text-[15px]">
+              {answer}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
-
-// --- Main Page ---
 
 export default function HomePage() {
   const [scrolled, setScrolled] = useState(false);
   const isMobile = useIsMobile();
   const reduceMotion = useReducedMotion() ?? false;
+  const motionEnabled = !reduceMotion && !isMobile;
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 28);
@@ -559,32 +1104,83 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen scroll-smooth bg-[#06070A] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 md:pb-0">
+    <div className="min-h-screen scroll-smooth bg-[#06070A] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <div className="absolute left-[-12%] top-[-8%] h-[30rem] w-[30rem] rounded-full bg-[#3B82F6]/10 blur-[145px]" />
+        <motion.div
+          animate={
+            motionEnabled
+              ? {
+                  x: [0, 20, -10, 0],
+                  y: [0, -14, 10, 0],
+                  scale: [1, 1.04, 0.98, 1],
+                }
+              : {}
+          }
+          transition={{ duration: 18, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute left-[-12%] top-[-8%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/10 blur-[120px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/12 sm:blur-[145px]"
+        />
+        <motion.div
+          animate={
+            motionEnabled
+              ? {
+                  x: [0, -24, 12, 0],
+                  y: [0, 16, -8, 0],
+                  scale: [1, 0.98, 1.03, 1],
+                }
+              : {}
+          }
+          transition={{ duration: 22, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-[-14%] right-[-10%] h-[20rem] w-[20rem] rounded-full bg-[#3B82F6]/8 blur-[110px] sm:h-[28rem] sm:w-[28rem] sm:bg-[#3B82F6]/10 sm:blur-[140px]"
+        />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
         <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
+        <div className="absolute inset-x-0 top-0 h-[500px] bg-[linear-gradient(180deg,rgba(255,255,255,0.03),transparent)]" />
       </div>
 
       <HeroHeader scrolled={scrolled} />
 
       <main className="relative">
         <Reveal>
+          <ComparisonSection />
+        </Reveal>
+
+        <Reveal>
           <SectionShell>
-            <div className="grid gap-12 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
+            <div className="grid gap-8 lg:grid-cols-[0.94fr_1.06fr] lg:items-start">
               <div className="max-w-xl">
-                <SectionEyebrow>Engineered in the UK</SectionEyebrow>
-                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-tight">Custom UK Code. Zero Agency Bloat.</h2>
-                <p className="mt-4 text-[16px] leading-8 text-[#A9ABB3]">
-                  Most agencies charge for sales teams and project managers. We don't. We focus purely on engineering lightning-fast websites that help UK businesses look credible instantly.
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  Built for businesses that need a clean & professional website
+                </h2>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  This service is designed for businesses that need a polished
+                  website without a lengthy or expensive build. It works
+                  particularly well for local and service-based businesses that
+                  want to clearly present their services and make it easy for
+                  customers to get in touch.
                 </p>
-                <BeforeAfterSlider />
               </div>
-              <div className="grid gap-3 sm:grid-cols-2 lg:mt-24">
-                {FIT_POINTS.map((item) => (
-                  <div key={item} className="rounded-[16px] border border-white/8 bg-white/[0.02] p-4 flex items-start gap-3">
-                    <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
-                    <p className="text-sm text-[#E5E7EC]">{item}</p>
-                  </div>
+
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {FIT_POINTS.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.05,
+                      ease: easeOut,
+                    }}
+                    className="rounded-[16px] border border-white/8 bg-white/[0.025] px-4 py-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-2 h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[14px] leading-6 text-[#E5E7EC] sm:text-[15px] sm:leading-7">
+                        {item}
+                      </p>
+                    </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
@@ -593,9 +1189,18 @@ export default function HomePage() {
 
         <Reveal>
           <SectionShell id="portfolio">
-            <SectionEyebrow>Portfolio</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-4xl">Recent UK builds</h2>
-            <div className="mt-10 grid gap-6 lg:grid-cols-2">
+            <div className="max-w-3xl">
+              <SectionEyebrow>Portfolio</SectionEyebrow>
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                Recent work
+              </h2>
+              <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                A selection of recent projects showing the level of structure,
+                presentation and clarity you can expect.
+              </p>
+            </div>
+
+            <div className="mt-8 grid gap-5 lg:grid-cols-2">
               {PORTFOLIO_ITEMS.map((item, index) => (
                 <PortfolioCard key={item.title} item={item} index={index} />
               ))}
@@ -604,103 +1209,447 @@ export default function HomePage() {
         </Reveal>
 
         <Reveal>
-          <SectionShell id="pricing">
-            <SectionEyebrow>Pricing</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-4xl">Total Value. Fixed Price.</h2>
-            <div className="mt-8">
-              {!isMobile ? (
-                <GlassCard className="bg-[#0F1115]">
-                  <div className="grid lg:grid-cols-2">
-                    <div className="p-8">
-                      <div className="text-xs uppercase tracking-widest text-[#7F828A]">Website Build</div>
-                      <div className="mt-3 text-5xl font-bold">£99</div>
-                      <div className="mt-2 text-sm text-[#60A5FA]">Founder's Launch Rate</div>
-                      <div className="mt-8"><PricingList items={BUILD_INCLUDES} /></div>
+          <SectionShell>
+            <div className="grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-start">
+              <div className="max-w-xl">
+                <SectionEyebrow>What is included</SectionEyebrow>
+                <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  Everything needed for a clean, credible business website
+                </h2>
+                <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                  Our service includes everything needed to get your website
+                  properly built, set up and live — without needing to handle
+                  any of the technical side yourself.
+                </p>
+              </div>
+
+              <div className="grid gap-2.5 sm:grid-cols-2">
+                {INCLUDED_ITEMS.map((item, index) => (
+                  <motion.div
+                    key={item}
+                    initial={reduceMotion ? false : { opacity: 0, y: 16 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.35 }}
+                    transition={{
+                      duration: 0.45,
+                      delay: index * 0.04,
+                      ease: easeOut,
+                    }}
+                    className="rounded-[14px] border border-white/8 bg-white/[0.025] px-4 py-3"
+                  >
+                    <div className="flex items-start gap-3">
+                      <span className="mt-[0.45rem] h-2 w-2 shrink-0 rounded-full bg-[#3B82F6]" />
+                      <p className="text-[14px] leading-6 text-[#F5F2EA] sm:text-[15px] sm:leading-6">
+                        {item}
+                      </p>
                     </div>
-                    <div className="bg-white/[0.02] p-8 lg:border-l border-white/10">
-                      <div className="text-xs uppercase tracking-widest text-[#7F828A]">Hosting & Management</div>
-                      <div className="mt-3 text-3xl font-bold">£0 <span className="text-sm font-normal opacity-40">/mo for 12 months</span></div>
-                      <p className="mt-4 text-sm text-[#A9ABB3]">We handle the security, technical management, and hosting on UK servers so you stay online effortlessly.</p>
-                      <div className="mt-6 divide-y divide-white/5">
-                        {HOSTING_INCLUDES.map(i => (
-                          <div key={i.title} className="py-4 first:pt-0 flex justify-between">
-                            <span className="text-sm">{i.title}</span>
-                            <InfoTooltip text={i.text} />
-                          </div>
-                        ))}
-                      </div>
-                      <MagneticLink href="/start" className="mt-8 block bg-[#3B82F6] p-4 text-center rounded-full font-bold shadow-2xl transition hover:brightness-110">Start £99 Website Build</MagneticLink>
-                    </div>
-                  </div>
-                </GlassCard>
-              ) : (
-                <div className="space-y-4">
-                  <GlassCard className="p-6">
-                    <div className="flex justify-between items-center mb-6">
-                      <div><div className="text-3xl font-bold">£99</div><div className="text-[10px] uppercase text-[#60A5FA]">Build Fee</div></div>
-                      <div className="text-right">
-                        <div className="text-2xl font-bold text-[#F5F2EA]">24h</div>
-                        <div className="text-[10px] uppercase text-[#7F828A]">Launch Time</div>
-                      </div>
-                    </div>
-                    <Link href="/start" className="block w-full bg-[#3B82F6] p-4 text-center rounded-full font-bold">Start My Website</Link>
-                  </GlassCard>
-                  <PricingAccordion title="What's included?" defaultOpen>
-                    <PricingList items={BUILD_INCLUDES} />
-                  </PricingAccordion>
-                  <PricingAccordion title="Hosting & Management">
-                    <div className="space-y-4">
-                      <div className="text-2xl font-bold">£0 /month</div>
-                      <p className="text-sm text-[#A9ABB3]">Included for the first year. Covers UK servers, SSL, and all technical management.</p>
-                    </div>
-                  </PricingAccordion>
-                </div>
-              )}
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </SectionShell>
         </Reveal>
 
-        <SectionShell id="process">
-            <SectionEyebrow>The Process</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-3xl">Simple 24-hour launch</h2>
-            <div className="grid gap-4 mt-8 lg:grid-cols-4">
-              {PROCESS_STEPS.map(s => (
-                <div key={s.step} className="rounded-[20px] border border-white/10 bg-white/[0.04] p-6">
-                  <div className="h-10 w-10 flex items-center justify-center rounded-full bg-[#3B82F6]/20 text-[#F5F2EA] text-sm">{s.step}</div>
-                  <h3 className="mt-4 font-medium">{s.title}</h3>
-                  <p className="mt-2 text-sm text-[#A9ABB3]">{s.description}</p>
+        <Reveal>
+          <SectionShell id="pricing">
+            <div className="max-w-4xl">
+              <SectionEyebrow>Pricing</SectionEyebrow>
+              <h2 className="mt-4 max-w-none font-serif text-[clamp(2rem,6vw,3.2rem)] leading-[1] tracking-[-0.045em] text-[#F5F2EA]">
+                A complete website for your business
+              </h2>
+              <p className="mt-4 max-w-xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                Handled for you from start to finish, so getting online is
+                straightforward.
+              </p>
+            </div>
+
+            {isMobile ? (
+              <div className="mt-8 space-y-4">
+                <GlassCard className="p-4 sm:p-5">
+                  <div className="grid grid-cols-3 gap-3">
+                    <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                        £99
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        One-time
+                      </div>
+                    </div>
+
+                    <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                        £0
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
+                        First 12m
+                      </div>
+                    </div>
+
+                    <div className="rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-3 py-4 text-center">
+                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#CFE0FF]">
+                        24h
+                      </div>
+                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#9FB7D9]">
+                        Launch time
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 flex flex-col gap-3">
+                    <MagneticLink
+                      href="/start"
+                      disabled={isMobile}
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110"
+                    >
+                      Start my website
+                    </MagneticLink>
+
+                    <Link
+                      href="#portfolio"
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full border border-white/10 bg-white/[0.03] px-5 text-sm text-[#A9ABB3] transition hover:-translate-y-0.5 hover:border-white/20 hover:bg-white/[0.05] hover:text-[#F5F2EA]"
+                    >
+                      View portfolio
+                    </Link>
+                  </div>
+                </GlassCard>
+
+                <PricingAccordion title="Website build" defaultOpen>
+                  <div>
+                    <div className="text-sm text-[#A9ABB3]">Website build</div>
+                    <div className="mt-2 text-[2.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                      £99
+                    </div>
+                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time launch price</div>
+
+                    <div className="mt-5">
+                      <PricingList items={BUILD_INCLUDES} />
+                    </div>
+
+                    <div className="mt-5 rounded-[16px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                      Once your content is received, your website can be built
+                      within 24 hours.
+                    </div>
+                  </div>
+                </PricingAccordion>
+
+                <PricingAccordion title="Hosting & support">
+                  <div>
+                    <div className="text-sm text-[#A9ABB3]">
+                      Hosting &amp; support
+                    </div>
+                    <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                      £0 / month
+                    </div>
+                    <div className="mt-1 text-sm text-[#A9ABB3]">Included for the first year. (£20/month thereafter).</div>
+
+                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+                      Your website is hosted securely and managed technically so
+                      it stays online, loads properly and continues to run as
+                      expected after launch.
+                    </p>
+
+                    <div className="mt-5 divide-y divide-white/8">
+                      {HOSTING_INCLUDES.map((item) => (
+                        <div
+                          key={item.title}
+                          className="py-4 first:pt-0 last:pb-0"
+                        >
+                          <div className="text-sm text-[#F5F2EA]">
+                            {item.title}
+                          </div>
+                          <p className="mt-1 text-sm leading-6 text-[#7F828A]">
+                            {item.text}
+                          </p>
+                        </div>
+                      ))}
+
+                      <div className="py-4 last:pb-0">
+                        <p className="text-sm leading-6 text-[#7F828A]">
+                          Your domain is purchased separately in your name, so
+                          you keep full ownership of it.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </PricingAccordion>
+              </div>
+            ) : (
+              <GlassCard className="mt-8 overflow-hidden bg-[#0F1115] border-white/12 shadow-[0_10px_40px_rgba(0,0,0,0.35)] [&>div:first-child]:hidden [&>div:nth-child(2)]:hidden">
+                <div className="grid lg:grid-cols-[1.02fr_0.98fr]">
+                  <div className="p-6 lg:p-8">
+                    <div className="text-sm text-[#A9ABB3]">Website build</div>
+                    <div className="mt-2 text-[3.1rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
+                      £99
+                    </div>
+                    <div className="mt-2 text-sm text-[#A9ABB3]">One-time launch price</div>
+
+                    <div className="mt-6">
+                      <PricingList items={BUILD_INCLUDES} />
+                    </div>
+
+                    <div className="mt-6 rounded-[18px] border border-[#3B82F6]/20 bg-[#3B82F6]/10 px-4 py-3 text-sm leading-6 text-[#CFE0FF]">
+                      Once your content is received, your website can be built
+                      within 24 hours.
+                    </div>
+                  </div>
+
+                  <div className="border-t border-white/10 bg-white/[0.02] p-6 lg:border-l lg:border-t-0 lg:p-8">
+                    <div className="text-sm text-[#A9ABB3]">
+                      Hosting &amp; support
+                    </div>
+                    <div className="mt-2 text-[2.2rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                      £0 / month
+                    </div>
+                    <div className="mt-1 text-sm text-[#A9ABB3]">
+                      Included for the first year. (£20/month thereafter).
+                    </div>
+
+                    <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
+                      Your website is hosted securely and managed technically so
+                      it stays online, loads properly and continues to run as
+                      expected after launch.
+                    </p>
+
+                    <div className="mt-5 divide-y divide-white/8">
+                      {HOSTING_INCLUDES.map((item) => (
+                        <div key={item.title} className="py-4 first:pt-0">
+                          <div className="flex items-start justify-between gap-4">
+                            <span className="text-sm text-[#F5F2EA]">
+                              {item.title}
+                            </span>
+                            <InfoTooltip text={item.text} />
+                          </div>
+                        </div>
+                      ))}
+
+                      <div className="py-4">
+                        <p className="text-sm leading-7 text-[#A9ABB3]">
+                          Your domain is purchased separately in your name, so
+                          you keep full ownership of it.
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 flex flex-col gap-3 xl:flex-row">
+                      <MagneticLink
+                        href="/start"
+                        disabled={isMobile}
+                        className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-5 text-sm font-semibold text-white shadow-[0_12px_32px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 xl:w-auto"
+                      >
+                        Start my website
+                      </MagneticLink>
+                    </div>
+                  </div>
                 </div>
+              </GlassCard>
+            )}
+          </SectionShell>
+        </Reveal>
+
+        <Reveal>
+          <SectionShell id="process">
+            <div className="max-w-2xl">
+              <SectionEyebrow>What happens next</SectionEyebrow>
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                A simple process from enquiry to launch
+              </h2>
+              <p className="mt-4 text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px] sm:leading-8">
+                Launching your website is straightforward with Clean Websites.
+              </p>
+            </div>
+
+            <div className="relative mt-8">
+              <motion.div
+                initial={reduceMotion ? false : { scaleX: 0, opacity: 0.5 }}
+                whileInView={reduceMotion ? {} : { scaleX: 1, opacity: 1 }}
+                viewport={{ once: true, amount: 0.6 }}
+                transition={{ duration: 1, ease: easeOut }}
+                style={{ originX: 0 }}
+                className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-gradient-to-r from-transparent via-white/10 to-transparent lg:block"
+              />
+
+              <div className="grid gap-4 lg:grid-cols-4">
+                {PROCESS_STEPS.map((item, index) => (
+                  <motion.div
+                    key={item.step}
+                    initial={reduceMotion ? false : { opacity: 0, y: 24 }}
+                    whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
+                    viewport={{ once: true, amount: 0.4 }}
+                    transition={{
+                      duration: 0.7,
+                      delay: index * 0.08,
+                      ease: easeOut,
+                    }}
+                    className="relative rounded-[20px] border border-white/10 bg-white/[0.04] p-5 shadow-[0_16px_50px_rgba(0,0,0,0.18)]"
+                  >
+                    <motion.div
+                      initial={
+                        reduceMotion ? false : { scale: 0.85, opacity: 0 }
+                      }
+                      whileInView={reduceMotion ? {} : { scale: 1, opacity: 1 }}
+                      viewport={{ once: true, amount: 0.8 }}
+                      transition={{
+                        duration: 0.45,
+                        delay: 0.12 + index * 0.08,
+                        ease: easeOut,
+                      }}
+                      className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
+                    >
+                      {item.step}
+                    </motion.div>
+
+                    <h3 className="mt-4 text-[19px] tracking-[-0.03em] text-[#F5F2EA] sm:text-[20px]">
+                      {item.title}
+                    </h3>
+                    <p className="mt-3 text-sm leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7">
+                      {item.description}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+          </SectionShell>
+        </Reveal>
+
+        <Reveal>
+          <SectionShell id="faq">
+            <div className="max-w-3xl">
+              <SectionEyebrow>FAQ</SectionEyebrow>
+              <h2 className="mt-4 font-serif text-[clamp(2rem,6vw,3.35rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                Common questions
+              </h2>
+            </div>
+
+            <div className="mt-8 grid gap-4">
+              {FAQS.map((faq) => (
+                <FAQItem
+                  key={faq.question}
+                  question={faq.question}
+                  answer={faq.answer}
+                />
               ))}
             </div>
-        </SectionShell>
+          </SectionShell>
+        </Reveal>
 
-        <SectionShell id="faq">
-            <SectionEyebrow>Transparency</SectionEyebrow>
-            <h2 className="mt-4 font-serif text-3xl">Common Questions</h2>
-            <div className="mt-10 grid gap-4">
-              {FAQS.map(f => <FAQItem key={f.question} {...f} />)}
-            </div>
-        </SectionShell>
+        <Reveal>
+          <SectionShell className="pb-16 sm:pb-20 lg:pb-24">
+            <GlassCard className="overflow-hidden px-5 py-10 text-center sm:px-8 sm:py-12">
+              <motion.div
+                animate={
+                  motionEnabled
+                    ? {
+                        x: [0, 14, -8, 0],
+                        y: [0, -10, 8, 0],
+                        scale: [1, 1.05, 0.98, 1],
+                      }
+                    : {}
+                }
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="pointer-events-none absolute left-1/2 top-0 h-52 w-52 -translate-x-1/2 rounded-full bg-[#3B82F6]/14 blur-[100px] sm:h-60 sm:w-60 sm:bg-[#3B82F6]/18 sm:blur-[110px]"
+              />
 
-        <footer className="mx-auto w-full max-w-7xl border-t border-white/10 px-5 py-12">
-          <div className="grid gap-12 md:grid-cols-3">
+              <div className="relative mx-auto max-w-3xl">
+                <h2 className="font-serif text-[clamp(2.1rem,6vw,3.6rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+                  A clean website for your business
+                  <span className="hidden sm:inline"> — </span>
+                  <span className="block sm:inline">built in 24 hours</span>
+                </h2>
+
+                <p className="mx-auto mt-4 max-w-none text-[14px] leading-6 text-[#A9ABB3] sm:text-[15px] sm:leading-7 sm:whitespace-nowrap">
+                  Clean, coded and built to present your services clearly and
+                  make it easy for customers to get in touch.
+                </p>
+                <p className="mx-auto mt-4 text-[14px] font-medium leading-6 text-[#A7ADB8] sm:text-[15px] sm:leading-7">
+                  <span className="whitespace-nowrap">Website build £99</span>
+                  <span className="mx-2 text-[#7F8692]">•</span>
+                  <span className="whitespace-nowrap">First 12 months hosting included</span>
+                </p>
+
+                <div className="mt-7 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <MagneticLink
+                    href="/start"
+                    disabled={isMobile}
+                    className="group inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(59,130,246,0.32)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+                  >
+                    Start my website
+                    <ArrowRight />
+                  </MagneticLink>
+                </div>
+              </div>
+            </GlassCard>
+          </SectionShell>
+        </Reveal>
+
+        <footer className="mx-auto w-full max-w-7xl border-t border-white/10 px-5 py-10 sm:px-6 lg:px-8">
+          <div className="grid gap-8 md:grid-cols-3">
             <div>
-              <div className="text-lg font-bold">CLEAN WEBSITES</div>
-              <p className="mt-3 text-sm text-[#A9ABB3]">Professional, custom-coded websites for UK businesses. Built for speed, reliability, and creditability.</p>
+              <div className="text-lg font-semibold tracking-[-0.03em] text-[#F5F2EA]">
+                CLEAN WEBSITES
+              </div>
+              <p className="mt-3 max-w-sm text-sm leading-7 text-[#A9ABB3]">
+                Professional websites for UK businesses.
+              </p>
             </div>
+
             <div className="flex flex-col gap-3 text-sm text-[#A9ABB3]">
-              <div className="text-xs uppercase tracking-widest text-[#7F828A] mb-2">Navigate</div>
-              {NAV_ITEMS.map(i => <Link key={i.href} href={i.href}>{i.label}</Link>)}
+              <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
+                Navigate
+              </div>
+              <Link href="#portfolio" className="transition hover:text-[#F5F2EA]">
+                Portfolio
+              </Link>
+              <Link href="#pricing" className="transition hover:text-[#F5F2EA]">
+                Pricing
+              </Link>
+              <a href="#process" className="transition hover:text-[#F5F2EA]">
+                Process
+              </a>
+              <Link href="#faq" className="transition hover:text-[#F5F2EA]">
+                FAQ
+              </Link>
+              <Link href="/start" className="transition hover:text-[#F5F2EA]">
+                Start
+              </Link>
             </div>
-            <div className="flex flex-col gap-3 text-sm text-[#A9ABB3]">
-              <div className="text-xs uppercase tracking-widest text-[#7F828A] mb-2">Contact</div>
-              <a href="mailto:hello@cleanwebsites.co.uk">hello@cleanwebsites.co.uk</a>
-              <a href="https://wa.me/message/CIUXDPB67KAAJ1" target="_blank" rel="noreferrer">WhatsApp Support</a>
+
+            <div className="flex flex-col gap-3 text-sm text-[#A9ABB3] md:items-start">
+              <div className="text-xs uppercase tracking-[0.16em] text-[#7F828A]">
+                Contact
+              </div>
+              <a
+                href="mailto:hello@cleanwebsites.co.uk"
+                className="transition hover:text-[#F5F2EA]"
+              >
+                hello@cleanwebsites.co.uk
+              </a>
+              <a
+                href="https://wa.me/message/CIUXDPB67KAAJ1"
+                target="_blank"
+                rel="noreferrer"
+                className="transition hover:text-[#F5F2EA]"
+              >
+                WhatsApp
+              </a>
             </div>
           </div>
-          <div className="mt-12 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between gap-4 text-[10px] uppercase tracking-widest text-[#7F828A]">
-            <div>© {new Date().getFullYear()} Clean Websites. 100% UK Managed.</div>
-            <div className="flex gap-6"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link></div>
+
+          <div className="mt-10 flex flex-col gap-3 border-t border-white/10 pt-6 text-sm text-[#7F828A] sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              © {new Date().getFullYear()} Clean Websites. All rights reserved.
+            </div>
+            <div className="flex gap-5">
+              <Link href="/privacy" className="transition hover:text-[#F5F2EA]">
+                Privacy
+              </Link>
+              <Link href="/terms" className="transition hover:text-[#F5F2EA]">
+                Terms
+              </Link>
+            </div>
           </div>
         </footer>
       </main>
