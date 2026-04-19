@@ -693,7 +693,7 @@ export default function StartPage() {
                   </p>
                 </div>
 
-                <form
+<form
                   onSubmit={handleSubmit}
                   className="space-y-5 px-5 py-5 sm:space-y-6 sm:px-8 sm:py-8"
                 >
@@ -724,6 +724,19 @@ export default function StartPage() {
                       />
                     </InputShell>
 
+                    <InputShell label="Business name" htmlFor="businessName">
+                      <input
+                        id="businessName"
+                        name="businessName"
+                        type="text"
+                        required
+                        disabled={isSubmitting}
+                        autoComplete="organization"
+                        placeholder="e.g. Smith's Plumbing"
+                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      />
+                    </InputShell>
+
                     <InputShell label="Phone" htmlFor="phone" optional>
                       <input
                         id="phone"
@@ -735,86 +748,39 @@ export default function StartPage() {
                         className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
                       />
                     </InputShell>
-
-                    <InputShell label="Business name" htmlFor="businessName">
-                      <input
-                        id="businessName"
-                        name="businessName"
-                        type="text"
-                        required
-                        disabled={isSubmitting}
-                        autoComplete="organization"
-                        placeholder="Business name"
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
-                      />
-                    </InputShell>
                   </div>
 
-                  <InputShell label="Type of business" htmlFor="businessType">
-                    <input
-                      id="businessType"
-                      name="businessType"
-                      type="text"
-                      required
-                      disabled={isSubmitting}
-                      placeholder="Describe your business"
-                      className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
-                    />
+                  <InputShell label="Current setup" htmlFor="currentSetup">
+                    <div className="relative">
+                      <select
+                        id="currentSetup"
+                        name="currentSetup"
+                        required
+                        disabled={isSubmitting}
+                        className="h-12 w-full appearance-none rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70 [&>option]:bg-[#111214]"
+                      >
+                        <option value="" disabled selected className="text-[#7F828A]">Select an option...</option>
+                        <option value="starting-fresh">Starting fresh (No domain or website yet)</option>
+                        <option value="have-domain">I already own a domain name</option>
+                        <option value="replacing-website">Replacing an existing website</option>
+                      </select>
+                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#7F828A]">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                      </div>
+                    </div>
                   </InputShell>
 
-                  <fieldset disabled={isSubmitting}>
-                    <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
-                      Do you already have a website?
-                    </legend>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <RadioOption
-                        name="hasWebsite"
-                        value="yes"
-                        label="Yes"
-                        disabled={isSubmitting}
-                      />
-                      <RadioOption
-                        name="hasWebsite"
-                        value="no"
-                        label="No"
-                        disabled={isSubmitting}
-                      />
-                    </div>
-                  </fieldset>
-
-                  <fieldset disabled={isSubmitting}>
-                    <legend className="mb-3 block text-sm font-medium text-[#F5F2EA]">
-                      Do you already own a domain?
-                    </legend>
-
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      <RadioOption
-                        name="hasDomain"
-                        value="yes"
-                        label="Yes"
-                        disabled={isSubmitting}
-                      />
-                      <RadioOption
-                        name="hasDomain"
-                        value="no"
-                        label="No"
-                        disabled={isSubmitting}
-                      />
-                    </div>
-                  </fieldset>
-
                   <InputShell
-                    label="Tell us about your business"
+                    label="Project details"
                     htmlFor="about"
                   >
                     <textarea
                       id="about"
                       name="about"
-                      rows={6}
+                      rows={5}
                       required
                       disabled={isSubmitting}
-                      placeholder="Tell us what your business does, which pages you need, and anything else we should know."
+                      placeholder="Briefly describe what your business does and what you need the website to achieve..."
                       className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
                     />
                   </InputShell>
@@ -825,7 +791,7 @@ export default function StartPage() {
                       disabled={isSubmitting}
                       className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                     >
-                      {isSubmitting ? "Sending..." : "Send my enquiry"}
+                      {isSubmitting ? "Sending..." : "Start my £99 build"}
                     </button>
 
                     <a
@@ -837,17 +803,6 @@ export default function StartPage() {
                       <WhatsAppIcon />
                       Message us on WhatsApp
                     </a>
-                  </div>
-
-                  <div className="space-y-2">
-                    <p className="text-sm leading-6 text-[#7F828A]">
-                      No obligation. Just send your details and we’ll review your
-                      project.
-                    </p>
-                    <p className="hidden text-sm leading-6 text-[#7F828A] sm:block">
-                      Prefer messaging? You can also contact us directly on
-                      WhatsApp.
-                    </p>
                   </div>
 
                   <AnimatePresence mode="wait">
@@ -869,18 +824,6 @@ export default function StartPage() {
                       </motion.div>
                     )}
                   </AnimatePresence>
-
-                  <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
-                    <p>
-                      Website builds are a flat £99 fee. Hosting is included
-                      for the first 12 months, then £20/month. Your domain is
-                      purchased separately in your name.
-                    </p>
-                    <p className="hidden sm:block">
-                      By sending this form, you’re asking us to review your
-                      project and reply with the next steps.
-                    </p>
-                  </div>
                 </form>
               </div>
             </Reveal>
