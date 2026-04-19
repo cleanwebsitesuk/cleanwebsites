@@ -1338,9 +1338,9 @@ export default function HomePage() {
                       Hosting &amp; support
                     </div>
                     <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-                      £0 / month
+                      FREE
                     </div>
-                    <div className="mt-1 text-sm text-[#A9ABB3]">Included for the first year. (£20/month thereafter).</div>
+                    <div className="mt-1 text-sm text-[#A9ABB3]">Free for the first year, then £20/month.</div>
 
                     <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
                       Your website is hosted securely and managed technically so
