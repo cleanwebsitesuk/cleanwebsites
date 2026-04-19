@@ -7,19 +7,19 @@ import { FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
 const WHATSAPP_LINK = "https://wa.me/message/CIUXDPB67KAAJ1";
 
 const servicePoints = [
-  "Custom-built website",
+  "Custom-built website (No bloated templates)",
   "Fast loading and mobile-first layout",
-  "Home, About, Services/Menu, and Contact pages",
+  "Home, About, Services, and Contact pages",
   "Contact or booking form",
-  "Launch support included",
-  "Ready to go live once content is provided",
+  "UK-based infrastructure and setup",
+  "Launched in 24 hours once content is provided",
 ];
 
 const nextSteps = [
-  "We review the details of your project and business.",
-  "We respond once we have reviewed the information.",
-  "We confirm the structure of your website and what content is needed.",
-  "Once content is ready, we build the website and prepare it for launch.",
+  "We review your details immediately.",
+  "We confirm your domain and what content is needed.",
+  "You provide your text and images.",
+  "We build and launch your website within 24 hours.",
 ];
 
 const portfolioLinks = [
@@ -34,11 +34,11 @@ const portfolioLinks = [
 ];
 
 const practicalDetails = [
-  "Website builds start from £250 depending on scope",
-  "Managed hosting and support is £20/month after launch",
+  "Website build is a flat £99 one-time fee",
+  "Hosting & management is £0 for the first year (£20/mo after)",
   "Your domain is purchased separately in your name",
-  "Content and images must be supplied before build begins",
-  "One revision is included",
+  "Content and images must be supplied before the 24h timer begins",
+  "One revision is included before final launch",
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -567,23 +567,23 @@ export default function StartPage() {
               variants={fadeUp}
               className="mt-5 max-w-[15ch] font-serif text-[clamp(2.1rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.045em] text-[#F5F2EA]"
             >
-              Tell us about your business and get your website project started.
+              Tell us about your business and get your website started.
             </motion.h1>
 
             <motion.p
               variants={fadeUp}
               className="mt-6 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
             >
-              We build clean, professional websites for UK businesses that want
+              We build clean, custom-coded websites for UK businesses that want
               to look credible online and make it easy for customers to get in
               touch.
             </motion.p>
 
             <motion.div
               variants={fadeUp}
-              className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[15px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5"
+              className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[14px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5 sm:text-[15px]"
             >
-              Website builds start from £250 • Hosting £20/month after launch
+              £99 one-time build • First 12 months hosting included
             </motion.div>
           </motion.div>
         </SectionShell>
@@ -594,7 +594,7 @@ export default function StartPage() {
               <BulletListCard
                 eyebrow="What you’ll get"
                 title="A professional website built for your business"
-                copy="Every website includes the core pages most businesses need."
+                copy="Every website includes the core pages and infrastructure most businesses need."
                 items={servicePoints}
                 hideFromIndexOnMobile={4}
               />
@@ -605,8 +605,8 @@ export default function StartPage() {
                     {[
                       "We review your enquiry",
                       "We reply with next steps",
-                      "We confirm scope and timeline",
-                      "We build and prepare launch",
+                      "We confirm content required",
+                      "We custom build your website",
                     ].map((title, index) => (
                       <motion.div
                         key={title}
@@ -685,7 +685,7 @@ export default function StartPage() {
               <div className={formCardClass}>
                 <div className="border-b border-white/10 px-5 py-5 sm:px-8 sm:py-6">
                   <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-[2rem]">
-                    Tell us about your project
+                    Start your project
                   </h2>
                   <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
                     Fill out the form below and we’ll review your enquiry and
@@ -872,9 +872,9 @@ export default function StartPage() {
 
                   <div className="space-y-2 text-sm leading-6 text-[#7F828A]">
                     <p>
-                      Website builds start from £250 depending on scope. Managed
-                      hosting is £20/month after launch. Your domain is purchased
-                      separately in your name.
+                      Website builds are a flat £99 fee. Hosting is included
+                      for the first 12 months, then £20/month. Your domain is
+                      purchased separately in your name.
                     </p>
                     <p className="hidden sm:block">
                       By sending this form, you’re asking us to review your
