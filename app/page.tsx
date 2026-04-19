@@ -172,7 +172,6 @@ const FAQS = [
   },
 ] as const;
 
-// Simplified to 2 panels for the Hero section
 const OFFER_STATS = [
   { label: "Build fee", value: "£99" },
   { label: "Launch time", value: "24h" },
@@ -181,7 +180,9 @@ const OFFER_STATS = [
 const COMPARISON_ROWS = [
   { feature: "Upfront Cost", agency: "£1,500+", us: "£99" },
   { feature: "Turnaround Time", agency: "4–8 Weeks", us: "24 Hours" },
-  { feature: "Build Setup", agency: "Lengthy project phases", us: "Streamlined launch" },
+  { feature: "First Year Hosting", agency: "Usually £300+", us: "Included (£0)" },
+  { feature: "Platform Setup", agency: "WordPress or site builders", us: "Clean, custom code" },
+  { feature: "Onboarding", agency: "Multiple meetings & calls", us: "Simple content handover" },
   { feature: "Technical Management", agency: "Often left to the client", us: "Fully handled for you" },
 ] as const;
 
@@ -1266,22 +1267,13 @@ export default function HomePage() {
             {isMobile ? (
               <div className="mt-8 space-y-4">
                 <GlassCard className="p-4 sm:p-5">
-                  <div className="grid grid-cols-3 gap-3">
+                  <div className="grid grid-cols-2 gap-3">
                     <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
                       <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
                         £99
                       </div>
                       <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
                         One-time
-                      </div>
-                    </div>
-
-                    <div className="rounded-[16px] border border-white/10 bg-white/[0.03] px-3 py-4 text-center">
-                      <div className="text-[1.35rem] font-semibold tracking-[-0.05em] text-[#F5F2EA]">
-                        £0
-                      </div>
-                      <div className="mt-1 text-[10px] uppercase tracking-[0.15em] text-[#7F828A]">
-                        First 12m
                       </div>
                     </div>
 
@@ -1338,9 +1330,9 @@ export default function HomePage() {
                       Hosting &amp; support
                     </div>
                     <div className="mt-2 text-[1.8rem] font-semibold tracking-[-0.03em] text-[#F5F2EA]">
-                      FREE
+                      £0 / month
                     </div>
-                    <div className="mt-1 text-sm text-[#A9ABB3]">Free for the first year, then £20/month.</div>
+                    <div className="mt-1 text-sm text-[#A9ABB3]">Included for the first year. (£20/month thereafter).</div>
 
                     <p className="mt-4 text-sm leading-7 text-[#A9ABB3]">
                       Your website is hosted securely and managed technically so
