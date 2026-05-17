@@ -234,12 +234,7 @@ function SectionShell({
 }
 
 function SectionEyebrow({ children }: { children: ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-[#E5E1DA] bg-white/80 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-[0.18em] text-[#647085] shadow-[0_8px_24px_rgba(11,18,32,0.04)] backdrop-blur-xl sm:text-[12px]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#2F6FED]" />
-      {children}
-    </div>
-  );
+  return <>{children ? null : null}</>;
 }
 
 function ArrowRight() {
@@ -354,7 +349,7 @@ function SecondaryButton({ href, children, className = "" }: { href: string; chi
   return (
     <Link
       href={href}
-      className={`group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#E5E1DA] bg-white/85 px-6 text-sm font-semibold text-[#0B1220] shadow-[0_12px_28px_rgba(11,18,32,0.06)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[#D7D0C6] hover:bg-white focus:outline-none focus:ring-4 focus:ring-[#E7E2DA] ${className}`}
+      className={`group inline-flex h-12 items-center justify-center gap-2 rounded-full border border-[#E2E8F0] bg-white/85 px-6 text-sm font-semibold text-[#0B1220] shadow-[0_12px_28px_rgba(11,18,32,0.06)] backdrop-blur-xl transition duration-300 hover:-translate-y-0.5 hover:border-[#CBD5E1] hover:bg-white focus:outline-none focus:ring-4 focus:ring-[#E2E8F0] ${className}`}
     >
       {children}
     </Link>
@@ -368,7 +363,7 @@ function DesktopNav() {
         <a
           key={item.href}
           href={item.href}
-          className="rounded-full px-4 py-2 text-[15px] font-medium text-[#536176] transition duration-300 hover:bg-[#F0EEE9] hover:text-[#0B1220]"
+          className="rounded-full px-4 py-2 text-[15px] font-medium text-[#536176] transition duration-300 hover:bg-[#F1F5F9] hover:text-[#0B1220]"
         >
           {item.label}
         </a>
@@ -379,13 +374,12 @@ function DesktopNav() {
 
 function BrandMark() {
   return (
-    <Link href="/" className="flex items-center gap-3" aria-label="Clean Websites home">
-      <span className="relative inline-flex h-9 w-9 items-center justify-center rounded-full border border-[#E5E1DA] bg-white shadow-[0_10px_28px_rgba(11,18,32,0.06)]">
-        <SparkleIcon className="h-5 w-5 text-[#2F6FED]" />
-      </span>
-      <span className="hidden text-[15px] font-semibold tracking-[-0.03em] text-[#0B1220] sm:inline">
-        Clean Websites
-      </span>
+    <Link
+      href="/"
+      className="text-[18px] font-semibold tracking-[-0.035em] text-[#0B1220] sm:text-[19px]"
+      aria-label="Clean Websites home"
+    >
+      Clean Websites
     </Link>
   );
 }
@@ -412,7 +406,7 @@ function MobileMenu({ open, onClose, reduceMotion }: { open: boolean; onClose: (
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2, ease: easeOut }}
-          className="fixed inset-x-0 bottom-0 top-[72px] z-40 border-t border-[#E5E1DA] bg-[#FBFAF7]/96 backdrop-blur-2xl md:hidden"
+          className="fixed inset-x-0 bottom-0 top-[72px] z-40 border-t border-[#E2E8F0] bg-[#F8FAFC]/96 backdrop-blur-2xl md:hidden"
         >
           <div className="mx-auto flex h-full w-full max-w-7xl flex-col px-5 pb-6 pt-6 sm:px-6">
             <motion.div
@@ -431,7 +425,7 @@ function MobileMenu({ open, onClose, reduceMotion }: { open: boolean; onClose: (
                     initial={reduceMotion ? false : { opacity: 0, y: 12 }}
                     animate={reduceMotion ? {} : { opacity: 1, y: 0 }}
                     transition={{ duration: 0.26, delay: 0.03 + index * 0.05, ease: easeOut }}
-                    className="flex items-center justify-between rounded-2xl border border-[#E5E1DA] bg-white/80 px-5 py-4 text-[17px] font-semibold text-[#0B1220] shadow-sm transition hover:border-[#D7D0C6] hover:bg-white"
+                    className="flex items-center justify-between rounded-2xl border border-[#E2E8F0] bg-white/80 px-5 py-4 text-[17px] font-semibold text-[#0B1220] shadow-sm transition hover:border-[#CBD5E1] hover:bg-white"
                   >
                     <span>{item.label}</span>
                     <ArrowRight />
@@ -439,10 +433,10 @@ function MobileMenu({ open, onClose, reduceMotion }: { open: boolean; onClose: (
                 ))}
               </div>
 
-              <div className="mt-6 rounded-3xl border border-[#E5E1DA] bg-white/70 p-4 shadow-sm">
+              <div className="mt-6 rounded-3xl border border-[#E2E8F0] bg-white/70 p-4 shadow-sm">
                 <div className="grid grid-cols-3 gap-3">
                   {HERO_STATS.map((item) => (
-                    <div key={item.label} className="rounded-2xl border border-[#E5E1DA] bg-[#FBFAF7] px-3 py-3 text-center">
+                    <div key={item.label} className="rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-3 text-center">
                       <div className="text-sm font-semibold tracking-[-0.04em] text-[#0B1220] sm:text-base">{item.value}</div>
                       <div className="mt-1 text-[9px] font-semibold uppercase tracking-[0.14em] text-[#647085]">{item.label}</div>
                     </div>
@@ -501,35 +495,32 @@ function FloatingBuildCard({ reduceMotion }: { reduceMotion: boolean }) {
               y: { duration: 4.4, repeat: Infinity, ease: "easeInOut" },
             }
       }
-      className="absolute -bottom-8 left-4 hidden w-[235px] rounded-[22px] border border-white/55 bg-white/82 p-4 shadow-[0_24px_70px_rgba(11,18,32,0.14)] backdrop-blur-xl sm:block"
+      className="absolute -bottom-8 left-4 hidden w-[255px] rounded-[22px] border border-white/70 bg-white/88 p-4 shadow-[0_24px_70px_rgba(11,18,32,0.14)] backdrop-blur-xl sm:block"
     >
       <div className="flex items-center justify-between gap-3">
-        <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#647085]">Build progress</div>
-        <div className="rounded-full bg-[#EAF2FF] px-2 py-1 text-[10px] font-bold text-[#2F6FED]">24h</div>
+        <div className="text-[11px] font-bold uppercase tracking-[0.16em] text-[#647085]">Launch checklist</div>
+        <div className="rounded-full bg-[#EAF2FF] px-2 py-1 text-[10px] font-bold text-[#2F6FED]">24h build</div>
       </div>
-      <div className="mt-4 space-y-3">
+
+      <div className="mt-4 grid gap-2.5">
         {[
-          ["Content", "100%"],
-          ["Design", "86%"],
-          ["Launch setup", "64%"],
-        ].map(([label, width]) => (
-          <div key={label}>
-            <div className="flex justify-between text-xs font-medium text-[#536176]">
-              <span>{label}</span>
-              <span>{width}</span>
-            </div>
-            <div className="mt-1.5 h-1.5 overflow-hidden rounded-full bg-[#ECE8E1]">
-              <motion.div
-                initial={{ width: reduceMotion ? width : "12%" }}
-                whileInView={{ width }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.1, delay: 0.25, ease: easeOut }}
-                className="h-full rounded-full bg-[#2F6FED]"
-              />
-            </div>
+          "Business details",
+          "Services, menu or offer",
+          "Photos, logo or brand assets",
+          "Review notes before launch",
+        ].map((item) => (
+          <div key={item} className="flex items-center gap-2.5 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-3 py-2 text-[12px] font-medium text-[#293548]">
+            <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6FED]">
+              <CheckIcon />
+            </span>
+            {item}
           </div>
         ))}
       </div>
+
+      <p className="mt-3 text-xs leading-5 text-[#647085]">
+        Send the essentials once. The build, setup and launch are handled from there.
+      </p>
     </motion.div>
   );
 }
@@ -537,28 +528,19 @@ function FloatingBuildCard({ reduceMotion }: { reduceMotion: boolean }) {
 function HeroWebsitePreview({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <div className="relative mx-auto w-full max-w-[570px] lg:mx-0">
-      <motion.div
-        aria-hidden="true"
-        animate={reduceMotion ? {} : { y: [0, -10, 0], rotate: [0, 2, 0] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-        className="absolute -right-8 -top-8 hidden h-20 w-20 items-center justify-center rounded-full border border-[#E5E1DA] bg-white/65 text-[#9DBCF8] shadow-[0_18px_60px_rgba(11,18,32,0.08)] backdrop-blur-xl sm:flex"
-      >
-        <SparkleIcon className="h-9 w-9" />
-      </motion.div>
-
       <div className="absolute -left-10 top-12 hidden h-44 w-44 rounded-full bg-[#EAF2FF] blur-3xl sm:block" />
-      <div className="absolute -right-10 bottom-4 hidden h-52 w-52 rounded-full bg-[#ECE8E1] blur-3xl sm:block" />
+      <div className="absolute -right-10 bottom-4 hidden h-52 w-52 rounded-full bg-[#E2E8F0] blur-3xl sm:block" />
 
-      <div className="relative rounded-[30px] border border-[#E5E1DA] bg-white/78 p-3 shadow-[0_30px_90px_rgba(11,18,32,0.12)] backdrop-blur-xl">
+      <div className="relative rounded-[30px] border border-[#E2E8F0] bg-white/78 p-3 shadow-[0_30px_90px_rgba(11,18,32,0.12)] backdrop-blur-xl">
         <CleanSweep reduceMotion={reduceMotion} />
-        <div className="overflow-hidden rounded-[24px] border border-[#E5E1DA] bg-[#FBFAF7]">
-          <div className="flex items-center gap-2 border-b border-[#E5E1DA] bg-white/86 px-4 py-3">
+        <div className="overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC]">
+          <div className="flex items-center gap-2 border-b border-[#E2E8F0] bg-white/86 px-4 py-3">
             <div className="flex gap-1.5">
-              <span className="h-2.5 w-2.5 rounded-full bg-[#D8D2C8]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#D8D2C8]" />
-              <span className="h-2.5 w-2.5 rounded-full bg-[#D8D2C8]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
+              <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
             </div>
-            <div className="ml-3 h-7 flex-1 rounded-full bg-[#F0EEE9]" />
+            <div className="ml-3 h-7 flex-1 rounded-full bg-[#F1F5F9]" />
           </div>
 
           <div className="p-4 sm:p-5">
@@ -606,11 +588,11 @@ function HeroWebsitePreview({ reduceMotion }: { reduceMotion: boolean }) {
 
             <div className="mt-3 grid grid-cols-3 gap-3">
               {["Services", "About", "Contact"].map((item) => (
-                <div key={item} className="rounded-2xl border border-[#E5E1DA] bg-white p-4 shadow-[0_10px_28px_rgba(11,18,32,0.04)]">
+                <div key={item} className="rounded-2xl border border-[#E2E8F0] bg-white p-4 shadow-[0_10px_28px_rgba(11,18,32,0.04)]">
                   <div className="h-8 w-8 rounded-xl bg-[#EAF2FF]" />
                   <div className="mt-4 text-[12px] font-bold text-[#0B1220]">{item}</div>
-                  <div className="mt-3 h-2 w-full rounded-full bg-[#ECE8E1]" />
-                  <div className="mt-2 h-2 w-3/4 rounded-full bg-[#ECE8E1]" />
+                  <div className="mt-3 h-2 w-full rounded-full bg-[#E2E8F0]" />
+                  <div className="mt-2 h-2 w-3/4 rounded-full bg-[#E2E8F0]" />
                 </div>
               ))}
             </div>
@@ -618,7 +600,7 @@ function HeroWebsitePreview({ reduceMotion }: { reduceMotion: boolean }) {
         </div>
       </div>
 
-      <div className="absolute -bottom-5 right-3 hidden w-[176px] rounded-[28px] border border-[#E5E1DA] bg-white p-2 shadow-[0_22px_70px_rgba(11,18,32,0.18)] sm:block">
+      <div className="absolute -bottom-5 right-3 hidden w-[176px] rounded-[28px] border border-[#E2E8F0] bg-white p-2 shadow-[0_22px_70px_rgba(11,18,32,0.18)] sm:block">
         <div className="overflow-hidden rounded-[22px] bg-[#0B1220] p-3 text-white">
           <div className="mx-auto mb-3 h-1 w-10 rounded-full bg-white/25" />
           <div className="h-20 rounded-2xl bg-white/10" />
@@ -648,8 +630,8 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
   const headerClass = useMemo(
     () =>
       scrolled
-        ? "border-b border-[#E5E1DA] bg-[#FBFAF7]/88 shadow-[0_12px_40px_rgba(11,18,32,0.06)] backdrop-blur-2xl"
-        : "border-b border-transparent bg-[#FBFAF7]/72 backdrop-blur-xl",
+        ? "border-b border-[#E2E8F0] bg-[#F8FAFC]/88 shadow-[0_12px_40px_rgba(11,18,32,0.06)] backdrop-blur-2xl"
+        : "border-b border-transparent bg-[#F8FAFC]/72 backdrop-blur-xl",
     [scrolled]
   );
 
@@ -666,7 +648,7 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
             aria-label={mobileOpen ? "Close menu" : "Toggle menu"}
             aria-expanded={mobileOpen}
             aria-controls="mobile-menu"
-            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E5E1DA] bg-white shadow-sm md:hidden"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full border border-[#E2E8F0] bg-white shadow-sm md:hidden"
             onClick={() => setMobileOpen((value) => !value)}
           >
             <MenuIcon open={mobileOpen} />
@@ -684,8 +666,8 @@ function HeroHeader({ scrolled }: { scrolled: boolean }) {
 function HeroSection({ reduceMotion }: { reduceMotion: boolean }) {
   return (
     <section className="relative overflow-hidden">
-      <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_60%_0%,rgba(47,111,237,0.11),transparent_42%),linear-gradient(180deg,#FBFAF7_0%,#F4F2EC_100%)]" />
-      <div className="absolute inset-x-0 top-[110px] -z-10 h-px bg-gradient-to-r from-transparent via-[#E5E1DA] to-transparent" />
+      <div className="absolute inset-x-0 top-0 -z-10 h-[620px] bg-[radial-gradient(circle_at_60%_0%,rgba(47,111,237,0.11),transparent_42%),linear-gradient(180deg,#F8FAFC_0%,#F1F5F9_100%)]" />
+      <div className="absolute inset-x-0 top-[110px] -z-10 h-px bg-gradient-to-r from-transparent via-[#E2E8F0] to-transparent" />
 
       <div className="mx-auto grid w-full max-w-7xl gap-12 px-5 pb-14 pt-10 sm:px-6 sm:pb-18 lg:min-h-[calc(100svh-76px)] lg:grid-cols-[0.92fr_1.08fr] lg:items-center lg:px-8 lg:pb-20 lg:pt-10">
         <div className="max-w-2xl">
@@ -738,7 +720,7 @@ function HeroSection({ reduceMotion }: { reduceMotion: boolean }) {
             className="mt-7 flex flex-wrap gap-2.5"
           >
             {TRUST_ITEMS.map((item) => (
-              <div key={item} className="inline-flex items-center gap-2 rounded-full border border-[#E5E1DA] bg-white/74 px-3.5 py-2 text-sm font-medium text-[#536176] shadow-sm backdrop-blur-xl">
+              <div key={item} className="inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-white/74 px-3.5 py-2 text-sm font-medium text-[#536176] shadow-sm backdrop-blur-xl">
                 <span className="inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6FED]">
                   <CheckIcon />
                 </span>
@@ -763,10 +745,10 @@ function HeroSection({ reduceMotion }: { reduceMotion: boolean }) {
 function StatsStrip() {
   return (
     <SectionShell className="!py-0">
-      <div className="rounded-[26px] border border-[#E5E1DA] bg-white/78 px-4 py-4 shadow-[0_18px_60px_rgba(11,18,32,0.06)] backdrop-blur-xl">
+      <div className="rounded-[26px] border border-[#E2E8F0] bg-white/78 px-4 py-4 shadow-[0_18px_60px_rgba(11,18,32,0.06)] backdrop-blur-xl">
         <div className="grid gap-3 md:grid-cols-3">
           {HERO_STATS.map((item, index) => (
-            <div key={item.label} className={`flex items-center justify-between rounded-2xl px-4 py-3 ${index === 1 ? "bg-[#FBFAF7]" : "bg-white/40"}`}>
+            <div key={item.label} className={`flex items-center justify-between rounded-2xl px-4 py-3 ${index === 1 ? "bg-[#F8FAFC]" : "bg-white/40"}`}>
               <div className="text-[15px] font-semibold text-[#0B1220]">{item.value}</div>
               <div className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#647085]">{item.label}</div>
             </div>
@@ -792,11 +774,11 @@ function ComparisonSection() {
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
-          <div className="rounded-[28px] border border-[#E5E1DA] bg-white/72 p-5 shadow-[0_18px_60px_rgba(11,18,32,0.05)] backdrop-blur-xl sm:p-6">
+          <div className="rounded-[28px] border border-[#E2E8F0] bg-white/72 p-5 shadow-[0_18px_60px_rgba(11,18,32,0.05)] backdrop-blur-xl sm:p-6">
             <div className="text-[12px] font-bold uppercase tracking-[0.16em] text-[#647085]">Traditional projects</div>
             <div className="mt-5 grid gap-3">
               {COMPARISON_ROWS.map((row) => (
-                <div key={row.traditional} className="rounded-2xl bg-[#FBFAF7] px-4 py-3 text-sm leading-6 text-[#647085]">
+                <div key={row.traditional} className="rounded-2xl bg-[#F8FAFC] px-4 py-3 text-sm leading-6 text-[#647085]">
                   {row.traditional}
                 </div>
               ))}
@@ -841,7 +823,7 @@ function FitSection({ reduceMotion }: { reduceMotion: boolean }) {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.4, delay: index * 0.04, ease: easeOut }}
-              className="rounded-[24px] border border-[#E5E1DA] bg-white/72 p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl"
+              className="rounded-[24px] border border-[#E2E8F0] bg-white/72 p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl"
             >
               <div className="flex items-start gap-3">
                 <span className="mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6FED]">
@@ -864,15 +846,15 @@ function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]
         href={item.href}
         target="_blank"
         rel="noreferrer"
-        className="group block overflow-hidden rounded-[30px] border border-[#E5E1DA] bg-white shadow-[0_18px_60px_rgba(11,18,32,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_90px_rgba(11,18,32,0.12)]"
+        className="group block overflow-hidden rounded-[30px] border border-[#E2E8F0] bg-white shadow-[0_18px_60px_rgba(11,18,32,0.06)] transition duration-300 hover:-translate-y-1 hover:shadow-[0_26px_90px_rgba(11,18,32,0.12)]"
       >
-        <div className="border-b border-[#E5E1DA] bg-[#F4F2EC] p-3 sm:p-4">
-          <div className="overflow-hidden rounded-[22px] border border-[#E5E1DA] bg-white shadow-sm">
-            <div className="flex items-center justify-between border-b border-[#E5E1DA] bg-white px-4 py-3">
+        <div className="border-b border-[#E2E8F0] bg-[#F1F5F9] p-3 sm:p-4">
+          <div className="overflow-hidden rounded-[22px] border border-[#E2E8F0] bg-white shadow-sm">
+            <div className="flex items-center justify-between border-b border-[#E2E8F0] bg-white px-4 py-3">
               <span className="text-[10px] font-bold uppercase tracking-[0.16em] text-[#647085] sm:text-[11px]">{item.kicker}</span>
               <span className="text-sm font-semibold text-[#0B1220]">{item.cta}</span>
             </div>
-            <div className="aspect-[16/10] overflow-hidden bg-[#F0EEE9]">
+            <div className="aspect-[16/10] overflow-hidden bg-[#F1F5F9]">
               <Image
                 src={item.image}
                 alt={`${item.title} preview`}
@@ -912,7 +894,7 @@ function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]
 
 function PortfolioSection() {
   return (
-    <section id="portfolio" className="border-y border-[#E5E1DA] bg-white/68">
+    <section id="portfolio" className="border-y border-[#E2E8F0] bg-white/68">
       <SectionShell>
         <div className="max-w-3xl">
           <SectionEyebrow>Portfolio</SectionEyebrow>
@@ -956,7 +938,7 @@ function IncludedSection({ reduceMotion }: { reduceMotion: boolean }) {
               whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
               viewport={{ once: true, amount: 0.35 }}
               transition={{ duration: 0.4, delay: index * 0.035, ease: easeOut }}
-              className="rounded-[22px] border border-[#E5E1DA] bg-white/72 p-4 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl"
+              className="rounded-[22px] border border-[#E2E8F0] bg-white/72 p-4 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl"
             >
               <div className="flex items-start gap-3">
                 <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6FED]">
@@ -1061,7 +1043,7 @@ function PackageSection() {
 
 function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
   return (
-    <section id="process" className="border-y border-[#E5E1DA] bg-white/68">
+    <section id="process" className="border-y border-[#E2E8F0] bg-white/68">
       <SectionShell>
         <div className="max-w-2xl">
           <SectionEyebrow>What happens next</SectionEyebrow>
@@ -1074,7 +1056,7 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
         </div>
 
         <div className="relative mt-10">
-          <div className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-[#E5E1DA] lg:block" />
+          <div className="absolute left-[8%] right-[8%] top-8 hidden h-px bg-[#E2E8F0] lg:block" />
           <motion.div
             aria-hidden="true"
             initial={reduceMotion ? false : { x: "0%" }}
@@ -1092,7 +1074,7 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.55, delay: index * 0.06, ease: easeOut }}
-                className="relative rounded-[26px] border border-[#E5E1DA] bg-white p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)]"
+                className="relative rounded-[26px] border border-[#E2E8F0] bg-white p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)]"
               >
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B1220] text-sm font-semibold text-white">
                   {item.step}
@@ -1112,10 +1094,10 @@ function FAQItem({ question, answer }: { question: string; answer: string }) {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="rounded-[24px] border border-[#E5E1DA] bg-white/76 p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl sm:p-6">
+    <div className="rounded-[24px] border border-[#E2E8F0] bg-white/76 p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)] backdrop-blur-xl sm:p-6">
       <button type="button" onClick={() => setOpen((value) => !value)} className="flex w-full items-start justify-between gap-4 text-left" aria-expanded={open}>
         <span className="text-[16px] font-semibold leading-7 text-[#0B1220] sm:text-[17px]">{question}</span>
-        <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E5E1DA] bg-[#FBFAF7] text-[#536176]">
+        <span className="mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#E2E8F0] bg-[#F8FAFC] text-[#536176]">
           {open ? "−" : "+"}
         </span>
       </button>
@@ -1159,12 +1141,10 @@ function FAQSection() {
 function FinalCTA() {
   return (
     <SectionShell className="pb-16 sm:pb-20 lg:pb-24">
-      <div className="relative overflow-hidden rounded-[34px] border border-[#E5E1DA] bg-white px-5 py-12 text-center shadow-[0_28px_100px_rgba(11,18,32,0.08)] sm:px-8 sm:py-16">
+      <div className="relative overflow-hidden rounded-[34px] border border-[#E2E8F0] bg-white px-5 py-12 text-center shadow-[0_28px_100px_rgba(11,18,32,0.08)] sm:px-8 sm:py-16">
         <div className="absolute left-1/2 top-0 h-72 w-72 -translate-x-1/2 rounded-full bg-[#EAF2FF] blur-3xl" />
         <div className="relative mx-auto max-w-3xl">
-          <div className="mx-auto mb-5 flex h-12 w-12 items-center justify-center rounded-full border border-[#E5E1DA] bg-[#FBFAF7] text-[#2F6FED] shadow-sm">
-            <SparkleIcon className="h-6 w-6" />
-          </div>
+          
           <h2 className="text-[clamp(2.05rem,4.4vw,3.65rem)] font-semibold leading-[1] tracking-[-0.045em] text-[#0B1220]">
             A clean website for your business
             <span className="hidden sm:inline"> — </span>
@@ -1191,7 +1171,7 @@ function MobileStickyCta({ hidden }: { hidden: boolean }) {
   if (hidden) return null;
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E5E1DA] bg-[#FBFAF7]/92 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 backdrop-blur-2xl md:hidden">
+    <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E2E8F0] bg-[#F8FAFC]/92 px-4 pb-[calc(1rem+env(safe-area-inset-bottom))] pt-4 backdrop-blur-2xl md:hidden">
       <div className="mx-auto max-w-7xl">
         <PrimaryButton href="/start" className="h-14 w-full text-[16px]">
           Start my website
@@ -1203,14 +1183,11 @@ function MobileStickyCta({ hidden }: { hidden: boolean }) {
 
 function Footer() {
   return (
-    <footer className="mx-auto w-full max-w-7xl border-t border-[#E5E1DA] px-5 py-10 sm:px-6 lg:px-8">
+    <footer className="mx-auto w-full max-w-7xl border-t border-[#E2E8F0] px-5 py-10 sm:px-6 lg:px-8">
       <div className="grid gap-8 md:grid-cols-3">
         <div>
-          <div className="flex items-center gap-3 text-lg font-semibold tracking-[-0.03em] text-[#0B1220]">
-            <SparkleIcon className="h-5 w-5 text-[#2F6FED]" />
-            Clean Websites
-          </div>
-          <p className="mt-3 max-w-sm text-sm leading-7 text-[#536176]">Professional websites for UK businesses.</p>
+          <div className="text-lg font-semibold tracking-[-0.035em] text-[#0B1220]">Clean Websites</div>
+          <p className="mt-3 max-w-sm text-sm leading-7 text-[#536176]">Professional websites for growing businesses.</p>
         </div>
 
         <div className="flex flex-col gap-3 text-sm text-[#536176]">
@@ -1229,7 +1206,7 @@ function Footer() {
         </div>
       </div>
 
-      <div className="mt-10 flex flex-col gap-3 border-t border-[#E5E1DA] pt-6 text-sm text-[#647085] sm:flex-row sm:items-center sm:justify-between">
+      <div className="mt-10 flex flex-col gap-3 border-t border-[#E2E8F0] pt-6 text-sm text-[#647085] sm:flex-row sm:items-center sm:justify-between">
         <div>© {new Date().getFullYear()} Clean Websites. All rights reserved.</div>
         <div className="flex gap-5">
           <Link href="/privacy" className="transition hover:text-[#0B1220]">Privacy</Link>
@@ -1257,7 +1234,7 @@ export default function HomePage() {
   }, []);
 
   return (
-    <div className="min-h-screen scroll-smooth bg-[#FBFAF7] pb-24 text-[#0B1220] antialiased selection:bg-[#DCEAFF] selection:text-[#0B1220] md:pb-0">
+    <div className="min-h-screen scroll-smooth bg-[#F8FAFC] pb-24 font-[Manrope,DM_Sans,Inter,system-ui,sans-serif] text-[#0B1220] antialiased selection:bg-[#DCEAFF] selection:text-[#0B1220] md:pb-0">
       <HeroHeader scrolled={scrolled} />
       <HeroSection reduceMotion={reduceMotion} />
 
