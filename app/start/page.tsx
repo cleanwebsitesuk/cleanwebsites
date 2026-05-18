@@ -602,7 +602,6 @@ export default function StartPage() {
                         required
                         disabled={isSubmitting}
                         autoComplete="name"
-                        placeholder="Your name"
                         className={FormInputClass()}
                       />
                     </InputShell>
@@ -615,7 +614,6 @@ export default function StartPage() {
                         required
                         disabled={isSubmitting}
                         autoComplete="email"
-                        placeholder="you@business.com"
                         className={FormInputClass()}
                       />
                     </InputShell>
@@ -628,7 +626,6 @@ export default function StartPage() {
                         required
                         disabled={isSubmitting}
                         autoComplete="organization"
-                        placeholder="e.g. Smith's Plumbing"
                         className={FormInputClass()}
                       />
                     </InputShell>
@@ -640,7 +637,6 @@ export default function StartPage() {
                         type="tel"
                         disabled={isSubmitting}
                         autoComplete="tel"
-                        placeholder="Phone number"
                         className={FormInputClass()}
                       />
                     </InputShell>
@@ -680,7 +676,6 @@ export default function StartPage() {
                       rows={5}
                       required
                       disabled={isSubmitting}
-                      placeholder="Briefly describe what your business does, what pages you need, and what you want the website to achieve..."
                       className="w-full rounded-[22px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm leading-6 text-[#0B1220] outline-none transition placeholder:text-[#94A3B8] focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70"
                     />
                   </InputShell>
