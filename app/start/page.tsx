@@ -366,55 +366,6 @@ function InputShell({
   );
 }
 
-function WebsitePreviewCard() {
-  return (
-    <CleanCard className="p-3">
-      <div className="overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC]">
-        <div className="flex items-center gap-2 border-b border-[#E2E8F0] bg-white px-4 py-3">
-          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
-          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
-          <div className="ml-3 h-7 flex-1 rounded-full bg-[#F1F5F9]" />
-        </div>
-
-        <div className="p-4">
-          <div className="rounded-[22px] bg-[#0B1220] p-5 text-white">
-            <div className="flex items-center justify-between gap-4">
-              <div className="h-8 w-28 rounded-full bg-white/14" />
-              <div className="hidden gap-2 sm:flex">
-                <div className="h-2.5 w-10 rounded-full bg-white/18" />
-                <div className="h-2.5 w-10 rounded-full bg-white/18" />
-                <div className="h-2.5 w-10 rounded-full bg-white/18" />
-              </div>
-            </div>
-            <div className="mt-10 max-w-sm">
-              <div className="h-2.5 w-24 rounded-full bg-[#2F6FED]" />
-              <div className="mt-4 h-8 w-full rounded-full bg-white" />
-              <div className="mt-2 h-8 w-4/5 rounded-full bg-white" />
-              <div className="mt-5 space-y-2.5">
-                <div className="h-2.5 w-full rounded-full bg-white/18" />
-                <div className="h-2.5 w-5/6 rounded-full bg-white/18" />
-              </div>
-              <div className="mt-6 h-10 w-34 rounded-full bg-[#2F6FED]" />
-            </div>
-          </div>
-
-          <div className="mt-3 grid grid-cols-3 gap-3">
-            {["Services", "About", "Contact"].map((item) => (
-              <div key={item} className="rounded-2xl border border-[#E2E8F0] bg-white p-4">
-                <div className="h-8 w-8 rounded-xl bg-[#EAF2FF]" />
-                <div className="mt-4 text-[12px] font-bold text-[#0B1220]">{item}</div>
-                <div className="mt-3 h-2 w-full rounded-full bg-[#E2E8F0]" />
-                <div className="mt-2 h-2 w-3/4 rounded-full bg-[#E2E8F0]" />
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </CleanCard>
-  );
-}
-
 function FormInputClass() {
   return "h-12 w-full rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-sm text-[#0B1220] outline-none transition placeholder:text-[#94A3B8] focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70";
 }
@@ -503,7 +454,7 @@ export default function StartPage() {
             variants={heroContainer}
             initial="hidden"
             animate="show"
-            className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:items-center"
+            className="max-w-4xl"
           >
             <div className="max-w-3xl">
               <motion.div variants={fadeUp}>
@@ -512,7 +463,7 @@ export default function StartPage() {
 
               <motion.h1
                 variants={fadeUp}
-                className="mt-7 max-w-[13.5ch] text-[2.7rem] font-semibold leading-[0.98] tracking-[-0.055em] text-[#0B1220] sm:text-[clamp(3.5rem,6vw,5rem)]"
+                className="mt-7 max-w-[14.5ch] text-[2.55rem] font-semibold leading-[1] tracking-[-0.05em] text-[#0B1220] sm:text-[clamp(3.25rem,5.4vw,4.5rem)]"
               >
                 Tell us about your business and get your website started.
               </motion.h1>
@@ -539,10 +490,6 @@ export default function StartPage() {
                 ))}
               </motion.div>
             </div>
-
-            <motion.div variants={fadeUp} className="hidden lg:block">
-              <WebsitePreviewCard />
-            </motion.div>
           </motion.div>
         </SectionShell>
 
@@ -723,32 +670,6 @@ export default function StartPage() {
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
                         </svg>
                       </div>
-                    </div>
-                  </InputShell>
-
-                  <InputShell
-                    label="What do you need the website to do?"
-                    htmlFor="websiteGoal"
-                  >
-                    <div className="grid gap-3 sm:grid-cols-2">
-                      {[
-                        ["enquiries", "Get more enquiries"],
-                        ["calls", "Get more calls"],
-                        ["bookings", "Collect booking requests"],
-                        ["presence", "Look more professional online"],
-                      ].map(([value, label]) => (
-                        <label key={value} className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm font-medium text-[#293548] transition hover:border-[#CBD5E1] hover:bg-white has-[:checked]:border-[#2F6FED]/50 has-[:checked]:bg-[#EAF2FF]">
-                          <input
-                            type="radio"
-                            name="websiteGoal"
-                            value={value}
-                            required
-                            disabled={isSubmitting}
-                            className="h-4 w-4 accent-[#2F6FED]"
-                          />
-                          <span>{label}</span>
-                        </label>
-                      ))}
                     </div>
                   </InputShell>
 
