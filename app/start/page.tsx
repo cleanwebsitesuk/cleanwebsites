@@ -642,33 +642,6 @@ export default function StartPage() {
                     </InputShell>
                   </div>
 
-                  <InputShell
-                    label="Current setup"
-                    htmlFor="currentSetup"
-                    helper="This helps us understand whether we are starting fresh, connecting a domain, or replacing an existing website."
-                  >
-                    <div className="relative">
-                      <select
-                        id="currentSetup"
-                        name="currentSetup"
-                        required
-                        disabled={isSubmitting}
-                        defaultValue=""
-                        className="h-12 w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-sm text-[#0B1220] outline-none transition focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70 [&>option]:bg-white"
-                      >
-                        <option value="" disabled>Select an option...</option>
-                        <option value="starting-fresh">Starting fresh (No domain or website yet)</option>
-                        <option value="have-domain">I already own a domain name</option>
-                        <option value="replacing-website">Replacing an existing website</option>
-                      </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#647085]">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
-                        </svg>
-                      </div>
-                    </div>
-                  </InputShell>
-
                   <InputShell label="Project details" htmlFor="about">
                     <textarea
                       id="about"
