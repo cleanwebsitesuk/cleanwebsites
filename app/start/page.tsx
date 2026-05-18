@@ -7,19 +7,19 @@ import { FormEvent, ReactNode, useEffect, useMemo, useState } from "react";
 const WHATSAPP_LINK = "https://wa.me/message/CIUXDPB67KAAJ1";
 
 const servicePoints = [
-  "Custom-built website (No bloated templates)",
-  "Fast loading and mobile-first layout",
+  "Custom-built website with a clean, structured layout",
+  "Fast loading and mobile-first design",
   "Home, About, Services, and Contact pages",
-  "Contact or booking form",
-  "UK-based infrastructure and setup",
-  "Launched in 24 hours once content is provided",
+  "Contact or booking enquiry form",
+  "Domain connection, hosting setup and SSL handled",
+  "Prepared for launch within 24 hours once content is provided",
 ];
 
 const nextSteps = [
-  "We review your details immediately.",
-  "We confirm your domain and what content is needed.",
-  "You provide your text and images.",
-  "We build and launch your website within 24 hours.",
+  "We review your enquiry and understand what your business needs.",
+  "We confirm your domain setup and what content is needed.",
+  "You provide your text, images and any existing brand assets.",
+  "We build, review and prepare your website for launch within 24 hours.",
 ];
 
 const portfolioLinks = [
@@ -34,11 +34,19 @@ const portfolioLinks = [
 ];
 
 const practicalDetails = [
-  "Website build is a flat £99 one-time fee",
-  "Hosting & management is £0 for the first year (£20/mo after)",
+  "The 24-hour build starts once your content has been received",
   "Your domain is purchased separately in your name",
-  "Content and images must be supplied before the 24h timer begins",
   "One revision is included before final launch",
+  "Best suited to straightforward business websites",
+  "Complex ecommerce, apps and advanced booking systems are not part of the standard build",
+];
+
+const requiredContent = [
+  "Business name and contact details",
+  "Services, menu, offer or main information",
+  "Photos, logo or brand assets if available",
+  "Domain details if you already own one",
+  "Any example websites or style preferences",
 ];
 
 const easeOut = [0.22, 1, 0.36, 1] as const;
@@ -47,18 +55,18 @@ const heroContainer = {
   hidden: {},
   show: {
     transition: {
-      staggerChildren: 0.08,
-      delayChildren: 0.06,
+      staggerChildren: 0.07,
+      delayChildren: 0.04,
     },
   },
 };
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
+  hidden: { opacity: 0, y: 18 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.68, ease: easeOut },
+    transition: { duration: 0.58, ease: easeOut },
   },
 };
 
@@ -97,32 +105,6 @@ function SectionShell({
   );
 }
 
-function SectionEyebrow({ children }: { children: ReactNode }) {
-  return (
-    <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#A9ABB3] sm:text-[12px]">
-      <span className="h-1.5 w-1.5 rounded-full bg-[#3B82F6]" />
-      {children}
-    </div>
-  );
-}
-
-function GlassCard({
-  children,
-  className = "",
-}: {
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <div
-      className={`relative overflow-hidden rounded-[28px] border border-white/10 bg-white/[0.04] shadow-[0_24px_90px_rgba(0,0,0,0.3)] backdrop-blur-sm ${className}`}
-    >
-      <div className="pointer-events-none absolute inset-0 bg-[linear-gradient(180deg,rgba(255,255,255,0.05),transparent_28%)]" />
-      <div className="relative">{children}</div>
-    </div>
-  );
-}
-
 function CheckIcon() {
   return (
     <svg
@@ -131,7 +113,7 @@ function CheckIcon() {
       className="h-4 w-4"
       fill="none"
       stroke="currentColor"
-      strokeWidth="2"
+      strokeWidth="2.1"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
@@ -148,12 +130,25 @@ function ArrowRight() {
       className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1"
       fill="none"
       stroke="currentColor"
-      strokeWidth="1.8"
+      strokeWidth="1.9"
       strokeLinecap="round"
       strokeLinejoin="round"
     >
       <path d="M5 12h14" />
       <path d="m13 5 7 7-7 7" />
+    </svg>
+  );
+}
+
+function WhatsAppIcon() {
+  return (
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className="h-4 w-4"
+      fill="currentColor"
+    >
+      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.9 11.9 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.86 9.86 0 0 1-1.52-5.23c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.9a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.91 9.92Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.96-.27-.1-.46-.15-.66.15-.2.3-.76.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.43-1.5-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.08-.8.38-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.08 3.18 5.03 4.46.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.41.25-.7.25-1.29.17-1.42-.08-.13-.28-.2-.58-.35Z" />
     </svg>
   );
 }
@@ -171,134 +166,105 @@ function Reveal({
 }) {
   const reduceMotion = useReducedMotion() ?? false;
 
-  if (reduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  if (reduceMotion) return <div className={className}>{children}</div>;
 
   return (
     <motion.div
       className={className}
-      initial={{ opacity: 0, y: 22, scale: 0.99 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      initial={{ opacity: 0, y: 18 }}
+      whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount }}
-      transition={{ duration: 0.68, delay, ease: easeOut }}
+      transition={{ duration: 0.55, delay, ease: easeOut }}
     >
       {children}
     </motion.div>
   );
 }
 
-function MagneticLink({
-  children,
-  className,
+function PrimaryButton({
   href,
-  disabled = false,
+  children,
+  className = "",
+}: {
+  href: string;
+  children: ReactNode;
+  className?: string;
+}) {
+  return (
+    <Link
+      href={href}
+      className={`group inline-flex h-12 items-center justify-center gap-2 rounded-full bg-[#2F6FED] px-6 text-sm font-semibold text-white shadow-[0_16px_34px_rgba(47,111,237,0.22)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#245FDB] focus:outline-none focus:ring-4 focus:ring-[#CFE0FF] ${className}`}
+    >
+      {children}
+    </Link>
+  );
+}
+
+function BackHomeLink() {
+  return (
+    <Link
+      href="/"
+      className="group inline-flex items-center gap-2 rounded-full border border-[#E2E8F0] bg-white/80 px-4 py-2 text-[12px] font-semibold text-[#536176] shadow-sm backdrop-blur-xl transition duration-300 hover:border-[#CBD5E1] hover:bg-white hover:text-[#0B1220]"
+    >
+      <span className="transition-transform duration-300 group-hover:-translate-x-0.5">←</span>
+      Back to homepage
+    </Link>
+  );
+}
+
+function CleanCard({
+  children,
+  className = "",
 }: {
   children: ReactNode;
-  className: string;
-  href: string;
-  disabled?: boolean;
+  className?: string;
 }) {
-  const reduceMotion = useReducedMotion() ?? false;
-  const [style, setStyle] = useState({ x: 0, y: 0 });
-
-  const handleMove = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    if (reduceMotion || disabled) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = (e.clientX - rect.left - rect.width / 2) * 0.08;
-    const y = (e.clientY - rect.top - rect.height / 2) * 0.08;
-    setStyle({ x, y });
-  };
-
-  const handleLeave = () => setStyle({ x: 0, y: 0 });
-
   return (
-    <motion.div
-      animate={disabled ? { x: 0, y: 0 } : { x: style.x, y: style.y }}
-      transition={{ type: "spring", stiffness: 260, damping: 18, mass: 0.5 }}
+    <div
+      className={`relative overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white/82 shadow-[0_20px_70px_rgba(11,18,32,0.07)] backdrop-blur-xl ${className}`}
     >
-      <Link
-        href={href}
-        className={className}
-        onMouseMove={handleMove}
-        onMouseLeave={handleLeave}
-      >
-        {children}
-      </Link>
-    </motion.div>
-  );
-}
-
-function WhatsAppIcon() {
-  return (
-    <svg
-      aria-hidden="true"
-      viewBox="0 0 24 24"
-      className="h-4 w-4"
-      fill="currentColor"
-    >
-      <path d="M20.52 3.48A11.86 11.86 0 0 0 12.07 0C5.5 0 .16 5.34.16 11.91c0 2.1.55 4.14 1.6 5.94L0 24l6.34-1.66a11.9 11.9 0 0 0 5.73 1.46h.01c6.57 0 11.91-5.34 11.91-11.91 0-3.18-1.24-6.17-3.47-8.41Zm-8.45 18.3h-.01a9.9 9.9 0 0 1-5.04-1.38l-.36-.21-3.76.99 1-3.66-.24-.38a9.86 9.86 0 0 1-1.52-5.23c0-5.47 4.45-9.92 9.93-9.92 2.65 0 5.14 1.03 7.01 2.9a9.86 9.86 0 0 1 2.9 7.02c0 5.47-4.45 9.92-9.91 9.92Zm5.44-7.43c-.3-.15-1.77-.87-2.04-.96-.27-.1-.46-.15-.66.15-.2.3-.76.96-.94 1.16-.17.2-.35.22-.65.08-.3-.15-1.28-.47-2.43-1.5-.9-.8-1.51-1.8-1.69-2.1-.18-.3-.02-.47.13-.62.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.08-.15-.66-1.6-.9-2.18-.24-.58-.48-.5-.66-.5h-.56c-.2 0-.52.08-.8.38-.27.3-1.04 1.01-1.04 2.47 0 1.46 1.06 2.87 1.21 3.07.15.2 2.08 3.18 5.03 4.46.7.3 1.25.48 1.67.62.7.22 1.34.19 1.84.12.56-.08 1.77-.72 2.02-1.41.25-.7.25-1.29.17-1.42-.08-.13-.28-.2-.58-.35Z" />
-    </svg>
-  );
-}
-
-function BackHomeLink({ isMobile }: { isMobile: boolean }) {
-  return (
-    <MagneticLink
-      href="/"
-      disabled={isMobile}
-      className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[11px] uppercase tracking-[0.16em] text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] sm:text-[12px] sm:tracking-[0.18em]"
-    >
-      Back to homepage
-    </MagneticLink>
+      {children}
+    </div>
   );
 }
 
 function SectionCard({
-  eyebrow,
   title,
   copy,
   children,
   className = "",
 }: {
-  eyebrow: string;
   title?: string;
   copy?: string;
   children: ReactNode;
   className?: string;
 }) {
   return (
-    <GlassCard className={`p-5 sm:p-7 ${className}`}>
-      <div className="text-[11px] uppercase tracking-[0.16em] text-[#A9ABB3] sm:text-[12px] sm:tracking-[0.18em]">
-        {eyebrow}
-      </div>
-
+    <CleanCard className={`p-5 sm:p-7 ${className}`}>
       {title && (
-        <h2 className="mt-4 font-serif text-[clamp(1.85rem,6vw,2.95rem)] leading-[0.98] tracking-[-0.045em] text-[#F5F2EA]">
+        <h2 className="text-[1.45rem] font-semibold leading-tight tracking-[-0.035em] text-[#0B1220] sm:text-[1.8rem]">
           {title}
         </h2>
       )}
 
       {copy && (
-        <p className="mt-4 max-w-2xl text-[15px] leading-7 text-[#A9ABB3] sm:text-[16px]">
+        <p className="mt-3 max-w-2xl text-[15px] leading-7 text-[#536176]">
           {copy}
         </p>
       )}
 
-      <div className="mt-5 sm:mt-6">{children}</div>
-    </GlassCard>
+      <div className={title || copy ? "mt-5 sm:mt-6" : ""}>{children}</div>
+    </CleanCard>
   );
 }
 
 function BulletListCard({
-  eyebrow,
   title,
   copy,
   items,
   hideFromIndexOnMobile,
   delay = 0,
 }: {
-  eyebrow: string;
   title?: string;
   copy?: string;
   items: string[];
@@ -309,31 +275,26 @@ function BulletListCard({
 
   return (
     <Reveal delay={delay}>
-      <SectionCard eyebrow={eyebrow} title={title} copy={copy}>
+      <SectionCard title={title} copy={copy}>
         <div className="grid gap-3">
           {items.map((item, index) => (
             <motion.div
               key={item}
-              initial={reduceMotion ? false : { opacity: 0, x: -14 }}
+              initial={reduceMotion ? false : { opacity: 0, x: -12 }}
               whileInView={reduceMotion ? {} : { opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.6 }}
-              transition={{
-                duration: 0.45,
-                delay: index * 0.04,
-                ease: easeOut,
-              }}
-              className={`group relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3.5 shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05] sm:px-4 sm:py-4 ${
+              transition={{ duration: 0.4, delay: index * 0.035, ease: easeOut }}
+              className={`rounded-[20px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3.5 text-sm leading-6 text-[#293548] ${
                 hideFromIndexOnMobile !== undefined && index >= hideFromIndexOnMobile
                   ? "hidden sm:flex"
                   : "flex"
               }`}
             >
-              <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-              <div className="relative flex items-start gap-3">
-                <span className="mt-0.5 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-[#3B82F6]/12 text-[#8BB5FF]">
+              <div className="flex items-start gap-3">
+                <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[#EAF2FF] text-[#2F6FED]">
                   <CheckIcon />
                 </span>
-                <span className="text-sm leading-6 text-[#F5F2EA]">{item}</span>
+                <span>{item}</span>
               </div>
             </motion.div>
           ))}
@@ -361,25 +322,15 @@ function PortfolioLinkCard({
       href={href}
       target="_blank"
       rel="noreferrer"
-      initial={reduceMotion ? false : { opacity: 0, y: 14 }}
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.8 }}
-      transition={{
-        duration: 0.45,
-        delay: index * 0.05,
-        ease: easeOut,
-      }}
-      whileHover={motionEnabled ? { y: -4 } : {}}
-      className="group relative flex items-center justify-between overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/20 hover:bg-white/[0.05]"
+      transition={{ duration: 0.4, delay: index * 0.05, ease: easeOut }}
+      whileHover={motionEnabled ? { y: -3 } : {}}
+      className="group flex items-center justify-between rounded-[20px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-4 text-sm font-medium text-[#0B1220] transition duration-300 hover:border-[#CBD5E1] hover:bg-white"
     >
-      <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-      <div className="relative flex items-center gap-3">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-white/[0.04] text-[#8BB5FF]">
-          <ArrowRight />
-        </span>
-        <span>{label}</span>
-      </div>
-      <span className="relative inline-flex items-center gap-2 text-[#8BB5FF]">
+      <span>{label}</span>
+      <span className="inline-flex items-center gap-2 text-[#2F6FED]">
         Open
         <ArrowRight />
       </span>
@@ -391,52 +342,81 @@ function InputShell({
   label,
   htmlFor,
   optional,
+  helper,
   children,
 }: {
   label: string;
   htmlFor: string;
   optional?: boolean;
+  helper?: string;
   children: ReactNode;
 }) {
   return (
     <div>
       <label
         htmlFor={htmlFor}
-        className="mb-2 block text-sm font-medium text-[#F5F2EA]"
+        className="mb-2 block text-sm font-semibold text-[#0B1220]"
       >
         {label}
-        {optional && <span className="text-[#7F828A]"> (optional)</span>}
+        {optional && <span className="font-medium text-[#647085]"> optional</span>}
       </label>
       {children}
+      {helper && <p className="mt-2 text-xs leading-5 text-[#647085]">{helper}</p>}
     </div>
   );
 }
 
-function RadioOption({
-  name,
-  value,
-  label,
-  disabled,
-}: {
-  name: string;
-  value: string;
-  label: string;
-  disabled?: boolean;
-}) {
+function WebsitePreviewCard() {
   return (
-    <label className="group relative flex cursor-pointer items-center gap-3 overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-4 text-sm text-[#F5F2EA] transition duration-300 hover:border-white/20 hover:bg-white/[0.05] has-[:checked]:border-[#3B82F6]/40 has-[:checked]:bg-[#3B82F6]/10 has-[:focus-visible]:ring-2 has-[:focus-visible]:ring-[#3B82F6]/40">
-      <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-      <input
-        type="radio"
-        name={name}
-        value={value}
-        required
-        disabled={disabled}
-        className="relative h-4 w-4 accent-[#3B82F6]"
-      />
-      <span className="relative">{label}</span>
-    </label>
+    <CleanCard className="p-3">
+      <div className="overflow-hidden rounded-[24px] border border-[#E2E8F0] bg-[#F8FAFC]">
+        <div className="flex items-center gap-2 border-b border-[#E2E8F0] bg-white px-4 py-3">
+          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
+          <span className="h-2.5 w-2.5 rounded-full bg-[#CBD5E1]" />
+          <div className="ml-3 h-7 flex-1 rounded-full bg-[#F1F5F9]" />
+        </div>
+
+        <div className="p-4">
+          <div className="rounded-[22px] bg-[#0B1220] p-5 text-white">
+            <div className="flex items-center justify-between gap-4">
+              <div className="h-8 w-28 rounded-full bg-white/14" />
+              <div className="hidden gap-2 sm:flex">
+                <div className="h-2.5 w-10 rounded-full bg-white/18" />
+                <div className="h-2.5 w-10 rounded-full bg-white/18" />
+                <div className="h-2.5 w-10 rounded-full bg-white/18" />
+              </div>
+            </div>
+            <div className="mt-10 max-w-sm">
+              <div className="h-2.5 w-24 rounded-full bg-[#2F6FED]" />
+              <div className="mt-4 h-8 w-full rounded-full bg-white" />
+              <div className="mt-2 h-8 w-4/5 rounded-full bg-white" />
+              <div className="mt-5 space-y-2.5">
+                <div className="h-2.5 w-full rounded-full bg-white/18" />
+                <div className="h-2.5 w-5/6 rounded-full bg-white/18" />
+              </div>
+              <div className="mt-6 h-10 w-34 rounded-full bg-[#2F6FED]" />
+            </div>
+          </div>
+
+          <div className="mt-3 grid grid-cols-3 gap-3">
+            {["Services", "About", "Contact"].map((item) => (
+              <div key={item} className="rounded-2xl border border-[#E2E8F0] bg-white p-4">
+                <div className="h-8 w-8 rounded-xl bg-[#EAF2FF]" />
+                <div className="mt-4 text-[12px] font-bold text-[#0B1220]">{item}</div>
+                <div className="mt-3 h-2 w-full rounded-full bg-[#E2E8F0]" />
+                <div className="mt-2 h-2 w-3/4 rounded-full bg-[#E2E8F0]" />
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </CleanCard>
   );
+}
+
+function FormInputClass() {
+  return "h-12 w-full rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-sm text-[#0B1220] outline-none transition placeholder:text-[#94A3B8] focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70";
 }
 
 export default function StartPage() {
@@ -465,7 +445,7 @@ export default function StartPage() {
 
   const formCardClass = useMemo(
     () =>
-      "rounded-[28px] border border-white/10 bg-[#111214]/90 shadow-[0_30px_100px_rgba(0,0,0,0.45)] backdrop-blur-sm sm:rounded-[32px]",
+      "rounded-[30px] border border-[#E2E8F0] bg-white shadow-[0_30px_100px_rgba(11,18,32,0.10)] sm:rounded-[34px]",
     []
   );
 
@@ -510,80 +490,58 @@ export default function StartPage() {
   }
 
   return (
-    <div className="min-h-screen bg-[#0A0A0B] pb-24 text-[#F5F2EA] antialiased selection:bg-[#3B82F6]/30 selection:text-white md:pb-0">
+    <div className="min-h-screen bg-[#F8FAFC] pb-24 font-[Manrope,DM_Sans,Inter,system-ui,sans-serif] text-[#0B1220] antialiased selection:bg-[#DCEAFF] selection:text-[#0B1220] md:pb-0">
       <div className="pointer-events-none fixed inset-0 overflow-hidden">
-        <motion.div
-          animate={
-            motionEnabled
-              ? {
-                  x: [0, 20, -10, 0],
-                  y: [0, -14, 10, 0],
-                  scale: [1, 1.04, 0.98, 1],
-                }
-              : {}
-          }
-          transition={{
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute left-[-12%] top-[-8%] h-[24rem] w-[24rem] rounded-full bg-[#3B82F6]/8 blur-[120px] sm:h-[34rem] sm:w-[34rem] sm:bg-[#3B82F6]/10 sm:blur-[145px]"
-        />
-        <motion.div
-          animate={
-            motionEnabled
-              ? {
-                  x: [0, -24, 12, 0],
-                  y: [0, 16, -8, 0],
-                  scale: [1, 0.98, 1.03, 1],
-                }
-              : {}
-          }
-          transition={{
-            duration: 22,
-            repeat: Infinity,
-            ease: "easeInOut",
-          }}
-          className="absolute bottom-[-14%] right-[-10%] h-[22rem] w-[22rem] rounded-full bg-[#3B82F6]/6 blur-[110px] sm:h-[30rem] sm:w-[30rem] sm:bg-[#3B82F6]/8 sm:blur-[145px]"
-        />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(255,255,255,0.05),transparent_34%)]" />
-        <div className="absolute inset-0 opacity-[0.03] [background-image:radial-gradient(rgba(255,255,255,0.85)_0.55px,transparent_0.55px)] [background-size:8px_8px]" />
-        <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgba(255,255,255,0.02),transparent)]" />
+        <div className="absolute left-[-10%] top-[-12%] h-[28rem] w-[28rem] rounded-full bg-[#EAF2FF] blur-3xl" />
+        <div className="absolute bottom-[-16%] right-[-10%] h-[24rem] w-[24rem] rounded-full bg-[#E2E8F0]/70 blur-3xl" />
+        <div className="absolute inset-x-0 top-0 h-[520px] bg-[linear-gradient(180deg,rgba(255,255,255,0.72),transparent)]" />
       </div>
 
       <main className="relative">
-        <SectionShell className="pb-10 pt-8 sm:pb-14 sm:pt-12 lg:pb-16 lg:pt-16">
+        <SectionShell className="pb-10 pt-7 sm:pb-14 sm:pt-10 lg:pb-16 lg:pt-12">
           <motion.div
             variants={heroContainer}
             initial="hidden"
             animate="show"
-            className="max-w-4xl"
+            className="grid gap-10 lg:grid-cols-[0.98fr_1.02fr] lg:items-center"
           >
-            <motion.div variants={fadeUp}>
-              <BackHomeLink isMobile={isMobile} />
-            </motion.div>
+            <div className="max-w-3xl">
+              <motion.div variants={fadeUp}>
+                <BackHomeLink />
+              </motion.div>
 
-            <motion.h1
-              variants={fadeUp}
-              className="mt-5 max-w-[15ch] font-serif text-[clamp(2.1rem,8vw,4.5rem)] leading-[0.95] tracking-[-0.045em] text-[#F5F2EA]"
-            >
-              Tell us about your business and get your website started.
-            </motion.h1>
+              <motion.h1
+                variants={fadeUp}
+                className="mt-7 max-w-[13.5ch] text-[2.7rem] font-semibold leading-[0.98] tracking-[-0.055em] text-[#0B1220] sm:text-[clamp(3.5rem,6vw,5rem)]"
+              >
+                Tell us about your business and get your website started.
+              </motion.h1>
 
-            <motion.p
-              variants={fadeUp}
-              className="mt-6 max-w-2xl text-[16px] leading-7 text-[#A9ABB3] sm:text-[20px] sm:leading-8"
-            >
-              We build clean, custom-coded websites for UK businesses that want
-              to look credible online and make it easy for customers to get in
-              touch.
-            </motion.p>
+              <motion.p
+                variants={fadeUp}
+                className="mt-6 max-w-2xl text-[16px] leading-8 text-[#536176] sm:text-[18px] sm:leading-8"
+              >
+                We build clean, custom-coded websites for businesses that want to look credible online and make it easy for customers to get in touch.
+              </motion.p>
 
-            <motion.div
-              variants={fadeUp}
-              className="mt-6 inline-flex rounded-[22px] border border-white/10 bg-white/[0.04] px-4 py-3 text-[14px] font-semibold leading-6 text-[#E2E4E9] shadow-[0_12px_36px_rgba(0,0,0,0.14)] sm:px-5 sm:text-[15px]"
-            >
-              £99 one-time build • First 12 months hosting included
+              <motion.div
+                variants={fadeUp}
+                className="mt-6 flex flex-wrap gap-2.5"
+              >
+                {[
+                  "Built within 24 hours once content is received",
+                  "Mobile-first layout",
+                  "Domain, hosting and SSL setup handled",
+                ].map((item) => (
+                  <span key={item} className="inline-flex rounded-full border border-[#E2E8F0] bg-white/82 px-3.5 py-2 text-sm font-medium text-[#536176] shadow-sm backdrop-blur-xl">
+                    {item}
+                  </span>
+                ))}
+              </motion.div>
+            </div>
+
+            <motion.div variants={fadeUp} className="hidden lg:block">
+              <WebsitePreviewCard />
             </motion.div>
           </motion.div>
         </SectionShell>
@@ -592,15 +550,22 @@ export default function StartPage() {
           <div className="grid gap-5 lg:grid-cols-[0.82fr_1.18fr] lg:gap-6">
             <div className="space-y-5 sm:space-y-6">
               <BulletListCard
-                eyebrow="What you’ll get"
                 title="A professional website built for your business"
-                copy="Every website includes the core pages and infrastructure most businesses need."
+                copy="Every website includes the core pages and setup most businesses need to present their services clearly and collect enquiries."
                 items={servicePoints}
                 hideFromIndexOnMobile={4}
               />
 
-              <Reveal delay={0.05}>
-                <SectionCard eyebrow="What happens next">
+              <BulletListCard
+                title="What we need from you"
+                copy="The faster these details are ready, the faster the website can be built and prepared for launch."
+                items={requiredContent}
+                hideFromIndexOnMobile={4}
+                delay={0.05}
+              />
+
+              <Reveal delay={0.08}>
+                <SectionCard title="What happens next">
                   <div className="space-y-3 sm:space-y-4">
                     {[
                       "We review your enquiry",
@@ -610,40 +575,21 @@ export default function StartPage() {
                     ].map((title, index) => (
                       <motion.div
                         key={title}
-                        initial={reduceMotion ? false : { opacity: 0, y: 18 }}
+                        initial={reduceMotion ? false : { opacity: 0, y: 14 }}
                         whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                         viewport={{ once: true, amount: 0.45 }}
-                        transition={{
-                          duration: 0.55,
-                          delay: index * 0.06,
-                          ease: easeOut,
-                        }}
-                        className="group relative overflow-hidden rounded-[22px] border border-white/10 bg-white/[0.03] p-4 shadow-[0_10px_30px_rgba(0,0,0,0.12)] transition duration-300 hover:border-white/15 hover:bg-white/[0.05]"
+                        transition={{ duration: 0.45, delay: index * 0.05, ease: easeOut }}
+                        className="rounded-[22px] border border-[#E2E8F0] bg-[#F8FAFC] p-4"
                       >
-                        <div className="absolute inset-0 -translate-x-full bg-[linear-gradient(110deg,transparent,rgba(255,255,255,0.04),transparent)] opacity-0 transition duration-700 md:group-hover:translate-x-full md:group-hover:opacity-100" />
-                        <div className="relative flex gap-3">
-                          <motion.div
-                            initial={
-                              reduceMotion ? false : { scale: 0.9, opacity: 0 }
-                            }
-                            whileInView={
-                              reduceMotion ? {} : { scale: 1, opacity: 1 }
-                            }
-                            viewport={{ once: true, amount: 0.8 }}
-                            transition={{
-                              duration: 0.4,
-                              delay: 0.08 + index * 0.06,
-                              ease: easeOut,
-                            }}
-                            className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(180deg,rgba(59,130,246,0.16),rgba(255,255,255,0.04))] text-sm text-[#F5F2EA]"
-                          >
+                        <div className="flex gap-3">
+                          <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-2xl bg-[#0B1220] text-sm font-semibold text-white">
                             0{index + 1}
-                          </motion.div>
+                          </div>
                           <div>
-                            <p className="pt-0.5 text-sm font-medium leading-6 text-[#F5F2EA]">
+                            <p className="pt-0.5 text-sm font-semibold leading-6 text-[#0B1220]">
                               {title}
                             </p>
-                            <p className="pt-1 text-sm leading-6 text-[#A9ABB3]">
+                            <p className="pt-1 text-sm leading-6 text-[#536176]">
                               {nextSteps[index]}
                             </p>
                           </div>
@@ -655,17 +601,14 @@ export default function StartPage() {
               </Reveal>
 
               <BulletListCard
-                eyebrow="Practical details"
+                title="Practical details"
                 items={practicalDetails}
                 hideFromIndexOnMobile={3}
                 delay={0.1}
               />
 
-              <Reveal delay={0.15}>
-                <SectionCard
-                  eyebrow="Portfolio"
-                  title="Recent work"
-                >
+              <Reveal delay={0.12}>
+                <SectionCard title="Recent work">
                   <div className="space-y-3">
                     {portfolioLinks.map((project, index) => (
                       <PortfolioLinkCard
@@ -683,17 +626,23 @@ export default function StartPage() {
 
             <Reveal className="h-fit lg:sticky lg:top-6">
               <div className={formCardClass}>
-                <div className="border-b border-white/10 px-5 py-5 sm:px-8 sm:py-6">
-                  <h2 className="mt-3 text-[1.7rem] tracking-[-0.03em] text-[#F5F2EA] sm:text-[2rem]">
-                    Start your project
-                  </h2>
-                  <p className="mt-3 max-w-2xl text-sm leading-6 text-[#A9ABB3]">
-                    Fill out the form below and we’ll review your enquiry and
-                    reply with the next steps.
-                  </p>
+                <div className="border-b border-[#E2E8F0] px-5 py-5 sm:px-8 sm:py-7">
+                  <div className="flex items-start justify-between gap-4">
+                    <div>
+                      <h2 className="text-[1.7rem] font-semibold tracking-[-0.04em] text-[#0B1220] sm:text-[2rem]">
+                        Start your project
+                      </h2>
+                      <p className="mt-3 max-w-2xl text-sm leading-6 text-[#536176]">
+                        Fill out the form below and we’ll review your enquiry and reply with the next steps.
+                      </p>
+                    </div>
+                    <div className="hidden rounded-full bg-[#EAF2FF] px-3 py-1.5 text-xs font-bold text-[#2F6FED] sm:block">
+                      24h build
+                    </div>
+                  </div>
                 </div>
 
-<form
+                <form
                   onSubmit={handleSubmit}
                   className="space-y-5 px-5 py-5 sm:space-y-6 sm:px-8 sm:py-8"
                 >
@@ -707,7 +656,7 @@ export default function StartPage() {
                         disabled={isSubmitting}
                         autoComplete="name"
                         placeholder="Your name"
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                        className={FormInputClass()}
                       />
                     </InputShell>
 
@@ -720,7 +669,7 @@ export default function StartPage() {
                         disabled={isSubmitting}
                         autoComplete="email"
                         placeholder="you@business.com"
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                        className={FormInputClass()}
                       />
                     </InputShell>
 
@@ -733,7 +682,7 @@ export default function StartPage() {
                         disabled={isSubmitting}
                         autoComplete="organization"
                         placeholder="e.g. Smith's Plumbing"
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                        className={FormInputClass()}
                       />
                     </InputShell>
 
@@ -745,43 +694,73 @@ export default function StartPage() {
                         disabled={isSubmitting}
                         autoComplete="tel"
                         placeholder="Phone number"
-                        className="h-12 w-full rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                        className={FormInputClass()}
                       />
                     </InputShell>
                   </div>
 
-                  <InputShell label="Current setup" htmlFor="currentSetup">
+                  <InputShell
+                    label="Current setup"
+                    htmlFor="currentSetup"
+                    helper="This helps us understand whether we are starting fresh, connecting a domain, or replacing an existing website."
+                  >
                     <div className="relative">
                       <select
                         id="currentSetup"
                         name="currentSetup"
                         required
                         disabled={isSubmitting}
-                        className="h-12 w-full appearance-none rounded-2xl border border-white/10 bg-white/[0.03] px-4 text-sm text-[#F5F2EA] outline-none transition focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70 [&>option]:bg-[#111214]"
+                        defaultValue=""
+                        className="h-12 w-full appearance-none rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 text-sm text-[#0B1220] outline-none transition focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70 [&>option]:bg-white"
                       >
-                        <option value="" disabled selected className="text-[#7F828A]">Select an option...</option>
+                        <option value="" disabled>Select an option...</option>
                         <option value="starting-fresh">Starting fresh (No domain or website yet)</option>
                         <option value="have-domain">I already own a domain name</option>
                         <option value="replacing-website">Replacing an existing website</option>
                       </select>
-                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#7F828A]">
-                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" /></svg>
+                      <div className="pointer-events-none absolute inset-y-0 right-4 flex items-center text-[#647085]">
+                        <svg className="h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7" />
+                        </svg>
                       </div>
                     </div>
                   </InputShell>
 
                   <InputShell
-                    label="Project details"
-                    htmlFor="about"
+                    label="What do you need the website to do?"
+                    htmlFor="websiteGoal"
                   >
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {[
+                        ["enquiries", "Get more enquiries"],
+                        ["calls", "Get more calls"],
+                        ["bookings", "Collect booking requests"],
+                        ["presence", "Look more professional online"],
+                      ].map(([value, label]) => (
+                        <label key={value} className="flex cursor-pointer items-center gap-3 rounded-2xl border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm font-medium text-[#293548] transition hover:border-[#CBD5E1] hover:bg-white has-[:checked]:border-[#2F6FED]/50 has-[:checked]:bg-[#EAF2FF]">
+                          <input
+                            type="radio"
+                            name="websiteGoal"
+                            value={value}
+                            required
+                            disabled={isSubmitting}
+                            className="h-4 w-4 accent-[#2F6FED]"
+                          />
+                          <span>{label}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </InputShell>
+
+                  <InputShell label="Project details" htmlFor="about">
                     <textarea
                       id="about"
                       name="about"
                       rows={5}
                       required
                       disabled={isSubmitting}
-                      placeholder="Briefly describe what your business does and what you need the website to achieve..."
-                      className="w-full rounded-[22px] border border-white/10 bg-white/[0.03] px-4 py-3 text-sm leading-6 text-[#F5F2EA] outline-none transition placeholder:text-[#7F828A] focus:border-[#3B82F6]/60 focus:bg-white/[0.05] focus:ring-2 focus:ring-[#3B82F6]/20 disabled:cursor-not-allowed disabled:opacity-70"
+                      placeholder="Briefly describe what your business does, what pages you need, and what you want the website to achieve..."
+                      className="w-full rounded-[22px] border border-[#E2E8F0] bg-[#F8FAFC] px-4 py-3 text-sm leading-6 text-[#0B1220] outline-none transition placeholder:text-[#94A3B8] focus:border-[#2F6FED]/70 focus:bg-white focus:ring-4 focus:ring-[#CFE0FF] disabled:cursor-not-allowed disabled:opacity-70"
                     />
                   </InputShell>
 
@@ -789,21 +768,25 @@ export default function StartPage() {
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#3B82F6] px-6 text-sm font-semibold text-white shadow-[0_12px_30px_rgba(59,130,246,0.28)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
+                      className="inline-flex h-12 w-full items-center justify-center rounded-full bg-[#2F6FED] px-6 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(47,111,237,0.24)] transition duration-300 hover:-translate-y-0.5 hover:bg-[#245FDB] disabled:cursor-not-allowed disabled:opacity-70 sm:w-auto"
                     >
-                      {isSubmitting ? "Sending..." : "Start my £99 build"}
+                      {isSubmitting ? "Sending..." : "Start my website"}
                     </button>
 
                     <a
                       href={WHATSAPP_LINK}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(32,212,102,0.22)] transition duration-300 hover:-translate-y-0.5 hover:brightness-110 sm:w-auto"
+                      className="inline-flex h-12 w-full items-center justify-center gap-2 rounded-full bg-[#20D466] px-6 text-sm font-semibold text-white shadow-[0_12px_28px_rgba(32,212,102,0.22)] transition duration-300 hover:-translate-y-0.5 hover:brightness-105 sm:w-auto"
                     >
                       <WhatsAppIcon />
                       Message us on WhatsApp
                     </a>
                   </div>
+
+                  <p className="text-xs leading-5 text-[#647085]">
+                    Build time depends on receiving the content needed to complete the website.
+                  </p>
 
                   <AnimatePresence mode="wait">
                     {submitMessage.type && (
@@ -816,8 +799,8 @@ export default function StartPage() {
                         aria-live="polite"
                         className={`rounded-[18px] border px-4 py-3 text-sm leading-6 ${
                           submitMessage.type === "success"
-                            ? "border-green-400/20 bg-green-400/10 text-green-300"
-                            : "border-red-400/20 bg-red-400/10 text-red-300"
+                            ? "border-green-200 bg-green-50 text-green-700"
+                            : "border-red-200 bg-red-50 text-red-700"
                         }`}
                       >
                         {submitMessage.text}
@@ -830,7 +813,7 @@ export default function StartPage() {
           </div>
         </SectionShell>
 
-        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-white/10 bg-[#0A0A0B]/95 p-4 backdrop-blur-2xl md:hidden">
+        <div className="fixed inset-x-0 bottom-0 z-40 border-t border-[#E2E8F0] bg-white/92 p-4 backdrop-blur-2xl md:hidden">
           <a
             href={WHATSAPP_LINK}
             target="_blank"
