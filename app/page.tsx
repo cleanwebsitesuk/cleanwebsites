@@ -998,7 +998,7 @@ function PackageList({ items }: { items: readonly string[] }) {
 
 function PackageSection() {
   return (
-    <SectionShell id="package" className="!pt-0">
+    <SectionShell id="package" className="!pt-0 scroll-mt-24">
       <div className="max-w-4xl">
         <SectionEyebrow>Package</SectionEyebrow>
         <h2 className="mt-4 max-w-none text-[clamp(2.05rem,4.4vw,3.25rem)] font-semibold leading-[1] tracking-[-0.045em] text-[#0B1220]">
