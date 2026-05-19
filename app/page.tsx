@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { useEffect, useMemo, useState, type MouseEvent, type ReactNode } from "react";
 
 const NAV_ITEMS = [
   { href: "#portfolio", label: "Portfolio" },
@@ -373,12 +373,29 @@ function DesktopNav() {
 }
 
 function BrandMark() {
+  const reduceMotion = useReducedMotion() ?? false;
+
+  const handleLogoClick = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault();
+
+    if (window.location.hash) {
+      window.history.replaceState(null, "", `${window.location.pathname}${window.location.search}`);
+    }
+
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: reduceMotion ? "auto" : "smooth",
+    });
+  };
+
   return (
     <Link
-  href="#top"
-  aria-label="Clean Websites home"
-  className="inline-flex items-center"
->
+      href="#top"
+      aria-label="Clean Websites home"
+      className="inline-flex items-center"
+      onClick={handleLogoClick}
+    >
       <Image
         src="/logo.png"
         alt="Clean Websites"
