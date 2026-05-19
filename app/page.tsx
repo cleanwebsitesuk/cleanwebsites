@@ -1088,7 +1088,7 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
                 whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.4 }}
                 transition={{ duration: 0.55, delay: index * 0.06, ease: easeOut }}
-                className="relative overflow-hidden rounded-[26px] border border-[#2F6FED]/35 bg-[#F7FAFF] p-5 shadow-[0_18px_54px_rgba(47,111,237,0.08)]"
+                className="relative overflow-hidden rounded-[26px] border border-[#2F6FED]/35 bg-white p-5 shadow-[0_18px_54px_rgba(47,111,237,0.08)]"
               >
 
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B1220] text-sm font-semibold text-white">
