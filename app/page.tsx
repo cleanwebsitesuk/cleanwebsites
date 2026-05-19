@@ -1066,8 +1066,8 @@ function PackageSection() {
 }
 
 function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
-  const journeyDuration = 4.8;
-  const stepDelay = journeyDuration / PROCESS_STEPS.length;
+  const journeyDuration = 3.6;
+  const segmentDuration = journeyDuration / (PROCESS_STEPS.length - 1);
 
   return (
     <section id="process" className="border-y border-[#E2E8F0] bg-white/68">
@@ -1086,7 +1086,8 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
           <div className="grid gap-4 lg:grid-cols-4">
             {PROCESS_STEPS.map((item, index) => {
               const isLastStep = index === PROCESS_STEPS.length - 1;
-              const delay = index * stepDelay;
+              const segmentDelay = index * segmentDuration;
+              const cardDelay = Math.max(0, index === 0 ? 0 : segmentDelay - 0.12);
 
               return (
                 <motion.div
@@ -1095,93 +1096,66 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
                   whileInView={reduceMotion ? {} : { opacity: 1, y: 0 }}
                   viewport={{ once: true, amount: 0.4 }}
                   transition={{ duration: 0.55, delay: index * 0.06, ease: easeOut }}
-                  className="group relative overflow-visible rounded-[26px] border border-[#E2E8F0] bg-white p-5 shadow-[0_16px_48px_rgba(11,18,32,0.04)]"
+                  className="relative overflow-visible rounded-[26px] border border-[#2F6FED]/35 bg-white p-5 shadow-[0_18px_54px_rgba(47,111,237,0.08)]"
                 >
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-0 -z-10 translate-x-1.5 translate-y-1.5 rounded-[26px] bg-[#2F6FED]/8"
+                  />
+
                   {!isLastStep && (
                     <div
                       aria-hidden="true"
-                      className="pointer-events-none absolute left-[2.75rem] top-[4.75rem] z-0 h-[calc(100%+1rem)] w-px lg:left-[4.5rem] lg:right-[-1.25rem] lg:top-[2.75rem] lg:h-px lg:w-auto"
+                      className="pointer-events-none absolute left-[2.75rem] top-[4.75rem] z-20 h-[calc(100%+1rem)] w-px lg:left-[4.5rem] lg:right-[-1.25rem] lg:top-[2.75rem] lg:h-px lg:w-auto"
                     >
                       <span className="absolute inset-0 rounded-full bg-[#E2E8F0]" />
+
                       <motion.span
                         initial={reduceMotion ? false : { scaleY: 0 }}
-                        whileInView={
-                          reduceMotion
-                            ? { scaleY: 1 }
-                            : {
-                                scaleY: [0, 1, 1, 0],
-                              }
-                        }
-                        viewport={{ once: false, amount: 0.5 }}
+                        whileInView={reduceMotion ? { scaleY: 1 } : { scaleY: 1 }}
+                        viewport={{ once: true, amount: 0.5 }}
                         transition={
                           reduceMotion
                             ? { duration: 0 }
-                            : {
-                                duration: journeyDuration,
-                                delay,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                times: [0, 0.22, 0.86, 1],
-                              }
+                            : { duration: segmentDuration * 0.72, delay: segmentDelay, ease: easeOut }
                         }
                         className="absolute inset-0 origin-top rounded-full bg-[#2F6FED] lg:hidden"
                       />
+
                       <motion.span
                         initial={reduceMotion ? false : { scaleX: 0 }}
-                        whileInView={
-                          reduceMotion
-                            ? { scaleX: 1 }
-                            : {
-                                scaleX: [0, 1, 1, 0],
-                              }
-                        }
-                        viewport={{ once: false, amount: 0.5 }}
+                        whileInView={reduceMotion ? { scaleX: 1 } : { scaleX: 1 }}
+                        viewport={{ once: true, amount: 0.5 }}
                         transition={
                           reduceMotion
                             ? { duration: 0 }
-                            : {
-                                duration: journeyDuration,
-                                delay,
-                                repeat: Infinity,
-                                ease: "easeInOut",
-                                times: [0, 0.22, 0.86, 1],
-                              }
+                            : { duration: segmentDuration * 0.72, delay: segmentDelay, ease: easeOut }
                         }
                         className="absolute inset-0 hidden origin-left rounded-full bg-[#2F6FED] lg:block"
                       />
+
                       {!reduceMotion && (
                         <>
                           <motion.span
                             initial={{ top: "0%", opacity: 0 }}
-                            whileInView={{
-                              top: ["0%", "100%", "100%"],
-                              opacity: [0, 1, 0],
-                            }}
-                            viewport={{ once: false, amount: 0.5 }}
+                            whileInView={{ top: "100%", opacity: [0, 1, 1, 0] }}
+                            viewport={{ once: true, amount: 0.5 }}
                             transition={{
-                              duration: journeyDuration,
-                              delay,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              times: [0, 0.22, 0.3],
+                              top: { duration: segmentDuration * 0.72, delay: segmentDelay, ease: easeOut },
+                              opacity: { duration: segmentDuration * 0.72, delay: segmentDelay, times: [0, 0.12, 0.86, 1] },
                             }}
-                            className="absolute -left-[5.5px] h-3 w-3 rounded-full bg-[#2F6FED] shadow-[0_0_0_6px_rgba(47,111,237,0.12)] lg:hidden"
+                            className="absolute -left-[6.5px] z-30 h-[14px] w-[14px] rounded-full bg-[#2F6FED] ring-[7px] ring-[#2F6FED]/14 shadow-[0_0_18px_rgba(47,111,237,0.45)] lg:hidden"
                           />
+
                           <motion.span
                             initial={{ left: "0%", opacity: 0 }}
-                            whileInView={{
-                              left: ["0%", "100%", "100%"],
-                              opacity: [0, 1, 0],
-                            }}
-                            viewport={{ once: false, amount: 0.5 }}
+                            whileInView={{ left: "100%", opacity: [0, 1, 1, 0] }}
+                            viewport={{ once: true, amount: 0.5 }}
                             transition={{
-                              duration: journeyDuration,
-                              delay,
-                              repeat: Infinity,
-                              ease: "easeInOut",
-                              times: [0, 0.22, 0.3],
+                              left: { duration: segmentDuration * 0.72, delay: segmentDelay, ease: easeOut },
+                              opacity: { duration: segmentDuration * 0.72, delay: segmentDelay, times: [0, 0.12, 0.86, 1] },
                             }}
-                            className="absolute top-1/2 hidden h-3 w-3 -translate-y-1/2 rounded-full bg-[#2F6FED] shadow-[0_0_0_6px_rgba(47,111,237,0.12)] lg:block"
+                            className="absolute top-1/2 z-30 hidden h-[14px] w-[14px] -translate-y-1/2 rounded-full bg-[#2F6FED] ring-[7px] ring-[#2F6FED]/14 shadow-[0_0_18px_rgba(47,111,237,0.45)] lg:block"
                           />
                         </>
                       )}
@@ -1191,26 +1165,14 @@ function ProcessSection({ reduceMotion }: { reduceMotion: boolean }) {
                   <motion.div
                     aria-hidden="true"
                     initial={reduceMotion ? false : { opacity: 0 }}
-                    whileInView={
-                      reduceMotion
-                        ? {}
-                        : {
-                            opacity: [0, 0.58, 0],
-                          }
-                    }
-                    viewport={{ once: false, amount: 0.45 }}
+                    whileInView={reduceMotion ? {} : { opacity: [0, 0.52, 0.18] }}
+                    viewport={{ once: true, amount: 0.45 }}
                     transition={
                       reduceMotion
                         ? { duration: 0 }
-                        : {
-                            duration: journeyDuration,
-                            delay: Math.max(0, delay - 0.08),
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            times: [0, 0.12, 0.28],
-                          }
+                        : { duration: 0.9, delay: cardDelay, ease: easeOut, times: [0, 0.45, 1] }
                     }
-                    className="pointer-events-none absolute inset-0 rounded-[26px] border border-[#2F6FED]/35 shadow-[0_20px_60px_rgba(47,111,237,0.12)]"
+                    className="pointer-events-none absolute inset-0 rounded-[26px] border border-[#2F6FED]/50 shadow-[0_20px_70px_rgba(47,111,237,0.14)]"
                   />
 
                   <div className="relative z-10 flex h-12 w-12 items-center justify-center rounded-2xl bg-[#0B1220] text-sm font-semibold text-white">
