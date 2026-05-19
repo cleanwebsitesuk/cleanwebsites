@@ -375,11 +375,18 @@ function DesktopNav() {
 function BrandMark() {
   return (
     <Link
-      href="/"
-      className="text-[18px] font-semibold tracking-[-0.035em] text-[#0B1220] sm:text-[19px]"
-      aria-label="Clean Websites home"
-    >
-      Clean Websites
+  href="#top"
+  aria-label="Clean Websites home"
+  className="inline-flex items-center"
+>
+      <Image
+        src="/logo.png"
+        alt="Clean Websites"
+        width={160}
+        height={40}
+        priority
+        className="h-10 w-auto"
+      />
     </Link>
   );
 }
@@ -1233,11 +1240,14 @@ export default function HomePage() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  return (
-    <div className="min-h-screen scroll-smooth bg-[#F8FAFC] pb-24 font-[Manrope,DM_Sans,Inter,system-ui,sans-serif] text-[#0B1220] antialiased selection:bg-[#DCEAFF] selection:text-[#0B1220] md:pb-0">
-      <HeroHeader scrolled={scrolled} />
-      <HeroSection reduceMotion={reduceMotion} />
-
+return (
+  <div
+    id="top"
+    className="min-h-screen scroll-smooth bg-[#F8FAFC] pb-24 font-[Manrope,DM_Sans,Inter,system-ui,sans-serif] text-[#0B1220] antialiased selection:bg-[#DCEAFF] selection:text-[#0B1220] md:pb-0"
+  >
+    <HeroHeader scrolled={scrolled} />
+    <HeroSection reduceMotion={reduceMotion} />
+    
       <main className="relative overflow-hidden">
         <StatsStrip />
         <ComparisonSection />
