@@ -30,7 +30,7 @@ const MenuIcon = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVG
 
 export default function SweetFixCoLanding() {
   return (
-    <div className="min-h-screen bg-[#FFFBF9] text-[#3A241A] font-sans selection:bg-[#E8D9D1]">
+    <div className="min-h-screen bg-[#FCF0EE] text-[#7A4C35] font-sans selection:bg-[#FAE1DD] selection:text-[#7A4C35]">
       
       {/* Inline Styles for Plug-and-Play Animations */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -46,83 +46,79 @@ export default function SweetFixCoLanding() {
         .delay-300 { animation-delay: 300ms; }
       `}} />
 
-      {/* Navigation - Converted to Full Width */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-white/80 backdrop-blur-xl border-b border-[#F5EAE5] transition-all duration-300">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-[#FCF0EE]/80 backdrop-blur-xl border-b border-[#FAE1DD] transition-all duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[#FCECE6] flex items-center justify-center text-[#997364]">
+            <div className="w-8 h-8 rounded-full bg-[#FAE1DD] flex items-center justify-center text-[#D4AF37]">
               <Sparkles size={14} />
             </div>
-            <span className="font-serif text-lg font-medium tracking-tight">Sweet Fix Co.</span>
+            <span className="font-serif text-lg font-medium tracking-tight text-[#7A4C35]">Sweet Fix Co.</span>
           </div>
           
-          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#7A5B4D]">
-            <a href="#" className="hover:text-[#3A241A] transition-colors">Home</a>
-            <a href="#" className="hover:text-[#3A241A] transition-colors">Menu</a>
-            <a href="#" className="hover:text-[#3A241A] transition-colors">Gallery</a>
-            <a href="#" className="hover:text-[#3A241A] transition-colors">Order</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#936650]">
+            <a href="#" className="hover:text-[#D4AF37] transition-colors">Home</a>
+            <a href="#" className="hover:text-[#D4AF37] transition-colors">Menu</a>
+            <a href="#" className="hover:text-[#D4AF37] transition-colors">Gallery</a>
+            <a href="#" className="hover:text-[#D4AF37] transition-colors">Order</a>
           </div>
 
-          <button className="bg-[#3A241A] text-[#FFFBF9] px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#2A1911] active:scale-95 transition-all duration-200 hidden md:block">
+          <button className="bg-[#7A4C35] text-white px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#5A3827] active:scale-95 transition-all duration-200 hidden md:block">
             DM to Order
           </button>
-          <button className="md:hidden p-2 text-[#3A241A] active:scale-95 transition-all">
+          <button className="md:hidden p-2 text-[#7A4C35] hover:text-[#D4AF37] active:scale-95 transition-all">
             <MenuIcon size={24} />
           </button>
         </div>
       </nav>
 
-      {/* Main Content - Adjusted spacing for mobile vs desktop */}
+      {/* Main Content */}
       <main className="max-w-6xl mx-auto px-6 pt-32 md:pt-40 pb-24 space-y-24 md:space-y-32 lg:space-y-40 overflow-hidden">
         
         {/* 1. Hero Section */}
         <section className="flex flex-col lg:flex-row items-center gap-16 lg:gap-8">
-          {/* Text Container - Centered on mobile, left on desktop */}
           <div className="flex-1 space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left opacity-0 animate-fade-up">
-            <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
-              Fix your cravings <Sparkles size={12} />
+            <div className="flex items-center gap-2 text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
+              Fix your cravings <Sparkles size={12} className="text-[#D4AF37]" />
             </div>
-            {/* Adjusted typography scaling */}
-            <h1 className="font-serif text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1] lg:leading-[0.95] tracking-tight">
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1] lg:leading-[0.95] tracking-tight text-[#7A4C35]">
               Desserts<br />
               Made Fresh<br />
               to Order
             </h1>
-            <p className="text-[#7A5B4D] md:text-lg max-w-md leading-relaxed">
+            <p className="text-[#936650] md:text-lg max-w-md leading-relaxed">
               Handmade sweet treats from Sweet Fix Co. — crafted with care in the Midlands, available for delivery or collection.
             </p>
             
             <div className="flex items-center gap-4 pt-2">
-              <button className="bg-[#3A241A] text-[#FFFBF9] px-6 py-3 rounded-full text-sm font-medium hover:bg-[#2A1911] active:scale-95 transition-all duration-200 shadow-lg shadow-black/5">
+              <button className="bg-[#7A4C35] text-white px-6 py-3 rounded-full text-sm font-medium hover:bg-[#5A3827] active:scale-95 transition-all duration-200 shadow-lg shadow-[#7A4C35]/20">
                 DM to Order
               </button>
-              <button className="bg-white px-6 py-3 rounded-full text-sm font-medium border border-[#E8D9D1] hover:bg-gray-50 active:scale-95 transition-all duration-200">
+              <button className="bg-white px-6 py-3 rounded-full text-sm font-medium border border-[#FAE1DD] text-[#7A4C35] hover:border-[#D4AF37] hover:text-[#D4AF37] active:scale-95 transition-all duration-200">
                 View Menu
               </button>
             </div>
 
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-6">
-              <span className="px-4 py-1.5 bg-white border border-[#E8D9D1] rounded-full text-xs font-medium text-[#7A5B4D]">Fresh to order</span>
-              <span className="px-4 py-1.5 bg-white border border-[#E8D9D1] rounded-full text-xs font-medium text-[#7A5B4D]">Midlands based</span>
-              <span className="px-4 py-1.5 bg-white border border-[#E8D9D1] rounded-full text-xs font-medium text-[#7A5B4D]">24hr notice</span>
+              <span className="px-4 py-1.5 bg-white border border-[#FAE1DD] rounded-full text-xs font-medium text-[#936650]">Fresh to order</span>
+              <span className="px-4 py-1.5 bg-white border border-[#FAE1DD] rounded-full text-xs font-medium text-[#936650]">Midlands based</span>
+              <span className="px-4 py-1.5 bg-white border border-[#FAE1DD] rounded-full text-xs font-medium text-[#936650]">24hr notice</span>
             </div>
           </div>
 
-          {/* Image Container */}
           <div className="flex-1 relative w-full flex justify-center lg:justify-end opacity-0 animate-fade-up delay-200">
-            <div className="absolute top-12 -left-8 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm z-10 hidden lg:flex hover:scale-110 transition-transform duration-300">
-              <Sparkles className="text-[#D8A790]" size={24} />
+            <div className="absolute top-12 -left-8 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-sm z-10 hidden lg:flex hover:scale-110 transition-transform duration-300 border border-[#FAE1DD]">
+              <Sparkles className="text-[#D4AF37]" size={24} />
             </div>
-            {/* Added custom softer shadow */}
-            <div className="relative w-full max-w-md aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(122,91,77,0.2)]">
+            <div className="relative w-full max-w-md aspect-square md:aspect-[4/5] rounded-[2.5rem] overflow-hidden shadow-[0_20px_40px_-15px_rgba(122,76,53,0.2)] border-4 border-white">
               <img 
                 src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&q=80&w=800" 
                 alt="Signature Tiramisu Cake" 
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-1000 ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#7A4C35]/60 via-transparent to-transparent"></div>
               <div className="absolute bottom-6 right-6">
-                <span className="bg-[#FFFBF9] text-[#3A241A] px-4 py-2 rounded-full text-sm font-medium shadow-sm">
+                <span className="bg-[#FAE1DD] text-[#7A4C35] px-4 py-2 rounded-full text-sm font-semibold shadow-sm">
                   24hr notice required
                 </span>
               </div>
@@ -130,7 +126,7 @@ export default function SweetFixCoLanding() {
                 <div className="flex items-center gap-1 font-bold text-xl drop-shadow-md">
                   TikTok
                 </div>
-                <div className="text-sm font-medium drop-shadow-md opacity-90">@sweetfixco._</div>
+                <div className="text-sm font-medium drop-shadow-md opacity-90 text-[#FAE1DD]">@sweetfixco._</div>
               </div>
             </div>
           </div>
@@ -139,13 +135,13 @@ export default function SweetFixCoLanding() {
         {/* 2. Features Section */}
         <section className="text-center space-y-12 md:space-y-16">
           <div className="space-y-6 max-w-2xl mx-auto text-center flex flex-col items-center opacity-0 animate-fade-up">
-            <div className="text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
+            <div className="text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
               Handmade Dessert Boutique
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight">
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight text-[#7A4C35]">
               Sweet treats for celebrations, gifts, and cravings.
             </h2>
-            <p className="text-[#7A5B4D] max-w-xl text-sm md:text-base">
+            <p className="text-[#936650] max-w-xl text-sm md:text-base">
               Sweet Fix Co. creates freshly made desserts for birthdays, gifts, celebrations, cosy nights in, and last-minute cravings. Every order is prepared with care and finished with soft, elegant presentation.
             </p>
           </div>
@@ -156,12 +152,12 @@ export default function SweetFixCoLanding() {
               { icon: Sparkles, title: "Delivery & Collection", desc: "Available across the Midlands for gifting, treats, and celebrations.", delay: "delay-200" },
               { icon: Clock, title: "24hr Notice", desc: "Please order at least 24 hours in advance so everything is made fresh.", delay: "delay-300" },
             ].map((feature, i) => (
-              <div key={i} className={`bg-white p-8 rounded-[2rem] text-left shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-[#F5EAE5] hover:-translate-y-1 transition-transform duration-300 opacity-0 animate-fade-up ${feature.delay}`}>
-                <div className="w-10 h-10 rounded-full bg-[#FFFBF9] border border-[#F5EAE5] flex items-center justify-center text-[#AD8C7E] mb-6">
+              <div key={i} className={`bg-white p-8 rounded-[2rem] text-left shadow-[0_4px_24px_rgba(122,76,53,0.04)] border border-[#FAE1DD] hover:-translate-y-1 hover:border-[#D4AF37]/30 transition-all duration-300 opacity-0 animate-fade-up ${feature.delay}`}>
+                <div className="w-10 h-10 rounded-full bg-[#FCF0EE] border border-[#FAE1DD] flex items-center justify-center text-[#D4AF37] mb-6">
                   <feature.icon size={16} />
                 </div>
-                <h3 className="font-serif text-xl mb-3">{feature.title}</h3>
-                <p className="text-[#7A5B4D] text-sm leading-relaxed">{feature.desc}</p>
+                <h3 className="font-serif text-xl mb-3 text-[#7A4C35]">{feature.title}</h3>
+                <p className="text-[#936650] text-sm leading-relaxed">{feature.desc}</p>
               </div>
             ))}
           </div>
@@ -170,11 +166,11 @@ export default function SweetFixCoLanding() {
         {/* 3. Menu Preview */}
         <section className="space-y-12 opacity-0 animate-fade-up">
           <div className="text-center space-y-4">
-            <div className="text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
+            <div className="text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
               Freshly made, beautifully finished
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl tracking-tight">Menu Preview</h2>
-            <p className="text-[#7A5B4D]">A selection of handmade desserts available to order by DM.</p>
+            <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-[#7A4C35]">Menu Preview</h2>
+            <p className="text-[#936650]">A selection of handmade desserts available to order by DM.</p>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -200,26 +196,25 @@ export default function SweetFixCoLanding() {
                 img: "https://images.unsplash.com/photo-1481391319762-47dff7295406?auto=format&fit=crop&q=80&w=600"
               }
             ].map((item, i) => (
-              // Added "group" class here to trigger image hover from anywhere on the card
-              <div key={i} className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-300 flex flex-col h-full border border-[#F5EAE5] cursor-pointer">
-                <div className="relative aspect-[4/5] overflow-hidden bg-gray-100">
+              <div key={i} className="group bg-white rounded-[2rem] overflow-hidden shadow-sm hover:shadow-lg hover:shadow-[#7A4C35]/5 transition-all duration-300 flex flex-col h-full border border-[#FAE1DD] cursor-pointer">
+                <div className="relative aspect-[4/5] overflow-hidden bg-[#FCF0EE]">
                   <img src={item.img} alt={item.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" />
                   <div className="absolute top-4 left-4">
-                    <span className="bg-white/90 backdrop-blur-sm text-[#3A241A] px-3 py-1 rounded-full text-[11px] font-semibold">
+                    <span className="bg-white/95 backdrop-blur-sm text-[#7A4C35] border border-[#FAE1DD] px-3 py-1 rounded-full text-[11px] font-bold tracking-wide">
                       {item.tag}
                     </span>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#7A4C35]/50 via-transparent to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300"></div>
                   <div className="absolute bottom-4 left-4 text-white text-sm font-medium drop-shadow-md">
                     TikTok @sweetfixco._
                   </div>
                 </div>
                 <div className="p-6 flex flex-col flex-grow">
-                  <h3 className="font-serif text-xl mb-2 group-hover:text-[#997364] transition-colors">{item.title}</h3>
-                  <p className="text-[#7A5B4D] text-sm leading-relaxed mb-6 flex-grow">{item.desc}</p>
-                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#F5EAE5]">
-                    <span className="text-xs font-semibold">{item.price}</span>
-                    <span className="text-[#AD8C7E] text-xs font-semibold group-hover:text-[#3A241A] transition-colors">
+                  <h3 className="font-serif text-xl mb-2 text-[#7A4C35] group-hover:text-[#D4AF37] transition-colors">{item.title}</h3>
+                  <p className="text-[#936650] text-sm leading-relaxed mb-6 flex-grow">{item.desc}</p>
+                  <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#FAE1DD]">
+                    <span className="text-xs font-semibold text-[#7A4C35]">{item.price}</span>
+                    <span className="text-[#C19B4C] text-xs font-bold group-hover:text-[#7A4C35] transition-colors">
                       Order via DM
                     </span>
                   </div>
@@ -232,34 +227,33 @@ export default function SweetFixCoLanding() {
         {/* 4. Style/Gallery Section */}
         <section className="flex flex-col lg:flex-row items-center gap-16 opacity-0 animate-fade-up">
           <div className="flex-1 space-y-6 flex flex-col items-center text-center lg:items-start lg:text-left">
-            <div className="text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
+            <div className="text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
               Sweet Fix Co. Style
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight">
+            <h2 className="font-serif text-4xl md:text-5xl leading-tight tracking-tight text-[#7A4C35]">
               Made with love, finished beautifully
             </h2>
-            <p className="text-[#7A5B4D] max-w-md">
+            <p className="text-[#936650] max-w-md">
               Every dessert is prepared fresh and styled with Sweet Fix Co.'s signature soft, elegant finish.
             </p>
           </div>
 
           <div className="flex-1 w-full relative">
             <div className="grid grid-cols-2 gap-4">
-               {/* Decorative Logo Block - Adjusted text size for mobile safety */}
-              <div className="bg-[#FCECE6] rounded-3xl p-4 md:p-6 flex items-center justify-center aspect-square shadow-sm hover:scale-[1.02] transition-transform duration-300">
+              <div className="bg-[#FAE1DD] rounded-3xl p-4 md:p-6 flex items-center justify-center aspect-square shadow-sm hover:scale-[1.02] transition-transform duration-300 border border-[#F2D1C9]">
                 <div className="text-center space-y-2">
-                  <div className="flex justify-center text-[#D8A790] mb-2"><Sparkles size={24} /></div>
-                  <div className="font-serif text-xs md:text-sm tracking-widest text-[#997364] uppercase border-y border-[#E8CFC4] py-2">
+                  <div className="flex justify-center text-[#D4AF37] mb-2"><Sparkles size={24} /></div>
+                  <div className="font-serif text-xs md:text-sm tracking-widest text-[#7A4C35] uppercase border-y border-[#D4AF37]/30 py-2">
                     Sweet Fix Co.
                   </div>
                 </div>
               </div>
               
-              <div className="group row-span-2 relative rounded-3xl overflow-hidden shadow-sm aspect-[4/5] col-start-2 row-start-1">
+              <div className="group row-span-2 relative rounded-3xl overflow-hidden shadow-sm aspect-[4/5] col-start-2 row-start-1 border-2 border-white">
                  <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" alt="Tiramisu" />
               </div>
 
-              <div className="group rounded-3xl overflow-hidden shadow-sm aspect-square">
+              <div className="group rounded-3xl overflow-hidden shadow-sm aspect-square border-2 border-white">
                  <img src="https://images.unsplash.com/photo-1551024506-0cb4a1cb1cdd?auto=format&fit=crop&q=80&w=600" className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700 ease-out" alt="Dessert Cups" />
               </div>
             </div>
@@ -269,11 +263,11 @@ export default function SweetFixCoLanding() {
         {/* 5. How to Order */}
         <section className="text-center space-y-12 opacity-0 animate-fade-up">
           <div className="space-y-4">
-            <div className="text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
+            <div className="text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
               Simple Ordering
             </div>
-            <h2 className="font-serif text-4xl md:text-5xl tracking-tight">How to Order</h2>
-            <p className="text-[#7A5B4D] max-w-2xl mx-auto">Pick your dessert, message the details, and Sweet Fix Co. will prepare everything fresh.</p>
+            <h2 className="font-serif text-4xl md:text-5xl tracking-tight text-[#7A4C35]">How to Order</h2>
+            <p className="text-[#936650] max-w-2xl mx-auto">Pick your dessert, message the details, and Sweet Fix Co. will prepare everything fresh.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
@@ -282,54 +276,54 @@ export default function SweetFixCoLanding() {
               { num: "02", title: "Send a DM", desc: "Message @sweetfixco._ with your dessert choice, quantity, date, and delivery or collection preference." },
               { num: "03", title: "Allow 24hr notice", desc: "Orders are made fresh, so please message at least 24 hours before you need your desserts." }
             ].map((step, i) => (
-              <div key={i} className="bg-white p-8 lg:p-10 rounded-[2rem] text-left shadow-[0_4px_24px_rgba(0,0,0,0.02)] border border-[#F5EAE5] hover:border-[#E8D9D1] transition-colors duration-300">
-                <div className="font-serif text-3xl text-[#D8A790] mb-6">{step.num}</div>
-                <h3 className="font-serif text-2xl mb-3">{step.title}</h3>
-                <p className="text-[#7A5B4D] text-sm leading-relaxed">{step.desc}</p>
+              <div key={i} className="bg-white p-8 lg:p-10 rounded-[2rem] text-left shadow-[0_4px_24px_rgba(122,76,53,0.04)] border border-[#FAE1DD] hover:border-[#D4AF37]/50 transition-colors duration-300">
+                <div className="font-serif text-3xl text-[#D4AF37] mb-6">{step.num}</div>
+                <h3 className="font-serif text-2xl mb-3 text-[#7A4C35]">{step.title}</h3>
+                <p className="text-[#936650] text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
 
-          <button className="bg-[#3A241A] text-[#FFFBF9] px-8 py-4 rounded-full font-medium hover:bg-[#2A1911] active:scale-95 transition-all duration-200 mt-8 inline-block shadow-lg shadow-black/10">
+          <button className="bg-[#7A4C35] text-white px-8 py-4 rounded-full font-medium hover:bg-[#5A3827] active:scale-95 transition-all duration-200 mt-8 inline-block shadow-lg shadow-[#7A4C35]/20">
             DM @sweetfixco._ to Order
           </button>
         </section>
 
-        {/* 6. Footer CTA Card - Adjusted Padding */}
-        <section className="bg-[#FCECE6] rounded-[3rem] p-8 md:p-10 lg:p-16 flex flex-col lg:flex-row gap-12 justify-between border border-[#F5EAE5] opacity-0 animate-fade-up">
+        {/* 6. Footer CTA Card */}
+        <section className="bg-[#FAE1DD] rounded-[3rem] p-8 md:p-10 lg:p-16 flex flex-col lg:flex-row gap-12 justify-between border border-[#F2D1C9] opacity-0 animate-fade-up">
           <div className="space-y-8 flex-1">
-             <div className="text-xs font-bold tracking-wider text-[#AD8C7E] uppercase">
+             <div className="text-xs font-bold tracking-wider text-[#C19B4C] uppercase">
              Ready to fix your cravings?
             </div>
-            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-lg">
+            <h2 className="font-serif text-4xl lg:text-5xl leading-[1.1] tracking-tight max-w-lg text-[#7A4C35]">
               Message Sweet Fix Co.<br />
               to order fresh<br />
               handmade desserts.
             </h2>
-            <div className="space-y-2 text-[#7A5B4D] text-sm font-medium">
-              <p className="text-[#3A241A]">Sweet Fix Co.</p>
+            <div className="space-y-2 text-[#936650] text-sm font-medium">
+              <p className="text-[#7A4C35] font-bold">Sweet Fix Co.</p>
               <p>Based in Midlands</p>
               <p>Delivery & collection available</p>
               <p>DM to order</p>
               <p>24hr notice required</p>
-              <p className="text-[#3A241A] pt-2 hover:text-[#997364] cursor-pointer transition-colors w-fit">TikTok: @sweetfixco._</p>
+              <p className="text-[#7A4C35] pt-2 hover:text-[#D4AF37] cursor-pointer transition-colors w-fit font-bold">TikTok: @sweetfixco._</p>
             </div>
           </div>
           
           <div className="flex flex-col w-full sm:w-auto sm:flex-row items-center gap-4 lg:self-center">
-             <button className="w-full sm:w-auto bg-[#3A241A] text-[#FFFBF9] px-8 py-4 rounded-full font-medium hover:bg-[#2A1911] active:scale-95 transition-all duration-200 shadow-lg shadow-black/5">
+             <button className="w-full sm:w-auto bg-[#7A4C35] text-white px-8 py-4 rounded-full font-medium hover:bg-[#5A3827] active:scale-95 transition-all duration-200 shadow-lg shadow-[#7A4C35]/20">
                Message to Order
              </button>
-             <button className="w-full sm:w-auto bg-white text-[#3A241A] px-8 py-4 rounded-full font-medium border border-[#E8D9D1] hover:bg-gray-50 active:scale-95 transition-all duration-200">
+             <button className="w-full sm:w-auto bg-white text-[#7A4C35] px-8 py-4 rounded-full font-medium border border-[#F2D1C9] hover:border-[#D4AF37] hover:text-[#D4AF37] active:scale-95 transition-all duration-200">
                Follow on TikTok
              </button>
           </div>
         </section>
 
         {/* Tiny Footer */}
-        <footer className="flex justify-between items-center text-xs text-[#997364] font-medium pt-8 pb-4 border-t border-[#F5EAE5]/50">
+        <footer className="flex justify-between items-center text-xs text-[#936650] font-medium pt-8 pb-4 border-t border-[#FAE1DD]">
           <p>© Sweet Fix Co. — Fix Your Cravings</p>
-          <p className="hover:text-[#3A241A] cursor-pointer transition-colors">@sweetfixco._</p>
+          <p className="hover:text-[#D4AF37] cursor-pointer transition-colors">@sweetfixco._</p>
         </footer>
 
       </main>
