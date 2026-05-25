@@ -2,28 +2,28 @@
 
 import React from 'react';
 
-// --- Minimalist SVG Icons ---
+// --- Soft, Minimalist SVG Icons ---
 const Sparkles = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
     <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275L12 3Z"/>
   </svg>
 );
 
-const Heart = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
+const MapPin = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
-    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/>
   </svg>
 );
 
-const Clock = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
+const Truck = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
-    <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+    <rect width="15" height="10" x="3" y="8" rx="2"/><path d="M18 10h2a2 2 0 0 1 2 2v4a2 2 0 0 1-2 2h-2"/><path d="M7 21v-3"/><path d="M15 21v-3"/>
   </svg>
 );
 
-const MenuIcon = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
+const Mail = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
   <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
-    <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+    <rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
   </svg>
 );
 
@@ -32,229 +32,218 @@ const ArrowRight = ({ size = 24, className = "", ...props }: React.SVGProps<SVGS
     <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
   </svg>
 );
+
+const MenuIcon = ({ size = 24, className = "", ...props }: React.SVGProps<SVGSVGElement> & { size?: number | string }) => (
+  <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/>
+  </svg>
+);
 // -----------------------------------------------------------------
 
 export default function SweetFixCoLanding() {
   return (
-    <div className="min-h-screen bg-[#FAF8F5] text-[#2A2421] font-sans selection:bg-[#2A2421] selection:text-[#FAF8F5]">
+    <div className="min-h-screen bg-[#FDF8F5] text-[#5C3D2E] font-sans selection:bg-[#F5E6E1] selection:text-[#5C3D2E]">
       
-      {/* Refined Smooth Animations */}
+      {/* Soft Animations */}
       <style dangerouslySetInnerHTML={{__html: `
         @keyframes fadeUp {
-          from { opacity: 0; transform: translateY(30px); }
+          from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
         }
         .animate-fade-up {
-          animation: fadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+          animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
         }
         .delay-100 { animation-delay: 150ms; }
         .delay-200 { animation-delay: 300ms; }
         .delay-300 { animation-delay: 450ms; }
-        .delay-400 { animation-delay: 600ms; }
       `}} />
 
-      {/* Minimalist Glass Header */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-[#FAF8F5]/70 backdrop-blur-xl border-b border-[#EAE4DD]/60 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 py-5 flex items-center justify-between">
+      {/* Navigation */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-[#FDF8F5]/80 backdrop-blur-xl border-b border-[#F0E4DE] transition-all duration-300">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-2 group cursor-pointer">
-            <Sparkles size={18} className="text-[#A68F85] group-hover:rotate-12 transition-transform duration-500" />
-            <span className="font-serif text-xl tracking-tight text-[#2A2421]">Sweet Fix Co.</span>
+            <div className="w-8 h-8 rounded-full bg-[#F5E6E1] flex items-center justify-center text-[#B99384] group-hover:scale-110 transition-transform duration-300">
+              <Sparkles size={14} />
+            </div>
+            <span className="font-serif text-lg tracking-tight text-[#5C3D2E] font-medium">Sweet Fix Co.</span>
           </div>
           
-          <div className="hidden md:flex items-center gap-10 text-sm tracking-wide text-[#73655D]">
-            <a href="#" className="hover:text-[#2A2421] transition-colors duration-300">Home</a>
-            <a href="#" className="hover:text-[#2A2421] transition-colors duration-300">Menu</a>
-            <a href="#" className="hover:text-[#2A2421] transition-colors duration-300">Gallery</a>
+          <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#8B6B5D]">
+            <a href="#" className="hover:text-[#D4A373] transition-colors">Home</a>
+            <a href="#" className="hover:text-[#D4A373] transition-colors">Menu</a>
+            <a href="#" className="hover:text-[#D4A373] transition-colors">Gallery</a>
           </div>
 
-          <button className="bg-[#2A2421] text-[#FAF8F5] px-6 py-2.5 rounded-full text-sm hover:bg-[#433B36] active:scale-95 transition-all duration-300 hidden md:flex items-center gap-2">
-            Order via DM <ArrowRight size={14} />
+          <button className="bg-[#5C3D2E] text-[#FDF8F5] px-6 py-2.5 rounded-full text-sm font-medium hover:bg-[#4A2E20] active:scale-95 transition-all duration-300 hidden md:flex items-center gap-2 shadow-sm shadow-[#5C3D2E]/10">
+            DM to Order
           </button>
           
-          <button className="md:hidden p-2 text-[#2A2421] active:scale-95 transition-all">
+          <button className="md:hidden p-2 text-[#5C3D2E] active:scale-95 transition-all">
             <MenuIcon size={24} />
           </button>
         </div>
       </nav>
 
-      {/* Main Content Area */}
-      <main className="max-w-7xl mx-auto px-6 pt-40 md:pt-48 pb-32 space-y-32 md:space-y-48 overflow-hidden">
+      <main className="max-w-6xl mx-auto px-6 pt-32 md:pt-40 pb-24 space-y-24 md:space-y-32 overflow-hidden">
         
-        {/* 1. Editorial Hero Section */}
-        <section className="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
-          <div className="flex-1 space-y-10 flex flex-col items-center text-center lg:items-start lg:text-left opacity-0 animate-fade-up z-10">
-            <div className="inline-flex items-center gap-3 px-4 py-2 rounded-full border border-[#EAE4DD] bg-white/50 text-xs tracking-[0.2em] text-[#8C7A70] uppercase">
-              <Sparkles size={12} /> Midlands Based
+        {/* 1. Profile-Driven Hero Section */}
+        <section className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+          <div className="flex-1 space-y-8 flex flex-col items-center text-center lg:items-start lg:text-left opacity-0 animate-fade-up z-10">
+            
+            <div className="inline-flex items-center gap-2 text-sm font-medium text-[#B99384]">
+              @sweetfixco._10
             </div>
             
-            <h1 className="font-serif text-6xl sm:text-7xl lg:text-[6.5rem] leading-[0.9] tracking-[-0.03em] text-[#1A1614]">
-              Artisanal<br />
-              <span className="italic text-[#A68F85] font-light">Desserts,</span><br />
-              Made Fresh.
+            <h1 className="font-serif text-5xl sm:text-6xl lg:text-[5.5rem] leading-[1.05] tracking-tight text-[#5C3D2E]">
+              Desserts made<br />
+              fresh to order <Sparkles className="inline-block text-[#D4A373] w-10 h-10 md:w-14 md:h-14 -mt-4" />
             </h1>
             
-            <p className="text-[#73655D] md:text-lg max-w-md leading-relaxed font-light">
-              Elevating your celebrations and quiet moments with handmade, boutique desserts. Crafted to order, styled with elegance.
-            </p>
+            {/* Direct Bio Implementation */}
+            <div className="flex flex-col gap-3 text-[#8B6B5D] text-base md:text-lg">
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <MapPin size={18} className="text-[#D4A373]" />
+                <span>Based in Midlands</span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <Truck size={18} className="text-[#D4A373]" />
+                <span>Delivery & Collection available</span>
+              </div>
+              <div className="flex items-center justify-center lg:justify-start gap-3">
+                <Mail size={18} className="text-[#D4A373]" />
+                <span>DM to order | 24hr notice required</span>
+              </div>
+            </div>
             
-            <div className="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto">
-              <button className="w-full sm:w-auto bg-[#2A2421] text-[#FAF8F5] px-8 py-4 rounded-full text-sm tracking-wide hover:bg-[#433B36] hover:shadow-xl hover:shadow-[#2A2421]/10 active:scale-95 transition-all duration-300">
-                DM to Order
+            <div className="flex flex-col sm:flex-row items-center gap-4 pt-4 w-full sm:w-auto">
+              <button className="w-full sm:w-auto bg-[#5C3D2E] text-[#FDF8F5] px-8 py-4 rounded-full text-sm font-medium hover:bg-[#4A2E20] hover:shadow-lg hover:shadow-[#5C3D2E]/10 active:scale-95 transition-all duration-300">
+                DM @sweetfixco._10
               </button>
-              <button className="w-full sm:w-auto bg-transparent px-8 py-4 rounded-full text-sm tracking-wide border border-[#D5CCC4] text-[#2A2421] hover:border-[#2A2421] active:scale-95 transition-all duration-300">
-                Explore Menu
+              <button className="w-full sm:w-auto bg-transparent px-8 py-4 rounded-full text-sm font-medium border border-[#E8D9D1] text-[#5C3D2E] hover:border-[#D4A373] hover:text-[#D4A373] active:scale-95 transition-all duration-300">
+                View Menu
               </button>
             </div>
           </div>
 
           <div className="flex-1 relative w-full flex justify-center lg:justify-end opacity-0 animate-fade-up delay-200">
-            {/* Architectural Arch Image */}
-            <div className="relative w-full max-w-[28rem] aspect-[3/4] rounded-t-[14rem] rounded-b-2xl overflow-hidden shadow-2xl shadow-[#2A2421]/5">
+            <div className="relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-[#5C3D2E]/10 border-[6px] border-white">
               <img 
                 src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&q=80&w=1000" 
                 alt="Signature Tiramisu Cake" 
                 className="object-cover w-full h-full hover:scale-105 transition-transform duration-[1.5s] ease-out"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent mix-blend-multiply"></div>
+              {/* Changed from black to warm brown gradient */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#4A2E20]/60 via-transparent to-transparent"></div>
               
-              <div className="absolute bottom-8 left-0 w-full flex justify-center">
-                <div className="bg-[#FAF8F5]/95 backdrop-blur-md text-[#2A2421] px-6 py-3 rounded-full text-xs tracking-widest uppercase font-medium shadow-lg">
-                  24hr Notice Required
+              <div className="absolute bottom-6 left-6 right-6 flex justify-between items-end">
+                <div className="text-white drop-shadow-md">
+                  <div className="text-xs font-semibold uppercase tracking-wider mb-1 opacity-90">Signature</div>
+                  <div className="font-serif text-2xl">Tiramisu</div>
+                </div>
+                <div className="bg-white/95 backdrop-blur-sm text-[#5C3D2E] px-4 py-2 rounded-full text-xs font-bold shadow-sm">
+                  Fresh to order
                 </div>
               </div>
             </div>
             
-            {/* Floating Decorative Element */}
-            <div className="absolute top-20 -left-12 w-32 h-32 bg-[#EBE5DE] rounded-full mix-blend-multiply blur-2xl opacity-70 -z-10 animate-pulse"></div>
+            {/* Soft decorative background shape */}
+            <div className="absolute top-1/2 -right-12 w-64 h-64 bg-[#F5E6E1] rounded-full blur-3xl opacity-60 -z-10"></div>
           </div>
         </section>
 
-        {/* 2. Core Pillars (Borderless, clean layout) */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-24 opacity-0 animate-fade-up">
-          {[
-            { icon: Heart, title: "Handcrafted", desc: "Every layer, swirl, and finish is done by hand with meticulous attention to detail." },
-            { icon: Clock, title: "Fresh to Order", desc: "We never pre-make. Your desserts are crafted specifically for your event date." },
-            { icon: Sparkles, title: "Boutique Style", desc: "Finished with our signature soft, elegant aesthetic perfect for gifting." },
-          ].map((feature, i) => (
-            <div key={i} className="flex flex-col items-center text-center space-y-5 group">
-              <div className="w-16 h-16 rounded-full bg-white border border-[#EAE4DD] flex items-center justify-center text-[#A68F85] group-hover:scale-110 group-hover:bg-[#2A2421] group-hover:text-white transition-all duration-500 ease-out">
-                <feature.icon size={24} />
-              </div>
-              <h3 className="font-serif text-2xl text-[#1A1614]">{feature.title}</h3>
-              <p className="text-[#73655D] text-sm leading-relaxed max-w-[16rem] font-light">{feature.desc}</p>
-            </div>
-          ))}
-        </section>
-
-        {/* 3. The Collection (Menu) */}
-        <section className="space-y-16 opacity-0 animate-fade-up">
+        {/* 2. Menu Preview Grid */}
+        <section className="space-y-12 opacity-0 animate-fade-up">
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-            <div className="space-y-4 max-w-xl">
-              <h2 className="font-serif text-5xl tracking-tight text-[#1A1614]">The Collection</h2>
-              <p className="text-[#73655D] font-light leading-relaxed">A curated selection of our most loved desserts. Contact us via Instagram or TikTok to place a bespoke order.</p>
+            <div className="space-y-3 max-w-xl">
+              <h2 className="font-serif text-4xl text-[#5C3D2E]">The Collection</h2>
+              <p className="text-[#8B6B5D] leading-relaxed">Everything is prepared fresh for your date. Have a browse and drop us a DM to secure your slot.</p>
             </div>
-            <button className="text-sm tracking-widest uppercase text-[#8C7A70] hover:text-[#2A2421] transition-colors flex items-center gap-2 border-b border-[#8C7A70] hover:border-[#2A2421] pb-1 w-fit">
-              View Full Menu <ArrowRight size={14} />
+            <button className="text-sm font-semibold text-[#B99384] hover:text-[#5C3D2E] transition-colors flex items-center gap-2 border-b border-[#E8D9D1] hover:border-[#5C3D2E] pb-1 w-fit">
+              View Full Menu <ArrowRight size={16} />
             </button>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {[
-              { title: "Tiramisu Cake", tag: "Signature", img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&q=80&w=800", delay: "" },
+              { title: "Signature Tiramisu", tag: "Popular", img: "https://images.unsplash.com/photo-1571115177098-24ec42ed204d?auto=format&fit=crop&q=80&w=800", delay: "" },
               { title: "Dessert Cups", tag: "Layered", img: "https://images.unsplash.com/photo-1551024506-0cb4a1cb1cdd?auto=format&fit=crop&q=80&w=800", delay: "delay-100" },
-              { title: "Bespoke Cupcakes", tag: "Gifting", img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=800", delay: "delay-200" },
-              { title: "Sweet Boxes", tag: "Curated", img: "https://images.unsplash.com/photo-1481391319762-47dff7295406?auto=format&fit=crop&q=80&w=800", delay: "delay-300" }
+              { title: "Cupcake Boxes", tag: "Gifting", img: "https://images.unsplash.com/photo-1576618148400-f54bed99fcfd?auto=format&fit=crop&q=80&w=800", delay: "delay-200" },
+              { title: "Custom Orders", tag: "Bespoke", img: "https://images.unsplash.com/photo-1481391319762-47dff7295406?auto=format&fit=crop&q=80&w=800", delay: "delay-300" }
             ].map((item, i) => (
-              <div key={i} className={`group cursor-pointer opacity-0 animate-fade-up ${item.delay}`}>
-                <div className="relative aspect-[4/5] rounded-2xl overflow-hidden mb-5 bg-[#EBE5DE]">
-                  <img src={item.img} alt={item.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-1000 ease-out" />
-                  <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-md px-3 py-1 rounded-full text-[10px] tracking-widest uppercase text-[#2A2421]">
+              <div key={i} className={`group cursor-pointer bg-white rounded-3xl p-3 shadow-sm hover:shadow-xl hover:shadow-[#5C3D2E]/5 border border-[#F0E4DE] transition-all duration-300 opacity-0 animate-fade-up ${item.delay}`}>
+                <div className="relative aspect-[4/5] rounded-[1.5rem] overflow-hidden mb-4 bg-[#F5E6E1]">
+                  <img src={item.img} alt={item.title} className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-700 ease-out" />
+                  <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-md px-3 py-1.5 rounded-full text-[10px] font-bold tracking-wider uppercase text-[#5C3D2E]">
                     {item.tag}
                   </div>
+                  {/* Soft brown overlay on hover instead of black */}
+                  <div className="absolute inset-0 bg-[#5C3D2E]/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </div>
-                <div className="flex justify-between items-start">
-                  <h3 className="font-serif text-xl text-[#1A1614] group-hover:text-[#A68F85] transition-colors">{item.title}</h3>
-                  <div className="w-8 h-8 rounded-full border border-[#D5CCC4] flex items-center justify-center text-[#8C7A70] group-hover:bg-[#2A2421] group-hover:border-[#2A2421] group-hover:text-white transition-all duration-300">
-                    <ArrowRight size={14} />
-                  </div>
+                <div className="px-2 pb-2">
+                  <h3 className="font-serif text-lg text-[#5C3D2E] group-hover:text-[#D4A373] transition-colors">{item.title}</h3>
+                  <div className="text-[#8B6B5D] text-xs font-medium mt-1">DM for pricing</div>
                 </div>
               </div>
             ))}
           </div>
         </section>
 
-        {/* 4. Asymmetrical Gallery & How it Works */}
-        <section className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center opacity-0 animate-fade-up">
-          {/* Masonry-esque Image Block */}
-          <div className="relative h-[600px] w-full hidden md:block">
-            <img src="https://images.unsplash.com/photo-1551024506-0cb4a1cb1cdd?auto=format&fit=crop&q=80&w=800" className="absolute top-0 left-0 w-2/3 h-[70%] object-cover rounded-2xl z-10 shadow-xl" alt="Dessert detail" />
-            <img src="https://images.unsplash.com/photo-1481391319762-47dff7295406?auto=format&fit=crop&q=80&w=800" className="absolute bottom-0 right-0 w-[55%] h-[60%] object-cover rounded-2xl z-20 shadow-2xl" alt="Box detail" />
-            
-            {/* Brand Badge */}
-            <div className="absolute top-[60%] left-1/2 -translate-x-1/2 -translate-y-1/2 z-30 bg-[#2A2421] text-[#FAF8F5] p-6 rounded-full aspect-square flex flex-col items-center justify-center text-center w-32 shadow-2xl">
-              <Sparkles size={16} className="mb-1" />
-              <span className="text-[10px] tracking-widest uppercase">Midlands</span>
-            </div>
+        {/* 3. Steps to Order */}
+        <section className="bg-white rounded-[2.5rem] p-10 md:p-16 border border-[#F0E4DE] shadow-sm opacity-0 animate-fade-up">
+          <div className="text-center space-y-4 mb-16">
+            <h2 className="font-serif text-3xl md:text-4xl text-[#5C3D2E]">How to get your Sweet Fix</h2>
+            <p className="text-[#8B6B5D] max-w-xl mx-auto">Ordering is simple. We just need a little notice to ensure everything is made fresh for you.</p>
           </div>
-
-          {/* Ordering Steps */}
-          <div className="space-y-12">
-            <div className="space-y-4">
-              <h2 className="font-serif text-4xl lg:text-5xl tracking-tight text-[#1A1614]">Effortless Ordering</h2>
-              <p className="text-[#73655D] font-light">We keep things personal. Browse, message, and enjoy.</p>
-            </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+            {/* Subtle connecting line for desktop */}
+            <div className="hidden md:block absolute top-8 left-[15%] right-[15%] h-[1px] bg-gradient-to-r from-transparent via-[#E8D9D1] to-transparent"></div>
             
-            <div className="space-y-8">
-              {[
-                { step: "01", title: "Select Your Treat", desc: "Choose from our curated menu or request a bespoke box." },
-                { step: "02", title: "Message Us", desc: "Send a DM to @sweetfixco._ with your date and choice." },
-                { step: "03", title: "Fresh Preparation", desc: "We require 24 hours to handcraft your order to perfection." }
-              ].map((item, i) => (
-                <div key={i} className="flex gap-6 items-start group">
-                  <div className="text-sm font-serif italic text-[#A68F85] pt-1">{item.step}</div>
-                  <div className="space-y-1">
-                    <h4 className="text-lg text-[#1A1614] font-medium">{item.title}</h4>
-                    <p className="text-[#73655D] text-sm font-light leading-relaxed">{item.desc}</p>
-                  </div>
+            {[
+              { step: "1", title: "Pick your treats", desc: "Check out the menu above or scroll through our TikTok/Insta for inspiration." },
+              { step: "2", title: "Send us a DM", desc: "Message @sweetfixco._10 with what you'd like, plus your date and collection/delivery preference." },
+              { step: "3", title: "We prep it fresh", desc: "Give us 24 hours notice. We'll handcraft your desserts ready for your special day." }
+            ].map((item, i) => (
+              <div key={i} className="relative z-10 flex flex-col items-center text-center space-y-4">
+                <div className="w-16 h-16 rounded-full bg-[#FDF8F5] border-4 border-white shadow-sm flex items-center justify-center font-serif text-2xl text-[#D4A373]">
+                  {item.step}
                 </div>
-              ))}
-            </div>
-            
-            <button className="bg-transparent border border-[#2A2421] text-[#2A2421] px-8 py-4 rounded-full text-sm tracking-wide hover:bg-[#2A2421] hover:text-[#FAF8F5] active:scale-95 transition-all duration-300">
-              Message on TikTok
-            </button>
+                <h4 className="text-xl font-serif text-[#5C3D2E]">{item.title}</h4>
+                <p className="text-[#8B6B5D] text-sm leading-relaxed max-w-[16rem]">{item.desc}</p>
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* 5. Dark Contrast CTA Section */}
-        <section className="bg-[#211D1A] rounded-[2rem] p-10 md:p-16 lg:p-24 flex flex-col items-center text-center space-y-10 shadow-2xl relative overflow-hidden opacity-0 animate-fade-up">
-          {/* Subtle noise/texture effect simulation */}
-          <div className="absolute inset-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E")' }}></div>
+        {/* 4. Soft CTA Card */}
+        <section className="bg-[#F5E6E1] rounded-[2.5rem] p-10 md:p-16 flex flex-col items-center text-center space-y-8 opacity-0 animate-fade-up relative overflow-hidden border border-[#F0E4DE]">
+          {/* Decorative background sparkles */}
+          <Sparkles size={120} className="absolute -top-10 -right-10 text-white/40 rotate-12" />
+          <Sparkles size={80} className="absolute -bottom-10 -left-4 text-white/40 -rotate-12" />
           
-          <div className="z-10 space-y-6 max-w-2xl">
-            <Sparkles size={32} className="text-[#A68F85] mx-auto" />
-            <h2 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[#FAF8F5] tracking-tight leading-[1.1]">
-              Ready to fix your cravings?
+          <div className="z-10 space-y-4 max-w-xl relative">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/60 backdrop-blur-sm text-xs font-bold text-[#B99384] uppercase tracking-wider mb-2">
+              <Mail size={14} /> Send a Message
+            </div>
+            <h2 className="font-serif text-4xl sm:text-5xl text-[#5C3D2E] tracking-tight">
+              Ready to order?
             </h2>
-            <p className="text-[#A1958F] font-light md:text-lg">
-              Based in the Midlands. Delivery and collection available.<br />
-              Everything is made fresh to order.
+            <p className="text-[#8B6B5D] md:text-lg pb-4">
+              Drop a DM to <span className="font-semibold text-[#5C3D2E]">@sweetfixco._10</span> to secure your slot. Remember, 24hr notice is needed!
             </p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center gap-4 z-10 w-full sm:w-auto">
-             <button className="w-full sm:w-auto bg-[#FAF8F5] text-[#211D1A] px-10 py-4 rounded-full text-sm font-medium tracking-wide hover:scale-105 active:scale-95 transition-all duration-300 shadow-xl shadow-white/5">
-               DM @sweetfixco._
-             </button>
-          </div>
+          <button className="z-10 bg-[#5C3D2E] text-[#FDF8F5] px-10 py-4 rounded-full text-sm font-medium hover:bg-[#4A2E20] active:scale-95 transition-all duration-300 shadow-xl shadow-[#5C3D2E]/15 flex items-center gap-2">
+            Message on TikTok <ArrowRight size={16} />
+          </button>
         </section>
 
-        {/* Minimal Footer */}
-        <footer className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs tracking-widest uppercase text-[#8C7A70] pt-8">
+        {/* Footer */}
+        <footer className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs font-medium text-[#B99384] pt-8">
           <p>© {new Date().getFullYear()} Sweet Fix Co.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-[#2A2421] transition-colors">TikTok</a>
-            <a href="#" className="hover:text-[#2A2421] transition-colors">Instagram</a>
+            <a href="#" className="hover:text-[#5C3D2E] transition-colors">@sweetfixco._10</a>
+            <a href="#" className="hover:text-[#5C3D2E] transition-colors">Midlands, UK</a>
           </div>
         </footer>
 
