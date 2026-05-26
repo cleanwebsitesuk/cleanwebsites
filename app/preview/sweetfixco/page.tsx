@@ -61,23 +61,22 @@ export default function SweetFixCoLanding() {
         .delay-200 { animation-delay: 300ms; }
       `}} />
 
-      {/* Navigation */}
-      <nav className="fixed top-0 left-0 w-full z-50 bg-[#FAEDEA]/85 backdrop-blur-xl border-b border-[#F2E3DE] transition-all duration-300">
+      {/* Navigation - Now with White Background */}
+      <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-[#F2E3DE] transition-all duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           
           <a href="#" className="flex items-center group">
-            {/* Main Header Logo */}
+            {/* Main Header Logo - Made Bigger */}
             <img 
               src="/sweetfixco.png" 
               alt="Sweet Fix Co." 
-              className="h-10 w-auto object-contain hidden sm:block group-hover:scale-105 transition-transform duration-300" 
+              className="h-12 md:h-14 w-auto object-contain group-hover:scale-105 transition-transform duration-300" 
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
-                e.currentTarget.nextElementSibling?.classList.remove('hidden');
               }}
             />
-            {/* Fallback Text */}
-            <span className="font-serif text-xl tracking-tight text-[#392419] font-medium hidden sm:hidden">Sweet Fix Co.</span>
+            {/* Added Text Back Next to Logo */}
+            <span className="font-serif text-2xl tracking-tight text-[#392419] font-medium ml-3">Sweet Fix Co.</span>
           </a>
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#8A6A59]">
@@ -105,7 +104,6 @@ export default function SweetFixCoLanding() {
               @sweetfixco._ <Sparkles size={14} className="text-[#392419] animate-spin-slow" />
             </div>
             
-            {/* Unwrapped, naturally breathing heading */}
             <h1 className="font-serif text-5xl sm:text-6xl lg:text-7xl leading-[1.15] tracking-tight text-[#392419] max-w-2xl">
               Desserts made fresh to order.
             </h1>
@@ -124,7 +122,6 @@ export default function SweetFixCoLanding() {
           </div>
 
           <div className="flex-1 relative w-full flex justify-center lg:justify-end opacity-0 animate-fade-up delay-200">
-            {/* Floating Container */}
             <div className="animate-float relative w-full max-w-md aspect-[4/5] rounded-[2rem] overflow-hidden shadow-2xl shadow-[#392419]/10 cursor-pointer group">
               <img 
                 src="/tiramisu-hero.jpg" 
@@ -136,13 +133,13 @@ export default function SweetFixCoLanding() {
           </div>
         </section>
 
-        {/* 2. Interactive Infinite Gallery Marquee */}
-        <section className="opacity-0 animate-fade-up relative bg-[#F9ECE8] py-12 border-y border-[#F2E3DE]">
-          <div className="absolute inset-0 bg-gradient-to-r from-[#FAEDEA] via-transparent to-[#FAEDEA] z-10 pointer-events-none"></div>
+        {/* 2. Interactive Infinite Gallery Marquee - Now with White Background */}
+        <section className="opacity-0 animate-fade-up relative bg-white py-12 border-y border-[#F2E3DE]">
+          {/* Changed gradient edges to fade into white */}
+          <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none"></div>
           
           <div className="overflow-hidden">
             <div className="animate-marquee gap-6 px-6">
-              {/* Array duplicated to create a seamless infinite loop */}
               {[1, 2, 3, 4, 1, 2, 3, 4].map((item, i) => (
                 <div key={i} className="relative w-64 h-64 md:w-80 md:h-80 rounded-[2rem] overflow-hidden flex-shrink-0 cursor-pointer group shadow-sm hover:shadow-xl transition-all duration-500">
                   <img 
@@ -150,7 +147,6 @@ export default function SweetFixCoLanding() {
                     alt="Gallery item" 
                     className="object-cover w-full h-full group-hover:scale-110 group-hover:-rotate-2 transition-transform duration-700 ease-out bg-[#F2E3DE]" 
                     onError={(e) => {
-                      // Fallback placeholder if gallery images aren't added yet
                       e.currentTarget.src = "https://images.unsplash.com/photo-1551024506-0cb4a1cb1cdd?auto=format&fit=crop&q=80&w=400";
                     }}
                   />
@@ -225,23 +221,19 @@ export default function SweetFixCoLanding() {
         <section className="max-w-6xl mx-auto px-6 opacity-0 animate-fade-up">
           <div className="bg-[#392419] rounded-[2.5rem] p-8 md:p-16 relative overflow-hidden flex flex-col md:flex-row items-center gap-12 border-[6px] border-[#392419] group">
             
-            {/* Animated Faint Background Text */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
                <span className="font-serif text-[15vw] leading-none text-white opacity-[0.03] whitespace-nowrap translate-y-12 group-hover:scale-105 transition-transform duration-[3s] ease-out">
                  Fix Your Cravings
                </span>
             </div>
 
-            {/* Left Column: Circular Logo */}
             <div className="relative z-10 w-full md:w-[40%] flex justify-center">
-              {/* Subtle hover spin on the logo container */}
               <div className="w-64 h-64 md:w-80 md:h-80 rounded-full bg-[#FAEDEA] flex items-center justify-center overflow-hidden border-[12px] border-[#4A3326] shadow-xl hover:rotate-[5deg] transition-transform duration-500 cursor-pointer">
                 <img 
                   src="/sweetfixco-circle.png" 
                   alt="Sweet Fix Co." 
                   className="w-full h-full object-cover" 
                   onError={(e) => {
-                    // Fallback visual if the circle logo isn't uploaded yet
                     e.currentTarget.style.display = 'none';
                     e.currentTarget.parentElement!.innerHTML = '<span class="font-serif text-3xl text-[#392419]">SFC</span>';
                   }}
@@ -249,7 +241,6 @@ export default function SweetFixCoLanding() {
               </div>
             </div>
 
-            {/* Right Column: Text & Buttons */}
             <div className="relative z-10 flex-1 text-white space-y-6 md:pl-4 w-full text-center md:text-left">
               <span className="px-4 py-1.5 rounded-full border border-white/20 text-[10px] font-bold tracking-widest uppercase inline-block bg-transparent text-white/90 hover:bg-white/10 transition-colors cursor-default">
                 SWEET FIX CO.
