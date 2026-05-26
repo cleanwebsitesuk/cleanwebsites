@@ -22,6 +22,9 @@ export default function SweetFixCoLanding() {
       
       {/* Dynamic Animations & Scrolling Utilities */}
       <style dangerouslySetInnerHTML={{__html: `
+        html {
+          scroll-behavior: smooth;
+        }
         @keyframes fadeUp {
           from { opacity: 0; transform: translateY(20px); }
           to { opacity: 1; transform: translateY(0); }
@@ -65,7 +68,7 @@ export default function SweetFixCoLanding() {
       <nav className="fixed top-0 left-0 w-full z-50 bg-white/95 backdrop-blur-xl border-b border-[#F2E3DE] transition-all duration-300">
         <div className="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
           
-          <a href="#" className="flex items-center group">
+          <a href="#home" className="flex items-center group">
             {/* Main Header Logo - Made Bigger */}
             <img 
               src="/sweetfixco.png" 
@@ -80,9 +83,9 @@ export default function SweetFixCoLanding() {
           </a>
           
           <div className="hidden md:flex items-center gap-8 text-sm font-medium text-[#8A6A59]">
-            <a href="#" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Home</a>
-            <a href="#" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Menu</a>
-            <a href="#" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Gallery</a>
+            <a href="#home" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Home</a>
+            <a href="#menu" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Menu</a>
+            <a href="#gallery" className="hover:text-[#392419] hover:-translate-y-0.5 transition-all duration-300">Gallery</a>
           </div>
 
           <button className="bg-[#392419] text-[#FAEDEA] px-6 py-2.5 rounded-full text-sm font-bold hover:bg-[#2A1A12] hover:shadow-lg hover:-translate-y-0.5 active:scale-95 transition-all duration-300 hidden md:block">
@@ -95,7 +98,8 @@ export default function SweetFixCoLanding() {
         </div>
       </nav>
 
-      <main className="pt-32 md:pt-40 pb-24 space-y-24 md:space-y-32 overflow-hidden">
+      {/* Added ID to Main for Home anchoring */}
+      <main id="home" className="pt-32 md:pt-40 pb-24 space-y-24 md:space-y-32 overflow-hidden">
         
         {/* 1. Hero Section */}
         <section className="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
@@ -133,8 +137,8 @@ export default function SweetFixCoLanding() {
           </div>
         </section>
 
-        {/* 2. Interactive Infinite Gallery Marquee - Now with White Background */}
-        <section className="opacity-0 animate-fade-up relative bg-white py-12 border-y border-[#F2E3DE]">
+        {/* 2. Interactive Infinite Gallery Marquee - Added Gallery ID */}
+        <section id="gallery" className="opacity-0 animate-fade-up relative bg-white py-12 border-y border-[#F2E3DE]">
           {/* Changed gradient edges to fade into white */}
           <div className="absolute inset-0 bg-gradient-to-r from-white via-transparent to-white z-10 pointer-events-none"></div>
           
@@ -157,8 +161,8 @@ export default function SweetFixCoLanding() {
           </div>
         </section>
 
-        {/* 3. Menu Preview */}
-        <section className="max-w-6xl mx-auto px-6 opacity-0 animate-fade-up">
+        {/* 3. Menu Preview - Added Menu ID */}
+        <section id="menu" className="max-w-6xl mx-auto px-6 opacity-0 animate-fade-up">
           <div className="flex flex-col items-center text-center mb-12 space-y-4">
             <span className="px-4 py-1.5 rounded-full border border-[#D9C5BD] text-[10px] font-bold text-[#8A6A59] tracking-widest uppercase bg-transparent hover:bg-[#392419] hover:text-white transition-colors cursor-pointer">
               DM FOR PRICE
