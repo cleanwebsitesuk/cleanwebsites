@@ -1083,7 +1083,13 @@ function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]
           >
             {item.title}
           </h3>
-          <p className={`mt-3 text-sm leading-7 sm:text-[15px] ${dark ? "text-[#C8D1E1]" : "text-[#536176]"}`}>
+          <p
+            className={`mt-3 ${
+              dark
+                ? "text-[15px] leading-[1.9] text-[#C8D1E1] sm:text-[16px]"
+                : "text-sm leading-7 text-[#536176] sm:text-[15px]"
+            }`}
+          >
             {item.description}
           </p>
 
@@ -1195,7 +1201,7 @@ function PortfolioSection() {
             <div
               key={item.title}
               data-portfolio-card
-              className="w-[88%] shrink-0 snap-start sm:w-[64%] lg:w-[calc(50%-0.625rem)]"
+              className="w-[88%] shrink-0 snap-start sm:w-[64%] lg:w-[calc(40%-1rem)]"
             >
               <PortfolioCard item={item} index={index} />
             </div>
