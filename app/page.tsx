@@ -31,6 +31,26 @@ const FIT_POINTS = [
   "Suitable for many small businesses, including local and professional services",
 ] as const;
 
+const FEATURED_PROJECT = {
+  title: "AIRDEFENCE.AI",
+  domain: "airdefence.ai",
+  description:
+    "An autonomous counter-UAS defence platform, presented as a live command console. The site pairs a real-time tactical radar display with a fully playable live-fire simulation, streaming telemetry and a layered systems breakdown — engineered so the website feels as capable as the product it presents.",
+  href: "https://www.airdefence.ai",
+  image: "/portfolio/airdefence.png",
+  kicker: "Featured project",
+  points: [
+    "Live animated tactical display with a streaming event feed",
+    "Interactive live-fire simulation playable directly on the page",
+    "Precision command-console design system, engineered end-to-end",
+  ],
+  stats: [
+    { value: "Live", label: "Tactical radar feed" },
+    { value: "3 waves", label: "Playable simulation" },
+    { value: "360°", label: "Console telemetry" },
+  ],
+} as const;
+
 const PORTFOLIO_ITEMS = [
   {
     title: "McKenzieFriend.ai",
@@ -971,6 +991,96 @@ function FitSection({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
+function FeaturedPortfolioCard() {
+  const item = FEATURED_PROJECT;
+
+  return (
+    <Reveal>
+      <a
+        href={item.href}
+        target="_blank"
+        rel="noreferrer"
+        className={`group relative block overflow-hidden rounded-[28px] bg-[#0B1220] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${SHADOW_DARK} ${FOCUS_RING}`}
+      >
+        {/* Ambient glow — mirrors the dark package panel so the page reads as one system */}
+        <div className="pointer-events-none absolute -right-24 -top-24 h-72 w-72 rounded-full bg-[#2F6FED]/25 blur-3xl" aria-hidden="true" />
+        <div className="pointer-events-none absolute -bottom-28 left-16 h-72 w-72 rounded-full bg-white/8 blur-3xl" aria-hidden="true" />
+
+        <div className="relative grid lg:grid-cols-[0.92fr_1.08fr] lg:items-center">
+          <div className="p-6 sm:p-8 lg:p-10">
+            <div className="inline-flex items-center gap-2 rounded-full border border-white/12 bg-white/[0.06] px-3.5 py-1.5">
+              <span className="h-1.5 w-1.5 rounded-full bg-[#2F6FED]" aria-hidden="true" />
+              <span className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#AFC6F8]">
+                {item.kicker}
+              </span>
+            </div>
+
+            <h3 className="mt-4 text-[1.9rem] font-semibold leading-[1.08] tracking-[-0.035em] text-white sm:text-[2.4rem]">
+              {item.title}
+            </h3>
+            <p className="mt-4 max-w-xl text-sm leading-7 text-[#C8D1E1] sm:text-[15px]">
+              {item.description}
+            </p>
+
+            <div className="mt-6 grid gap-2.5">
+              {item.points.map((point) => (
+                <div key={point} className="flex items-start gap-3 text-sm leading-6 text-[#F8FAFC]">
+                  <CheckBadge dark />
+                  {point}
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-7 grid grid-cols-3 divide-x divide-white/10 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.04]">
+              {item.stats.map((stat) => (
+                <div key={stat.label} className="px-3 py-4 text-center sm:px-4">
+                  <div className="text-base font-semibold tracking-[-0.02em] text-white sm:text-lg">
+                    {stat.value}
+                  </div>
+                  <div className="mt-1 text-[10px] font-bold uppercase tracking-[0.12em] text-[#8A97AC] sm:text-[11px]">
+                    {stat.label}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-7 inline-flex items-center gap-2 text-sm font-bold text-[#AFC6F8]">
+              Visit website
+              <ArrowRight />
+            </div>
+          </div>
+
+          <div className="p-3 pt-0 sm:p-4 sm:pt-0 lg:p-6 lg:pl-0">
+            <div className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] shadow-[0_16px_50px_rgba(0,0,0,0.45)]">
+              {/* Browser chrome — kept dark so the preview sits in its own world */}
+              <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.05] px-4 py-2.5">
+                <div className="flex gap-1.5">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
+                </div>
+                <div className="ml-2 flex h-7 flex-1 items-center justify-center rounded-full bg-white/[0.07] px-4 text-[12px] font-medium text-[#AFC6F8]">
+                  {item.domain}
+                </div>
+              </div>
+              <div className="aspect-[16/10] overflow-hidden bg-[#060B14]">
+                <Image
+                  src={item.image}
+                  alt={`${item.title} preview`}
+                  width={1280}
+                  height={800}
+                  sizes="(max-width: 1024px) 100vw, 55vw"
+                  className="h-full w-full object-cover object-top transition duration-700 motion-reduce:transition-none md:group-hover:scale-[1.03]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    </Reveal>
+  );
+}
+
 function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]; index: number }) {
   return (
     <Reveal delay={index * 0.08}>
@@ -1047,10 +1157,14 @@ function PortfolioSection() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          {PORTFOLIO_ITEMS.map((item, index) => (
-            <PortfolioCard key={item.title} item={item} index={index} />
-          ))}
+        <div className="mt-10 grid gap-5">
+          <FeaturedPortfolioCard />
+
+          <div className="grid gap-5 lg:grid-cols-2">
+            {PORTFOLIO_ITEMS.map((item, index) => (
+              <PortfolioCard key={item.title} item={item} index={index} />
+            ))}
+          </div>
         </div>
       </SectionShell>
     </section>
