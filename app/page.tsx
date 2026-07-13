@@ -31,17 +31,18 @@ const FIT_POINTS = [
   "Suitable for many small businesses, including local and professional services",
 ] as const;
 
-const FEATURED_PROJECT = {
-  title: "AIRDEFENCE.AI",
-  domain: "airdefence.ai",
-  description:
-    "An autonomous counter-UAS defence platform, presented as a live command console. The site pairs a real-time tactical radar display with a fully playable live-fire simulation, streaming telemetry and a layered systems breakdown — engineered so the website feels as capable as the product it presents.",
-  href: "https://www.airdefence.ai",
-  image: "/portfolio/airdefence.png",
-  kicker: "Featured project",
-} as const;
-
 const PORTFOLIO_ITEMS = [
+  {
+    title: "AIRDEFENCE.AI",
+    domain: "airdefence.ai",
+    description:
+      "An autonomous counter-UAS defence platform, presented as a live command console. The site pairs a real-time tactical radar display with a fully playable live-fire simulation, streaming telemetry and a layered systems breakdown — engineered so the website feels as capable as the product it presents.",
+    href: "https://www.airdefence.ai",
+    image: "/portfolio/airdefence.png",
+    kicker: "Featured project",
+    featured: true,
+    points: [],
+  },
   {
     title: "McKenzieFriend.ai",
     domain: "mckenziefriend.ai",
@@ -50,6 +51,7 @@ const PORTFOLIO_ITEMS = [
     href: "https://mckenziefriend.ai",
     image: "/portfolio/mckenziefriend.png",
     kicker: "Recent work",
+    featured: false,
     points: [
       "Trust-focused legal positioning",
       "Clear dashboard-led structure",
@@ -64,6 +66,7 @@ const PORTFOLIO_ITEMS = [
     href: "https://fareguard.co.uk",
     image: "/portfolio/fareguard.png",
     kicker: "Recent work",
+    featured: false,
     points: [
       "Clear automation-led user journey",
       "Built around trust and simplicity",
@@ -981,119 +984,131 @@ function FitSection({ reduceMotion }: { reduceMotion: boolean }) {
   );
 }
 
-function FeaturedPortfolioCard({ index = 0 }: { index?: number }) {
-  const item = FEATURED_PROJECT;
-
+function ChevronIcon({ direction }: { direction: "left" | "right" }) {
   return (
-    <Reveal delay={index * 0.08}>
-      <a
-        href={item.href}
-        target="_blank"
-        rel="noreferrer"
-        className={`group relative block overflow-hidden rounded-[28px] bg-[#0B1220] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${SHADOW_DARK} ${FOCUS_RING}`}
-      >
-        {/* Ambient glow — mirrors the dark package panel so the page reads as one system */}
-        <div className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#2F6FED]/25 blur-3xl" aria-hidden="true" />
-
-        <div className="relative border-b border-white/10 bg-white/[0.03] p-3 sm:p-4">
-          <div className="overflow-hidden rounded-2xl border border-white/12 bg-white/[0.04] shadow-[0_16px_50px_rgba(0,0,0,0.45)]">
-            {/* Browser chrome — kept dark so the preview sits in its own world */}
-            <div className="flex items-center gap-2 border-b border-white/10 bg-white/[0.05] px-4 py-2.5">
-              <div className="flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
-                <span className="h-2.5 w-2.5 rounded-full bg-white/18" />
-              </div>
-              <div className="ml-2 flex h-7 flex-1 items-center justify-center rounded-full bg-white/[0.07] px-4 text-[12px] font-medium text-[#AFC6F8]">
-                {item.domain}
-              </div>
-            </div>
-            <div className="aspect-[16/10] overflow-hidden bg-[#060B14]">
-              <Image
-                src={item.image}
-                alt={`${item.title} preview`}
-                width={1280}
-                height={800}
-                sizes="(max-width: 1024px) 100vw, 50vw"
-                className="h-full w-full object-cover object-top transition duration-700 motion-reduce:transition-none md:group-hover:scale-[1.03]"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="relative p-6 sm:p-7">
-          <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#AFC6F8]">
-            {item.kicker}
-          </div>
-          <h3 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.03em] text-white sm:text-[1.75rem]">
-            {item.title}
-          </h3>
-          <p className="mt-3 text-sm leading-7 text-[#C8D1E1] sm:text-[15px]">{item.description}</p>
-
-          <div className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#AFC6F8]">
-            Visit website
-            <ArrowRight />
-          </div>
-        </div>
-      </a>
-    </Reveal>
+    <svg
+      aria-hidden="true"
+      viewBox="0 0 24 24"
+      className={`h-4 w-4 ${direction === "left" ? "rotate-180" : ""}`}
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="m9 5 7 7-7 7" />
+    </svg>
   );
 }
 
 function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]; index: number }) {
+  const dark = item.featured;
+
   return (
-    <Reveal delay={index * 0.08}>
+    <Reveal delay={index * 0.08} className="flex h-full">
       <a
         href={item.href}
         target="_blank"
         rel="noreferrer"
-        className={`group block overflow-hidden rounded-[28px] border border-[#E2E8F0] bg-white transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${SHADOW_SOFT} hover:shadow-[0_4px_12px_rgba(11,18,32,0.06),0_24px_60px_rgba(11,18,32,0.10)] ${FOCUS_RING}`}
+        className={`group relative flex h-full w-full flex-col overflow-hidden rounded-[28px] transition duration-300 hover:-translate-y-1 motion-reduce:transition-none motion-reduce:hover:translate-y-0 ${FOCUS_RING} ${
+          dark
+            ? `bg-[#0B1220] ${SHADOW_DARK}`
+            : `border border-[#E2E8F0] bg-white ${SHADOW_SOFT} hover:shadow-[0_4px_12px_rgba(11,18,32,0.06),0_24px_60px_rgba(11,18,32,0.10)]`
+        }`}
       >
-        <div className="border-b border-[#E2E8F0] bg-[#F1F5F9] p-3 sm:p-4">
-          <div className={`overflow-hidden rounded-2xl border border-[#E2E8F0] bg-white ${SHADOW_SOFT}`}>
+        {/* Ambient glow on the featured card — mirrors the dark package panel */}
+        {dark && (
+          <div
+            className="pointer-events-none absolute -right-24 -top-24 h-64 w-64 rounded-full bg-[#2F6FED]/25 blur-3xl"
+            aria-hidden="true"
+          />
+        )}
+
+        <div
+          className={`relative p-3 sm:p-4 ${
+            dark ? "border-b border-white/10 bg-white/[0.03]" : "border-b border-[#E2E8F0] bg-[#F1F5F9]"
+          }`}
+        >
+          <div
+            className={`overflow-hidden rounded-2xl ${
+              dark
+                ? "border border-white/12 bg-white/[0.04] shadow-[0_16px_50px_rgba(0,0,0,0.45)]"
+                : `border border-[#E2E8F0] bg-white ${SHADOW_SOFT}`
+            }`}
+          >
             {/* Browser chrome — domain shown once, in the URL bar where it belongs */}
-            <div className="flex items-center gap-2 border-b border-[#E2E8F0] bg-white px-4 py-2.5">
+            <div
+              className={`flex items-center gap-2 px-4 py-2.5 ${
+                dark ? "border-b border-white/10 bg-white/[0.05]" : "border-b border-[#E2E8F0] bg-white"
+              }`}
+            >
               <div className="flex gap-1.5">
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E2E8F0]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E2E8F0]" />
-                <span className="h-2.5 w-2.5 rounded-full bg-[#E2E8F0]" />
+                <span className={`h-2.5 w-2.5 rounded-full ${dark ? "bg-white/18" : "bg-[#E2E8F0]"}`} />
+                <span className={`h-2.5 w-2.5 rounded-full ${dark ? "bg-white/18" : "bg-[#E2E8F0]"}`} />
+                <span className={`h-2.5 w-2.5 rounded-full ${dark ? "bg-white/18" : "bg-[#E2E8F0]"}`} />
               </div>
-              <div className="ml-2 flex h-7 flex-1 items-center justify-center rounded-full bg-[#F1F5F9] px-4 text-[12px] font-medium text-[#536176]">
+              <div
+                className={`ml-2 flex h-7 flex-1 items-center justify-center rounded-full px-4 text-[12px] font-medium ${
+                  dark ? "bg-white/[0.07] text-[#AFC6F8]" : "bg-[#F1F5F9] text-[#536176]"
+                }`}
+              >
                 {item.domain}
               </div>
             </div>
-            <div className="aspect-[16/10] overflow-hidden bg-[#F1F5F9]">
+            <div className={`aspect-[16/10] overflow-hidden ${dark ? "bg-[#060B14]" : "bg-[#F1F5F9]"}`}>
               <Image
                 src={item.image}
                 alt={`${item.title} preview`}
                 width={1280}
                 height={800}
-                sizes="(max-width: 1024px) 100vw, 50vw"
+                sizes="(max-width: 640px) 88vw, (max-width: 1024px) 64vw, 50vw"
                 className="h-full w-full object-cover object-top transition duration-700 motion-reduce:transition-none md:group-hover:scale-[1.03]"
               />
             </div>
           </div>
         </div>
 
-        <div className="p-6 sm:p-7">
-          <div className="text-[11px] font-bold uppercase tracking-[0.14em] text-[#2F6FED]">
+        <div className="relative flex flex-1 flex-col p-6 sm:p-7">
+          <div
+            className={`text-[11px] font-bold uppercase tracking-[0.14em] ${
+              dark ? "text-[#AFC6F8]" : "text-[#2F6FED]"
+            }`}
+          >
             {item.kicker}
           </div>
-          <h3 className="mt-2 text-[1.5rem] font-semibold tracking-[-0.03em] text-[#0B1220] sm:text-[1.75rem]">
+          <h3
+            className={`mt-2 text-[1.5rem] font-semibold tracking-[-0.03em] sm:text-[1.75rem] ${
+              dark ? "text-white" : "text-[#0B1220]"
+            }`}
+          >
             {item.title}
           </h3>
-          <p className="mt-3 text-sm leading-7 text-[#536176] sm:text-[15px]">{item.description}</p>
+          <p className={`mt-3 text-sm leading-7 sm:text-[15px] ${dark ? "text-[#C8D1E1]" : "text-[#536176]"}`}>
+            {item.description}
+          </p>
 
-          <div className="mt-5 grid gap-2.5">
-            {item.points.map((point) => (
-              <div key={point} className="flex items-start gap-3 text-sm leading-6 text-[#293548]">
-                <CheckBadge />
-                {point}
-              </div>
-            ))}
-          </div>
+          {item.points.length > 0 && (
+            <div className="mt-5 grid gap-2.5">
+              {item.points.map((point) => (
+                <div
+                  key={point}
+                  className={`flex items-start gap-3 text-sm leading-6 ${
+                    dark ? "text-[#F8FAFC]" : "text-[#293548]"
+                  }`}
+                >
+                  <CheckBadge dark={dark} />
+                  {point}
+                </div>
+              ))}
+            </div>
+          )}
 
-          <div className="mt-6 inline-flex items-center gap-2 text-sm font-bold text-[#2F6FED]">
+          {/* mt-auto pins the link to the card base so every card ends at the same line */}
+          <div
+            className={`mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold ${
+              dark ? "text-[#AFC6F8]" : "text-[#2F6FED]"
+            }`}
+          >
             Visit website
             <ArrowRight />
           </div>
@@ -1104,22 +1119,86 @@ function PortfolioCard({ item, index }: { item: (typeof PORTFOLIO_ITEMS)[number]
 }
 
 function PortfolioSection() {
+  const reduceMotion = useReducedMotion() ?? false;
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const [canPrev, setCanPrev] = useState(false);
+  const [canNext, setCanNext] = useState(true);
+
+  const updateArrows = useCallback(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    setCanPrev(el.scrollLeft > 8);
+    setCanNext(el.scrollLeft < el.scrollWidth - el.clientWidth - 8);
+  }, []);
+
+  useEffect(() => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    updateArrows();
+    el.addEventListener("scroll", updateArrows, { passive: true });
+    window.addEventListener("resize", updateArrows);
+    return () => {
+      el.removeEventListener("scroll", updateArrows);
+      window.removeEventListener("resize", updateArrows);
+    };
+  }, [updateArrows]);
+
+  const scrollByCard = (direction: 1 | -1) => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-portfolio-card]");
+    const amount = card ? card.offsetWidth + 20 : el.clientWidth * 0.8; // gap-5 = 20px
+    el.scrollBy({ left: direction * amount, behavior: reduceMotion ? "auto" : "smooth" });
+  };
+
+  const arrowButton = (direction: 1 | -1, enabled: boolean, label: string) => (
+    <button
+      type="button"
+      aria-label={label}
+      disabled={!enabled}
+      onClick={() => scrollByCard(direction)}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border transition duration-200 ${FOCUS_RING} ${
+        enabled
+          ? `border-[#DDE4EE] bg-white text-[#0B1220] ${SHADOW_SOFT} hover:border-[#C4CFDE]`
+          : "cursor-default border-[#E9EEF5] bg-white/60 text-[#C0C9D6]"
+      }`}
+    >
+      <ChevronIcon direction={direction === 1 ? "right" : "left"} />
+    </button>
+  );
+
   return (
     <section id="portfolio" className="scroll-mt-16 border-y border-[#E2E8F0] bg-white/68">
       <SectionShell>
-        <div className="max-w-3xl">
-          <SectionEyebrow>Portfolio</SectionEyebrow>
-          <SectionHeading>Recent work</SectionHeading>
-          <p className="mt-5 max-w-2xl text-[16px] leading-8 text-[#536176]">
-            A selection of recent projects showing the level of structure, presentation and clarity
-            you can expect.
-          </p>
+        <div className="flex flex-wrap items-end justify-between gap-6">
+          <div className="max-w-3xl">
+            <SectionEyebrow>Portfolio</SectionEyebrow>
+            <SectionHeading>Recent work</SectionHeading>
+            <p className="mt-5 max-w-2xl text-[16px] leading-8 text-[#536176]">
+              A selection of recent projects showing the level of structure, presentation and clarity
+              you can expect.
+            </p>
+          </div>
+
+          <div className="hidden items-center gap-3 sm:flex">
+            {arrowButton(-1, canPrev, "Previous project")}
+            {arrowButton(1, canNext, "Next project")}
+          </div>
         </div>
 
-        <div className="mt-10 grid gap-5 lg:grid-cols-2">
-          <FeaturedPortfolioCard index={0} />
+        {/* One row, uniform cards — swipe on touch, arrows on desktop */}
+        <div
+          ref={scrollerRef}
+          className="mt-10 flex snap-x snap-mandatory items-stretch gap-5 overflow-x-auto pb-4 [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {PORTFOLIO_ITEMS.map((item, index) => (
-            <PortfolioCard key={item.title} item={item} index={index + 1} />
+            <div
+              key={item.title}
+              data-portfolio-card
+              className="w-[88%] shrink-0 snap-start sm:w-[64%] lg:w-[calc(50%-0.625rem)]"
+            >
+              <PortfolioCard item={item} index={index} />
+            </div>
           ))}
         </div>
       </SectionShell>
